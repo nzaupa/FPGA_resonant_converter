@@ -107,22 +107,15 @@ trigonometry_deg trigonometry_inst (
    .i_theta(i_phi)  // input angle
 );
 
-// debunce jump set condition
-// debounce_4bit debounce_4bit_inst(
-//    .o_switch( C_dd ),
-//    .i_clk(i_clock),
-//    .i_reset(i_RESET),
-//    .i_switch( {C4_db,C3_db,C2_db,C1_db} ),
-//    .debounce_limit(8'd5)  // 10ns  //31'd5
-// );
 
-regularization_4bit regularization_4bit_inst (
+regularization_4bit #(
+   .DEBOUNCE_TIME(2), 
+   .DELAY(500)
+) regularization_4bit_inst (
    .o_signal( {C4,C3,C2,C1} ),
    .i_clk(i_clock),
    .i_reset(i_RESET),
-   .i_signal({C4_db,C3_db,C2_db,C1_db}),
-   .debounce_limit(16'd2),
-   .delay(16'd500)
+   .i_signal({C4_db,C3_db,C2_db,C1_db})
 );
 
 // variable initialization

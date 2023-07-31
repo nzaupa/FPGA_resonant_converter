@@ -1,59 +1,68 @@
 //------------------------------------------------------------
 // Project: HYBRID_CONTROL
 // Author: Nicola Zaupa
-// Date: (2022/02/23) (08:59:01)
+// Date: (2023/07/30) (17:30:19)
 // File: regularization_4bit.v
 //------------------------------------------------------------
 // Description:
 //
-// regularize 4 independent signals
-//  1. debounce a signal according to 'debounce_limit'
-//  2. prevent the signal from changing according to 'delay'
-//------------------------------------------------------------
+// apply regularization module to 4 signals
+// 
+// this module take an input signal and:
+//    1. debounce it = i.e. allows it to change only if it does  
+//       not change for DEBOUNCE_TIME clock cycles
+//    2. once the the signal change, it prevents it to change 
+//       for a fixed amount of time DELAY
+// //------------------------------------------------------------
 
-module regularization_4bit (
+module regularization_4bit #(
+   parameter DEBOUNCE_TIME = 2,
+   parameter DELAY = 20
+)(
    output [3:0] o_signal,
    input  i_clk,
    input  i_reset,
-   input  [3:0] i_signal,
-   input  [15:0] debounce_limit,
-   input  [15:0] delay
+   input  [3:0] i_signal
 );
 
-regularization regularization_1_inst (
+regularization #(
+   .DEBOUNCE_TIME(DEBOUNCE_TIME), 
+   .DELAY(DELAY)
+) regularization_1_inst (
    .o_signal( o_signal[0] ),
    .i_clk(i_clk),
    .i_reset(i_reset),
-   .i_signal( i_signal[0] ),
-   .debounce_limit(debounce_limit),
-   .delay(delay)
+   .i_signal( i_signal[0] )
 );
 
-regularization regularization_2_inst (
+regularization #(
+   .DEBOUNCE_TIME(DEBOUNCE_TIME), 
+   .DELAY(DELAY)
+) regularization_2_inst (
    .o_signal( o_signal[1] ),
    .i_clk(i_clk),
    .i_reset(i_reset),
-   .i_signal( i_signal[1] ),
-   .debounce_limit(debounce_limit),
-   .delay(delay)
+   .i_signal( i_signal[1] )
 );
 
-regularization regularization_3_inst (
+regularization #(
+   .DEBOUNCE_TIME(DEBOUNCE_TIME), 
+   .DELAY(DELAY)
+) regularization_3_inst (
    .o_signal( o_signal[2] ),
    .i_clk(i_clk),
    .i_reset(i_reset),
-   .i_signal( i_signal[2] ),
-   .debounce_limit(debounce_limit),
-   .delay(delay)
+   .i_signal( i_signal[2] )
 );
 
-regularization regularization_4_inst (
+regularization #(
+   .DEBOUNCE_TIME(DEBOUNCE_TIME), 
+   .DELAY(DELAY)
+) regularization_4_inst (
    .o_signal( o_signal[3] ),
    .i_clk(i_clk),
    .i_reset(i_reset),
-   .i_signal( i_signal[3] ),
-   .debounce_limit(debounce_limit),
-   .delay(delay)
+   .i_signal( i_signal[3] )
 );
 
 

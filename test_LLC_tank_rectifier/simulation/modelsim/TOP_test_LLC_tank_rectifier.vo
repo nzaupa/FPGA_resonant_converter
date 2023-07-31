@@ -17,7 +17,7 @@
 // PROGRAM "Quartus Prime"
 // VERSION "Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition"
 
-// DATE "07/28/2023 18:25:16"
+// DATE "07/30/2023 17:21:19"
 
 // 
 // Device: Altera EP4SGX230KF40C2 Package FBGA1517
@@ -137,10 +137,10 @@ output 	[7:0] SEG1;
 // ADB_SPI_CS	=>  Location: PIN_G6,	 I/O Standard: 2.5 V,	 Current Strength: Default
 // ADC_BAT_V_CONVST	=>  Location: PIN_AW8,	 I/O Standard: 2.5 V,	 Current Strength: Default
 // ADC_BAT_I_CONVST	=>  Location: PIN_AE12,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// Q[0]	=>  Location: PIN_AF13,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// Q[0]	=>  Location: PIN_AH8,	 I/O Standard: 2.5 V,	 Current Strength: Default
 // Q[1]	=>  Location: PIN_AG12,	 I/O Standard: 2.5 V,	 Current Strength: Default
 // Q[2]	=>  Location: PIN_AJ10,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// Q[3]	=>  Location: PIN_AH8,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// Q[3]	=>  Location: PIN_AF13,	 I/O Standard: 2.5 V,	 Current Strength: Default
 // EX[0]	=>  Location: PIN_AW5,	 I/O Standard: 2.5 V,	 Current Strength: Default
 // EX[1]	=>  Location: PIN_AW4,	 I/O Standard: 2.5 V,	 Current Strength: Default
 // EX[2]	=>  Location: PIN_AV8,	 I/O Standard: 2.5 V,	 Current Strength: Default
@@ -1436,7 +1436,7 @@ defparam \ADC_BAT_I_CONVST~output .open_drain_output = "false";
 defparam \ADC_BAT_I_CONVST~output .shift_series_termination_control = "false";
 // synopsys translate_on
 
-// Location: IOOBUF_X119_Y15_N51
+// Location: IOOBUF_X119_Y28_N82
 stratixiv_io_obuf \Q[0]~output (
 	.i(!\Q~0_combout ),
 	.oe(vcc),
@@ -1484,7 +1484,7 @@ defparam \Q[2]~output .open_drain_output = "false";
 defparam \Q[2]~output .shift_series_termination_control = "false";
 // synopsys translate_on
 
-// Location: IOOBUF_X119_Y28_N82
+// Location: IOOBUF_X119_Y15_N51
 stratixiv_io_obuf \Q[3]~output (
 	.i(!\Q~0_combout ),
 	.oe(vcc),

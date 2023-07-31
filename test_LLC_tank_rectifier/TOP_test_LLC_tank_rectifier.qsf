@@ -92,10 +92,10 @@ set_location_assignment PIN_C33 -to SEG1[4]
 set_location_assignment PIN_D33 -to SEG1[5]
 set_location_assignment PIN_D34 -to SEG1[6]
 set_location_assignment PIN_AL35 -to SEG1[7]
-set_location_assignment PIN_AF13 -to Q[0]
+set_location_assignment PIN_AH8 -to Q[0]
 set_location_assignment PIN_AG12 -to Q[1]
 set_location_assignment PIN_AJ10 -to Q[2]
-set_location_assignment PIN_AH8 -to Q[3]
+set_location_assignment PIN_AF13 -to Q[3]
 set_location_assignment PIN_AW5 -to EX[0]
 set_location_assignment PIN_AW4 -to EX[1]
 set_location_assignment PIN_AV8 -to EX[2]
@@ -234,19 +234,18 @@ set_location_assignment PIN_R7 -to DB[1]
 set_location_assignment PIN_V9 -to DA[0]
 set_location_assignment PIN_P6 -to DB[0]
 set_location_assignment PIN_AE10 -to ADC_BAT_I_EOC
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name VERILOG_FILE ../blocks/counter_up.v
 set_global_assignment -name VERILOG_FILE ../blocks/seven_segment.v
 set_global_assignment -name VERILOG_FILE ../blocks/regularization_4bit.v
 set_global_assignment -name VERILOG_FILE ../blocks/regularization.v
 set_global_assignment -name VERILOG_FILE ../blocks/frequency_control.v
 set_global_assignment -name VERILOG_FILE ../blocks/dec2seg.v
-set_global_assignment -name VERILOG_FILE ../blocks/debounce_extended.v
 set_global_assignment -name VERILOG_FILE ../blocks/debounce_4bit.v
 set_global_assignment -name VERILOG_FILE ../blocks/debounce.v
 set_global_assignment -name VERILOG_FILE ../blocks/dead_time_4bit.v
 set_global_assignment -name VERILOG_FILE ../blocks/dead_time.v
 set_global_assignment -name VERILOG_FILE TOP_test_LLC_tank_rectifier.v
 set_global_assignment -name VERILOG_FILE PLL_test_LLC.v
-set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
-set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

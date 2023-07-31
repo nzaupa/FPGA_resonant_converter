@@ -1,30 +1,27 @@
 //------------------------------------------------------------
 // Project: HYBRID_CONTROL
 // Author: Nicola Zaupa
-// Date: (2021/02/07) (17:27:45)
+// Date: (2023/07/30) (16:33:35)
 // File: dead_time.v
 //------------------------------------------------------------
 // Description:
 //
-// Introduce a delay at the rising edge of the input signal
-// corresponding to number of clock cycles (deadtime - 10bit)
-// of the input clock
+// Introduce a delay at the RISING edge of the input signal
+// corresponding to number of clock cycles (DEADTIME)
+// of the input clock --> deadtime = DEADTIME/freq_clk (s)
 //------------------------------------------------------------
 
 
 `timescale 1 ns / 1 ps
 
-module dead_time (
-   o_signal,     // output delayed signal
-   i_clock,      // clock to count the time
-   i_signal,     // input signal
-   deadtime      // number of clock cycles to wait
+module dead_time #(
+   parameter DEADTIME = 10
+)(
+   output o_signal,     // output delayed signal
+   input  i_clock,      // clock to count the time
+   input  i_signal      // input signal
 );
 
-output      o_signal;
-input       i_clock;
-input       i_signal;
-input [9:0] deadtime;
 
 reg [9:0] delay;   // keep track of the count
 reg signal_delay;
@@ -42,7 +39,7 @@ always @(posedge i_clock ) begin
       delay <= 0;
    end else begin
       //if 1 check for the delay
-      if( delay < deadtime ) begin
+      if( delay < DEADTIME ) begin
          signal_delay <= 0;
          delay <= delay+1'b1;
       end else begin
