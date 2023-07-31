@@ -110,6 +110,7 @@ reg signed [13:0] ADC_A;
 reg signed [13:0] ADC_B;
 reg        [13:0] DAA_copy;
 reg        [13:0] DAB_copy;
+
 // rectifier
 reg  [7:0] ADC_Vbat;
 reg  [7:0] ADC_Ibat;
@@ -156,9 +157,9 @@ assign  ADC_BAT_V_CONVST = clk_100k;
 assign  ADC_BAT_I_CONVST = clk_100k;
 
 // assign for ADC control signal
-assign   AD_SCLK    = 1'b1;//SW[2]; // (DFS) Data Format Select
-                                          // 0 -> binary
-                                          // 1 -> twos complement
+assign   AD_SCLK    = 1'b1;//SW[2];   // (DFS) Data Format Select
+                                      // 0 -> binary
+                                      // 1 -> twos complement
 assign   AD_SDIO    = 1'b0;           // (DCS) Duty Cycle Stabilizer
 assign   ADA_OE     = 1'b0;           // enable ADA output
 assign   ADA_SPI_CS = 1'b1;           // disable ADA_SPI_CS (CSB)
@@ -170,8 +171,11 @@ assign   ADB_SPI_CS = 1'b1;           // disable ADB_SPI_CS (CSB)
 assign  DB = DAB_copy;
 assign  DA = debug[20:7];
 
-// --- assign for DEBUG ---
-// LED for DEBUG on the FPGA card
+// ############################
+// ##### assign for DEBUG #####
+// ############################
+
+// LED for DEBUG on the FPGA card [0==ON]
 assign   LED[0]   = ~1'b0;
 assign   LED[1]   = ~1'b0;
 assign   LED[2]   = ~1'b0;
@@ -183,33 +187,34 @@ assign   LED[7]   = ~1'b0;
 // RECTIFIER: show the values on 7seg display and LEDs
 // assign LED = SW[3] ? ~ADC_Vbat : ~ADC_Ibat;
 
-// the option is to debug on GPIO-0 (connected also to JP4 - 14pin header)
-
 assign SEG0 = SEG0_reg; //SEG0_reg;
 assign SEG1 = SEG1_reg; //SEG1_reg;
 
-assign EX[0]  = SW[3];    // over voltage
+// connected to GPIO1 and available on the rectifier board
+// all are available on the 2×6 connector, 6 of them are connected to LED
+assign EX[0]  = SW[3];     // over voltage
 assign EX[1]  = ~SW[3];    // over current
-assign EX[2]  = ENABLE;  // H-bridge ENABLE
-assign EX[3]  = Q1;    // free
-assign EX[4]  = Q2;    // free
-assign EX[5]  = Q3;    // free
-assign EX[6]  = Q4;    // free
-assign EX[7]  = debug[2];    // free
-assign EX[8]  = 1'b0;    // free
-assign EX[9]  = debug[0];   // LED 3
-assign EX[10] = debug[1];    // LED 2
-assign EX[11] = debug[21];    // LED 1
+assign EX[2]  = ENABLE;    // H-bridge ENABLE
+assign EX[3]  = Q1;        // free
+assign EX[4]  = Q2;        // free
+assign EX[5]  = Q3;        // free
+assign EX[6]  = Q4;        // free
+assign EX[7]  = debug[2];  // free
+assign EX[8]  = 1'b0;      // free
+assign EX[9]  = debug[0];  // LED 3
+assign EX[10] = debug[1];  // LED 2
+assign EX[11] = debug[21];  // LED 1
 
-
+// connected to GPIO0
 assign GPIO0[10] = debug[3];
 assign GPIO0[12] = debug[4];
 assign GPIO0[14] = debug[5];
 assign GPIO0[16] = debug[6];
 
-// --- assign for DEBUG END---
+// ##### assign for DEBUG END #####
 
 // --- assign for the H-bridge ---      
+// check if there is a short circuit
 assign ALERT   = ~((Q1 & Q3) | (Q2 & Q4));
 
 assign Q[1] = ( (Q2 & ON) | (1'b0 & ~ON) ) & ENABLE & ALERT;
@@ -219,8 +224,9 @@ assign Q[2] = ( (Q3 & ON) | (1'b1 & ~ON) ) & ENABLE & ALERT;
 
 // assign MOSFET = MOSFET_theta_phi;
 
-// start-up counter
+// start-up counter - charge the bootstrap capacitor by activating Q3 and Q4 (low side)
 assign ON = cnt_startup > 8'd10; //10us to charge bootstrap capacitor
+
 // --- assign for the ADCs in the rectifier ---      
 assign Vbat_dec = (ADC_Ibat>>4)*5;  // ADC*0.3125
 // raw reconstruction
@@ -238,7 +244,7 @@ assign   theta_HC = 32'd170 + (~phi+1);
 //         modules instantiation
 // -------------------------------------
 
-// PLL
+// PLL - manage the clock generation
 PLL_theta_phi_OL PLL_inst (
    .inclk0 ( OSC ),
    .c0 ( clk_main ),
@@ -248,7 +254,12 @@ PLL_theta_phi_OL PLL_inst (
    .c4 ( FAN_CTRL )
 );
 
-// // control law THETA
+// DIFFERENT WAY TO CONTROL THE RESONANT TANK
+//    1. only theta --> frequency modulation
+//    2. only phi   --> amplitude modulation
+//    3. theta+phi  --> mixte modulation ensuring ZVS
+
+// control law THETA
 hybrid_control_theta hybrid_control_theta_inst (
    .o_MOSFET( MOSFET_theta ),   // control signal for the four MOSFETs
    .o_sigma(  ),          // output switching variable
@@ -273,7 +284,8 @@ hybrid_control_phi hybrid_control_inst (
 );
 
 // control law PHI + THETA
-hybrid_control_theta_phi hybrid_control_tf_inst (
+hybrid_control_theta_phi #(.mu_z1(86), .mu_z2(90), .mu_Vg(312000)
+) hybrid_control_theta_phi_inst (
    .o_MOSFET( MOSFET_theta_phi ),  // control signal for the four MOSFETs
    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
    .o_debug( debug ),    // ---
@@ -308,30 +320,27 @@ theta_control theta_control_inst(
 
 // ----- DEAD TIME ----- //
 
-dead_time_4bit dead_time_inst(
+dead_time_4bit #(.DEADTIME(10)) dead_time_inst(
    .o_signal( {Q4, Q3, Q2, Q1} ),          // output switching variable
    .i_clock(  clk_100M ),            // for sequential behavior
-   .i_signal( MOSFET ),
-   .deadtime( 10'd10 )
+   .i_signal( MOSFET )
 );
 
 
 // ----- DEBOUNCE ----- //
 
-debounce_4bit debounce_4bit_inst(
+debounce_4bit #(.DEBOUNCE_TIME(5000)) debounce_4bit_inst( // 5ms
    .o_switch(button[3:0]),
    .i_clk(clk_1M),
    .i_reset(CPU_RESET),
-   .i_switch(BUTTON[3:0]),
-   .debounce_limit(31'd5000)  // 5ms
+   .i_switch(BUTTON[3:0])
 );
 
-debounce_4bit debounce_SWITCH_inst(
+debounce_4bit #(.DEBOUNCE_TIME(5000)) debounce_SWITCH_inst( // 5ms
    .o_switch(sw),
    .i_clk(clk_1M),
    .i_reset(CPU_RESET),
-   .i_switch(SW),
-   .debounce_limit(31'd5000)  // 5ms
+   .i_switch(SW)
 );
 
 // START UP counter
@@ -343,7 +352,7 @@ counter_up counter_up_inst    (
 );
 
 
-// ADC: acquire data from when available
+// ADC: acquire data from ADC when available
 always @(posedge ADA_DCO) begin
    ADC_A    = ~ADA_DATA+14'b1;
    DAA_copy = ~ADA_DATA+14'b1 + 14'd8191;
@@ -354,13 +363,6 @@ always @(posedge ADB_DCO) begin
    DAB_copy = ~ADB_DATA+14'b1 + 14'd8191;
 end
 
-// // variable deadtime
-// always @(negedge CPU_RESET or negedge button[3] ) begin
-//    if (~CPU_RESET)
-//       deadtime <= 8'd5;
-//    else
-//       deadtime <= deadtime + 8'd5;
-// end
 
 // choose what to show on the 7-segment displays
 // and the mode of the converter

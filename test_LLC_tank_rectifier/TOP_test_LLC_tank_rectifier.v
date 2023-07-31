@@ -244,29 +244,26 @@ frequency_control frequency_control_inst(
 
 
 // from MOSFET to Q == add a deadtime
-dead_time_4bit dead_time_inst(
+dead_time_4bit #(.DEADTIME(25)) dead_time_inst( // 25ns
    .o_signal( {Q4, Q3, Q2, Q1} ),          // output switching variable
    .i_clock(  clk_100M ),            // for sequential behavior
-   .i_signal( MOSFET ),
-   .deadtime( 10'd25 )  // 25@100MHz = 250ns
+   .i_signal( MOSFET )
 );
 
 // ----- DEBOUNCE ----- //
 
-debounce_4bit debounce_4bit_inst(
+debounce_4bit #(.DEBOUNCE_TIME(5000)) debounce_4bit_inst( // 5ms
    .o_switch(button[3:0]),
    .i_clk(clk_1M),
    .i_reset(CPU_RESET),
-   .i_switch(BUTTON[3:0]),
-   .debounce_limit(31'd5000)  // 5ms
+   .i_switch(BUTTON[3:0])
 );
 
-debounce_extended debounce_ENABLE_inst(
+debounce #(.DEBOUNCE_TIME(5000)) debounce_ENABLE_inst( // 5ms
    .o_switch(ENABLE),
    .i_clk(clk_1M),
    .i_reset(CPU_RESET),
-   .i_switch(SW[0]),
-   .debounce_limit(31'd5000)  // 5ms
+   .i_switch(SW[0])
 );
 
 // Ibat

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for TOP_test_LLC_tank_rectifier
-Fri Jul 28 18:23:41 2023
+Sun Jul 30 17:20:31 2023
 Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
 
 
@@ -18,16 +18,24 @@ Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
  10. Inverted Register Statistics
  11. Multiplexer Restructuring Statistics (Restructuring Performed)
  12. Parameter Settings for User Entity Instance: PLL_test_LLC:PLL_inst|altpll:altpll_component
- 13. altpll Parameter Settings by Entity Instance
- 14. Port Connectivity Checks: "dec2seg:dec2seg_Vbat_inst"
- 15. Port Connectivity Checks: "debounce_extended:debounce_ENABLE_inst"
- 16. Port Connectivity Checks: "debounce_4bit:debounce_4bit_inst"
- 17. Port Connectivity Checks: "dead_time_4bit:dead_time_inst"
- 18. Port Connectivity Checks: "PLL_test_LLC:PLL_inst"
- 19. Post-Synthesis Netlist Statistics for Top Partition
- 20. Elapsed Time Per Partition
- 21. Analysis & Synthesis Messages
- 22. Analysis & Synthesis Suppressed Messages
+ 13. Parameter Settings for User Entity Instance: dead_time_4bit:dead_time_inst
+ 14. Parameter Settings for User Entity Instance: dead_time_4bit:dead_time_inst|dead_time:dead_time_1_inst
+ 15. Parameter Settings for User Entity Instance: dead_time_4bit:dead_time_inst|dead_time:dead_time_2_inst
+ 16. Parameter Settings for User Entity Instance: dead_time_4bit:dead_time_inst|dead_time:dead_time_3_inst
+ 17. Parameter Settings for User Entity Instance: dead_time_4bit:dead_time_inst|dead_time:dead_time_4_inst
+ 18. Parameter Settings for User Entity Instance: debounce_4bit:debounce_4bit_inst
+ 19. Parameter Settings for User Entity Instance: debounce_4bit:debounce_4bit_inst|debounce:debounce_1_inst
+ 20. Parameter Settings for User Entity Instance: debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst
+ 21. Parameter Settings for User Entity Instance: debounce_4bit:debounce_4bit_inst|debounce:debounce_3_inst
+ 22. Parameter Settings for User Entity Instance: debounce_4bit:debounce_4bit_inst|debounce:debounce_4_inst
+ 23. Parameter Settings for User Entity Instance: debounce:debounce_ENABLE_inst
+ 24. altpll Parameter Settings by Entity Instance
+ 25. Port Connectivity Checks: "dec2seg:dec2seg_Vbat_inst"
+ 26. Port Connectivity Checks: "PLL_test_LLC:PLL_inst"
+ 27. Post-Synthesis Netlist Statistics for Top Partition
+ 28. Elapsed Time Per Partition
+ 29. Analysis & Synthesis Messages
+ 30. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -54,7 +62,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                        ;
 +-----------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status       ; Successful - Fri Jul 28 18:23:41 2023           ;
+; Analysis & Synthesis Status       ; Successful - Sun Jul 30 17:20:31 2023           ;
 ; Quartus Prime Version             ; 21.1.0 Build 842 10/21/2021 SJ Standard Edition ;
 ; Revision Name                     ; TOP_test_LLC_tank_rectifier                     ;
 ; Top-level Entity Name             ; TOP_test_LLC_tank_rectifier                     ;
@@ -172,12 +180,12 @@ https://fpgasoftware.intel.com/eula.
 ; Number detected on machine ; 16          ;
 ; Maximum allowed            ; 8           ;
 ;                            ;             ;
-; Average used               ; 1.00        ;
+; Average used               ; 1.01        ;
 ; Maximum used               ; 8           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-8         ;   0.0%      ;
+;     Processors 2-8         ;   0.1%      ;
 +----------------------------+-------------+
 
 
@@ -189,8 +197,8 @@ https://fpgasoftware.intel.com/eula.
 ; ../blocks/seven_segment.v        ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/seven_segment.v                                ;         ;
 ; ../blocks/frequency_control.v    ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/frequency_control.v                            ;         ;
 ; ../blocks/dec2seg.v              ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/dec2seg.v                                      ;         ;
-; ../blocks/debounce_extended.v    ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/debounce_extended.v                            ;         ;
 ; ../blocks/debounce_4bit.v        ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/debounce_4bit.v                                ;         ;
+; ../blocks/debounce.v             ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/debounce.v                                     ;         ;
 ; ../blocks/dead_time_4bit.v       ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/dead_time_4bit.v                               ;         ;
 ; ../blocks/dead_time.v            ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/dead_time.v                                    ;         ;
 ; TOP_test_LLC_tank_rectifier.v    ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/test_LLC_tank_rectifier/TOP_test_LLC_tank_rectifier.v ;         ;
@@ -267,9 +275,9 @@ https://fpgasoftware.intel.com/eula.
 ;    |dead_time_4bit:dead_time_inst|            ; 26 (0)              ; 22 (0)                    ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_test_LLC_tank_rectifier|dead_time_4bit:dead_time_inst                                               ; dead_time_4bit              ; work         ;
 ;       |dead_time:dead_time_1_inst|            ; 13 (13)             ; 11 (11)                   ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_test_LLC_tank_rectifier|dead_time_4bit:dead_time_inst|dead_time:dead_time_1_inst                    ; dead_time                   ; work         ;
 ;       |dead_time:dead_time_2_inst|            ; 13 (13)             ; 11 (11)                   ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_test_LLC_tank_rectifier|dead_time_4bit:dead_time_inst|dead_time:dead_time_2_inst                    ; dead_time                   ; work         ;
+;    |debounce:debounce_ENABLE_inst|            ; 43 (43)             ; 33 (33)                   ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_test_LLC_tank_rectifier|debounce:debounce_ENABLE_inst                                               ; debounce                    ; work         ;
 ;    |debounce_4bit:debounce_4bit_inst|         ; 44 (0)              ; 33 (0)                    ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_test_LLC_tank_rectifier|debounce_4bit:debounce_4bit_inst                                            ; debounce_4bit               ; work         ;
-;       |debounce_extended:debounce_2_inst|     ; 44 (44)             ; 33 (33)                   ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_test_LLC_tank_rectifier|debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst          ; debounce_extended           ; work         ;
-;    |debounce_extended:debounce_ENABLE_inst|   ; 43 (43)             ; 33 (33)                   ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_test_LLC_tank_rectifier|debounce_extended:debounce_ENABLE_inst                                      ; debounce_extended           ; work         ;
+;       |debounce:debounce_2_inst|              ; 44 (44)             ; 33 (33)                   ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_test_LLC_tank_rectifier|debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst                   ; debounce                    ; work         ;
 ;    |dec2seg:dec2seg_Ibat_inst|                ; 13 (13)             ; 0 (0)                     ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_test_LLC_tank_rectifier|dec2seg:dec2seg_Ibat_inst                                                   ; dec2seg                     ; work         ;
 ;    |dec2seg:dec2seg_Vbat_inst|                ; 8 (8)               ; 0 (0)                     ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_test_LLC_tank_rectifier|dec2seg:dec2seg_Vbat_inst                                                   ; dec2seg                     ; work         ;
 ;    |frequency_control:frequency_control_inst| ; 76 (49)             ; 8 (8)                     ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_test_LLC_tank_rectifier|frequency_control:frequency_control_inst                                    ; frequency_control           ; work         ;
@@ -330,17 +338,17 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 
 
-+---------------------------------------------------------------------------------------------+
-; Inverted Register Statistics                                                                ;
-+-----------------------------------------------------------------------------------+---------+
-; Inverted Register                                                                 ; Fan out ;
-+-----------------------------------------------------------------------------------+---------+
-; debounce_extended:debounce_ENABLE_inst|r_switch_state                             ; 5       ;
-; frequency_control:frequency_control_inst|frequency[1]                             ; 31      ;
-; frequency_control:frequency_control_inst|frequency[3]                             ; 35      ;
-; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; 10      ;
-; Total number of inverted registers = 4                                            ;         ;
-+-----------------------------------------------------------------------------------+---------+
++------------------------------------------------------------------------------------+
+; Inverted Register Statistics                                                       ;
++--------------------------------------------------------------------------+---------+
+; Inverted Register                                                        ; Fan out ;
++--------------------------------------------------------------------------+---------+
+; debounce:debounce_ENABLE_inst|r_switch_state                             ; 5       ;
+; frequency_control:frequency_control_inst|frequency[1]                    ; 31      ;
+; frequency_control:frequency_control_inst|frequency[3]                    ; 35      ;
+; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; 10      ;
+; Total number of inverted registers = 4                                   ;         ;
++--------------------------------------------------------------------------+---------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -728,6 +736,116 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: dead_time_4bit:dead_time_inst ;
++----------------+-------+---------------------------------------------------+
+; Parameter Name ; Value ; Type                                              ;
++----------------+-------+---------------------------------------------------+
+; DEADTIME       ; 25    ; Signed Integer                                    ;
++----------------+-------+---------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: dead_time_4bit:dead_time_inst|dead_time:dead_time_1_inst ;
++----------------+-------+------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                         ;
++----------------+-------+------------------------------------------------------------------------------+
+; DEADTIME       ; 25    ; Signed Integer                                                               ;
++----------------+-------+------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: dead_time_4bit:dead_time_inst|dead_time:dead_time_2_inst ;
++----------------+-------+------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                         ;
++----------------+-------+------------------------------------------------------------------------------+
+; DEADTIME       ; 25    ; Signed Integer                                                               ;
++----------------+-------+------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: dead_time_4bit:dead_time_inst|dead_time:dead_time_3_inst ;
++----------------+-------+------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                         ;
++----------------+-------+------------------------------------------------------------------------------+
+; DEADTIME       ; 25    ; Signed Integer                                                               ;
++----------------+-------+------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: dead_time_4bit:dead_time_inst|dead_time:dead_time_4_inst ;
++----------------+-------+------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                         ;
++----------------+-------+------------------------------------------------------------------------------+
+; DEADTIME       ; 25    ; Signed Integer                                                               ;
++----------------+-------+------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: debounce_4bit:debounce_4bit_inst ;
++----------------+-------+------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                 ;
++----------------+-------+------------------------------------------------------+
+; DEBOUNCE_TIME  ; 5000  ; Signed Integer                                       ;
++----------------+-------+------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: debounce_4bit:debounce_4bit_inst|debounce:debounce_1_inst ;
++----------------+-------+-------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                          ;
++----------------+-------+-------------------------------------------------------------------------------+
+; DEBOUNCE_TIME  ; 5000  ; Signed Integer                                                                ;
++----------------+-------+-------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst ;
++----------------+-------+-------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                          ;
++----------------+-------+-------------------------------------------------------------------------------+
+; DEBOUNCE_TIME  ; 5000  ; Signed Integer                                                                ;
++----------------+-------+-------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: debounce_4bit:debounce_4bit_inst|debounce:debounce_3_inst ;
++----------------+-------+-------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                          ;
++----------------+-------+-------------------------------------------------------------------------------+
+; DEBOUNCE_TIME  ; 5000  ; Signed Integer                                                                ;
++----------------+-------+-------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: debounce_4bit:debounce_4bit_inst|debounce:debounce_4_inst ;
++----------------+-------+-------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                          ;
++----------------+-------+-------------------------------------------------------------------------------+
+; DEBOUNCE_TIME  ; 5000  ; Signed Integer                                                                ;
++----------------+-------+-------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: debounce:debounce_ENABLE_inst ;
++----------------+-------+---------------------------------------------------+
+; Parameter Name ; Value ; Type                                              ;
++----------------+-------+---------------------------------------------------+
+; DEBOUNCE_TIME  ; 5000  ; Signed Integer                                    ;
++----------------+-------+---------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +-------------------------------------------------------------------------------+
 ; altpll Parameter Settings by Entity Instance                                  ;
 +-------------------------------+-----------------------------------------------+
@@ -752,50 +870,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------+-------+----------+-------------------------+
 ; i_dec[7] ; Input ; Info     ; Stuck at GND            ;
 +----------+-------+----------+-------------------------+
-
-
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "debounce_extended:debounce_ENABLE_inst"                                                                                                                                     ;
-+------------------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port                   ; Type  ; Severity ; Details                                                                                                                                                    ;
-+------------------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; debounce_limit         ; Input ; Warning  ; Input port expression (31 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "debounce_limit[31..31]" will be connected to GND. ;
-; debounce_limit[9..7]   ; Input ; Info     ; Stuck at VCC                                                                                                                                               ;
-; debounce_limit[30..13] ; Input ; Info     ; Stuck at GND                                                                                                                                               ;
-; debounce_limit[11..10] ; Input ; Info     ; Stuck at GND                                                                                                                                               ;
-; debounce_limit[6..4]   ; Input ; Info     ; Stuck at GND                                                                                                                                               ;
-; debounce_limit[2..0]   ; Input ; Info     ; Stuck at GND                                                                                                                                               ;
-; debounce_limit[13]     ; Input ; Info     ; Stuck at VCC                                                                                                                                               ;
-; debounce_limit[4]      ; Input ; Info     ; Stuck at VCC                                                                                                                                               ;
-+------------------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "debounce_4bit:debounce_4bit_inst"                                                                                                                                           ;
-+------------------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port                   ; Type  ; Severity ; Details                                                                                                                                                    ;
-+------------------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; debounce_limit         ; Input ; Warning  ; Input port expression (31 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "debounce_limit[31..31]" will be connected to GND. ;
-; debounce_limit[9..7]   ; Input ; Info     ; Stuck at VCC                                                                                                                                               ;
-; debounce_limit[30..13] ; Input ; Info     ; Stuck at GND                                                                                                                                               ;
-; debounce_limit[11..10] ; Input ; Info     ; Stuck at GND                                                                                                                                               ;
-; debounce_limit[6..4]   ; Input ; Info     ; Stuck at GND                                                                                                                                               ;
-; debounce_limit[2..0]   ; Input ; Info     ; Stuck at GND                                                                                                                                               ;
-; debounce_limit[13]     ; Input ; Info     ; Stuck at VCC                                                                                                                                               ;
-; debounce_limit[4]      ; Input ; Info     ; Stuck at VCC                                                                                                                                               ;
-+------------------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-
-+-----------------------------------------------------------+
-; Port Connectivity Checks: "dead_time_4bit:dead_time_inst" ;
-+----------------+-------+----------+-----------------------+
-; Port           ; Type  ; Severity ; Details               ;
-+----------------+-------+----------+-----------------------+
-; deadtime[4..3] ; Input ; Info     ; Stuck at VCC          ;
-; deadtime[9..5] ; Input ; Info     ; Stuck at GND          ;
-; deadtime[2..1] ; Input ; Info     ; Stuck at GND          ;
-; deadtime[0]    ; Input ; Info     ; Stuck at VCC          ;
-+----------------+-------+----------+-----------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------+
@@ -848,7 +922,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:03     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -858,7 +932,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
-    Info: Processing started: Fri Jul 28 18:23:24 2023
+    Info: Processing started: Sun Jul 30 17:20:18 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off test_LLC_tank_rectifier -c TOP_test_LLC_tank_rectifier
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20032): Parallel compilation is enabled and will use up to 8 processors
@@ -874,13 +948,12 @@ Info (12021): Found 1 design units, including 1 entities, in source file /fpga/p
     Info (12023): Found entity 1: frequency_control File: C:/FPGA/Projects/blocks/frequency_control.v Line: 17
 Info (12021): Found 1 design units, including 1 entities, in source file /fpga/projects/blocks/dec2seg.v
     Info (12023): Found entity 1: dec2seg File: C:/FPGA/Projects/blocks/dec2seg.v Line: 13
-Info (12021): Found 1 design units, including 1 entities, in source file /fpga/projects/blocks/debounce_extended.v
-    Info (12023): Found entity 1: debounce_extended File: C:/FPGA/Projects/blocks/debounce_extended.v Line: 12
 Info (12021): Found 1 design units, including 1 entities, in source file /fpga/projects/blocks/debounce_4bit.v
-    Info (12023): Found entity 1: debounce_4bit File: C:/FPGA/Projects/blocks/debounce_4bit.v Line: 12
-Warning (12019): Can't analyze file -- file ../blocks/debounce.v is missing
+    Info (12023): Found entity 1: debounce_4bit File: C:/FPGA/Projects/blocks/debounce_4bit.v Line: 18
+Info (12021): Found 1 design units, including 1 entities, in source file /fpga/projects/blocks/debounce.v
+    Info (12023): Found entity 1: debounce File: C:/FPGA/Projects/blocks/debounce.v Line: 15
 Info (12021): Found 1 design units, including 1 entities, in source file /fpga/projects/blocks/dead_time_4bit.v
-    Info (12023): Found entity 1: dead_time_4bit File: C:/FPGA/Projects/blocks/dead_time_4bit.v Line: 17
+    Info (12023): Found entity 1: dead_time_4bit File: C:/FPGA/Projects/blocks/dead_time_4bit.v Line: 18
 Info (12021): Found 1 design units, including 1 entities, in source file /fpga/projects/blocks/dead_time.v
     Info (12023): Found entity 1: dead_time File: C:/FPGA/Projects/blocks/dead_time.v Line: 17
 Info (12021): Found 1 design units, including 1 entities, in source file top_test_llc_tank_rectifier.v
@@ -972,11 +1045,10 @@ Info (12128): Elaborating entity "PLL_altpll" for hierarchy "PLL_test_LLC:PLL_in
 Info (12128): Elaborating entity "frequency_control" for hierarchy "frequency_control:frequency_control_inst" File: C:/FPGA/Projects/test_LLC_tank_rectifier/TOP_test_LLC_tank_rectifier.v Line: 243
 Info (12128): Elaborating entity "dec2seg" for hierarchy "frequency_control:frequency_control_inst|dec2seg:dec2seg_inst" File: C:/FPGA/Projects/blocks/frequency_control.v Line: 52
 Info (12128): Elaborating entity "seven_segment" for hierarchy "frequency_control:frequency_control_inst|seven_segment:seven_segment_0_inst" File: C:/FPGA/Projects/blocks/frequency_control.v Line: 57
-Info (12128): Elaborating entity "dead_time_4bit" for hierarchy "dead_time_4bit:dead_time_inst" File: C:/FPGA/Projects/test_LLC_tank_rectifier/TOP_test_LLC_tank_rectifier.v Line: 252
-Info (12128): Elaborating entity "dead_time" for hierarchy "dead_time_4bit:dead_time_inst|dead_time:dead_time_1_inst" File: C:/FPGA/Projects/blocks/dead_time_4bit.v Line: 30
-Info (12128): Elaborating entity "debounce_4bit" for hierarchy "debounce_4bit:debounce_4bit_inst" File: C:/FPGA/Projects/test_LLC_tank_rectifier/TOP_test_LLC_tank_rectifier.v Line: 262
-Info (12128): Elaborating entity "debounce_extended" for hierarchy "debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_1_inst" File: C:/FPGA/Projects/blocks/debounce_4bit.v Line: 26
-Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (12128): Elaborating entity "dead_time_4bit" for hierarchy "dead_time_4bit:dead_time_inst" File: C:/FPGA/Projects/test_LLC_tank_rectifier/TOP_test_LLC_tank_rectifier.v Line: 251
+Info (12128): Elaborating entity "dead_time" for hierarchy "dead_time_4bit:dead_time_inst|dead_time:dead_time_1_inst" File: C:/FPGA/Projects/blocks/dead_time_4bit.v Line: 31
+Info (12128): Elaborating entity "debounce_4bit" for hierarchy "debounce_4bit:debounce_4bit_inst" File: C:/FPGA/Projects/test_LLC_tank_rectifier/TOP_test_LLC_tank_rectifier.v Line: 260
+Info (12128): Elaborating entity "debounce" for hierarchy "debounce_4bit:debounce_4bit_inst|debounce:debounce_1_inst" File: C:/FPGA/Projects/blocks/debounce_4bit.v Line: 32
 Warning (13034): The following nodes have both tri-state and non-tri-state drivers
     Warning (13035): Inserted always-enabled tri-state buffer between "FPGA_CLK_A_N" and its non-tri-state driver. File: C:/FPGA/Projects/test_LLC_tank_rectifier/TOP_test_LLC_tank_rectifier.v Line: 59
     Warning (13035): Inserted always-enabled tri-state buffer between "FPGA_CLK_A_P" and its non-tri-state driver. File: C:/FPGA/Projects/test_LLC_tank_rectifier/TOP_test_LLC_tank_rectifier.v Line: 60
@@ -1024,11 +1096,11 @@ Info (21057): Implemented 534 device resources after synthesis - the final resou
     Info (21060): Implemented 6 bidirectional pins
     Info (21061): Implemented 392 logic cells
     Info (21065): Implemented 1 PLLs
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 42 warnings
-    Info: Peak virtual memory: 4900 megabytes
-    Info: Processing ended: Fri Jul 28 18:23:41 2023
-    Info: Elapsed time: 00:00:17
-    Info: Total CPU time (on all processors): 00:00:35
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 40 warnings
+    Info: Peak virtual memory: 4896 megabytes
+    Info: Processing ended: Sun Jul 30 17:20:31 2023
+    Info: Elapsed time: 00:00:13
+    Info: Total CPU time (on all processors): 00:00:26
 
 
 +------------------------------------------+

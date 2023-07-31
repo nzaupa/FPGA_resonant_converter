@@ -1,5 +1,5 @@
 Timing Analyzer report for TOP_test_LLC_tank_rectifier
-Fri Jul 28 18:25:13 2023
+Sun Jul 30 17:21:16 2023
 Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
 
 
@@ -93,43 +93,43 @@ https://fpgasoftware.intel.com/eula.
 ; Number detected on machine ; 16          ;
 ; Maximum allowed            ; 8           ;
 ;                            ;             ;
-; Average used               ; 1.06        ;
+; Average used               ; 1.18        ;
 ; Maximum used               ; 8           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   1.0%      ;
-;     Processors 3-8         ;   0.8%      ;
+;     Processor 2            ;   2.7%      ;
+;     Processors 3-8         ;   2.6%      ;
 +----------------------------+-------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Clocks                                                                                                                                                                                                                                                                                                                                                                                            ;
-+-----------------------------------------------------------------------------------+-----------+------------+------------+-------+-----------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------------------------------------------------------+---------------------------------------------------------------------------------------+
-; Clock Name                                                                        ; Type      ; Period     ; Frequency  ; Rise  ; Fall      ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source                                                 ; Targets                                                                               ;
-+-----------------------------------------------------------------------------------+-----------+------------+------------+-------+-----------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------------------------------------------------------+---------------------------------------------------------------------------------------+
-; ADA_DCO                                                                           ; Base      ; 1.000      ; 1000.0 MHz ; 0.000 ; 0.500     ;            ;           ;             ;       ;        ;           ;            ;          ;        ;                                                        ; { ADA_DCO }                                                                           ;
-; ADB_DCO                                                                           ; Base      ; 1.000      ; 1000.0 MHz ; 0.000 ; 0.500     ;            ;           ;             ;       ;        ;           ;            ;          ;        ;                                                        ; { ADB_DCO }                                                                           ;
-; ADC_BAT_I_EOC                                                                     ; Base      ; 1.000      ; 1000.0 MHz ; 0.000 ; 0.500     ;            ;           ;             ;       ;        ;           ;            ;          ;        ;                                                        ; { ADC_BAT_I_EOC }                                                                     ;
-; ADC_BAT_V_EOC                                                                     ; Base      ; 1.000      ; 1000.0 MHz ; 0.000 ; 0.500     ;            ;           ;             ;       ;        ;           ;            ;          ;        ;                                                        ; { ADC_BAT_V_EOC }                                                                     ;
-; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; Base      ; 1.000      ; 1000.0 MHz ; 0.000 ; 0.500     ;            ;           ;             ;       ;        ;           ;            ;          ;        ;                                                        ; { debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state } ;
-; OSC                                                                               ; Base      ; 20.000     ; 50.0 MHz   ; 0.000 ; 10.000    ;            ;           ;             ;       ;        ;           ;            ;          ;        ;                                                        ; { OSC }                                                                               ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ; Generated ; 10.000     ; 100.0 MHz  ; 0.000 ; 5.000     ; 50.00      ; 1         ; 2           ;       ;        ;           ;            ; false    ; OSC    ; PLL_inst|altpll_component|auto_generated|pll1|inclk[0] ; { PLL_inst|altpll_component|auto_generated|pll1|clk[1] }                              ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ; Generated ; 1000.000   ; 1.0 MHz    ; 0.000 ; 500.000   ; 50.00      ; 50        ; 1           ;       ;        ;           ;            ; false    ; OSC    ; PLL_inst|altpll_component|auto_generated|pll1|inclk[0] ; { PLL_inst|altpll_component|auto_generated|pll1|clk[2] }                              ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                              ; Generated ; 10000.000  ; 0.1 MHz    ; 0.000 ; 5000.000  ; 50.00      ; 500       ; 1           ;       ;        ;           ;            ; false    ; OSC    ; PLL_inst|altpll_component|auto_generated|pll1|inclk[0] ; { PLL_inst|altpll_component|auto_generated|pll1|clk[3] }                              ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[4]                              ; Generated ; 100000.000 ; 0.01 MHz   ; 0.000 ; 49000.000 ; 49.00      ; 5000      ; 1           ;       ;        ;           ;            ; false    ; OSC    ; PLL_inst|altpll_component|auto_generated|pll1|inclk[0] ; { PLL_inst|altpll_component|auto_generated|pll1|clk[4] }                              ;
-+-----------------------------------------------------------------------------------+-----------+------------+------------+-------+-----------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------------------------------------------------------+---------------------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                                                                                                                                                                                                                          ;
++--------------------------------------------------------------------------+-----------+------------+------------+-------+-----------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------------------------------------------------------+------------------------------------------------------------------------------+
+; Clock Name                                                               ; Type      ; Period     ; Frequency  ; Rise  ; Fall      ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source                                                 ; Targets                                                                      ;
++--------------------------------------------------------------------------+-----------+------------+------------+-------+-----------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------------------------------------------------------+------------------------------------------------------------------------------+
+; ADA_DCO                                                                  ; Base      ; 1.000      ; 1000.0 MHz ; 0.000 ; 0.500     ;            ;           ;             ;       ;        ;           ;            ;          ;        ;                                                        ; { ADA_DCO }                                                                  ;
+; ADB_DCO                                                                  ; Base      ; 1.000      ; 1000.0 MHz ; 0.000 ; 0.500     ;            ;           ;             ;       ;        ;           ;            ;          ;        ;                                                        ; { ADB_DCO }                                                                  ;
+; ADC_BAT_I_EOC                                                            ; Base      ; 1.000      ; 1000.0 MHz ; 0.000 ; 0.500     ;            ;           ;             ;       ;        ;           ;            ;          ;        ;                                                        ; { ADC_BAT_I_EOC }                                                            ;
+; ADC_BAT_V_EOC                                                            ; Base      ; 1.000      ; 1000.0 MHz ; 0.000 ; 0.500     ;            ;           ;             ;       ;        ;           ;            ;          ;        ;                                                        ; { ADC_BAT_V_EOC }                                                            ;
+; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; Base      ; 1.000      ; 1000.0 MHz ; 0.000 ; 0.500     ;            ;           ;             ;       ;        ;           ;            ;          ;        ;                                                        ; { debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state } ;
+; OSC                                                                      ; Base      ; 20.000     ; 50.0 MHz   ; 0.000 ; 10.000    ;            ;           ;             ;       ;        ;           ;            ;          ;        ;                                                        ; { OSC }                                                                      ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ; Generated ; 10.000     ; 100.0 MHz  ; 0.000 ; 5.000     ; 50.00      ; 1         ; 2           ;       ;        ;           ;            ; false    ; OSC    ; PLL_inst|altpll_component|auto_generated|pll1|inclk[0] ; { PLL_inst|altpll_component|auto_generated|pll1|clk[1] }                     ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ; Generated ; 1000.000   ; 1.0 MHz    ; 0.000 ; 500.000   ; 50.00      ; 50        ; 1           ;       ;        ;           ;            ; false    ; OSC    ; PLL_inst|altpll_component|auto_generated|pll1|inclk[0] ; { PLL_inst|altpll_component|auto_generated|pll1|clk[2] }                     ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                     ; Generated ; 10000.000  ; 0.1 MHz    ; 0.000 ; 5000.000  ; 50.00      ; 500       ; 1           ;       ;        ;           ;            ; false    ; OSC    ; PLL_inst|altpll_component|auto_generated|pll1|inclk[0] ; { PLL_inst|altpll_component|auto_generated|pll1|clk[3] }                     ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[4]                     ; Generated ; 100000.000 ; 0.01 MHz   ; 0.000 ; 49000.000 ; 49.00      ; 5000      ; 1           ;       ;        ;           ;            ; false    ; OSC    ; PLL_inst|altpll_component|auto_generated|pll1|inclk[0] ; { PLL_inst|altpll_component|auto_generated|pll1|clk[4] }                     ;
++--------------------------------------------------------------------------+-----------+------------+------------+-------+-----------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------------------------------------------------------+------------------------------------------------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Slow 900mV 85C Model Fmax Summary                                                                                                                                 ;
-+------------+-----------------+-----------------------------------------------------------------------------------+------------------------------------------------+
-; Fmax       ; Restricted Fmax ; Clock Name                                                                        ; Note                                           ;
-+------------+-----------------+-----------------------------------------------------------------------------------+------------------------------------------------+
-; 272.41 MHz ; 272.41 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ;                                                ;
-; 315.26 MHz ; 315.26 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ;                                                ;
-; 815.0 MHz  ; 800.0 MHz       ; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; limit due to minimum period restriction (tmin) ;
-+------------+-----------------+-----------------------------------------------------------------------------------+------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow 900mV 85C Model Fmax Summary                                                                                                                        ;
++------------+-----------------+--------------------------------------------------------------------------+------------------------------------------------+
+; Fmax       ; Restricted Fmax ; Clock Name                                                               ; Note                                           ;
++------------+-----------------+--------------------------------------------------------------------------+------------------------------------------------+
+; 272.41 MHz ; 272.41 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ;                                                ;
+; 315.26 MHz ; 315.26 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ;                                                ;
+; 815.0 MHz  ; 800.0 MHz       ; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; limit due to minimum period restriction (tmin) ;
++------------+-----------------+--------------------------------------------------------------------------+------------------------------------------------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
@@ -139,28 +139,28 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 HTML report is unavailable in plain text report export.
 
 
-+------------------------------------------------------------------------------------------------------------+
-; Slow 900mV 85C Model Setup Summary                                                                         ;
-+-----------------------------------------------------------------------------------+--------+---------------+
-; Clock                                                                             ; Slack  ; End Point TNS ;
-+-----------------------------------------------------------------------------------+--------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ; -5.645 ; -292.732      ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                              ; -5.130 ; -70.514       ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ; -0.924 ; -23.809       ;
-; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; -0.227 ; -0.715        ;
-+-----------------------------------------------------------------------------------+--------+---------------+
++---------------------------------------------------------------------------------------------------+
+; Slow 900mV 85C Model Setup Summary                                                                ;
++--------------------------------------------------------------------------+--------+---------------+
+; Clock                                                                    ; Slack  ; End Point TNS ;
++--------------------------------------------------------------------------+--------+---------------+
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ; -5.645 ; -292.732      ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                     ; -5.130 ; -70.514       ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ; -0.924 ; -23.809       ;
+; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; -0.227 ; -0.715        ;
++--------------------------------------------------------------------------+--------+---------------+
 
 
-+-----------------------------------------------------------------------------------------------------------+
-; Slow 900mV 85C Model Hold Summary                                                                         ;
-+-----------------------------------------------------------------------------------+-------+---------------+
-; Clock                                                                             ; Slack ; End Point TNS ;
-+-----------------------------------------------------------------------------------+-------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ; 0.301 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ; 0.357 ; 0.000         ;
-; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; 0.366 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                              ; 3.135 ; 0.000         ;
-+-----------------------------------------------------------------------------------+-------+---------------+
++--------------------------------------------------------------------------------------------------+
+; Slow 900mV 85C Model Hold Summary                                                                ;
++--------------------------------------------------------------------------+-------+---------------+
+; Clock                                                                    ; Slack ; End Point TNS ;
++--------------------------------------------------------------------------+-------+---------------+
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ; 0.301 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ; 0.357 ; 0.000         ;
+; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; 0.366 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                     ; 3.135 ; 0.000         ;
++--------------------------------------------------------------------------+-------+---------------+
 
 
 -----------------------------------------
@@ -175,21 +175,21 @@ No paths to report.
 No paths to report.
 
 
-+--------------------------------------------------------------------------------------------------------------+
-; Slow 900mV 85C Model Minimum Pulse Width Summary                                                             ;
-+-----------------------------------------------------------------------------------+----------+---------------+
-; Clock                                                                             ; Slack    ; End Point TNS ;
-+-----------------------------------------------------------------------------------+----------+---------------+
-; ADA_DCO                                                                           ; -0.250   ; -4.390        ;
-; ADB_DCO                                                                           ; -0.250   ; -4.200        ;
-; ADC_BAT_I_EOC                                                                     ; -0.250   ; -2.435        ;
-; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; -0.250   ; -2.224        ;
-; ADC_BAT_V_EOC                                                                     ; -0.250   ; -2.087        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ; 4.463    ; 0.000         ;
-; OSC                                                                               ; 9.959    ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ; 499.453  ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                              ; 4999.453 ; 0.000         ;
-+-----------------------------------------------------------------------------------+----------+---------------+
++-----------------------------------------------------------------------------------------------------+
+; Slow 900mV 85C Model Minimum Pulse Width Summary                                                    ;
++--------------------------------------------------------------------------+----------+---------------+
+; Clock                                                                    ; Slack    ; End Point TNS ;
++--------------------------------------------------------------------------+----------+---------------+
+; ADA_DCO                                                                  ; -0.250   ; -4.390        ;
+; ADB_DCO                                                                  ; -0.250   ; -4.200        ;
+; ADC_BAT_I_EOC                                                            ; -0.250   ; -2.435        ;
+; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; -0.250   ; -2.224        ;
+; ADC_BAT_V_EOC                                                            ; -0.250   ; -2.087        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ; 4.463    ; 0.000         ;
+; OSC                                                                      ; 9.959    ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ; 499.453  ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                     ; 4999.453 ; 0.000         ;
++--------------------------------------------------------------------------+----------+---------------+
 
 
 ----------------------------------------------
@@ -198,40 +198,40 @@ No paths to report.
 No synchronizer chains to report.
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Slow 900mV 0C Model Fmax Summary                                                                                                                                  ;
-+------------+-----------------+-----------------------------------------------------------------------------------+------------------------------------------------+
-; Fmax       ; Restricted Fmax ; Clock Name                                                                        ; Note                                           ;
-+------------+-----------------+-----------------------------------------------------------------------------------+------------------------------------------------+
-; 283.69 MHz ; 283.69 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ;                                                ;
-; 328.62 MHz ; 328.62 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ;                                                ;
-; 847.46 MHz ; 800.0 MHz       ; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; limit due to minimum period restriction (tmin) ;
-+------------+-----------------+-----------------------------------------------------------------------------------+------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow 900mV 0C Model Fmax Summary                                                                                                                         ;
++------------+-----------------+--------------------------------------------------------------------------+------------------------------------------------+
+; Fmax       ; Restricted Fmax ; Clock Name                                                               ; Note                                           ;
++------------+-----------------+--------------------------------------------------------------------------+------------------------------------------------+
+; 283.69 MHz ; 283.69 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ;                                                ;
+; 328.62 MHz ; 328.62 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ;                                                ;
+; 847.46 MHz ; 800.0 MHz       ; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; limit due to minimum period restriction (tmin) ;
++------------+-----------------+--------------------------------------------------------------------------+------------------------------------------------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
-+------------------------------------------------------------------------------------------------------------+
-; Slow 900mV 0C Model Setup Summary                                                                          ;
-+-----------------------------------------------------------------------------------+--------+---------------+
-; Clock                                                                             ; Slack  ; End Point TNS ;
-+-----------------------------------------------------------------------------------+--------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ; -5.407 ; -279.854      ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                              ; -4.861 ; -66.956       ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ; -0.909 ; -23.516       ;
-; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; -0.180 ; -0.423        ;
-+-----------------------------------------------------------------------------------+--------+---------------+
++---------------------------------------------------------------------------------------------------+
+; Slow 900mV 0C Model Setup Summary                                                                 ;
++--------------------------------------------------------------------------+--------+---------------+
+; Clock                                                                    ; Slack  ; End Point TNS ;
++--------------------------------------------------------------------------+--------+---------------+
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ; -5.407 ; -279.854      ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                     ; -4.861 ; -66.956       ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ; -0.909 ; -23.516       ;
+; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; -0.180 ; -0.423        ;
++--------------------------------------------------------------------------+--------+---------------+
 
 
-+-----------------------------------------------------------------------------------------------------------+
-; Slow 900mV 0C Model Hold Summary                                                                          ;
-+-----------------------------------------------------------------------------------+-------+---------------+
-; Clock                                                                             ; Slack ; End Point TNS ;
-+-----------------------------------------------------------------------------------+-------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ; 0.316 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ; 0.349 ; 0.000         ;
-; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; 0.358 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                              ; 2.991 ; 0.000         ;
-+-----------------------------------------------------------------------------------+-------+---------------+
++--------------------------------------------------------------------------------------------------+
+; Slow 900mV 0C Model Hold Summary                                                                 ;
++--------------------------------------------------------------------------+-------+---------------+
+; Clock                                                                    ; Slack ; End Point TNS ;
++--------------------------------------------------------------------------+-------+---------------+
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ; 0.316 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ; 0.349 ; 0.000         ;
+; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; 0.358 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                     ; 2.991 ; 0.000         ;
++--------------------------------------------------------------------------+-------+---------------+
 
 
 ----------------------------------------
@@ -246,21 +246,21 @@ No paths to report.
 No paths to report.
 
 
-+--------------------------------------------------------------------------------------------------------------+
-; Slow 900mV 0C Model Minimum Pulse Width Summary                                                              ;
-+-----------------------------------------------------------------------------------+----------+---------------+
-; Clock                                                                             ; Slack    ; End Point TNS ;
-+-----------------------------------------------------------------------------------+----------+---------------+
-; ADA_DCO                                                                           ; -0.250   ; -4.354        ;
-; ADB_DCO                                                                           ; -0.250   ; -3.780        ;
-; ADC_BAT_I_EOC                                                                     ; -0.250   ; -2.982        ;
-; ADC_BAT_V_EOC                                                                     ; -0.250   ; -2.669        ;
-; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; -0.250   ; -2.328        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ; 4.458    ; 0.000         ;
-; OSC                                                                               ; 9.979    ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ; 499.433  ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                              ; 4999.435 ; 0.000         ;
-+-----------------------------------------------------------------------------------+----------+---------------+
++-----------------------------------------------------------------------------------------------------+
+; Slow 900mV 0C Model Minimum Pulse Width Summary                                                     ;
++--------------------------------------------------------------------------+----------+---------------+
+; Clock                                                                    ; Slack    ; End Point TNS ;
++--------------------------------------------------------------------------+----------+---------------+
+; ADA_DCO                                                                  ; -0.250   ; -4.354        ;
+; ADB_DCO                                                                  ; -0.250   ; -3.780        ;
+; ADC_BAT_I_EOC                                                            ; -0.250   ; -2.982        ;
+; ADC_BAT_V_EOC                                                            ; -0.250   ; -2.669        ;
+; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; -0.250   ; -2.328        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ; 4.458    ; 0.000         ;
+; OSC                                                                      ; 9.979    ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ; 499.433  ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                     ; 4999.435 ; 0.000         ;
++--------------------------------------------------------------------------+----------+---------------+
 
 
 ---------------------------------------------
@@ -269,28 +269,28 @@ No paths to report.
 No synchronizer chains to report.
 
 
-+------------------------------------------------------------------------------------------------------------+
-; Fast 900mV 0C Model Setup Summary                                                                          ;
-+-----------------------------------------------------------------------------------+--------+---------------+
-; Clock                                                                             ; Slack  ; End Point TNS ;
-+-----------------------------------------------------------------------------------+--------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ; -3.013 ; -156.386      ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                              ; -2.961 ; -40.536       ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ; -0.376 ; -7.748        ;
-; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; 0.293  ; 0.000         ;
-+-----------------------------------------------------------------------------------+--------+---------------+
++---------------------------------------------------------------------------------------------------+
+; Fast 900mV 0C Model Setup Summary                                                                 ;
++--------------------------------------------------------------------------+--------+---------------+
+; Clock                                                                    ; Slack  ; End Point TNS ;
++--------------------------------------------------------------------------+--------+---------------+
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ; -3.013 ; -156.386      ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                     ; -2.961 ; -40.536       ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ; -0.376 ; -7.748        ;
+; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; 0.293  ; 0.000         ;
++--------------------------------------------------------------------------+--------+---------------+
 
 
-+-----------------------------------------------------------------------------------------------------------+
-; Fast 900mV 0C Model Hold Summary                                                                          ;
-+-----------------------------------------------------------------------------------+-------+---------------+
-; Clock                                                                             ; Slack ; End Point TNS ;
-+-----------------------------------------------------------------------------------+-------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ; 0.137 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ; 0.200 ; 0.000         ;
-; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; 0.203 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                              ; 1.659 ; 0.000         ;
-+-----------------------------------------------------------------------------------+-------+---------------+
++--------------------------------------------------------------------------------------------------+
+; Fast 900mV 0C Model Hold Summary                                                                 ;
++--------------------------------------------------------------------------+-------+---------------+
+; Clock                                                                    ; Slack ; End Point TNS ;
++--------------------------------------------------------------------------+-------+---------------+
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ; 0.137 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ; 0.200 ; 0.000         ;
+; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; 0.203 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                     ; 1.659 ; 0.000         ;
++--------------------------------------------------------------------------+-------+---------------+
 
 
 ----------------------------------------
@@ -305,21 +305,21 @@ No paths to report.
 No paths to report.
 
 
-+--------------------------------------------------------------------------------------------------------------+
-; Fast 900mV 0C Model Minimum Pulse Width Summary                                                              ;
-+-----------------------------------------------------------------------------------+----------+---------------+
-; Clock                                                                             ; Slack    ; End Point TNS ;
-+-----------------------------------------------------------------------------------+----------+---------------+
-; ADB_DCO                                                                           ; -0.145   ; -2.030        ;
-; ADA_DCO                                                                           ; -0.139   ; -1.940        ;
-; ADC_BAT_V_EOC                                                                     ; -0.138   ; -1.094        ;
-; ADC_BAT_I_EOC                                                                     ; -0.105   ; -0.840        ;
-; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; 0.144    ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ; 4.649    ; 0.000         ;
-; OSC                                                                               ; 9.698    ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ; 499.648  ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                              ; 4999.648 ; 0.000         ;
-+-----------------------------------------------------------------------------------+----------+---------------+
++-----------------------------------------------------------------------------------------------------+
+; Fast 900mV 0C Model Minimum Pulse Width Summary                                                     ;
++--------------------------------------------------------------------------+----------+---------------+
+; Clock                                                                    ; Slack    ; End Point TNS ;
++--------------------------------------------------------------------------+----------+---------------+
+; ADB_DCO                                                                  ; -0.145   ; -2.030        ;
+; ADA_DCO                                                                  ; -0.139   ; -1.940        ;
+; ADC_BAT_V_EOC                                                            ; -0.138   ; -1.094        ;
+; ADC_BAT_I_EOC                                                            ; -0.105   ; -0.840        ;
+; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; 0.144    ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ; 4.649    ; 0.000         ;
+; OSC                                                                      ; 9.698    ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ; 499.648  ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                     ; 4999.648 ; 0.000         ;
++--------------------------------------------------------------------------+----------+---------------+
 
 
 ---------------------------------------------
@@ -328,32 +328,32 @@ No paths to report.
 No synchronizer chains to report.
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multicorner Timing Analysis Summary                                                                                                              ;
-+------------------------------------------------------------------------------------+----------+-------+----------+---------+---------------------+
-; Clock                                                                              ; Setup    ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
-+------------------------------------------------------------------------------------+----------+-------+----------+---------+---------------------+
-; Worst-case Slack                                                                   ; -5.645   ; 0.137 ; N/A      ; N/A     ; -0.250              ;
-;  ADA_DCO                                                                           ; N/A      ; N/A   ; N/A      ; N/A     ; -0.250              ;
-;  ADB_DCO                                                                           ; N/A      ; N/A   ; N/A      ; N/A     ; -0.250              ;
-;  ADC_BAT_I_EOC                                                                     ; N/A      ; N/A   ; N/A      ; N/A     ; -0.250              ;
-;  ADC_BAT_V_EOC                                                                     ; N/A      ; N/A   ; N/A      ; N/A     ; -0.250              ;
-;  OSC                                                                               ; N/A      ; N/A   ; N/A      ; N/A     ; 9.698               ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ; -5.645   ; 0.200 ; N/A      ; N/A     ; 4.458               ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ; -0.924   ; 0.137 ; N/A      ; N/A     ; 499.433             ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[3]                              ; -5.130   ; 1.659 ; N/A      ; N/A     ; 4999.435            ;
-;  debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; -0.227   ; 0.203 ; N/A      ; N/A     ; -0.250              ;
-; Design-wide TNS                                                                    ; -387.77  ; 0.0   ; 0.0      ; 0.0     ; -16.113             ;
-;  ADA_DCO                                                                           ; N/A      ; N/A   ; N/A      ; N/A     ; -4.390              ;
-;  ADB_DCO                                                                           ; N/A      ; N/A   ; N/A      ; N/A     ; -4.200              ;
-;  ADC_BAT_I_EOC                                                                     ; N/A      ; N/A   ; N/A      ; N/A     ; -2.982              ;
-;  ADC_BAT_V_EOC                                                                     ; N/A      ; N/A   ; N/A      ; N/A     ; -2.669              ;
-;  OSC                                                                               ; N/A      ; N/A   ; N/A      ; N/A     ; 0.000               ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ; -292.732 ; 0.000 ; N/A      ; N/A     ; 0.000               ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ; -23.809  ; 0.000 ; N/A      ; N/A     ; 0.000               ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[3]                              ; -70.514  ; 0.000 ; N/A      ; N/A     ; 0.000               ;
-;  debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; -0.715   ; 0.000 ; N/A      ; N/A     ; -2.328              ;
-+------------------------------------------------------------------------------------+----------+-------+----------+---------+---------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                                                                                     ;
++---------------------------------------------------------------------------+----------+-------+----------+---------+---------------------+
+; Clock                                                                     ; Setup    ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
++---------------------------------------------------------------------------+----------+-------+----------+---------+---------------------+
+; Worst-case Slack                                                          ; -5.645   ; 0.137 ; N/A      ; N/A     ; -0.250              ;
+;  ADA_DCO                                                                  ; N/A      ; N/A   ; N/A      ; N/A     ; -0.250              ;
+;  ADB_DCO                                                                  ; N/A      ; N/A   ; N/A      ; N/A     ; -0.250              ;
+;  ADC_BAT_I_EOC                                                            ; N/A      ; N/A   ; N/A      ; N/A     ; -0.250              ;
+;  ADC_BAT_V_EOC                                                            ; N/A      ; N/A   ; N/A      ; N/A     ; -0.250              ;
+;  OSC                                                                      ; N/A      ; N/A   ; N/A      ; N/A     ; 9.698               ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ; -5.645   ; 0.200 ; N/A      ; N/A     ; 4.458               ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ; -0.924   ; 0.137 ; N/A      ; N/A     ; 499.433             ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[3]                     ; -5.130   ; 1.659 ; N/A      ; N/A     ; 4999.435            ;
+;  debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; -0.227   ; 0.203 ; N/A      ; N/A     ; -0.250              ;
+; Design-wide TNS                                                           ; -387.77  ; 0.0   ; 0.0      ; 0.0     ; -16.113             ;
+;  ADA_DCO                                                                  ; N/A      ; N/A   ; N/A      ; N/A     ; -4.390              ;
+;  ADB_DCO                                                                  ; N/A      ; N/A   ; N/A      ; N/A     ; -4.200              ;
+;  ADC_BAT_I_EOC                                                            ; N/A      ; N/A   ; N/A      ; N/A     ; -2.982              ;
+;  ADC_BAT_V_EOC                                                            ; N/A      ; N/A   ; N/A      ; N/A     ; -2.669              ;
+;  OSC                                                                      ; N/A      ; N/A   ; N/A      ; N/A     ; 0.000               ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ; -292.732 ; 0.000 ; N/A      ; N/A     ; 0.000               ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ; -23.809  ; 0.000 ; N/A      ; N/A     ; 0.000               ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[3]                     ; -70.514  ; 0.000 ; N/A      ; N/A     ; 0.000               ;
+;  debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; -0.715   ; 0.000 ; N/A      ; N/A     ; -2.328              ;
++---------------------------------------------------------------------------+----------+-------+----------+---------+---------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -787,37 +787,37 @@ No synchronizer chains to report.
 +------------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Setup Transfers                                                                                                                                                                                                   ;
-+-----------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+----------+----------+----------+----------+
-; From Clock                                                                        ; To Clock                                                                          ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
-+-----------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+----------+----------+----------+----------+
-; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; 36       ; 0        ; 0        ; 0        ;
-; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ; 24314    ; 0        ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ; 4526     ; 0        ; 0        ; 0        ;
-; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ; 33       ; 33       ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ; 3029     ; 0        ; 0        ; 0        ;
-; ADC_BAT_I_EOC                                                                     ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                              ; 0        ; 4893     ; 0        ; 0        ;
-; ADC_BAT_V_EOC                                                                     ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                              ; 0        ; 3724     ; 0        ; 0        ;
-; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                              ; 364      ; 0        ; 0        ; 0        ;
-+-----------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+----------+----------+----------+----------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Setup Transfers                                                                                                                                                                                 ;
++--------------------------------------------------------------------------+--------------------------------------------------------------------------+----------+----------+----------+----------+
+; From Clock                                                               ; To Clock                                                                 ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++--------------------------------------------------------------------------+--------------------------------------------------------------------------+----------+----------+----------+----------+
+; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; 36       ; 0        ; 0        ; 0        ;
+; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ; 24314    ; 0        ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ; 4526     ; 0        ; 0        ; 0        ;
+; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ; 33       ; 33       ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ; 3029     ; 0        ; 0        ; 0        ;
+; ADC_BAT_I_EOC                                                            ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                     ; 0        ; 4893     ; 0        ; 0        ;
+; ADC_BAT_V_EOC                                                            ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                     ; 0        ; 3724     ; 0        ; 0        ;
+; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                     ; 364      ; 0        ; 0        ; 0        ;
++--------------------------------------------------------------------------+--------------------------------------------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Hold Transfers                                                                                                                                                                                                    ;
-+-----------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+----------+----------+----------+----------+
-; From Clock                                                                        ; To Clock                                                                          ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
-+-----------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+----------+----------+----------+----------+
-; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; 36       ; 0        ; 0        ; 0        ;
-; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ; 24314    ; 0        ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ; 4526     ; 0        ; 0        ; 0        ;
-; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ; 33       ; 33       ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ; 3029     ; 0        ; 0        ; 0        ;
-; ADC_BAT_I_EOC                                                                     ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                              ; 0        ; 4893     ; 0        ; 0        ;
-; ADC_BAT_V_EOC                                                                     ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                              ; 0        ; 3724     ; 0        ; 0        ;
-; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                              ; 364      ; 0        ; 0        ; 0        ;
-+-----------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+----------+----------+----------+----------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Hold Transfers                                                                                                                                                                                  ;
++--------------------------------------------------------------------------+--------------------------------------------------------------------------+----------+----------+----------+----------+
+; From Clock                                                               ; To Clock                                                                 ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++--------------------------------------------------------------------------+--------------------------------------------------------------------------+----------+----------+----------+----------+
+; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; 36       ; 0        ; 0        ; 0        ;
+; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ; 24314    ; 0        ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ; 4526     ; 0        ; 0        ; 0        ;
+; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ; 33       ; 33       ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ; 3029     ; 0        ; 0        ; 0        ;
+; ADC_BAT_I_EOC                                                            ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                     ; 0        ; 4893     ; 0        ; 0        ;
+; ADC_BAT_V_EOC                                                            ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                     ; 0        ; 3724     ; 0        ; 0        ;
+; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                     ; 364      ; 0        ; 0        ; 0        ;
++--------------------------------------------------------------------------+--------------------------------------------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
 
@@ -847,22 +847,22 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +---------------------------------+-------+------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Clock Status Summary                                                                                                                                                                            ;
-+-----------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+-----------+-------------+
-; Target                                                                            ; Clock                                                                             ; Type      ; Status      ;
-+-----------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+-----------+-------------+
-; ADA_DCO                                                                           ; ADA_DCO                                                                           ; Base      ; Constrained ;
-; ADB_DCO                                                                           ; ADB_DCO                                                                           ; Base      ; Constrained ;
-; ADC_BAT_I_EOC                                                                     ; ADC_BAT_I_EOC                                                                     ; Base      ; Constrained ;
-; ADC_BAT_V_EOC                                                                     ; ADC_BAT_V_EOC                                                                     ; Base      ; Constrained ;
-; OSC                                                                               ; OSC                                                                               ; Base      ; Constrained ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                              ; Generated ; Constrained ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                              ; Generated ; Constrained ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                              ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                              ; Generated ; Constrained ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[4]                              ; PLL_inst|altpll_component|auto_generated|pll1|clk[4]                              ; Generated ; Constrained ;
-; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state ; Base      ; Constrained ;
-+-----------------------------------------------------------------------------------+-----------------------------------------------------------------------------------+-----------+-------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clock Status Summary                                                                                                                                                          ;
++--------------------------------------------------------------------------+--------------------------------------------------------------------------+-----------+-------------+
+; Target                                                                   ; Clock                                                                    ; Type      ; Status      ;
++--------------------------------------------------------------------------+--------------------------------------------------------------------------+-----------+-------------+
+; ADA_DCO                                                                  ; ADA_DCO                                                                  ; Base      ; Constrained ;
+; ADB_DCO                                                                  ; ADB_DCO                                                                  ; Base      ; Constrained ;
+; ADC_BAT_I_EOC                                                            ; ADC_BAT_I_EOC                                                            ; Base      ; Constrained ;
+; ADC_BAT_V_EOC                                                            ; ADC_BAT_V_EOC                                                            ; Base      ; Constrained ;
+; OSC                                                                      ; OSC                                                                      ; Base      ; Constrained ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                     ; Generated ; Constrained ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                     ; Generated ; Constrained ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                     ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]                     ; Generated ; Constrained ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[4]                     ; PLL_inst|altpll_component|auto_generated|pll1|clk[4]                     ; Generated ; Constrained ;
+; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state ; Base      ; Constrained ;
++--------------------------------------------------------------------------+--------------------------------------------------------------------------+-----------+-------------+
 
 
 +------------------------------------------------------------------------------------------------------+
@@ -1145,7 +1145,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
-    Info: Processing started: Fri Jul 28 18:25:09 2023
+    Info: Processing started: Sun Jul 30 17:21:12 2023
 Info: Command: quartus_sta test_LLC_tank_rectifier -c TOP_test_LLC_tank_rectifier
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -1162,7 +1162,7 @@ Info (332110): Deriving PLL clocks
     Info (332110): create_generated_clock -source {PLL_inst|altpll_component|auto_generated|pll1|inclk[0]} -divide_by 5000 -duty_cycle 49.00 -name {PLL_inst|altpll_component|auto_generated|pll1|clk[4]} {PLL_inst|altpll_component|auto_generated|pll1|clk[4]}
 Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
 Info (332105): Deriving Clocks
-    Info (332105): create_clock -period 1.000 -name debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state
+    Info (332105): create_clock -period 1.000 -name debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state
     Info (332105): create_clock -period 1.000 -name ADC_BAT_I_EOC ADC_BAT_I_EOC
     Info (332105): create_clock -period 1.000 -name ADC_BAT_V_EOC ADC_BAT_V_EOC
     Info (332105): create_clock -period 1.000 -name ADA_DCO ADA_DCO
@@ -1181,13 +1181,13 @@ Info (332146): Worst-case setup slack is -5.645
     Info (332119):    -5.645            -292.732 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):    -5.130             -70.514 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
     Info (332119):    -0.924             -23.809 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):    -0.227              -0.715 debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state 
+    Info (332119):    -0.227              -0.715 debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state 
 Info (332146): Worst-case hold slack is 0.301
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
     Info (332119):     0.301               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
     Info (332119):     0.357               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     0.366               0.000 debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state 
+    Info (332119):     0.366               0.000 debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state 
     Info (332119):     3.135               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
@@ -1197,7 +1197,7 @@ Info (332146): Worst-case minimum pulse width slack is -0.250
     Info (332119):    -0.250              -4.390 ADA_DCO 
     Info (332119):    -0.250              -4.200 ADB_DCO 
     Info (332119):    -0.250              -2.435 ADC_BAT_I_EOC 
-    Info (332119):    -0.250              -2.224 debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state 
+    Info (332119):    -0.250              -2.224 debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state 
     Info (332119):    -0.250              -2.087 ADC_BAT_V_EOC 
     Info (332119):     4.463               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     9.959               0.000 OSC 
@@ -1217,13 +1217,13 @@ Info (332146): Worst-case setup slack is -5.407
     Info (332119):    -5.407            -279.854 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):    -4.861             -66.956 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
     Info (332119):    -0.909             -23.516 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):    -0.180              -0.423 debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state 
+    Info (332119):    -0.180              -0.423 debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state 
 Info (332146): Worst-case hold slack is 0.316
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
     Info (332119):     0.316               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
     Info (332119):     0.349               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     0.358               0.000 debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state 
+    Info (332119):     0.358               0.000 debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state 
     Info (332119):     2.991               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
@@ -1234,7 +1234,7 @@ Info (332146): Worst-case minimum pulse width slack is -0.250
     Info (332119):    -0.250              -3.780 ADB_DCO 
     Info (332119):    -0.250              -2.982 ADC_BAT_I_EOC 
     Info (332119):    -0.250              -2.669 ADC_BAT_V_EOC 
-    Info (332119):    -0.250              -2.328 debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state 
+    Info (332119):    -0.250              -2.328 debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state 
     Info (332119):     4.458               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     9.979               0.000 OSC 
     Info (332119):   499.433               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
@@ -1251,13 +1251,13 @@ Info (332146): Worst-case setup slack is -3.013
     Info (332119):    -3.013            -156.386 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):    -2.961             -40.536 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
     Info (332119):    -0.376              -7.748 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):     0.293               0.000 debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state 
+    Info (332119):     0.293               0.000 debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state 
 Info (332146): Worst-case hold slack is 0.137
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
     Info (332119):     0.137               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
     Info (332119):     0.200               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     0.203               0.000 debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state 
+    Info (332119):     0.203               0.000 debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state 
     Info (332119):     1.659               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
@@ -1268,7 +1268,7 @@ Info (332146): Worst-case minimum pulse width slack is -0.145
     Info (332119):    -0.139              -1.940 ADA_DCO 
     Info (332119):    -0.138              -1.094 ADC_BAT_V_EOC 
     Info (332119):    -0.105              -0.840 ADC_BAT_I_EOC 
-    Info (332119):     0.144               0.000 debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state 
+    Info (332119):     0.144               0.000 debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state 
     Info (332119):     4.649               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     9.698               0.000 OSC 
     Info (332119):   499.648               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
@@ -1276,8 +1276,8 @@ Info (332146): Worst-case minimum pulse width slack is -0.145
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 5062 megabytes
-    Info: Processing ended: Fri Jul 28 18:25:13 2023
+    Info: Peak virtual memory: 5068 megabytes
+    Info: Processing ended: Sun Jul 30 17:21:16 2023
     Info: Elapsed time: 00:00:04
     Info: Total CPU time (on all processors): 00:00:03
 

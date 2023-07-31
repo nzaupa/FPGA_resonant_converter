@@ -47,10 +47,10 @@ SEG1[7]       , Output , PIN_AL35    ,,,,,,,,,
 
 # GPIO-1
 
-Q[0]  , Output , PIN_AF13   ,,,,,,,,,
-Q[1]  , Output , PIN_AG12   ,,,,,,,,,
-Q[2]  , Output , PIN_AJ10   ,,,,,,,,,
-Q[3]  , Output , PIN_AH8    ,,,,,,,,,
+Q[0]  , Output , PIN_AH8     ,,,,,,,,,
+Q[1]  , Output , PIN_AG12    ,,,,,,,,,
+Q[2]  , Output , PIN_AJ10    ,,,,,,,,,
+Q[3]  , Output , PIN_AF13    ,,,,,,,,,
 
 EX[0]   , Output , PIN_AW5    ,,,,,,,,,
 EX[1]   , Output , PIN_AW4    ,,,,,,,,,

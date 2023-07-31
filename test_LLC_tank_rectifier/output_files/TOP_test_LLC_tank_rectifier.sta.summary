@@ -14,7 +14,7 @@ Type  : Slow 900mV 85C Model Setup 'PLL_inst|altpll_component|auto_generated|pll
 Slack : -0.924
 TNS   : -23.809
 
-Type  : Slow 900mV 85C Model Setup 'debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state'
+Type  : Slow 900mV 85C Model Setup 'debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state'
 Slack : -0.227
 TNS   : -0.715
 
@@ -26,7 +26,7 @@ Type  : Slow 900mV 85C Model Hold 'PLL_inst|altpll_component|auto_generated|pll1
 Slack : 0.357
 TNS   : 0.000
 
-Type  : Slow 900mV 85C Model Hold 'debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state'
+Type  : Slow 900mV 85C Model Hold 'debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state'
 Slack : 0.366
 TNS   : 0.000
 
@@ -46,7 +46,7 @@ Type  : Slow 900mV 85C Model Minimum Pulse Width 'ADC_BAT_I_EOC'
 Slack : -0.250
 TNS   : -2.435
 
-Type  : Slow 900mV 85C Model Minimum Pulse Width 'debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state'
+Type  : Slow 900mV 85C Model Minimum Pulse Width 'debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state'
 Slack : -0.250
 TNS   : -2.224
 
@@ -82,7 +82,7 @@ Type  : Slow 900mV 0C Model Setup 'PLL_inst|altpll_component|auto_generated|pll1
 Slack : -0.909
 TNS   : -23.516
 
-Type  : Slow 900mV 0C Model Setup 'debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state'
+Type  : Slow 900mV 0C Model Setup 'debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state'
 Slack : -0.180
 TNS   : -0.423
 
@@ -94,7 +94,7 @@ Type  : Slow 900mV 0C Model Hold 'PLL_inst|altpll_component|auto_generated|pll1|
 Slack : 0.349
 TNS   : 0.000
 
-Type  : Slow 900mV 0C Model Hold 'debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state'
+Type  : Slow 900mV 0C Model Hold 'debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state'
 Slack : 0.358
 TNS   : 0.000
 
@@ -118,7 +118,7 @@ Type  : Slow 900mV 0C Model Minimum Pulse Width 'ADC_BAT_V_EOC'
 Slack : -0.250
 TNS   : -2.669
 
-Type  : Slow 900mV 0C Model Minimum Pulse Width 'debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state'
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state'
 Slack : -0.250
 TNS   : -2.328
 
@@ -150,7 +150,7 @@ Type  : Fast 900mV 0C Model Setup 'PLL_inst|altpll_component|auto_generated|pll1
 Slack : -0.376
 TNS   : -7.748
 
-Type  : Fast 900mV 0C Model Setup 'debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state'
+Type  : Fast 900mV 0C Model Setup 'debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state'
 Slack : 0.293
 TNS   : 0.000
 
@@ -162,7 +162,7 @@ Type  : Fast 900mV 0C Model Hold 'PLL_inst|altpll_component|auto_generated|pll1|
 Slack : 0.200
 TNS   : 0.000
 
-Type  : Fast 900mV 0C Model Hold 'debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state'
+Type  : Fast 900mV 0C Model Hold 'debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state'
 Slack : 0.203
 TNS   : 0.000
 
@@ -186,7 +186,7 @@ Type  : Fast 900mV 0C Model Minimum Pulse Width 'ADC_BAT_I_EOC'
 Slack : -0.105
 TNS   : -0.840
 
-Type  : Fast 900mV 0C Model Minimum Pulse Width 'debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state'
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'debounce_4bit:debounce_4bit_inst|debounce:debounce_2_inst|r_switch_state'
 Slack : 0.144
 TNS   : 0.000
 

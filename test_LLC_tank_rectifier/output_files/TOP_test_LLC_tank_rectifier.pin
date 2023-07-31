@@ -333,7 +333,7 @@ GND                          : AF9       : gnd    :                   :         
 RESERVED_INPUT_WITH_WEAK_PULLUP : AF10      :        :                   :         : 5C        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AF11      :        :                   :         : 5C        :                
 GND                          : AF12      : gnd    :                   :         :           :                
-Q[0]                         : AF13      : output : 2.5 V             :         : 5A        : Y              
+Q[3]                         : AF13      : output : 2.5 V             :         : 5A        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AF14      :        :                   :         : 4A        :                
 GND                          : AF15      : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AF16      :        :                   :         : 4A        :                
@@ -406,7 +406,7 @@ GXB_NC                       : AH4       :        :                   :         
 BUTTON[0]                    : AH5       : input  : 2.5 V             :         : 5C        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AH6       :        :                   :         : 5C        :                
 VCCIO5C                      : AH7       : power  :                   : 2.5V    : 5C        :                
-Q[3]                         : AH8       : output : 2.5 V             :         : 5C        : Y              
+Q[0]                         : AH8       : output : 2.5 V             :         : 5C        : Y              
 ADC_BAT_I[3]                 : AH9       : input  : 2.5 V             :         : 5C        : Y              
 ADC_BAT_I[4]                 : AH10      : input  : 2.5 V             :         : 5A        : Y              
 ADC_BAT_I[2]                 : AH11      : input  : 2.5 V             :         : 5A        : Y              
