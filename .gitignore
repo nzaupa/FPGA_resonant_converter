@@ -84,4 +84,6 @@
 incremental_db/
 db/
 
-*/__bin/
+__bin/
+
+*.code-workspace
