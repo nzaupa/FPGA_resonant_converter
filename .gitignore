@@ -31,6 +31,9 @@
 *_inst.vhd
 *.bak
 *.cmp
+*.cdf
+*.qsf
+*.qpf
 *.done
 *.eqn
 *.hex
@@ -46,7 +49,7 @@
 *.qws
 *.rpt
 *.smsg
-*.sof
+*.sld
 *.sopc_builder
 *.summary
 *.tcl
@@ -55,8 +58,24 @@
 *sopc_*
 # *.sdc # I want those timing files
 
+# LaTex files
+
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+
 # ignore Quartus II generated folders
 */db/
+*/work/
 */incremental_db/
 */simulation/
 */timing/
@@ -64,5 +83,5 @@
 */*_sim/
 incremental_db/
 db/
-_output_files/
-PLLJ_PLLSPE_INFO.txt
+
+*/__bin/
