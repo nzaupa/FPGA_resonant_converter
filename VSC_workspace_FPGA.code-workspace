@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+   ],
+   "settings": {
+      "files.autoSave": "off",
+      "files.exclude": {
+         "{**/*.cdf,**/*.qws,**/*.qsf,**/*.qsf.bak}": true
+      }
+   }
+}

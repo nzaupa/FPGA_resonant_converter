@@ -1,0 +1,126 @@
+# Compile of ABS.v was successful.
+# Compile of dead_time.v was successful.
+# Compile of debounce.v was successful.
+# Compile of hybrid_control.v was successful.
+# Compile of LPF_32.v was successful.
+# Compile of PI.v was successful.
+# Compile of PLL.v was successful.
+# Compile of TOP_ResonantConverter_control_loop.v was successful.
+# Compile of TOP_ResonantConverter_control_loop_tb.v was successful with warnings.
+# Compile of trigonometry.v was successful.
+# Compile of peak_detector.v was successful.
+# Compile of PLL_altpll.v was successful.
+# 12 compiles, 0 failed with no errors.
+vsim -gui work.TOP_ResonantConverter_control_loop_tb
+# vsim -gui work.TOP_ResonantConverter_control_loop_tb 
+# Start time: 11:37:41 on Jul 21,2021
+# Loading work.TOP_ResonantConverter_control_loop_tb
+# Loading work.TOP_ResonantConverter_control_loop
+# Loading work.peak_detector
+# Loading work.LPF_32
+# Loading work.ABS
+# Loading work.hybrid_control
+# Loading work.trigonometry
+# Loading work.dead_time
+# ** Warning: Design size of 120826 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+add wave -position insertpoint sim:/TOP_ResonantConverter_control_loop_tb/TOP_ResonantConverter_control_loop_inst/peak_detector_inst/*
+run
+add list sim:/TOP_ResonantConverter_control_loop_tb/TOP_ResonantConverter_control_loop_inst/peak_detector_inst/*
+write list -window .main_pane.list.interior.cs.body C:/FPGA/Projects/_code_script/output_sim_corrected.txt
+# Compile of ABS.v was successful.
+# Compile of dead_time.v was successful.
+# Compile of debounce.v was successful.
+# Compile of hybrid_control.v was successful.
+# Compile of LPF_32.v was successful.
+# Compile of PI.v was successful.
+# Compile of PLL.v was successful.
+# Compile of TOP_ResonantConverter_control_loop.v failed with 1 errors.
+# Compile of TOP_ResonantConverter_control_loop_tb.v was successful with warnings.
+# Compile of trigonometry.v was successful.
+# Compile of peak_detector.v was successful.
+# Compile of PLL_altpll.v was successful.
+# 12 compiles, 1 failed with 1 error.
+# Compile of ABS.v was successful.
+# Compile of dead_time.v was successful.
+# Compile of debounce.v was successful.
+# Compile of hybrid_control.v was successful.
+# Compile of LPF_32.v was successful.
+# Compile of PI.v was successful.
+# Compile of PLL.v was successful.
+# Compile of TOP_ResonantConverter_control_loop.v failed with 1 errors.
+# Compile of TOP_ResonantConverter_control_loop_tb.v was successful with warnings.
+# Compile of trigonometry.v was successful.
+# Compile of peak_detector.v was successful.
+# Compile of PLL_altpll.v was successful.
+# 12 compiles, 1 failed with 1 error.
+# Compile of ABS.v was successful.
+# Compile of dead_time.v was successful.
+# Compile of debounce.v was successful.
+# Compile of hybrid_control.v was successful.
+# Compile of LPF_32.v was successful.
+# Compile of PI.v was successful.
+# Compile of PLL.v was successful.
+# Compile of TOP_ResonantConverter_control_loop.v was successful.
+# Compile of TOP_ResonantConverter_control_loop_tb.v was successful with warnings.
+# Compile of trigonometry.v was successful.
+# Compile of peak_detector.v was successful.
+# Compile of PLL_altpll.v was successful.
+# 12 compiles, 0 failed with no errors.
+vsim -gui work.TOP_ResonantConverter_control_loop_tb
+# End time: 18:44:02 on Jul 21,2021, Elapsed time: 7:06:21
+# Errors: 0, Warnings: 7
+# vsim -gui work.TOP_ResonantConverter_control_loop_tb 
+# Start time: 18:44:02 on Jul 21,2021
+# Loading work.TOP_ResonantConverter_control_loop_tb
+# Loading work.TOP_ResonantConverter_control_loop
+# Loading work.peak_detector
+# Loading work.LPF_32
+# Loading work.ABS
+# Loading work.PI
+# Loading work.hybrid_control
+# Loading work.trigonometry
+# Loading work.dead_time
+# ** Warning: Design size of 120845 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+run
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+add wave -position insertpoint sim:/TOP_ResonantConverter_control_loop_tb/TOP_ResonantConverter_control_loop_inst/PI_inst/*
+run
+add wave -position insertpoint sim:/TOP_ResonantConverter_control_loop_tb/TOP_ResonantConverter_control_loop_inst/*
+restart
+run
+add wave -position insertpoint sim:/TOP_ResonantConverter_control_loop_tb/TOP_ResonantConverter_control_loop_inst/peak_detector_inst/*
+restart
+run
+add wave -position insertpoint sim:/TOP_ResonantConverter_control_loop_tb/TOP_ResonantConverter_control_loop_inst/#ASSIGN#178/*
+# Compile of ABS.v was successful.
+# Compile of dead_time.v was successful.
+# Compile of debounce.v was successful.
+# Compile of hybrid_control.v was successful.
+# Compile of LPF_32.v was successful.
+# Compile of PI.v was successful.
+# Compile of PLL.v was successful.
+# Compile of TOP_ResonantConverter_control_loop.v was successful.
+# Compile of TOP_ResonantConverter_control_loop_tb.v was successful with warnings.
+# Compile of trigonometry.v was successful.
+# Compile of peak_detector.v was successful.
+# Compile of PLL_altpll.v was successful.
+# 12 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.TOP_ResonantConverter_control_loop_tb
+# Loading work.TOP_ResonantConverter_control_loop
+# Loading work.peak_detector
+# Loading work.LPF_32
+# Loading work.ABS
+# Loading work.PI
+# Loading work.hybrid_control
+# Loading work.trigonometry
+# Loading work.dead_time
+# ** Warning: Design size of 120847 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+run
+# End time: 16:18:37 on Jul 22,2021, Elapsed time: 21:34:35
+# Errors: 0, Warnings: 2
