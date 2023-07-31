@@ -1,0 +1,2 @@
+Info (10281): Verilog HDL Declaration information at top_resonantconverter_theta_phi.v(70): object "BUTTON" differs only in case from object "button" in the same scope File: C:/FPGA/Projects/HybridControl_theta_phi/top_resonantconverter_theta_phi.v Line: 70
+Info (10281): Verilog HDL Declaration information at top_resonantconverter_theta_phi.v(69): object "SW" differs only in case from object "sw" in the same scope File: C:/FPGA/Projects/HybridControl_theta_phi/top_resonantconverter_theta_phi.v Line: 69

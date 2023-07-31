@@ -1,0 +1,125 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 900mV 85C Model Setup 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : -5.701
+TNS   : -305.969
+
+Type  : Slow 900mV 85C Model Setup 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
+Slack : -0.939
+TNS   : -24.449
+
+Type  : Slow 900mV 85C Model Setup 'debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state'
+Slack : -0.194
+TNS   : -0.831
+
+Type  : Slow 900mV 85C Model Hold 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
+Slack : 0.292
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Hold 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 0.359
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Hold 'debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state'
+Slack : 0.363
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Minimum Pulse Width 'debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state'
+Slack : -0.250
+TNS   : -2.600
+
+Type  : Slow 900mV 85C Model Minimum Pulse Width 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 4.464
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Minimum Pulse Width 'OSC'
+Slack : 9.959
+TNS   : 0.000
+
+Type  : Slow 900mV 85C Model Minimum Pulse Width 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
+Slack : 499.452
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Setup 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : -5.466
+TNS   : -292.722
+
+Type  : Slow 900mV 0C Model Setup 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
+Slack : -0.917
+TNS   : -23.864
+
+Type  : Slow 900mV 0C Model Setup 'debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state'
+Slack : -0.152
+TNS   : -0.532
+
+Type  : Slow 900mV 0C Model Hold 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
+Slack : 0.310
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Hold 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 0.349
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Hold 'debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state'
+Slack : 0.353
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state'
+Slack : -0.250
+TNS   : -2.548
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 4.459
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'OSC'
+Slack : 9.979
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
+Slack : 499.434
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Setup 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : -3.057
+TNS   : -163.424
+
+Type  : Fast 900mV 0C Model Setup 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
+Slack : -0.386
+TNS   : -8.187
+
+Type  : Fast 900mV 0C Model Setup 'debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state'
+Slack : 0.324
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Hold 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
+Slack : 0.134
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Hold 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 0.200
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Hold 'debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state'
+Slack : 0.202
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'debounce_4bit:debounce_4bit_inst|debounce_extended:debounce_2_inst|r_switch_state'
+Slack : 0.104
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 4.650
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'OSC'
+Slack : 9.698
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
+Slack : 499.649
+TNS   : 0.000
+
+------------------------------------------------------------

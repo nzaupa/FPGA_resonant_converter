@@ -1,0 +1,22 @@
+Fitter Status : Successful - Tue Jul 13 13:04:35 2021
+Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Standard Edition
+Revision Name : TOP_ResonantConverter_control_loop
+Top-level Entity Name : TOP_ResonantConverter_control_loop
+Family : Stratix IV
+Device : EP4SGX230KF40C2
+Timing Models : Final
+Logic utilization : < 1 %
+    Combinational ALUTs : 286 / 182,400 ( < 1 % )
+    Memory ALUTs : 0 / 91,200 ( 0 % )
+    Dedicated logic registers : 108 / 182,400 ( < 1 % )
+Total registers : 108
+Total pins : 140 / 888 ( 16 % )
+Total virtual pins : 0
+Total block memory bits : 0 / 14,625,792 ( 0 % )
+DSP block 18-bit elements : 24 / 1,288 ( 2 % )
+Total GXB Receiver Channel PCS : 0 / 24 ( 0 % )
+Total GXB Receiver Channel PMA : 0 / 36 ( 0 % )
+Total GXB Transmitter Channel PCS : 0 / 24 ( 0 % )
+Total GXB Transmitter Channel PMA : 0 / 36 ( 0 % )
+Total PLLs : 1 / 8 ( 13 % )
+Total DLLs : 0 / 4 ( 0 % )

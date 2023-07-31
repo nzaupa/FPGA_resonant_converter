@@ -1,0 +1,22 @@
+Fitter Status : Successful - Mon Jul 17 19:38:33 2023
+Quartus Prime Version : 21.1.0 Build 842 10/21/2021 SJ Standard Edition
+Revision Name : Hbridge_variable_frequency
+Top-level Entity Name : TOP_Hbridge_frequency
+Family : Stratix IV
+Device : EP4SGX230KF40C2
+Timing Models : Final
+Logic utilization : < 1 %
+    Combinational ALUTs : 261 / 182,400 ( < 1 % )
+    Memory ALUTs : 0 / 91,200 ( 0 % )
+    Dedicated logic registers : 128 / 182,400 ( < 1 % )
+Total registers : 128
+Total pins : 71 / 888 ( 8 % )
+Total virtual pins : 0
+Total block memory bits : 0 / 14,625,792 ( 0 % )
+DSP block 18-bit elements : 0 / 1,288 ( 0 % )
+Total GXB Receiver Channel PCS : 0 / 24 ( 0 % )
+Total GXB Receiver Channel PMA : 0 / 36 ( 0 % )
+Total GXB Transmitter Channel PCS : 0 / 24 ( 0 % )
+Total GXB Transmitter Channel PMA : 0 / 36 ( 0 % )
+Total PLLs : 1 / 8 ( 13 % )
+Total DLLs : 0 / 4 ( 0 % )

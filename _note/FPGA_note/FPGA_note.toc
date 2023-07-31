@@ -1,0 +1,18 @@
+\contentsline {section}{\numberline {1}Installing}{2}{section.1}%
+\contentsline {section}{\numberline {2}Coding}{2}{section.2}%
+\contentsline {section}{\numberline {3}Simulation}{3}{section.3}%
+\contentsline {section}{\numberline {4}Quartus}{3}{section.4}%
+\contentsline {section}{\numberline {5}Data flow and manipulation}{3}{section.5}%
+\contentsline {section}{\numberline {6}Program blocks}{4}{section.6}%
+\contentsline {subsection}{\numberline {6.1}TOP block}{4}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}debounce}{4}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}ABS}{4}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}dead\_time}{4}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}hybrid\_control}{4}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}LPF}{4}{subsection.6.6}%
+\contentsline {subsection}{\numberline {6.7}peak\_detector}{4}{subsection.6.7}%
+\contentsline {subsection}{\numberline {6.8}PI}{4}{subsection.6.8}%
+\contentsline {subsection}{\numberline {6.9}trigonometry}{4}{subsection.6.9}%
+\contentsline {subsection}{\numberline {6.10}PLL}{4}{subsection.6.10}%
+\contentsline {subsection}{\numberline {6.11}angle\_control}{5}{subsection.6.11}%
+\contentsline {section}{\numberline {7}PIN mapping of the board}{5}{section.7}%
