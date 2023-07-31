@@ -1,2 +1,0 @@
-Info (10281): Verilog HDL Declaration information at TOP_LLC_hybrid_2023.v(78): object "BUTTON" differs only in case from object "button" in the same scope File: C:/FPGA/Projects/LLC_hybrid_2023_july/TOP_LLC_hybrid_2023.v Line: 78
-Info (10281): Verilog HDL Declaration information at TOP_LLC_hybrid_2023.v(77): object "SW" differs only in case from object "sw" in the same scope File: C:/FPGA/Projects/LLC_hybrid_2023_july/TOP_LLC_hybrid_2023.v Line: 77
