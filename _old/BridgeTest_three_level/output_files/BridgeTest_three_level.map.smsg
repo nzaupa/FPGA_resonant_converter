@@ -1,0 +1,1 @@
+Info (10281): Verilog HDL Declaration information at bridgetest_three_level.v(103): object "BUTTON" differs only in case from object "button" in the same scope File: C:/FPGA/Projects/BridgeTest_three_level/bridgetest_three_level.v Line: 103

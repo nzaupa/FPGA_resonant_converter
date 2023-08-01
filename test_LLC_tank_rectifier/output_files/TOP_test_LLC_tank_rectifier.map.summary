@@ -1,0 +1,20 @@
+Analysis & Synthesis Status : Successful - Sun Jul 30 17:20:31 2023
+Quartus Prime Version : 21.1.0 Build 842 10/21/2021 SJ Standard Edition
+Revision Name : TOP_test_LLC_tank_rectifier
+Top-level Entity Name : TOP_test_LLC_tank_rectifier
+Family : Stratix IV
+Logic utilization : N/A
+    Combinational ALUTs : 372
+    Memory ALUTs : 0
+    Dedicated logic registers : 188
+Total registers : 188
+Total pins : 141
+Total virtual pins : 0
+Total block memory bits : 0
+DSP block 18-bit elements : 0
+Total GXB Receiver Channel PCS : 0
+Total GXB Receiver Channel PMA : 0
+Total GXB Transmitter Channel PCS : 0
+Total GXB Transmitter Channel PMA : 0
+Total PLLs : 1
+Total DLLs : 0
