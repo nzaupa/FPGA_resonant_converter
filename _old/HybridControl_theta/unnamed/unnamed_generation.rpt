@@ -1,0 +1,28 @@
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate C:\FPGA\Projects\HybridControl_project\unnamed.qsys --block-symbol-file --output-directory=C:\FPGA\Projects\HybridControl_project\unnamed --family="Stratix IV" --part=EP4SGX230KF40C2
+Progress: Loading HybridControl_project/unnamed.qsys
+Progress: Reading input file
+Progress: Adding cic_ii_0 [altera_cic_ii 20.1]
+Progress: Parameterizing module cic_ii_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate C:\FPGA\Projects\HybridControl_project\unnamed.qsys --synthesis=VERILOG --output-directory=C:\FPGA\Projects\HybridControl_project\unnamed\synthesis --family="Stratix IV" --part=EP4SGX230KF40C2
+Progress: Loading HybridControl_project/unnamed.qsys
+Progress: Reading input file
+Progress: Adding cic_ii_0 [altera_cic_ii 20.1]
+Progress: Parameterizing module cic_ii_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: unnamed: Generating unnamed "unnamed" for QUARTUS_SYNTH
+Info: cic_ii_0: "unnamed" instantiated altera_cic_ii "cic_ii_0"
+Info: unnamed: Done "unnamed" with 2 modules, 30 files
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

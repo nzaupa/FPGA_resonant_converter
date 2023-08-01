@@ -1,0 +1,2 @@
+Warning (10268): Verilog HDL information at hybrid_control_half.v(99): always construct contains both blocking and non-blocking assignments File: C:/FPGA/Projects/SensingTest_project/hybrid_control_half.v Line: 99
+Warning (10268): Verilog HDL information at hybrid_control.v(99): always construct contains both blocking and non-blocking assignments File: C:/FPGA/Projects/SensingTest_project/hybrid_control.v Line: 99
