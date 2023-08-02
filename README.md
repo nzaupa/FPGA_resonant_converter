@@ -64,4 +64,3 @@ Interaction with online repository
 - `git remote -v` show the current *origin*
 - `git push -u origin <branch_name>` load into GitHub the current branch
 - `git pull origin <branch_name>`
-

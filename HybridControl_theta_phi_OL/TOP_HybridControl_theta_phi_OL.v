@@ -139,6 +139,8 @@ reg  [7:0] SEG0_reg, SEG1_reg;
 wire [7:0] digit_0_theta, digit_1_theta, 
            digit_0_phi,   digit_1_phi;
 wire [3:0] button, sw;   // debounce buttons and switch
+// wire [1:0] sw2;
+// assign GPIO0[4:3] = sw2;
 
 wire ON;
 
@@ -320,28 +322,28 @@ theta_control theta_control_inst(
 
 // ----- DEAD TIME ----- //
 
-dead_time_4bit #(.DEADTIME(10)) dead_time_inst(
+dead_time #(.DEADTIME(10), .N(4)) dead_time_inst(
    .o_signal( {Q4, Q3, Q2, Q1} ),          // output switching variable
    .i_clock(  clk_100M ),            // for sequential behavior
    .i_signal( MOSFET )
 );
 
-
 // ----- DEBOUNCE ----- //
 
-debounce_4bit #(.DEBOUNCE_TIME(5000)) debounce_4bit_inst( // 5ms
+debounce #(.DEBOUNCE_TIME(5000), .N(4)) debounce_4bit_inst( // 5ms
    .o_switch(button[3:0]),
    .i_clk(clk_1M),
    .i_reset(CPU_RESET),
    .i_switch(BUTTON[3:0])
 );
 
-debounce_4bit #(.DEBOUNCE_TIME(5000)) debounce_SWITCH_inst( // 5ms
+debounce #(.DEBOUNCE_TIME(5000), .N(4)) debounce_SWITCH_inst( // 5ms
    .o_switch(sw),
    .i_clk(clk_1M),
    .i_reset(CPU_RESET),
    .i_switch(SW)
 );
+
 
 // START UP counter
 counter_up counter_up_inst    (

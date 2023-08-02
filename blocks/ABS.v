@@ -14,12 +14,9 @@
 `timescale 1 ns / 1 ps
 
 module ABS (
-   o_number,
-   i_number
+   output signed [31:0] o_number,
+   input  signed [31:0] i_number
 );
-
-output signed [31:0]  o_number;
-input  signed [31:0]  i_number;
 
 assign o_number = (i_number[31]) ? (~i_number+1) : i_number;
 
