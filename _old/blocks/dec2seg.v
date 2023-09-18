@@ -2,14 +2,15 @@
 // Project: HYBRID_CONTROL
 // Author: Nicola Zaupa
 // Date: (2021/02/07) (17:27:45)
-// File: deg2rad.v
+// File: dec2seg.v
 //------------------------------------------------------------
 // Description:
 //
-// transform a angle in degree to radiants x 100
+// transform a hexadecimal single number into the corresponding 
+// rapresentation for a 7-segment display
 //------------------------------------------------------------
 
-module deg2seg (
+module dec2seg (
    o_seg,
    i_dec
 );

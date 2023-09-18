@@ -10,6 +10,32 @@ TO BE UPDATED
 
 `SensingTest_ADC`: programs that generate a square waveform in the H-bridge, which is then used to test the ADC measurements on the daughter board by replicating the signal in the DAC.
 
+### Blocks in Verilog for helpful functions
+
+> I have discovered that we can create more module on the same `*.v` file, the name of the file has no importance. Therefore I have grouped the functions. Also, with a `for` it is possible to instantiate `N` modules. The basic module has the suffix `_core`.
+
+ - `dead_time.v` main file with the following modules
+   - `dead_time_core`: introduce a delay on the rising edge of a signal1
+   - `dead_time`: instantiate `N` modules of `dead_time_core` in order to operate on a multi-wire signal
+ - `debounce.v` main file with the following modules
+   - `debounce_core`: let a signal change only after it is stable for `DEBOUNCE_TIME` clock cycles
+   - `debounce`: instantiate `N` modules of `debounce_core` in order to operate on a multi-wire signal
+ - `display_7seg.v` main file managing the 7-segment display
+   - `hex2seg`: creates the link between 0-F and the segments (DP excluded)  
+   - `dec2seg`: prepare 2-digit decimal number into "hex-equivalent" so that with `hex2seg` they can be shown
+ - `trigonometry.v`
+   - `trigonometry_deg` compute sine and cosine of an angle in degrees
+   - `trigonometry_rad` compute sine and cosine of an angle in radiants
+ - different files for the hybrid control
+   - `hybrid_control_theta.v`  -  working
+   - `hybrid_control_phi.v`    -  working
+   - `hybrid_control_theta_phi.v` - not working
+
+
+TO BE DONE
+ - parametric LPF
+
+
 ---
 ---
 

@@ -1,22 +1,82 @@
 //------------------------------------------------------------
 // Project: HYBRID_CONTROL
 // Author: Nicola Zaupa
-// Date: (2021/02/07) (17:27:45)
-// File: dec2seg.v
+// Date: (2023/08/03) (13:25:48)
+// File: display_7seg.v
 //------------------------------------------------------------
 // Description:
-//
-// transform a hexadecimal single number into the corresponding 
-// rapresentation for a 7-segment display
+// This file contains the modules for interfacing with the 
+// 7-segment displays. 
+// On Altera DE4, 0 corresponds to segment ON
+// 
+// hex2seg:
+//    transform an exadecimal number to corresponding segments
+//    from 0 to F + Z for the dash '-'. it does not manage the
+//    decimal point
+// 
+// dec2seg:
+//    take a two digit decimal number and output the corresponding
+//    hexadecimal representation which can be then transformed 
+//    into the segments to turn ON
+// 
+// 
+//    8bit = {dp,g,f,e,d,c,b,a}
+//    
+//        --a--
+//       |     |
+//       g     b
+//       |     |
+//        --g-- 
+//       |     |
+//       f     c
+//       |     |
+//        --e-- ⨀ dp
+// 
+//     0    1    2    3    4    5    6    7    8    9
+//     _         _    _         _    _    _    _    _  
+//    | |    |   _|   _|  |_|  |_   |_     |  |_|  |_| 
+//    |_|    |  |_    _|    |   _|  |_|    |  |_|   _| 
+//    
+//     A    B    C    D    E    F    Z
+//     _         _         _    _       
+//    |_|  |_   |     _|  |_   |_    _  
+//    | |  |_|  |_   |_|  |_   |        
 //------------------------------------------------------------
 
-module dec2seg (
-   o_seg,
-   i_dec
+module hex2seg (
+   output [6:0] o_seg,
+   input  [3:0] i_num
 );
 
-output [7:0]  o_seg;
-input  [7:0]  i_dec;
+always @(i_num) begin
+case(i_num)
+      4'h0: o_seg <= 7'b1000000;
+      4'h1: o_seg <= 7'b1111001;
+      4'h2: o_seg <= 7'b0100100;
+      4'h3: o_seg <= 7'b0110000;
+      4'h4: o_seg <= 7'b0011001;
+      4'h5: o_seg <= 7'b0010010;
+      4'h6: o_seg <= 7'b0000010;
+      4'h7: o_seg <= 7'b1111000;
+      4'h8: o_seg <= 7'b0000000;
+      4'h9: o_seg <= 7'b0010000;
+      4'hA: o_seg <= 7'b0001000;
+      4'hB: o_seg <= 7'b0000011;
+      4'hC: o_seg <= 7'b1000110;
+      4'hD: o_seg <= 7'b0100001;
+      4'hE: o_seg <= 7'b0000110;
+      4'hF: o_seg <= 7'b0001110;
+      default: o_seg <= 7'b0111111;
+endcase
+end
+
+endmodule
+
+
+module dec2seg (
+   output [7:0] o_seg,
+   input  [7:0] i_dec
+);
 
 reg    [7:0] str;
 assign o_seg = str;
@@ -124,9 +184,11 @@ case(i_dec)
    8'd97 : str = 8'h97;
    8'd98 : str = 8'h98;
    8'd99 : str = 8'h99;
-   default: str = 8'h00;
+   default: str = 8'hZ;
 endcase
 
 end
 
 endmodule
+
+

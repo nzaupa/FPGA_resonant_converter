@@ -86,4 +86,4 @@ work/
 
 __bin/
 
-*.code-workspace
+# *.code-workspace
