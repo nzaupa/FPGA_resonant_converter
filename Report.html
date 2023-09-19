@@ -1,0 +1,885 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Table of Contents &#8212; Resonant Converter</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Report';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Markdown Files" href="markdown.html" />
+    <link rel="prev" title="Control of Resonant Converters" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Control of Resonant Converters
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Table of Contents</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://nzaupa.github.io/FPGA_resonant_converter/intro.html" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://nzaupa.github.io/FPGA_resonant_converter/intro.html/issues/new?title=Issue%20on%20page%20%2FReport.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Report.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Table of Contents</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Table of Contents</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminaries">PRELIMINARIES</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#resonant-tank-board">RESONANT TANK BOARD</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schematics">Schematics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resonant-tank">Resonant Tank</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#current-sensing">Current Sensing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#voltage-sensing">Voltage Sensing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pcb-board">PCB board</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connectors">Connectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#components-list">Components list</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#balun-circuit">BALUN circuit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dsp">DSP</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="table-of-contents">
+<h1>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">#</a></h1>
+<p>[2 PRELIMINARIES <span class="xref myst">2</span>](#preliminaries)</p>
+<p>[3 RESONANT TANK BOARD <span class="xref myst">3</span>](#resonant-tank-board)</p>
+<p>[3.1 Schematics <span class="xref myst">3</span>](#schematics)</p>
+<p>[3.1.1 Resonant Tank <span class="xref myst">3</span>](#resonant-tank)</p>
+<p>[3.1.2 Voltage Sensing <span class="xref myst">4</span>](#_Toc138153811)</p>
+<p>[3.1.3 Current Sensing <span class="xref myst">4</span>](#current-sensing)</p>
+<p>[3.2 PCB board <span class="xref myst">5</span>](#pcb-board)</p>
+<p>[3.2.1 Connectors <span class="xref myst">5</span>](#connectors)</p>
+<p>[3.2.2 Components list <span class="xref myst">5</span>](#components-list)</p>
+<p>[4 RECTIFIER BOARD <span class="xref myst">9</span>](#_Toc138153816)</p>
+<p>[4.1 SCHEMATICS <span class="xref myst">9</span>](#_Toc138153817)</p>
+<p>[4.1.1 Rectifier and Filter <span class="xref myst">9</span>](#_Toc138153818)</p>
+<p>[4.1.2 Battery Voltage Sensing <span class="xref myst">11</span>](#_Toc138153819)</p>
+<p>[4.1.3 Battery Current Sensing <span class="xref myst">12</span>](#_Toc138153820)</p>
+<p>[4.1.4 ADC <span class="xref myst">14</span>](#_Toc138153821)</p>
+<p>[4.2 PCB board <span class="xref myst">15</span>](#_Toc138153822)</p>
+<p>[4.2.1 Connectors <span class="xref myst">15</span>](#_Toc138153823)</p>
+<p>[4.2.2 Components list (BOM) <span class="xref myst">15</span>](#_Toc138153824)</p>
+<p>[5 APPENDIX <span class="xref myst">19</span>](#_Toc138153825)</p>
+<p>[5.1 BALUN circuit <span class="xref myst">19</span>](#balun-circuit)</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="preliminaries">
+<h1>PRELIMINARIES<a class="headerlink" href="#preliminaries" title="Permalink to this heading">#</a></h1>
+<p>Power specifications:</p>
+<ul class="simple">
+<li><p>Battery voltage: 40V</p></li>
+<li><p>Maximum Power: 500W</p></li>
+<li><p>Maximum output current: 10A</p></li>
+</ul>
+<p>Therefore, more or less, we have 10A current at the input, …</p>
+<p>ADC for the resonant tank are limited to 0.5V (1Vpp)</p>
+<p>Bypass capacitors must be used near to all the power supply pins.</p>
+<p>FPGA should have enough power to power-up the sensing circuit at battery
+level:</p>
+<p>5V &#64; 12A and 3.3V &#64; 8A</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="resonant-tank-board">
+<h1>RESONANT TANK BOARD<a class="headerlink" href="#resonant-tank-board" title="Permalink to this heading">#</a></h1>
+<p>The core of the resonant tank is composed by an inductor <span class="math notranslate nohighlight">\(L_{r}\)</span>, a
+capacitor <span class="math notranslate nohighlight">\(C_{r}\)</span> and a transformer <span class="math notranslate nohighlight">\(T_{r}\)</span> (with magnetizing inductance
+<span class="math notranslate nohighlight">\(L_{m}\)</span>). The input is a square waveform generated by an H-bridge and
+the output of the transformer is sinusoidal</p>
+<img src="attachment:media/image1.png" style="width:4.17503in;height:1.30947in" />
+<p>Figure 1: Resonant tank</p>
+<p>The current and the voltage on the capacitor <span class="math notranslate nohighlight">\(C_{r}\)</span> is measured in
+order to close the loop and ensure the oscillation.</p>
+<p>Two sensing circuits are used to measure these quantities. Thanks to the
+use of signal transformer, the resonant tank is galvanically isolated
+from the sensing output (FPGA)[1].</p>
+<section id="schematics">
+<h2>Schematics<a class="headerlink" href="#schematics" title="Permalink to this heading">#</a></h2>
+<section id="resonant-tank">
+<h3>Resonant Tank<a class="headerlink" href="#resonant-tank" title="Permalink to this heading">#</a></h3>
+<p>The main resonance frequency is defined as
+<span class="math notranslate nohighlight">\(f_{r} = \frac{1}{\sqrt{L_{r}C_{r}}}\)</span>. The transformer has a
+transformation ratio of <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>Maximum rating on the components for an output battery current of
+<strong>10A</strong></p>
+<ul class="simple">
+<li><p>Maximum inductor current: <strong><u>35A</u></strong> AC (high Q) -
+<strong><u>15A</u></strong> AC (low Q)</p></li>
+<li><p>Maximum capacitor voltage: <strong><u>900V</u></strong> AC (high Q) -
+<strong><u>50V</u></strong> AC (low Q)</p></li>
+<li><p>The first winding of the current transformer has to withstand the
+full current, need proper size of the wire.</p></li>
+</ul>
+<p><span id="_Toc138153811" class="anchor"></span></p>
+</section>
+<section id="current-sensing">
+<h3>Current Sensing<a class="headerlink" href="#current-sensing" title="Permalink to this heading">#</a></h3>
+<p>The capacitor current corresponds to the input current of the resonant
+tank. A current-transformer is used to sense it and to ensure isolation.</p>
+<p>The primary current is reduced at the secondary according to the
+transformation ratio <span class="math notranslate nohighlight">\(1:n_{i}\)</span>, which is then transformed to a voltage
+thanks to the resistor <span class="math notranslate nohighlight">\(R_{i}\)</span>. If we have that <span class="math notranslate nohighlight">\(R_{i} \ll 100\Omega\)</span>,
+we can express the voltage sensed by the ADC as
+<span class="math notranslate nohighlight">\(v_{\text{ADC}} = \frac{R_{i}}{n_{i}}i_{S}\)</span>. The primary equivalent
+resistance is: <span class="math notranslate nohighlight">\(R_{T1,eq} = \frac{R_{i}}{n_{i}^{2}}\)</span>.</p>
+<img src="attachment:media/image2.png" style="width:4.088in;height:1.03987in" />
+<p>Figure 2: Current sensing circuit</p>
+<p>The output of <span class="math notranslate nohighlight">\(T_{1}\)</span> is connected to a SMA connector through a low pass
+filter with cut-off frequency
+<span class="math notranslate nohighlight">\(f_{\text{rcf}} = \frac{1}{\pi\, R_{\text{rcf}}C_{\text{rcf}}}\,\)</span>.
+<span class="math notranslate nohighlight">\(R_{\text{rcf}} = 50\Omega\)</span> for impedance matching with the input stage
+of the ADC.</p>
+<table>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 32%" />
+<col style="width: 13%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math display"><em>n</em><sub><em>i</em></sub></span></th>
+<th>20</th>
+<th rowspan="2"><p><span class="math display"><em>γ</em><sub><em>r</em><em>i</em>, <em>A</em><em>D</em><em>C</em></sub> = 0.0135</span></p>
+<p><span class="math display">max {<em>I</em><sub><em>s</em></sub>} = 37.0 <em>A</em></span></p></th>
+<th>20</th>
+<th rowspan="2"><p><span class="math display"><em>γ</em><sub><em>r</em><em>v</em>, <em>A</em><em>D</em><em>C</em></sub> = 0.028</span></p>
+<p><span class="math display">max {<em>I</em><sub><em>s</em></sub>} = 17.9 <em>A</em></span></p></th>
+</tr>
+<tr class="odd">
+<th><span class="math display"><em>R</em><sub><em>i</em></sub></span></th>
+<th>270 mΩ</th>
+<th>560 mΩ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math display"><em>R</em><sub>rcf</sub></span></td>
+<td>50 Ω</td>
+<td rowspan="2"><span class="math display"><em>f</em><sub>rcf</sub> = 318<em>k</em><em>H</em><em>z</em></span></td>
+<td colspan="2" rowspan="2">* Q high: Ri is at the limit might need to lower it</td>
+</tr>
+<tr class="even">
+<td><span class="math display"><em>C</em><sub>rcf</sub></span></td>
+<td>10 nF</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="voltage-sensing">
+<h3>Voltage Sensing<a class="headerlink" href="#voltage-sensing" title="Permalink to this heading">#</a></h3>
+<p>The voltage is initially attenuated by a voltage divider by a factor
+<span class="math notranslate nohighlight">\(\frac{R_{pv2}}{R_{pv1} + R_{pv2}}\)</span> , which is then attenuated by a
+signal transformer with transformation ratio <span class="math notranslate nohighlight">\(n_{v}:1\)</span>. Therefore, we
+have that the voltage read by the ADC corresponds to
+<span class="math notranslate nohighlight">\(v_{\text{ADC}} = \frac{1}{n_{v}}\frac{R_{pv2}}{R_{pv1} + R_{pv2}}v_{C_{r}}\)</span>.
+Equivalent resistance at the primary is
+<span class="math notranslate nohighlight">\(R_{T2,eq} = 2R_{\text{rvf}}n_{v}^{2}\  = 40\ k\Omega\)</span> and we need to
+have that <span class="math notranslate nohighlight">\(R_{pv2} \ll R_{T2,eq}\)</span>.</p>
+<img src="attachment:media/image3.png" style="width:4.57133in;height:0.96022in" />
+<p>Figure 3: Voltage sensing stage in the resonant tank</p>
+<p>Then, the output of <span class="math notranslate nohighlight">\(T_{2}\)</span> is connected to a SMA connector through a
+low pass filter with cut-off frequency
+<span class="math notranslate nohighlight">\(f_{\text{rvf}} = \frac{1}{\pi\, R_{\text{rvf}}C_{\text{rvf}}}\,\)</span>.
+<span class="math notranslate nohighlight">\(R_{\text{rvf}} = 50\Omega\)</span> for impedance matching with the input stage
+of the ADC.</p>
+<table>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 13%" />
+<col style="width: 31%" />
+<col style="width: 13%" />
+<col style="width: 32%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math display"><em>n</em><sub><em>v</em></sub></span></th>
+<th>20</th>
+<th rowspan="3"><p><span class="math display"><em>γ</em><sub><em>r</em><em>v</em><em>i</em>, <em>A</em><em>D</em><em>C</em></sub> = 495 × 10<sup>−6</sup></span></p>
+<p><span class="math display">max {<em>V</em><sub><em>c</em></sub>} = 1010<em>V</em></span></p></th>
+<th>20</th>
+<th rowspan="3"><p><span class="math display"><em>γ</em><sub><em>r</em><em>v</em><em>i</em>, <em>A</em><em>D</em><em>C</em></sub> = 1.47 × 10<sup>−3</sup></span></p>
+<p><span class="math display">max {<em>V</em><sub><em>c</em></sub>} = 57<em>V</em></span></p></th>
+</tr>
+<tr class="odd">
+<th><span class="math display"><em>R</em><sub><em>p</em><em>v</em>1</sub></span></th>
+<th>100 kΩ</th>
+<th>4.7 kΩ</th>
+</tr>
+<tr class="header">
+<th><span class="math display"><em>R</em><sub><em>p</em><em>v</em>2</sub></span></th>
+<th>1 kΩ</th>
+<th>1 kΩ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math display"><em>R</em><sub>rvf</sub></span></td>
+<td>50 Ω</td>
+<td rowspan="2"><span class="math display"><em>f</em><sub>rcf</sub> = 318<em>k</em><em>H</em><em>z</em></span></td>
+<td colspan="2" rowspan="2">* Q low: we might reduce <span class="math inline"><em>n</em><sub><em>v</em></sub> <em>a</em><em>n</em><em>d</em> <em>i</em><em>n</em><em>c</em><em>r</em><em>e</em><em>a</em><em>s</em><em>e</em> <em>R</em>_{<em>p</em><em>v</em>1}</span> we should keep the total resistance not too low (10mA)</td>
+</tr>
+<tr class="even">
+<td><span class="math display"><em>C</em><sub>rvf</sub></span></td>
+<td>10 nF</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="pcb-board">
+<h2>PCB board<a class="headerlink" href="#pcb-board" title="Permalink to this heading">#</a></h2>
+<p><strong><u>Two resonant tanks will be built. One with low nominal quality
+factor and one with high nominal quality factor.</u></strong></p>
+<section id="connectors">
+<h3>Connectors<a class="headerlink" href="#connectors" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Power input/output: HDR 2x10 (half connector per polarity)</p></li>
+<li><p>Sensing SMA connectors + HDR 1x2 (for oscilloscope: before the 50
+Ohm resistance)</p></li>
+</ul>
+<p>GND of the SMA connector on the FPGA is connected to the common ADC
+ground. i.e. can create a common ground plate on the PCB.</p>
+<p>Figure 4: Schematics from Altium</p>
+</section>
+<section id="components-list">
+<h3>Components list<a class="headerlink" href="#components-list" title="Permalink to this heading">#</a></h3>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>values</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>code</p></th>
+<th class="head"><p>manufacture</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>$<span class="math notranslate nohighlight">\(L_{r}\)</span>$</p></td>
+<td><p>68uH (10uH)</p></td>
+<td><p>Power DC inductor</p></td>
+<td><p>AGP4233-683ME (103ME)</p></td>
+<td><p>Coilcraft</p></td>
+</tr>
+<tr class="row-odd"><td><p>$<span class="math notranslate nohighlight">\(C_{r}\)</span>$</p></td>
+<td><p>100nF (700nF)</p></td>
+<td><p>1kVDC – C0G (NP0) - SMD</p></td>
+<td><p>CKC21C104KDGLC7805</p></td>
+<td><p>Kemet</p></td>
+</tr>
+<tr class="row-even"><td><p>$<span class="math notranslate nohighlight">\(T_{r}\)</span>$</p></td>
+<td><p>1:1</p></td>
+<td><p>Lm=245uH</p></td>
+<td><p>B65982E0012D001</p></td>
+<td><p>TDK</p></td>
+</tr>
+<tr class="row-odd"><td><p>$<span class="math notranslate nohighlight">\(T_{1}\)</span>$</p></td>
+<td><p>1:ni</p></td>
+<td><p>toroid 12.7 × 7.15 × 4.9 mm</p></td>
+<td><p>5977000301 core</p></td>
+<td><p>Fair-Rite</p></td>
+</tr>
+<tr class="row-even"><td><p>$<span class="math notranslate nohighlight">\(T_{2}\)</span>$</p></td>
+<td><p>nv:1</p></td>
+<td><p>toroid 12.7 × 7.15 × 4.9 mm</p></td>
+<td><p>5977000301 core</p></td>
+<td><p>Fair-Rite</p></td>
+</tr>
+<tr class="row-odd"><td><p>$<span class="math notranslate nohighlight">\(R_{p1}\)</span>$</p></td>
+<td><p>100 kΩ</p></td>
+<td><p>through-hole resistance ¼W</p></td>
+<td><p>Precision &lt;1%</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>$<span class="math notranslate nohighlight">\(R_{p2}\)</span>$</p></td>
+<td><p>1 kΩ</p></td>
+<td><p>through-hole resistance ¼W</p></td>
+<td><p>Precision &lt;1%</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>$<span class="math notranslate nohighlight">\(R_{i}\)</span>$</p></td>
+<td><p>0.5 Ω</p></td>
+<td><p>through-hole resistance ¼W</p></td>
+<td><p>Precision &lt;1%</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>$<span class="math notranslate nohighlight">\(R_{\text{rcf}}\)</span>$</p></td>
+<td><p>50 Ω</p></td>
+<td><p>through-hole resistance ¼W</p></td>
+<td><p>Precision &lt;1%</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>$<span class="math notranslate nohighlight">\(R_{\text{rvf}}\)</span>$</p></td>
+<td><p>50 Ω</p></td>
+<td><p>through-hole resistance ¼W</p></td>
+<td><p>Precision &lt;1%</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>$<span class="math notranslate nohighlight">\(C_{\text{rcf}}\)</span>$</p></td>
+<td><p>nF</p></td>
+<td><p>film capacitor</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>$<span class="math notranslate nohighlight">\(C_{\text{rvf}}\)</span>$</p></td>
+<td><p>nF</p></td>
+<td><p>film capacitor</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>CONNECTORS</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>J3-J6</p></td>
+<td><p>×2</p></td>
+<td><p>header 1×2</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>J1-J2</p></td>
+<td><p>×2</p></td>
+<td><p>Header 2×10</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>TP</p></td>
+<td><p>×6</p></td>
+<td><p>Test point 1.6mm</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>SMA</p></td>
+<td><p>×2</p></td>
+<td><p>FPGA connectors</p></td>
+<td><p>SMA-TH-vertical</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>J7</p></td>
+<td><p>×1</p></td>
+<td><p>current jumper (wire)</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>**<br />
+**<img src="attachment:media/image4.png" style="width:9.1591in;height:5.85811in" /><span
+id="_Toc138153825" class="anchor"></span> APPENDIX</p>
+</section>
+</section>
+<section id="balun-circuit">
+<h2>BALUN circuit<a class="headerlink" href="#balun-circuit" title="Permalink to this heading">#</a></h2>
+<p>It’s a circuit use to transform an unbalanced signal to a balanced one.
+An input series-resistance is used for impedance matching to that the
+output voltage corresponds to the input before the resistance (it is the
+double of the one in <strong>B+</strong>)</p>
+<img src="attachment:media/image5.png" style="width:6.26806in;height:1.48542in" />
+<p>Figure 15: schematics of the BALUN circuit</p>
+</section>
+<section id="dsp">
+<h2>DSP<a class="headerlink" href="#dsp" title="Permalink to this heading">#</a></h2>
+<p>The resolution that we can reach with a fft is equal to 1/time_window.
+E.g. we are sampling at 100Mhz a window of 500us
+(N=500us*100Mhz=50000), the minimum frequency that we can discriminate
+is 2kHz = 1/500us</p>
+<p>[1] Indeed, the FPGA is then connected to the resonant tank through the
+gate driver of the H-bridge. We might think to isolate also the drivers
+but it not extremely necessary.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Control of Resonant Converters</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="markdown.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Markdown Files</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Table of Contents</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminaries">PRELIMINARIES</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#resonant-tank-board">RESONANT TANK BOARD</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schematics">Schematics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resonant-tank">Resonant Tank</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#current-sensing">Current Sensing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#voltage-sensing">Voltage Sensing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pcb-board">PCB board</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connectors">Connectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#components-list">Components list</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#balun-circuit">BALUN circuit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dsp">DSP</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Nicola ZAUPA
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
