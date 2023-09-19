@@ -1,0 +1,858 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>SOTA in battery charging with &#8212; Resonant Converter 2023</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/intro/state_of_the_art';</script>
+    <link rel="shortcut icon" href="../../_static/logo2.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Useful Material" href="useful_material.html" />
+    <link rel="prev" title="Index" href="../../intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo2.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo2.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Index
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resonant Converters</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">SOTA in battery charging with</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="useful_material.html">Useful Material</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Electronic design</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../design/simulation.html">Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/resonant_tank_design.html">Resonant Tank</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/rectifier_design.html">Rectifier</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prototype design</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../prototype/altium_help.html">Altium</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prototype/signal_transformer_design.html">Signal Transformers</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">FPGA programming</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../programming/verilog_guide.html">Verilog coding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programming/blocks.html">blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programming/code_structure.html">Code structure</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Diary</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../diary/2023_diary.html">Diary 2023</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Template</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../markdown-notebooks.html">Some ideas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notebooks.html">Content with notebooks</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/nzaupa/FPGA_resonant_converter" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/intro/state_of_the_art.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>SOTA in battery charging with</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">SOTA in battery charging with</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-our-method-is-worth-a-paper">Why our method is worth a paper</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#battery-charger-design">Battery charger design</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-survey-on-these-topics">Some survey on these topics.</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resonant-converter-focus">Resonant converter focus:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-of-resonant-converter">Control of resonant converter</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency-modulation">Frequency modulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency-and-phase-shift-modulation">Frequency and phase-shift modulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#youssef-2006">Youssef 2006:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bojarski-2014">Bojarski 2014:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#topology-changes">Topology changes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-example-for-the-prototype-obc-llc">Reference example for the prototype - OBC LLC</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#works-done-so-far-for-the-charging-with-resonant-converter">Works done so far for the charging with resonant converter</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-time-description">Discrete-time description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#prototype-changes-needed">Prototype changes needed</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer">Transformer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sensing-circuit">Sensing circuit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resonant-tank">Resonant Tank</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-stage">Power stage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rectifier">Rectifier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rectifier-sensing">Rectifier Sensing</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sota-in-battery-charging-with">
+<h1>SOTA in battery charging with<a class="headerlink" href="#sota-in-battery-charging-with" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>FHA: First Harmonic Analysis</p></li>
+<li><p>OBC: On Board Charger</p></li>
+</ul>
+<section id="why-our-method-is-worth-a-paper">
+<h2>Why our method is worth a paper<a class="headerlink" href="#why-our-method-is-worth-a-paper" title="Permalink to this heading">#</a></h2>
+<p>Here I try to collect a not-complete list of reasons why our
+contribution is meaningful.</p>
+<ul class="simple">
+<li><p>ensure soft-switching, ZVS (we should look also at ZCS for the
+rectifier);</p></li>
+<li><p>self-sustained oscillations;</p></li>
+<li><p>no time (angle) dependency in the control law thanks to the phase
+plane approach;</p></li>
+<li><p>wide range of conversion ratios with a narrow range of operating
+frequencies - optimal magnetics;</p></li>
+<li><p>…</p></li>
+</ul>
+<p>Some open question:</p>
+<ol class="arabic simple">
+<li><p>How much is it important a bidirectional converter for OBC?</p></li>
+<li><p>how feasible is this control approach with low-cost electronics?</p></li>
+<li><p>…</p></li>
+</ol>
+</section>
+<section id="battery-charger-design">
+<h2>Battery charger design<a class="headerlink" href="#battery-charger-design" title="Permalink to this heading">#</a></h2>
+<p>A complete and complex analysis of the design and <strong>modeling</strong> is given
+in <span id="id1">[<a class="reference internal" href="../../intro.html#id13" title="Junjun Deng, Siqi Li, Sideng Hu, Chunting Chris Mi, and Ruiqing Ma. Design Methodology of LLC Resonant Converters for Electric Vehicle Battery Chargers. IEEE Transactions on Vehicular Technology, 63(4):1581–1592, May 2014. doi:10.1109/TVT.2013.2287379.">Deng <em>et al.</em>, 2014</a>]</span> where an LLC resonant converter for EV
+battery charging is studied. The worst-case operating point is
+identified and used for the design with the aim to globally ensure ZVS.
+FHA is used in above-resonance region, while for the below-resonance
+region a specific mode analysis is used. Big challenges are coming from
+the charging profile that is nonlinear in V–I.</p>
+<p>There are several works in the literature addressing the modeling and
+control of resonant converters. For the battery charging application,
+the mostly considered topology is the LLC. We can find two main branches
+in the literature: one concerning the resonant converters them-self,
+without a particular application; and one that considers the battery
+charger problem where the load now is time-varying depending on the
+charging profile, which is usually nonlinear. Moreover, al lot of works
+have they focus on the circuit/components design and few tackles the
+<em>control problem comprehensively</em>.</p>
+<section id="some-survey-on-these-topics">
+<h3>Some survey on these topics.<a class="headerlink" href="#some-survey-on-these-topics" title="Permalink to this heading">#</a></h3>
+<p>A pretty complete overview on resonant converter is given in
+<span id="id2">[<a class="reference internal" href="../../intro.html#id41" title="Mohamed Salem, Awang Jusoh, N. Rumzi N. Idris, Himadry Shekhar Das, and Ibrahim Alhamrouni. Resonant power converters with respect to passive storage (LC) elements and control techniques – An overview. Renewable and Sustainable Energy Reviews, 91:504–520, August 2018. doi:10.1016/j.rser.2018.04.020.">Salem <em>et al.</em>, 2018</a>]</span>. Several topologies are discussed and it can be a good
+source of references. Section 4 is dedicated to <em>series resonant
+convert</em> with: the different operating modes, problems related to the
+control, possible control solutions (Section 5).</p>
+<p><span id="id3">[<a class="reference internal" href="../../intro.html#id40" title="Md Safayatullah, Mohamed Tamasas Elrais, Sumana Ghosh, Reza Rezaii, and Issa Batarseh. A Comprehensive Review of Power Converter Topologies and Control Methods for Electric Vehicle Fast Charging Applications. IEEE Access, 10:40753–40793, 2022. doi:10.1109/ACCESS.2022.3166935.">Safayatullah <em>et al.</em>, 2022</a>]</span> is a pretty broad survey on Power converters
+topologies and control methods for EV fast charging. LLC is the first
+discussed in section V-A (control in VIII-A). There is also the DAB
+(Dual Active Bridge) in section V-B/C (control in VIII-B) and multilevel
+converters. This could be another source of references.</p>
+<section id="resonant-converter-focus">
+<h4>Resonant converter focus:<a class="headerlink" href="#resonant-converter-focus" title="Permalink to this heading">#</a></h4>
+<p>Looking into the literature, we have modeling oriented papers and
+control oriented papers. In modeling, the most used technique is First
+Harmonic Approximation (FHA), which most of the time is good since the
+waveforms are sinusoidal, but it happens in the limiting (e.g. lower
+power) that this assumption fails and then the modeling technique should
+change. A good paper on these different modeling approaches is
+<span id="id4">[<a class="reference internal" href="../../intro.html#id13" title="Junjun Deng, Siqi Li, Sideng Hu, Chunting Chris Mi, and Ruiqing Ma. Design Methodology of LLC Resonant Converters for Electric Vehicle Battery Chargers. IEEE Transactions on Vehicular Technology, 63(4):1581–1592, May 2014. doi:10.1109/TVT.2013.2287379.">Deng <em>et al.</em>, 2014</a>]</span> where, looking at the battery charging application, they do
+a wide study on the different operating conditions.</p>
+<p>To overcome some of this problem the adopted solutions are of two
+kind: 1) change the control of the full-/half- bridge configuration; 2)
+change the topology of the circuit.</p>
+</section>
+</section>
+</section>
+<section id="control-of-resonant-converter">
+<h2>Control of resonant converter<a class="headerlink" href="#control-of-resonant-converter" title="Permalink to this heading">#</a></h2>
+<p>Regarding the controls technique we have:</p>
+<ul>
+<li><p><strong>Fixed-frequency</strong>: this kind of control law keep the frequency
+constant and change other parameters of the input. From
+<span id="id5">[<a class="reference internal" href="../../intro.html#id11" title="J.M. Burdio, F. Canales, P.M. Barbosa, and F.C. Lee. Comparison study of fixed-frequency control strategies for ZVS DC/DC series resonant converters. In 2001 IEEE 32nd Annual Power Electronics Specialists Conference (IEEE Cat. No.01CH37230), volume 1, 427-432 vol. 1. June 2001. doi:10.1109/PESC.2001.954057.">Burdio <em>et al.</em>, 2001</a>]</span>, we can identify:</p>
+<ul class="simple">
+<li><p>phase-shift or clamped mode (similar to our three-level solution
+<span id="id6">[<a class="reference internal" href="../../intro.html#id23" title="Nicola Zaupa, Carlos Olalla, Isabelle Queinnec, Luis Martínez-Salamero, and Luca Zaccarian. Hybrid Control of Self-Oscillating Resonant Converters With Three-Level Input. IEEE Control Systems Letters, 7:1375–1380, 2023. doi:10.1109/LCSYS.2023.3240887.">Zaupa <em>et al.</em>, 2023</a>]</span>);</p></li>
+<li><p>asymmetrical duty-cycle;</p></li>
+<li><p>asymmetrical clamped-mode.</p></li>
+</ul>
+</li>
+<li><p><strong>Variable-frequency</strong>: these techniques offer good soft-switching
+properties, the downside is that performance is usually affected by
+the wide range of frequency requested. From <span id="id7">[<a class="reference internal" href="../../intro.html#id54" title="M.Z. Youssef and P.K. Jain. A review and performance evaluation of control techniques in resonant converters. In 30th Annual Conference of IEEE Industrial Electronics Society, 2004. IECON 2004, volume 1, 215-221 Vol. 1. November 2004. doi:10.1109/IECON.2004.1433312.">Youssef and Jain, 2004</a>]</span>, we can
+highlight:</p>
+<ul class="simple">
+<li><p>variable frequency (for example through a VCO<a class="footnote-reference brackets" href="#id29" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>) is one of the
+most common technique since it offers an easy implementation but
+the frequency range is very wide;</p></li>
+<li><p>self-sustained oscillation like in
+<span id="id9">[<a class="reference internal" href="../../intro.html#id22" title="Nicola Zaupa, Luis Martínez-Salamero, Carlos Olalla, and Luca Zaccarian. Hybrid Control of Self-Oscillating Resonant Converters. IEEE Transactions on Control Systems Technology, 31(2):881–888, March 2023. doi:10.1109/TCST.2022.3179948.">Zaupa <em>et al.</em>, 2023</a>, <a class="reference internal" href="../../intro.html#id10" title="Ricardo Bonache-Samaniego, Carlos Olalla, Hugo Valderrama-Blavi, and Luis Martínez-Salamero. Analysis and Design of Self-Oscillating Resonant Converters with Loss-Free Resistor Characteristics. Energies, 13(14):3743, January 2020. doi:10.3390/en13143743.">Bonache-Samaniego <em>et al.</em>, 2020</a>]</span> in which the
+converter sets its operating point at the resonant frequency
+without needing to know it;</p></li>
+<li><p>self-sustained phase-shift proposed in <span id="id10">[<a class="reference internal" href="../../intro.html#id55" title="M.Z. Youssef, H. Pinheiro, and P.K. Jain. Self-sustained phase-shift modulated resonant converters: modeling, design, and performance. IEEE Transactions on Power Electronics, 21(2):401–414, March 2006. doi:10.1109/TPEL.2005.869751.">Youssef <em>et al.</em>, 2006</a>]</span> in which,
+together with the self-oscillating behavior, also the
+phase-modulation technique is used in order to reduce the
+frequency range.</p></li>
+</ul>
+<p>Usually, the biggest counterpart of these techniques is the big
+range of frequencies in which the converter has to operate, which
+from one side complicates the control implementation and on the
+other side it makes hard to optimize the magnetics of the circuit.
+Therefore, one research axe has been devoted to find control
+techniques that allows reducing the frequency range.</p>
+</li>
+</ul>
+<section id="frequency-modulation">
+<h3>Frequency modulation<a class="headerlink" href="#frequency-modulation" title="Permalink to this heading">#</a></h3>
+<p>Many works in the literature use this kind of control since it is to
+implement. Usually, a PI controller and a Voltage Controlled Oscillator
+are sufficient. Few recent works that use this technique, which are
+cited in this report, are: <span id="id11">[<a class="reference internal" href="../../intro.html#id12" title="Davide Cittanti, Matteo Gregorio, Enrico Vico, Fabio Mandrile, Eric Armando, and Radu Bojoi. High-Performance Digital Multiloop Control of LLC Resonant Converters for EV Fast Charging With LUT-Based Feedforward and Adaptive Gain. IEEE Transactions on Industry Applications, 58(5):6266–6285, September 2022. doi:10.1109/TIA.2022.3178394.">Cittanti <em>et al.</em>, 2022</a>, <a class="reference internal" href="../../intro.html#id38" title="Yue Qin, Chunguang Ren, Jiansheng Kong, Baifu Zhang, Xiaoqing Han, and Zixu Dong. High Efficiency Resonant Converter with Smooth Frequency Regulation for Wide Input Voltage Applications. In 2022 IEEE International Power Electronics and Application Conference and Exposition (PEAC), 1115–1119. November 2022. doi:10.1109/PEAC56338.2022.9959481.">Qin <em>et al.</em>, 2022</a>, <a class="reference internal" href="../../intro.html#id39" title="Masoud Saadati, Abbas Ghayebloo, and Asghar Taheri. A novel analog controller design scheme for LLC resonant converter used in battery charging application. IET Power Electronics, 15(9):802–814, 2022. doi:10.1049/pel2.12269.">Saadati <em>et al.</em>, 2022</a>]</span></p>
+<p>In <span id="id12">[<a class="reference internal" href="../../intro.html#id12" title="Davide Cittanti, Matteo Gregorio, Enrico Vico, Fabio Mandrile, Eric Armando, and Radu Bojoi. High-Performance Digital Multiloop Control of LLC Resonant Converters for EV Fast Charging With LUT-Based Feedforward and Adaptive Gain. IEEE Transactions on Industry Applications, 58(5):6266–6285, September 2022. doi:10.1109/TIA.2022.3178394.">Cittanti <em>et al.</em>, 2022</a>]</span> two loops are used for the control (outer for the
+voltage and inner for the current). Full analysis of the 7th order model
+is done with reduction to 3rd order. The aim of one closed-loop is to
+keep the performance constant when the operating point is changing. The
+application is EV fast charging. The implemented control is LUT-based
+feed-forward with adaptive gain (through a lookup-table).</p>
+<p>A bit out of track wrt other works, <span id="id13">[<a class="reference internal" href="../../intro.html#id39" title="Masoud Saadati, Abbas Ghayebloo, and Asghar Taheri. A novel analog controller design scheme for LLC resonant converter used in battery charging application. IET Power Electronics, 15(9):802–814, 2022. doi:10.1049/pel2.12269.">Saadati <em>et al.</em>, 2022</a>]</span> proposes a novel
+<strong>analog controller</strong> design procedure for LLC resonant converter for
+battery charging. They tackle both the design of the converter and the
+design of the controller. About the controller, they build a model based
+on FHA that is then linearized from which a least-square procedure is
+used to obtain the unknown parameters of the controller.</p>
+</section>
+<section id="frequency-and-phase-shift-modulation">
+<h3>Frequency and phase-shift modulation<a class="headerlink" href="#frequency-and-phase-shift-modulation" title="Permalink to this heading">#</a></h3>
+<p>Next, I try to focus more on the solutions that involve frequency and
+phase shift modulation (amplitude modulation). Contributions in this
+direction are more limited and I think that there could be some margin
+for our work “<span class="math notranslate nohighlight">\(\theta+\varphi\)</span>”.</p>
+<section id="youssef-2006">
+<h4>Youssef 2006:<a class="headerlink" href="#youssef-2006" title="Permalink to this heading">#</a></h4>
+<p>This mixed solution was initially (wrt what I’ve found) presented in
+<span id="id14">[<a class="reference internal" href="../../intro.html#id55" title="M.Z. Youssef, H. Pinheiro, and P.K. Jain. Self-sustained phase-shift modulated resonant converters: modeling, design, and performance. IEEE Transactions on Power Electronics, 21(2):401–414, March 2006. doi:10.1109/TPEL.2005.869751.">Youssef <em>et al.</em>, 2006</a>]</span>. The focus is only on resonant converters and the
+techniques combines self-sustained oscillation with phase shift
+modulation. The objective is to reduce the frequency range while
+maintaining ZVS. Also the design procedure is discussed. The controller
+is composed of two loops: the inner one adjusts the phase shift to
+ensure ZVS, and the outer one adjusts the output voltage. The controller
+is implemented analogically, i.e. without a micro-controller. For the
+analysis <em>“Generalized sampling data modeling”</em> is used.</p>
+</section>
+<section id="bojarski-2014">
+<h4>Bojarski 2014:<a class="headerlink" href="#bojarski-2014" title="Permalink to this heading">#</a></h4>
+<p>More recent works
+<span id="id15">[<a class="reference internal" href="../../intro.html#id7" title="Mariusz Bojarski, Erdem Asa, Kerim Colak, and Dariusz Czarkowski. A 25 kW industrial prototype wireless electric vehicle charger. In 2016 IEEE Applied Power Electronics Conference and Exposition (APEC), 1756–1761. March 2016. doi:10.1109/APEC.2016.7468105.">Bojarski <em>et al.</em>, 2016</a>, <a class="reference internal" href="../../intro.html#id6" title="Mariusz Bojarski, Erdem Asa, Maria Teresa Outeiro, and Dariusz Czarkowski. Control and analysis of multi-level type multi-phase resonant converter for wireless EV charging. In IECON 2015 - 41st Annual Conference of the IEEE Industrial Electronics Society, 005008–005013. November 2015. doi:10.1109/IECON.2015.7392886.">Bojarski <em>et al.</em>, 2015</a>, <a class="reference internal" href="../../intro.html#id5" title="Mariusz Bojarski, Kiran Krishnan Kutty, Dariusz Czarkowski, and Francisco de Leon. Multiphase resonant inverters for bidirectional wireless power transfer. In 2014 IEEE International Electric Vehicle Conference (IEVC), 1–7. December 2014. doi:10.1109/IEVC.2014.7056191.">Bojarski <em>et al.</em>, 2014</a>]</span>
+propose a so called <em>“phase-frequency control”</em> for the wireless battery
+charging case (the topology is similar to OBC). Essentially, the control
+try to keep the frequency nearer to the resonant one while maintaining
+ZVS, the output is regulated by changing the phase-shift. In
+<span id="id16">[<a class="reference internal" href="../../intro.html#id6" title="Mariusz Bojarski, Erdem Asa, Maria Teresa Outeiro, and Dariusz Czarkowski. Control and analysis of multi-level type multi-phase resonant converter for wireless EV charging. In IECON 2015 - 41st Annual Conference of the IEEE Industrial Electronics Society, 005008–005013. November 2015. doi:10.1109/IECON.2015.7392886.">Bojarski <em>et al.</em>, 2015</a>]</span> the number of levels it’s not clear and it
+uses a topology with 12 switches. <span id="id17">[<a class="reference internal" href="../../intro.html#id7" title="Mariusz Bojarski, Erdem Asa, Kerim Colak, and Dariusz Czarkowski. A 25 kW industrial prototype wireless electric vehicle charger. In 2016 IEEE Applied Power Electronics Conference and Exposition (APEC), 1756–1761. March 2016. doi:10.1109/APEC.2016.7468105.">Bojarski <em>et al.</em>, 2016</a>]</span> presents a
+25 kW prototype, it shows that the control is implemented in an FPGA and
+it provides the scheme.</p>
+<p>More recently, works dealing with multilevel resonant converters are the
+following.</p>
+<p>In <span id="id18">[<a class="reference internal" href="../../intro.html#id35" title="Antony K. Peter and Jaison Mathew. A Single Phase, Single Stage AC-DC Multilevel LLC Resonant Converter With Power Factor Correction. IEEE Access, 9:70884–70895, 2021. doi:10.1109/ACCESS.2021.3078300.">Peter and Mathew, 2021</a>]</span>, a three-level single stage LLC converter is proposed.
+The control scheme is dual: frequency modulation is used to regulate the
+output voltage and PWM is used to control the dc-bus voltage.</p>
+<p>In <span id="id19">[<a class="reference internal" href="../../intro.html#id3" title="Salah Alatai, Mohamed Salem, Ibrahim Alhamrouni, Dahaman Ishak, Ali Bughneda, and Mohamad Kamarol. Design Methodology and Analysis of Five-Level LLC Resonant Converter for Battery Chargers. Sustainability, 14(14):8255, January 2022. doi:10.3390/su14148255.">Alatai <em>et al.</em>, 2022</a>]</span> they use a 5-levels converter (2 full-bridge). Reading
+it fast is not clear how the control law is implemented and it seems
+more that they are doing constant voltage control.</p>
+</section>
+</section>
+<section id="topology-changes">
+<h3>Topology changes<a class="headerlink" href="#topology-changes" title="Permalink to this heading">#</a></h3>
+<p>In <span id="id20">[<a class="reference internal" href="../../intro.html#id24" title="Fuxin Liu, Yue Chen, and Xuling Chen. Comprehensive Analysis of Three-Phase Three-Level LC-Type Resonant DC/DC Converter With Variable Frequency Control—Series Resonant Converter. IEEE Transactions on Power Electronics, 32(7):5122–5131, July 2017. doi:10.1109/TPEL.2016.2613127.">Liu <em>et al.</em>, 2017</a>]</span> a <strong>three-phase</strong> with 3-levels converter is presented. To
+have the three levels (<span class="math notranslate nohighlight">\(V_{in}/2\)</span>) a half-bridge topology is used.</p>
+<p>In <span id="id21">[<a class="reference internal" href="../../intro.html#id43" title="Le Anh Dao Ta, Ngoc Dat Dao, and Dong-Choon Lee. High-Efficiency Hybrid LLC Resonant Converter for On-Board Chargers of Plug-In Electric Vehicles. IEEE Transactions on Power Electronics, 35(8):8324–8334, August 2020. doi:10.1109/TPEL.2020.2968084.">Ta <em>et al.</em>, 2020</a>]</span>, a new slightly different topology is proposed, it keeps
+LLC properties allowing different modulation schemes:</p>
+<ol class="arabic simple">
+<li><p>Full-Bridge Converter with Frequency Modulation (FBFM);</p></li>
+<li><p>Dual-Phase Half-Bridge LLC (D-LCC);</p></li>
+<li><p>Single-Phase half-bridge LLC.</p></li>
+</ol>
+<p>Essentially, by having a full-bridge configuration for the switches and
+a transformer with a central point, it is possible to activate the
+switches so that the topology is different. An interesting point for the
+design is that the magnetizing inductance can be kept low, so that it
+can be integrated in the transformer. ZVS is guaranteed in all modes.</p>
+<p>In <span id="id22">[<a class="reference internal" href="../../intro.html#id25" title="Haoran Li, Zhiliang Zhang, Shengdong Wang, Jiacheng Tang, Xiaoyong Ren, and Qianhong Chen. A 300-kHz 6.6-kW SiC Bidirectional LLC Onboard Charger. IEEE Transactions on Industrial Electronics, 67(2):1435–1445, February 2020. doi:10.1109/TIE.2019.2910048.">Li <em>et al.</em>, 2020</a>]</span>, a bidirectional LLC charger is proposed.
+The topology is similar to a dual-active-bridge since the rectification
+is active. This paper is frequently cited for OBC with LLC. It mainly
+contains the design procedure.</p>
+<p><span id="id23">[<a class="reference internal" href="../../intro.html#id38" title="Yue Qin, Chunguang Ren, Jiansheng Kong, Baifu Zhang, Xiaoqing Han, and Zixu Dong. High Efficiency Resonant Converter with Smooth Frequency Regulation for Wide Input Voltage Applications. In 2022 IEEE International Power Electronics and Application Conference and Exposition (PEAC), 1115–1119. November 2022. doi:10.1109/PEAC56338.2022.9959481.">Qin <em>et al.</em>, 2022</a>]</span> proposes a higher order resonant tank that induces better
+properties. Essentially they are adding degrees of freedom to the design
+by using, at the place of the capacitor, a block given by two capacitors
+and an inductor. Classical frequency modulation control is adopted.</p>
+<p>In <span id="id24">[<a class="reference internal" href="../../intro.html#id26" title="Xiaobin Li, Hongbo Ma, Sheng Ren, Junhong Yi, Song Lu, and Quanyuan Feng. A Novel LCL Resonant Converter With Inherent CC-CV Output for On-Board Chargers of Plug-In Electric Vehicles. IEEE Transactions on Power Electronics, 38(4):4212–4217, April 2023. doi:10.1109/TPEL.2022.3229025.">Li <em>et al.</em>, 2023</a>]</span>, a slightly different topology is presented. The resonant
+tank is on the secondary side of the transformer and the resonant
+elements connection is made in a different way. The resonant tank has a
+T shape. Battery is modeled as a resistance (its value is determined by
+the charging curve). The converter behaves either as a LCL or a LC,
+depending on the charging mode, CC and CV respectively.</p>
+<p>In <span id="id25">[<a class="reference internal" href="../../intro.html#id50" title="Fengjiang Wu, Kaixuan Wang, Guangfu Hu, Yang Shen, and Suhua Luo. Overview of Single-Stage High-Frequency Isolated AC–DC Converters and Modulation Strategies. IEEE Transactions on Power Electronics, 38(2):1583–1598, February 2023. doi:10.1109/TPEL.2022.3210745.">Wu <em>et al.</em>, 2023</a>]</span> different topologies for HF AC-DC converters are discussed.
+They include DAB (page 7) and resonant LLC (page 8). There is also a
+3-levels (5-levels if we consider all positive and negative) with
+half-bridge topology.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="reference-example-for-the-prototype-obc-llc">
+<h1>Reference example for the prototype - OBC LLC<a class="headerlink" href="#reference-example-for-the-prototype-obc-llc" title="Permalink to this heading">#</a></h1>
+<p>We consider the On Board Charger (OCB) case equipped with a LLC
+converter as a reference for the design. An example can be found in the
+following ON Semiconductor design:
+<a class="reference external" href="https://www.onsemi.com/pub/Collateral/TND6318-D.PDF">OBC–TND6318/D</a>
+(this work has as reference <span id="id26">[<a class="reference internal" href="../../intro.html#id13" title="Junjun Deng, Siqi Li, Sideng Hu, Chunting Chris Mi, and Ruiqing Ma. Design Methodology of LLC Resonant Converters for Electric Vehicle Battery Chargers. IEEE Transactions on Vehicular Technology, 63(4):1581–1592, May 2014. doi:10.1109/TVT.2013.2287379.">Deng <em>et al.</em>, 2014</a>]</span>). At this
+<a class="reference external" href="https://www.onsemi.com/PowerSolutions/content.do?id=19106">link</a>, there
+are other designs at different power ratings</p>
+<ul class="simple">
+<li><p>TND6318 – 10 kW – 80-140 kHz</p></li>
+<li><p>TND6320 – 6.6 kW – 39-690 kHz</p></li>
+<li><p>TND6327 – 33 kW – 39-690 kHz</p></li>
+</ul>
+<p>Specifications for OBC–TND6318/D:</p>
+<ul class="simple">
+<li><p>Input voltage <span class="math notranslate nohighlight">\(\beta\)</span> <span class="math notranslate nohighlight">\(700\pm\SI{35}{V}\)</span></p></li>
+<li><p>Output voltage <span class="math notranslate nohighlight">\(200/\SI{450}{V}\)</span></p></li>
+<li><p>Output current <span class="math notranslate nohighlight">\(0/\SI{40}{A}\)</span></p></li>
+<li><p>Maximum output power <span class="math notranslate nohighlight">\(\SI{10}{kW}\)</span></p></li>
+<li><p>Maximum switching frequency 400 kHz</p></li>
+</ul>
+<p>Switching frequency range [80-140 kHz] is higher than our target. The
+converter is composed of the following two stages: AC–DC and DC–DC
+(ensures galvanic isolation).</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="works-done-so-far-for-the-charging-with-resonant-converter">
+<h1>Works done so far for the charging with resonant converter<a class="headerlink" href="#works-done-so-far-for-the-charging-with-resonant-converter" title="Permalink to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="discrete-time-description">
+<h1>Discrete-time description<a class="headerlink" href="#discrete-time-description" title="Permalink to this heading">#</a></h1>
+<p>We might consider a lower sampling frequency. At that point we should
+consider a discrete-analysis of the system.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="prototype-changes-needed">
+<h1>Prototype changes needed<a class="headerlink" href="#prototype-changes-needed" title="Permalink to this heading">#</a></h1>
+<p>In our last meeting, we discussed about a low voltage prototype (48 V -
+max. 500 W) and two resonant tanks:</p>
+<p>1) High Q tank, with Lr = 68 uH and 1:1.5 transformer with Lm = 245 uH.</p>
+<p>2) Low Q tank, with Lr = 10 uH and 1:1 transformer with Lm = 33 uH.</p>
+<section id="transformer">
+<h2>Transformer<a class="headerlink" href="#transformer" title="Permalink to this heading">#</a></h2>
+<p><span id="id27">[<a class="reference internal" href="../../intro.html#id43" title="Le Anh Dao Ta, Ngoc Dat Dao, and Dong-Choon Lee. High-Efficiency Hybrid LLC Resonant Converter for On-Board Chargers of Plug-In Electric Vehicles. IEEE Transactions on Power Electronics, 35(8):8324–8334, August 2020. doi:10.1109/TPEL.2020.2968084.">Ta <em>et al.</em>, 2020</a>]</span>: the magnetizing inductance can be kept low, so that it can be
+integrated in the transformer. This allows higher power density.</p>
+</section>
+<section id="sensing-circuit">
+<h2>Sensing circuit<a class="headerlink" href="#sensing-circuit" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="resonant-tank">
+<h2>Resonant Tank<a class="headerlink" href="#resonant-tank" title="Permalink to this heading">#</a></h2>
+<p><span id="id28">[<a class="reference internal" href="../../intro.html#id14" title="S. De Simone, C. Adragna, and C. Spini. Design guideline for magnetic integration in LLC resonant converters. In Automation and Motion 2008 International Symposium on Power Electronics, Electrical Drives, 950–957. June 2008. doi:10.1109/SPEEDHAM.2008.4581225.">De Simone <em>et al.</em>, 2008</a>]</span> guidelines for the construction of a transformer for a
+LLC converter which includes all inductors inside it <a class="reference external" href="https://ieeexplore.ieee.org/document/4581225">IEEE
+link</a>
+[<span class="math notranslate nohighlight">\(f_r=\SI{120}{kHz}\)</span>, <span class="math notranslate nohighlight">\(L_r=\SI{56}{\mu H}\)</span>, <span class="math notranslate nohighlight">\(L_p=\si{305}{\mu +H}\)</span>]</p>
+</section>
+<section id="power-stage">
+<h2>Power stage<a class="headerlink" href="#power-stage" title="Permalink to this heading">#</a></h2>
+<p>Missing proper power diodes</p>
+<p>missing good points for sensing (rn totem of probes in order to sense
+voltages)</p>
+</section>
+<section id="rectifier">
+<h2>Rectifier<a class="headerlink" href="#rectifier" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="rectifier-sensing">
+<h2>Rectifier Sensing<a class="headerlink" href="#rectifier-sensing" title="Permalink to this heading">#</a></h2>
+<p>ADC used by Carlos:
+<a class="reference external" href="https://www.analog.com/en/products/ad7822.html#product-overview">AD7822</a></p>
+<p>Remember to look at the number of bits available con the card in
+addition to the control one.</p>
+<ul class="simple">
+<li><p>8-bit</p></li>
+<li><p>1-4-8 single ended input</p></li>
+<li><p>Supply <span class="math notranslate nohighlight">\(\SI{3}{V}\)</span> or <span class="math notranslate nohighlight">\(\SI{5}{V}\)</span></p></li>
+<li><p>input range<br />
+<span class="math notranslate nohighlight">\(\SI{0}{V}\)</span> to <span class="math notranslate nohighlight">\(\SI{2}{V_{pp}}\)</span> with <span class="math notranslate nohighlight">\(V_{DD}=\SI{3}{V}\)</span><br />
+<span class="math notranslate nohighlight">\(\SI{0}{V}\)</span> to <span class="math notranslate nohighlight">\(\SI{2.5}{V_{pp}}\)</span> with <span class="math notranslate nohighlight">\(V_{DD}=\SI{5}{V}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\SI{420}{ns}\)</span> of conversion time - 2 MSPS (500 ns)</p></li>
+</ul>
+<hr class="footnotes docutils" />
+<aside class="footnote brackets" id="id29" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">1</a><span class="fn-bracket">]</span></span>
+<p>Voltage Controlled Oscillator</p>
+</aside>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs\intro"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Index</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="useful_material.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Useful Material</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">SOTA in battery charging with</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-our-method-is-worth-a-paper">Why our method is worth a paper</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#battery-charger-design">Battery charger design</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-survey-on-these-topics">Some survey on these topics.</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resonant-converter-focus">Resonant converter focus:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-of-resonant-converter">Control of resonant converter</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency-modulation">Frequency modulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency-and-phase-shift-modulation">Frequency and phase-shift modulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#youssef-2006">Youssef 2006:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bojarski-2014">Bojarski 2014:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#topology-changes">Topology changes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-example-for-the-prototype-obc-llc">Reference example for the prototype - OBC LLC</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#works-done-so-far-for-the-charging-with-resonant-converter">Works done so far for the charging with resonant converter</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-time-description">Discrete-time description</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#prototype-changes-needed">Prototype changes needed</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer">Transformer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sensing-circuit">Sensing circuit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resonant-tank">Resonant Tank</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#power-stage">Power stage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rectifier">Rectifier</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rectifier-sensing">Rectifier Sensing</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Nicola ZAUPA
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

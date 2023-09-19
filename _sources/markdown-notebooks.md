@@ -12,7 +12,46 @@ kernelspec:
   name: python3
 ---
 
-# Notebooks with MyST Markdown
+# Some ideas
+
+admonition blocks
+
+```{note}
+   nota
+```
+
+```{tip}
+   consiglio
+```
+
+```{seealso}
+   vedi anche
+```
+
+```{important}
+   importante
+```
+
+```{caution}
+   cauzione
+```
+```{warning}
+   attenzione
+```
+
+```
+   blocco di codice
+```
+
+> inserto nel testo
+
+<div class="admonition note" name="html-admonition" style="background: lightgreen; padding: 10px">
+<p class="title">This is the **title**</p>
+This is the *content*
+</div>
+
+
+## Notebooks with MyST Markdown
 
 Jupyter Book also lets you write text-based notebooks using MyST Markdown.
 See [the Notebooks with MyST Markdown documentation](https://jupyterbook.org/file-types/myst-notebooks.html) for more detailed instructions.
