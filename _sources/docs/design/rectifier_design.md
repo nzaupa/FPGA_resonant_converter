@@ -198,7 +198,7 @@ respectively input range of **2Vpp** or **2.5Vpp**.
 <u>The ground is shared with the FPGA and it is different from the one
 of the battery by design.</u>
 
-LINK to PDF file <a href = "Moon_2011_Schematic Boost Converter FPGA.pdf"> ref. </a>
+LINK to PDF file <a href = "Moon_2011_Schematic Boost Converter FPGA.pdf" target="_blank"> Moon converter. </a>
 
 <!-- Pin connections:
 

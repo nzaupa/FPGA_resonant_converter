@@ -58,6 +58,10 @@ My sidebar content
 My margin content
 ```
 
+LINK to PDF file and open it in a new tab
+>```<a href = "relative_path" target="_blank"> link_name </a>```
+
+
 
 cheers
 
