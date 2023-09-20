@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Diary 2023 &#8212; Resonant Converter 2023</title>
+    <title>Developments &#8212; Resonant Converter 2023</title>
   
   
   
@@ -62,12 +62,14 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/diary/2023_diary';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/intro/developments';</script>
     <link rel="shortcut icon" href="../../_static/logo2.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Some ideas" href="../../markdown-notebooks.html" />
-    <link rel="prev" title="Code structure" href="../programming/code_structure.html" />
+    <link rel="next" title="Useful Material" href="useful_material.html" />
+    <link rel="prev" title="SOTA in battery charging with" href="state_of_the_art.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -168,11 +170,11 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resonant Converters</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../intro/state_of_the_art.html">SOTA in battery charging with</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="state_of_the_art.html">SOTA in battery charging with</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="../intro/developments.html">Developments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../intro/useful_material.html">Useful Material</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Developments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="useful_material.html">Useful Material</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Electronic design</span></p>
 <ul class="nav bd-sidenav">
@@ -193,8 +195,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../programming/code_structure.html">Code structure</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Diary</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Diary 2023</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../diary/2023_diary.html">Diary 2023</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Template</span></p>
 <ul class="nav bd-sidenav">
@@ -270,7 +272,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/docs/diary/2023_diary.md" target="_blank"
+      <li><a href="../../_sources/docs/intro/developments.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -352,7 +354,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Diary 2023</h1>
+    <h1>Developments</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -362,10 +364,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#january-2023">January 2023</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#july-2023">July 2023</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#august-2023">August 2023</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#september-2023">September 2023</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#works-done-so-far-for-the-charging-with-resonant-converter">Works done so far for the charging with resonant converter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-time-description">Discrete-time description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prototype-changes-needed">Prototype changes needed</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer">Transformer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensing-circuit">Sensing circuit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resonant-tank">Resonant Tank</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-stage">Power stage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rectifier">Rectifier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rectifier-sensing">Rectifier Sensing</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -377,25 +386,62 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="diary-2023">
-<h1>Diary 2023<a class="headerlink" href="#diary-2023" title="Permalink to this heading">#</a></h1>
-<section id="january-2023">
-<h2>January 2023<a class="headerlink" href="#january-2023" title="Permalink to this heading">#</a></h2>
-<p>10 days visit in Tarragona to discuss possible developments.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="developments">
+<h1>Developments<a class="headerlink" href="#developments" title="Permalink to this heading">#</a></h1>
+<section id="works-done-so-far-for-the-charging-with-resonant-converter">
+<h2>Works done so far for the charging with resonant converter<a class="headerlink" href="#works-done-so-far-for-the-charging-with-resonant-converter" title="Permalink to this heading">#</a></h2>
 </section>
-<section id="july-2023">
-<h2>July 2023<a class="headerlink" href="#july-2023" title="Permalink to this heading">#</a></h2>
-<p>Three weeks in July 2023</p>
+<section id="discrete-time-description">
+<h2>Discrete-time description<a class="headerlink" href="#discrete-time-description" title="Permalink to this heading">#</a></h2>
+<p>We might consider a lower sampling frequency. At that point we should
+consider a discrete-analysis of the system.</p>
 </section>
-<section id="august-2023">
-<h2>August 2023<a class="headerlink" href="#august-2023" title="Permalink to this heading">#</a></h2>
-<p>create the GitHub repository for the FPGA code and allow shared work.</p>
+<section id="prototype-changes-needed">
+<h2>Prototype changes needed<a class="headerlink" href="#prototype-changes-needed" title="Permalink to this heading">#</a></h2>
+<p>In our last meeting, we discussed about a low voltage prototype (48 V -
+max. 500 W) and two resonant tanks:</p>
+<p>1) High Q tank, with Lr = 68 uH and 1:1.5 transformer with Lm = 245 uH.</p>
+<p>2) Low Q tank, with Lr = 10 uH and 1:1 transformer with Lm = 33 uH.</p>
+<section id="transformer">
+<h3>Transformer<a class="headerlink" href="#transformer" title="Permalink to this heading">#</a></h3>
+<p><span id="id1">[<a class="reference internal" href="state_of_the_art.html#id68" title="Le Anh Dao Ta, Ngoc Dat Dao, and Dong-Choon Lee. High-Efficiency Hybrid LLC Resonant Converter for On-Board Chargers of Plug-In Electric Vehicles. IEEE Transactions on Power Electronics, 35(8):8324–8334, August 2020. doi:10.1109/TPEL.2020.2968084.">Ta <em>et al.</em>, 2020</a>]</span>: the magnetizing inductance can be kept low, so that it can be
+integrated in the transformer. This allows higher power density.</p>
 </section>
-<section id="september-2023">
-<h2>September 2023<a class="headerlink" href="#september-2023" title="Permalink to this heading">#</a></h2>
-<p>18 September - Get back to the work by creating the online and html-like interface for all the documentation</p>
-<p>19 September - Push online the website and start to organize it</p>
-<p>20 September - Copy content from other platform to merge all together</p>
+<section id="sensing-circuit">
+<h3>Sensing circuit<a class="headerlink" href="#sensing-circuit" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="resonant-tank">
+<h3>Resonant Tank<a class="headerlink" href="#resonant-tank" title="Permalink to this heading">#</a></h3>
+<p><span id="id2">[<a class="reference internal" href="state_of_the_art.html#id39" title="S. De Simone, C. Adragna, and C. Spini. Design guideline for magnetic integration in LLC resonant converters. In Automation and Motion 2008 International Symposium on Power Electronics, Electrical Drives, 950–957. June 2008. doi:10.1109/SPEEDHAM.2008.4581225.">De Simone <em>et al.</em>, 2008</a>]</span> guidelines for the construction of a transformer for a
+LLC converter which includes all inductors inside it <a class="reference external" href="https://ieeexplore.ieee.org/document/4581225">IEEE
+link</a>
+[<span class="math notranslate nohighlight">\(f_r=\SI{120}{kHz}\)</span>, <span class="math notranslate nohighlight">\(L_r=\SI{56}{\mu H}\)</span>, <span class="math notranslate nohighlight">\(L_p=\si{305}{\mu +H}\)</span>]</p>
+</section>
+<section id="power-stage">
+<h3>Power stage<a class="headerlink" href="#power-stage" title="Permalink to this heading">#</a></h3>
+<p>Missing proper power diodes</p>
+<p>missing good points for sensing (rn totem of probes in order to sense
+voltages)</p>
+</section>
+<section id="rectifier">
+<h3>Rectifier<a class="headerlink" href="#rectifier" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="rectifier-sensing">
+<h3>Rectifier Sensing<a class="headerlink" href="#rectifier-sensing" title="Permalink to this heading">#</a></h3>
+<p>ADC used by Carlos:
+<a class="reference external" href="https://www.analog.com/en/products/ad7822.html#product-overview">AD7822</a></p>
+<p>Remember to look at the number of bits available con the card in
+addition to the control one.</p>
+<ul class="simple">
+<li><p>8-bit</p></li>
+<li><p>1-4-8 single ended input</p></li>
+<li><p>Supply <span class="math notranslate nohighlight">\(\SI{3}{V}\)</span> or <span class="math notranslate nohighlight">\(\SI{5}{V}\)</span></p></li>
+<li><p>input range<br />
+<span class="math notranslate nohighlight">\(\SI{0}{V}\)</span> to <span class="math notranslate nohighlight">\(\SI{2}{V_{pp}}\)</span> with <span class="math notranslate nohighlight">\(V_{DD}=\SI{3}{V}\)</span><br />
+<span class="math notranslate nohighlight">\(\SI{0}{V}\)</span> to <span class="math notranslate nohighlight">\(\SI{2.5}{V_{pp}}\)</span> with <span class="math notranslate nohighlight">\(V_{DD}=\SI{5}{V}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\SI{420}{ns}\)</span> of conversion time - 2 MSPS (500 ns)</p></li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -412,7 +458,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./docs\diary"
+            path: "./docs\intro"
         },
         predefinedOutput: true
     }
@@ -430,20 +476,20 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../programming/code_structure.html"
+       href="state_of_the_art.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Code structure</p>
+        <p class="prev-next-title">SOTA in battery charging with</p>
       </div>
     </a>
     <a class="right-next"
-       href="../../markdown-notebooks.html"
+       href="useful_material.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Some ideas</p>
+        <p class="prev-next-title">Useful Material</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -462,10 +508,17 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#january-2023">January 2023</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#july-2023">July 2023</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#august-2023">August 2023</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#september-2023">September 2023</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#works-done-so-far-for-the-charging-with-resonant-converter">Works done so far for the charging with resonant converter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-time-description">Discrete-time description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prototype-changes-needed">Prototype changes needed</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer">Transformer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensing-circuit">Sensing circuit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resonant-tank">Resonant Tank</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-stage">Power stage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rectifier">Rectifier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rectifier-sensing">Rectifier Sensing</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

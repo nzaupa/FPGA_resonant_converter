@@ -12,5 +12,4 @@ Questa è una nota
 ```{tableofcontents}
 ```
 
-```{bibliography}
-```
+

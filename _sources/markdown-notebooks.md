@@ -50,6 +50,18 @@ admonition blocks
 This is the *content*
 </div>
 
+```{sidebar} My sidebar title
+My sidebar content
+```
+
+```{margin} An optional title
+My margin content
+```
+
+
+cheers
+
+---
 
 ## Notebooks with MyST Markdown
 

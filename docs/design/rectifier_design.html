@@ -62,11 +62,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/design/rectifier_design';</script>
     <link rel="shortcut icon" href="../../_static/logo2.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Altium" href="../prototype/altium_help.html" />
+    <link rel="next" title="Simulation" href="simulation.html" />
     <link rel="prev" title="Resonant Tank" href="resonant_tank_design.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -171,16 +173,15 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../intro/state_of_the_art.html">SOTA in battery charging with</a></li>
 
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="../intro/developments.html">Developments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro/useful_material.html">Useful Material</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Electronic design</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="simulation.html">Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preliminaries.html">Preliminary work</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resonant_tank_design.html">Resonant Tank</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Rectifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulation.html">Simulation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prototype design</span></p>
 <ul class="nav bd-sidenav">
@@ -340,7 +341,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -356,6 +359,25 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schematics">SCHEMATICS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rectifier-and-filter">Rectifier and Filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#battery-voltage-sensing">Battery Voltage Sensing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#battery-current-sensing">Battery Current Sensing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adc">ADC</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pcb-board">PCB board</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connectors">Connectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#components-list-bom">Components list (BOM)</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -367,6 +389,560 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="rectifier">
 <h1>Rectifier<a class="headerlink" href="#rectifier" title="Permalink to this heading">#</a></h1>
+<p>Essentially, the board consists in a power part with: rectifier, filter
+and battery; and a sensing part with: voltage sensor, current sensor and
+ADCs. The main objective is to control the current charging the battery
+while ensuring galvanic isolation between the battery and the FPGA
+(ideally, the FPGA should be isolated from both battery and H-bridge).</p>
+<p>Figure 7: small overview of the main parts</p>
+<p>The power supply for the electronics in the sensing part (ADCs + OPA)
+can be taken from the FPGA, which has 3.3V and 5V pins on the GPIO
+40-pin socket.</p>
+<p>For the current, a Hall effect sensor is used; for the voltage, an
+isolated operational amplifier is used. Outputs of the sensors are
+actively filter with operational amplifiers (LPF). Finally, ADCs are
+used to transform the signals in digital ones, directly connected to the
+FPGA with a parallel interface.</p>
+<section id="schematics">
+<h2>SCHEMATICS<a class="headerlink" href="#schematics" title="Permalink to this heading">#</a></h2>
+<section id="rectifier-and-filter">
+<h3>Rectifier and Filter<a class="headerlink" href="#rectifier-and-filter" title="Permalink to this heading">#</a></h3>
+<p>The rectifier is composed of four fast-recovery Schottky diodes and a
+3<sup>rd</sup> filter low-pass filter.</p>
+<p><strong>Analysis of the input waveform:</strong> the current at the input is a
+pulsating one
+<span class="math notranslate nohighlight">\(i_{r}(t) = I_{r}\left| \sin\left( \text{ωt} \right) \right|\)</span>. The
+average DC value is <span class="math notranslate nohighlight">\(\frac{2}{\pi}I_{r}\)</span>.</p>
+<p>Maybe add some consideration on the harmonic decomposition: MATLAB
+<strong>FFT</strong> analysis? Useful to understand the behavior of the filter.</p>
+<p>Should we keep only the first harmonic?</p>
+<p>Figure 8: Rectifier with the output filter</p>
+<p>Diodes are subject to 50% of <span class="math notranslate nohighlight">\(i_{r}(t)\)</span>. The diodes need a heat-sink in
+order to dissipate the heat. The ‘head’ is connected to the cathode and
+must be isolated from the others (silicone + mica).<br />
+Average forward current is equal to <span class="math notranslate nohighlight">\(\frac{I_{r}}{\pi}\)</span>. Two diodes from
+Vishay are selected:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\mathbf{I_F}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\mathbf{V_R}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\mathbf{V_F}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>VS-15TQ060-M3</p></td>
+<td><p>15A</p></td>
+<td><p>60V</p></td>
+<td><p>0.56V</p></td>
+</tr>
+<tr class="row-odd"><td><p>FES16BT-E3/45</p></td>
+<td><p>16A</p></td>
+<td><p>100V</p></td>
+<td><p>0.975V</p></td>
+</tr>
+</tbody>
+</table>
+<p>The filter is composed of one capacitor, two inductors and a resistor.
+The input is a pulsating wave and the filter has the objective to smooth
+the oscillation (reduce the ripple).</p>
+<p>We can write the following relation between input and output current in
+the frequency domain:</p>
+<div class="math notranslate nohighlight">
+\[I_{\text{bat}}(s) = H_{i}(s)I_{r}(s) - H_{v}(s)V_{\text{bat}}\]</div>
+<p>The transfer functions are</p>
+<div class="math notranslate nohighlight">
+\[ H_{i}(s) = \frac{R_{f}\left( 1 + s\frac{L_{f1}}{R_{f}} \right)}{s^{3}C_{f}L_{f1}L_{f2} + s^{2}R_{f}C_{f}(L_{f1} + L_{f2}) + sL_{f1} + R_{f}}\]</div>
+<div class="math notranslate nohighlight">
+\[H_{s}(s) = \frac{sR_{f}C_{f}\left( 1 + s\frac{L_{f1}}{R_{f}} \right)}{s^{3}C_{f}L_{f1}L_{f2} + s^{2}R_{f}C_{f}\left( L_{f1} + L_{f2} \right) + sL_{f1} + R_{f}} \]</div>
+<p>with DC gains <span class="math notranslate nohighlight">\(H_{i}(0) = 1\)</span> and <span class="math notranslate nohighlight">\(H_{v}(0) = 0\)</span>. Therefore, since we can
+consider the battery voltage almost constant, it has no influence on the
+filtered current that fully depends on the rectified current. The DC
+part is kept, and we have cut-off frequency at: need numerical solution!</p>
+<p>Lower cut-off frequency (2<sup>nd</sup> order pole) depends mostly on
+the reactive components and not on <span class="math notranslate nohighlight">\(R_{f}\)</span>. <span class="math notranslate nohighlight">\(R_{f}\)</span> has an stronger
+influence on the higher cut-off frequency (1<sup>st</sup> order pole).</p>
+<p><strong>Choice of the inductors</strong> <span class="math notranslate nohighlight">\(\mathbf{L}_{\mathbf{f}\mathbf{1}}\)</span> <strong>and</strong>
+<span class="math notranslate nohighlight">\(\mathbf{L}_{\mathbf{f}\mathbf{2}}\)</span></p>
+<p>We need inductors in the range 1uH-3uH. Würth Elektronik offers some
+compact solutions; another solution is to use classical toroidal one
+like the ones from Bourns</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>code</p></th>
+<th class="head"><p>L</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(I_{R}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(I_{\text{sat}}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(R_{\text{DC}}\)</span></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>WE-HCFT</p></td>
+<td><p>7443762504010</p></td>
+<td><p>1uH</p></td>
+<td><p>39A</p></td>
+<td><p>33A</p></td>
+<td><p>0.86m</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p>7443762504022</p></td>
+<td><p>2.2uH</p></td>
+<td><p>30A</p></td>
+<td><p>23.8A</p></td>
+<td><p>1.78m</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>BOURNS</strong></p></td>
+<td><p><strong>2100LL-1R0-V-RC</strong></p></td>
+<td><p><strong>1uH</strong></p></td>
+<td><p><strong>21.4A</strong></p></td>
+<td><p></p></td>
+<td><p><strong>2m</strong></p></td>
+<td><p><img src="attachment:media/image2.png" style="width:0.456in;height:0.53835in" /></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p>2100LL-1R5-V-RC</p></td>
+<td><p>1.5uH</p></td>
+<td><p>18.5A</p></td>
+<td><p></p></td>
+<td><p>3m</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>actual selection</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>https://www.coilcraft.com/en-us/products/power/shielded-inductors/high-current-flat-wire/agp-ver/agm2222/?skuId=30433</p>
+</section>
+<section id="battery-voltage-sensing">
+<h3>Battery Voltage Sensing<a class="headerlink" href="#battery-voltage-sensing" title="Permalink to this heading">#</a></h3>
+<p>The sensing of the battery voltage is done with an isolated op amp. The
+voltage is initially reduced with a voltage divider and it is filtered
+with a LPF. The sensor is the ACPL-790B-000E, which has a fix gain of
+8.2 with differential input and output. The signal is then referenced to
+ground with a differential op amp that includes also LPFs.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img src="attachment:media/image3.png" style="width:0.592in;height:0.50115in" /></p></td>
+<td><p>Isolated opamp with <span class="math notranslate nohighlight">\(\pm 0.5\%\)</span> High Gain Accuracy with fixed gain <span class="math notranslate nohighlight">\(\times8.2\)</span>. Supply voltage from 3V to 5.5V for the output side; 5V for the input side. 200kHz bandwidth. DIP-8 package. <span class="math notranslate nohighlight">\(V_{in+}\Leftrightarrow\pm\)</span> 200mV recommended. Power consumption: 18.5mA on the input side and 12mA on the output side. The ACPL has an input resistance of 27kOhm</p></td>
+</tr>
+</tbody>
+</table>
+<p>Figure 9: Voltage sensing stage</p>
+<p>In ideal condition (almost constant voltage on <span class="math notranslate nohighlight">\(R_{p2}\)</span>), the input
+differential voltage corresponds to
+<span class="math notranslate nohighlight">\(v_{\text{in}} = \frac{R_{p2}}{R_{p1} + R_{p2}}v_{\text{bat}}\)</span> and the
+cut-off frequency of the input filter is
+<span class="math notranslate nohighlight">\(f_{\text{vi}} = \frac{1}{2\pi R_{\text{vf}}C_{\text{vf}}}\)</span>. We also
+need <span class="math notranslate nohighlight">\(R_{\text{vf}} \gg R_{p2}\)</span> to have a “simplified” version of the
+cut-off frequency</p>
+<p>Full transfer function <span class="math notranslate nohighlight">\(V_{\text{bat}} \rightarrow V_{\text{in}}\)</span> is
+<span class="math notranslate nohighlight">\(H(s) = \frac{R_{p2}}{R_{p1} + R_{p2}}\frac{1}{1 + s\left( R_{\text{vf}} + \frac{R_{p2}R_{p1}}{R_{p1} + R_{p2}} \right)C_{\text{vf}}}\)</span></p>
+<p>Take care that the input to the differential opamp has to have an
+amplitude less than 200mV.</p>
+<p>The final op amp has a static gain of <span class="math notranslate nohighlight">\(\frac{R_{v2}}{R_{v1}}\)</span> and a
+cut-off frequency of <span class="math notranslate nohighlight">\(f_{\text{vo}} = \frac{1}{2\pi R_{v2}C_{v}}\)</span>.</p>
+<p>The total chain gain is:
+<span class="math notranslate nohighlight">\(\gamma_{v_{\text{bat}}} = \frac{R_{p2}}{R_{p1} + R_{p2}}8.2\frac{R_{v2}}{R_{v1}}\ \)</span>
+with two cut-off frequency for a LPF.</p>
+<p>Figure 10: gain and filter chain under approximation</p>
+<p>The voltage sensor needs to be powered from both sides. On the battery
+side it requires a 5V supply. To ensure it we can take the battery
+voltage and stabilize it through a linear regulator. We need to consider
+that the drop voltage will be high, i.e. we are reducing to 5V and input
+voltage of about 60V. One option that is able to bear this input voltage
+is the ZXTR2105FF, which allows a maximum input voltage of 60V. Bypass
+capacitors of 1uf and 10uF are suggested, 1uF in input highly suggested
+with high input voltage. Are these capacitors available in SMD format?</p>
+<p>For flexibility, a choice between battery voltage and external supply is
+possible through a jumper.</p>
+<p>Figure 11: 5V linear voltage regulator on the battery side</p>
+</section>
+<section id="battery-current-sensing">
+<h3>Battery Current Sensing<a class="headerlink" href="#battery-current-sensing" title="Permalink to this heading">#</a></h3>
+<p>The current is sensed with a Hall Effect sensor (HO 10-P or HO 6-P). The
+sensor measures the current that is flowing through a wire winded on it
+(<span class="math notranslate nohighlight">\(N\)</span> turns). The output voltage depends on a fixed gain and on an offset
+defined by <span class="math notranslate nohighlight">\(V_{\text{ref}}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[v_{\text{sens}} = 0.1 \times N \times i_{\text{bat}} + V_{\text{ref}} \qquad ???\]</div>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>HO 6-P</strong></p></td>
+<td><p>Hall effect sensor. Theoretical sensitivity of 100 mV/A. Measure primary current range <span class="math notranslate nohighlight">\(\pm\)</span>20A. Primary nominal rms current 6A. The internal reference is set to 2.5V (measure current around zero) and supply voltage (FPGA side) is 5V. Current consumption of 19-25 mA. Output range <span class="math notranslate nohighlight">\(V_{out}-V_{ref}=\left[-2,2\right] At I_P=0\)</span> the output voltage is <span class="math notranslate nohighlight">\(V_{out}=V_{ref}+V_{OE}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>HO 10-P</strong></p></td>
+<td><p>Theoretical sensitivity of 80 mV/A. Measure primary current range <span class="math notranslate nohighlight">\(\pm\)</span>25A. Primary nominal rms current 10A.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Figure 12: Operational principle of HO x-P</p>
+<div class="math notranslate nohighlight">
+\[V_{\text{out}} = 0.08N_pI_p + \epsilon + V_{\text{OE}},\quad\quad V_{\text{OE}} \in \lbrack -10,10\rbrack\text{mV}\]</div>
+<p>The output of the sensor is then conditioned in order to attenuate the
+amplitude and filter it with a LPF. There is a first stage reducing and
+filtering, then the opamp could be use either to as a voltage follower
+or an amplifier (gain&gt;1).</p>
+<p>Figure 13: Current sensing stage</p>
+<p>The LPF cut-off frequency is
+<span class="math notranslate nohighlight">\(f_{i} = \frac{1}{2\pi\left( R_{if1}\text{//}R_{if2} \right)C_{\text{if}}}\)</span>
+with DC gain <span class="math notranslate nohighlight">\(\frac{R_{if2}}{R_{if1} + R_{if2}}\)</span> and the gain of the op
+amp is <span class="math notranslate nohighlight">\(1 + \frac{R_{i2}}{R_{i1}}\)</span></p>
+</section>
+<section id="adc">
+<h3>ADC<a class="headerlink" href="#adc" title="Permalink to this heading">#</a></h3>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><sup>1</sup> Version AD7825 has two ADCs on the same chip and the output bits are
+shared.</p>
+</aside>
+<p>The last stage for the sensing is in an ADC. The AD7822<sup>1</sup> is used, it
+is a 8-bit half-flash ADC. It has a conversion time of 420ns and the
+output bits are in parallel. It can be supplied with 3V or 5V, with
+respectively input range of <strong>2Vpp</strong> or <strong>2.5Vpp</strong>.</p>
+<p><u>The ground is shared with the FPGA and it is different from the one
+of the battery by design.</u></p>
+<p>LINK to PDF file <a href = "Moon_2011_Schematic Boost Converter FPGA.pdf"> ref. </a></p>
+<!-- Pin connections:
+
+<table>
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 54%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><ul>
+<li><p>To GND</p>
+<ul>
+<li><p>VMID (through 100nF cap)</p></li>
+<li><p>VREF (through 100nF cap)</p></li>
+<li><p>AGND</p></li>
+<li><p>DGND</p></li>
+<li><p>CS</p></li>
+</ul></li>
+</ul></td>
+<td><ul>
+<li><p>RD with EOC to FPGA with 1k resistor</p></li>
+<li><p>CONVST to FPGA with 1k resistor</p></li>
+<li><p>PD to VDD</p></li>
+<li><p>VDD with bypass (through 100nF , 10uF)</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table> -->
+<p>Pin connections:</p>
+<ul class="simple">
+<li><p><strong>To GND</strong></p>
+<ul>
+<li><p>VMID (through 100nF cap)</p></li>
+<li><p>VREF (through 100nF cap)</p></li>
+<li><p>AGND</p></li>
+<li><p>DGND</p></li>
+<li><p>CS</p></li>
+</ul>
+</li>
+<li><p><strong>RD</strong> with <strong>EOC</strong> to FPGA with 1k resistor</p></li>
+<li><p><strong>CONVST</strong> to FPGA with 1k resistor</p></li>
+<li><p><strong>PD</strong> to <strong>VDD</strong></p></li>
+<li><p><strong>VDD</strong> with bypass (through 100nF , 10uF)</p></li>
+</ul>
+<p>Figure 14: Circuit for the ADC</p>
+</section>
+</section>
+<section id="pcb-board">
+<h2>PCB board<a class="headerlink" href="#pcb-board" title="Permalink to this heading">#</a></h2>
+<section id="connectors">
+<h3>Connectors<a class="headerlink" href="#connectors" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Power input/output: banana connectors</p></li>
+<li><p>40pin GPIO connector for the FPGA: TSS-120-02-G-D</p></li>
+<li><p>Extra strip for extra pin and FPGA debugging</p></li>
+</ul>
+</section>
+<section id="components-list-bom">
+<h3>Components list (BOM)<a class="headerlink" href="#components-list-bom" title="Permalink to this heading">#</a></h3>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>values</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>code</p></th>
+<th class="head"><p>manufacture</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>RECTIFIER</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>D1-D4</p></td>
+<td><p>×4</p></td>
+<td><p>Schottky diode 60V and 15A</p></td>
+<td><p>VS-15TQ060-M3</p></td>
+<td><p>Vishay</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p>Alternative 100V and 16A</p></td>
+<td><p>FES16BT-E3/45</p></td>
+<td><p>Vishay</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>×1</p></td>
+<td><p>heat sink for the diodes and isolation with mica</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>x</p></td>
+<td><p></p></td>
+<td><p>Heat sink (need holes on the pcb)</p></td>
+<td><p>CR101-75AE(VE)</p></td>
+<td><p>Ohmite</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p>Clip for TO-220</p></td>
+<td><p>CLA-TO-21E</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Cf</p></td>
+<td><p>10 μF</p></td>
+<td><p>CAP FILM 100VDC (63VAC)</p></td>
+<td><p>MMK22.5106K100D19L4TRAY</p></td>
+<td><p>Kemet</p></td>
+</tr>
+<tr class="row-odd"><td><p>Lf1</p></td>
+<td><p>1uH (2.1μH)</p></td>
+<td><p>TOROID INDUCTOR 1uH LOW LOSS VERTCL MT</p></td>
+<td><p>2100LL-1R0-V-RC</p></td>
+<td><p>BOURNS</p></td>
+</tr>
+<tr class="row-even"><td><p>Lf2</p></td>
+<td><p>1uH (2μH)</p></td>
+<td><p>TOROID INDUCTOR 1uH LOW LOSS VERTCL MT</p></td>
+<td><p>2100LL-1R0-V-RC</p></td>
+<td><p>BOURNS</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rf</p></td>
+<td><p>250 Ω</p></td>
+<td><p>through-hole resistance ¼W</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>ADC</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>U1-U2</p></td>
+<td><p>×2</p></td>
+<td><p>8-bit ADC (PDIP)</p></td>
+<td><p>AD7822BNZ</p></td>
+<td><p>ANALOG DEVICES</p></td>
+</tr>
+<tr class="row-even"><td><p>×4</p></td>
+<td><p>1 kΩ</p></td>
+<td><p>SMD</p></td>
+<td><p>For ADC-FPGA connection</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>×6</p></td>
+<td><p>100nF</p></td>
+<td><p>SMD</p></td>
+<td><p>standard</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>×2</p></td>
+<td><p>10 uF</p></td>
+<td><p>polarized capacitor 25V</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>SENSING</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>U3</p></td>
+<td><p>×1</p></td>
+<td><p>10A/6A current sensor</p></td>
+<td><p>~~HO 10-P~~ / <strong>HO 6-P</strong></p></td>
+<td><p>LEM</p></td>
+</tr>
+<tr class="row-odd"><td><p>U4</p></td>
+<td><p>×1</p></td>
+<td><p>PDIP 3V ×8.2+0.5%</p></td>
+<td><p>ACPL-790B-000E</p></td>
+<td><p>Broadcom Limited</p></td>
+</tr>
+<tr class="row-even"><td><p>U5</p></td>
+<td><p>×1</p></td>
+<td><p>operational amplifier (PDIP)</p></td>
+<td><p>MCP6271(2)</p></td>
+<td><p>Microchip</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>alternatives</p></td>
+<td><p>operational amplifier (SOIC)</p></td>
+<td><p>OPA2350</p></td>
+<td><p>TI</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p>4.5V</p></td>
+<td><p>TLC070</p></td>
+<td><p>TI</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p>PDIP, still stocks but no more produced</p></td>
+<td><p>OPA350</p></td>
+<td><p>TI</p></td>
+</tr>
+<tr class="row-even"><td><p>U6</p></td>
+<td><p>×1</p></td>
+<td><p>5V voltage regulator (SOT)</p></td>
+<td><p>ZXTR2105FF-7</p></td>
+<td><p>DIODES incorporated</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>×13</p></td>
+<td><p>through-hole resistance ¼W</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>×9</p></td>
+<td><p>SMD resistor</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>×4</p></td>
+<td><p>SMD capacitor</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>×8</p></td>
+<td><p>Film capacitor standard</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>CONNECTORS</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>J1-J4</p></td>
+<td><p>×4</p></td>
+<td><p>Banana connectors</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>J14-J13</p></td>
+<td><p>×2</p></td>
+<td><p>Terminal block</p></td>
+<td><p>Screw block with 9.53mm step</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>TP</p></td>
+<td><p>×6</p></td>
+<td><p>Test point 1.6mm</p></td>
+<td><p>For Vt, Vr and Vbat</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>JP1</p></td>
+<td><p>×1</p></td>
+<td><p>current jumper 20mm</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>J5</p></td>
+<td><p></p></td>
+<td><p>40pin connector to FPGA</p></td>
+<td><p>TSS-120-02-G-D</p></td>
+<td><p>SAMTEC</p></td>
+</tr>
+<tr class="row-odd"><td><p>J6</p></td>
+<td><p></p></td>
+<td><p>HDR 1×3</p></td>
+<td><p>5V 3.3V selection</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>J7</p></td>
+<td><p></p></td>
+<td><p>HDR 1×5</p></td>
+<td><p>For H-bridge</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>J8</p></td>
+<td><p></p></td>
+<td><p>HDR 2×6</p></td>
+<td><p>Extra pin</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>J9</p></td>
+<td><p></p></td>
+<td><p>HDR 1×2</p></td>
+<td><p>External Vcc, battery side</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>J10</p></td>
+<td><p></p></td>
+<td><p>HDR 1×3</p></td>
+<td><p>Selection for 5V regulator</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>J11-J12</p></td>
+<td><p>×2</p></td>
+<td><p>HDR 1×2</p></td>
+<td><p>ADC input for oscilloscope</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>TP</p></td>
+<td><p>×2</p></td>
+<td><p>Test point 1mm</p></td>
+<td><p>ADC input</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -409,11 +985,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../prototype/altium_help.html"
+       href="simulation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Altium</p>
+        <p class="prev-next-title">Simulation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -423,6 +999,31 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schematics">SCHEMATICS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rectifier-and-filter">Rectifier and Filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#battery-voltage-sensing">Battery Voltage Sensing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#battery-current-sensing">Battery Current Sensing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adc">ADC</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pcb-board">PCB board</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connectors">Connectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#components-list-bom">Components list (BOM)</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

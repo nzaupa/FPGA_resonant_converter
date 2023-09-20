@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Diary 2023 &#8212; Resonant Converter 2023</title>
+    <title>Preliminary work &#8212; Resonant Converter 2023</title>
   
   
   
@@ -62,12 +62,14 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/diary/2023_diary';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/design/preliminaries';</script>
     <link rel="shortcut icon" href="../../_static/logo2.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Some ideas" href="../../markdown-notebooks.html" />
-    <link rel="prev" title="Code structure" href="../programming/code_structure.html" />
+    <link rel="next" title="Resonant Tank" href="resonant_tank_design.html" />
+    <link rel="prev" title="Useful Material" href="../intro/useful_material.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,11 +177,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../intro/useful_material.html">Useful Material</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Electronic design</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../design/preliminaries.html">Preliminary work</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../design/resonant_tank_design.html">Resonant Tank</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../design/rectifier_design.html">Rectifier</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../design/simulation.html">Simulation</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Preliminary work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resonant_tank_design.html">Resonant Tank</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rectifier_design.html">Rectifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulation.html">Simulation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Prototype design</span></p>
 <ul class="nav bd-sidenav">
@@ -193,8 +195,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../programming/code_structure.html">Code structure</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Diary</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Diary 2023</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../diary/2023_diary.html">Diary 2023</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Template</span></p>
 <ul class="nav bd-sidenav">
@@ -270,7 +272,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/docs/diary/2023_diary.md" target="_blank"
+      <li><a href="../../_sources/docs/design/preliminaries.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -352,7 +354,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Diary 2023</h1>
+    <h1>Preliminary work</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -362,10 +364,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#january-2023">January 2023</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#july-2023">July 2023</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#august-2023">August 2023</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#september-2023">September 2023</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-some-common-knowledge">add some common knowledge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#balun-circuit">BALUN circuit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dsp">DSP</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -377,25 +380,40 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="diary-2023">
-<h1>Diary 2023<a class="headerlink" href="#diary-2023" title="Permalink to this heading">#</a></h1>
-<section id="january-2023">
-<h2>January 2023<a class="headerlink" href="#january-2023" title="Permalink to this heading">#</a></h2>
-<p>10 days visit in Tarragona to discuss possible developments.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="preliminary-work">
+<h1>Preliminary work<a class="headerlink" href="#preliminary-work" title="Permalink to this heading">#</a></h1>
+<p><strong>Analysis of the requirements that we want to achieve</strong></p>
+<p>Power specifications:</p>
+<ul class="simple">
+<li><p>Battery voltage: 40V</p></li>
+<li><p>Maximum Power: 500W</p></li>
+<li><p>Maximum output current: 10A
+Therefore, more or less, we have 10A current at the input, …</p></li>
+</ul>
+<p>ADC for the resonant tank are limited to 0.5V (1Vpp)</p>
+<p>Bypass capacitors must be used near to all the power supply pins.</p>
+<p>FPGA should have enough power to power-up the sensing circuit at battery level:</p>
+<div class="math notranslate nohighlight">
+\[ 5V &#64; 12A     \quad\mbox{and}\quad     3.3V &#64; 8A \]</div>
+<section id="add-some-common-knowledge">
+<h2>add some common knowledge<a class="headerlink" href="#add-some-common-knowledge" title="Permalink to this heading">#</a></h2>
+<p>i.e. transformer model, how impedance move between primary and secondary</p>
+<section id="balun-circuit">
+<h3>BALUN circuit<a class="headerlink" href="#balun-circuit" title="Permalink to this heading">#</a></h3>
+<p>It’s a circuit use to transform an unbalanced signal to a balanced one.
+An input series-resistance is used for impedance matching to that the
+output voltage corresponds to the input before the resistance (it is the
+double of the one in <strong>B+</strong>)</p>
+<img src="attachment:media/image5.png" style="width:6.26806in;height:1.48542in" />
+<p>Figure 15: schematics of the BALUN circuit</p>
 </section>
-<section id="july-2023">
-<h2>July 2023<a class="headerlink" href="#july-2023" title="Permalink to this heading">#</a></h2>
-<p>Three weeks in July 2023</p>
+<section id="dsp">
+<h3>DSP<a class="headerlink" href="#dsp" title="Permalink to this heading">#</a></h3>
+<p>The resolution that we can reach with a fft is equal to 1/time_window.
+E.g. we are sampling at 100Mhz a window of 500us
+(N=500us*100Mhz=50000), the minimum frequency that we can discriminate
+is 2kHz = 1/500us</p>
 </section>
-<section id="august-2023">
-<h2>August 2023<a class="headerlink" href="#august-2023" title="Permalink to this heading">#</a></h2>
-<p>create the GitHub repository for the FPGA code and allow shared work.</p>
-</section>
-<section id="september-2023">
-<h2>September 2023<a class="headerlink" href="#september-2023" title="Permalink to this heading">#</a></h2>
-<p>18 September - Get back to the work by creating the online and html-like interface for all the documentation</p>
-<p>19 September - Push online the website and start to organize it</p>
-<p>20 September - Copy content from other platform to merge all together</p>
 </section>
 </section>
 
@@ -412,7 +430,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./docs\diary"
+            path: "./docs\design"
         },
         predefinedOutput: true
     }
@@ -430,20 +448,20 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../programming/code_structure.html"
+       href="../intro/useful_material.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Code structure</p>
+        <p class="prev-next-title">Useful Material</p>
       </div>
     </a>
     <a class="right-next"
-       href="../../markdown-notebooks.html"
+       href="resonant_tank_design.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Some ideas</p>
+        <p class="prev-next-title">Resonant Tank</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -462,10 +480,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#january-2023">January 2023</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#july-2023">July 2023</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#august-2023">August 2023</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#september-2023">September 2023</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-some-common-knowledge">add some common knowledge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#balun-circuit">BALUN circuit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dsp">DSP</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
