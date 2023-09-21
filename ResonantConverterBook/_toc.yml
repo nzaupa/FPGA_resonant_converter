@@ -1,0 +1,45 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+
+parts: 
+  - caption: Resonant Converters
+    chapters:
+    - file: docs/intro/state_of_the_art
+    - file: docs/intro/developments
+    - file: docs/intro/useful_material
+      # sections:
+      # -file: sdsdsd
+
+  - caption: Electronic design
+    chapters: 
+    - file: docs/design/preliminaries
+    - file: docs/design/resonant_tank_design
+    - file: docs/design/rectifier_design
+    - file: docs/design/simulation
+
+  - caption: Prototype design
+    chapters:
+    - file: docs/prototype/altium_help
+    - file: docs/prototype/signal_transformer_design
+
+  - caption: FPGA programming
+    numbered: False
+    chapters:
+    - file: docs/programming/quartus
+    - file: docs/programming/verilog_guide
+    - file: docs/programming/blocks
+    - file: docs/programming/code_structure
+
+  - caption: Diary
+    chapters:
+    - file: docs/diary/2023_diary   
+
+  - caption: Template
+    chapters:
+    - file: markdown-notebooks
+    - file: markdown
+    - file: notebooks
+      title: Alt tit toc
