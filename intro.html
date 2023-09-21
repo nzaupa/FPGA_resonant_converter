@@ -187,9 +187,20 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">FPGA programming</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="docs/programming/verilog_guide.html">Verilog coding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="docs/programming/blocks.html">blocks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="docs/programming/code_structure.html">Code structure</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="docs/programming/HDL_env.html">HDL Environment</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/programming/quartus.html">Quartus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/programming/VSC_env.html">Visual Studio Code</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="docs/programming/verilog_guide.html">Verilog coding</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/programming/modules.html">Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="docs/programming/project_code.html">Project Code</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/programming/blocks.html">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/programming/code_structure.html">Code structure</a></li>
+</ul>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Diary</span></p>
 <ul class="nav bd-sidenav">
@@ -199,7 +210,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Some ideas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Alt tit toc</a></li>
 </ul>
 
     </div>
@@ -399,9 +410,9 @@ document.write(`
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">FPGA programming</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="docs/programming/HDL_env.html">HDL Environment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docs/programming/verilog_guide.html">Verilog coding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="docs/programming/blocks.html">blocks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="docs/programming/code_structure.html">Code structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/programming/project_code.html">Project Code</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -415,7 +426,7 @@ document.write(`
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Some ideas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Alt tit toc</a></li>
 </ul>
 </div>
 </section>

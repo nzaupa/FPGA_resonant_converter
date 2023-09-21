@@ -20,12 +20,20 @@ admonition blocks
    nota
 ```
 
+```{admonition} Amm
+   ammonizione
+```
+
+
 ```{tip}
    consiglio
 ```
 
 ```{seealso}
    vedi anche
+```
+```{error}
+   errore
 ```
 
 ```{important}
@@ -63,7 +71,20 @@ LINK to PDF file and open it in a new tab
 
 
 
-cheers
+`(label_to_sth)=`
+
+to recall the label
+... not sure ... {ref}`label_to_sth`
+
+
+$$
+e = mc^2
+$$ (eqn:best)
+
+This is the best equation {eq}`eqn:best`
+
+[look at this source material for substitution](https://myst-parser.readthedocs.io/en/latest/syntax/optional.html)
+
 
 ---
 

@@ -1,6 +1,6 @@
 # Developments
 
-### Works done so far for the charging with resonant converter
+## Works done so far for the charging with resonant converter
 
 ## Discrete-time description
 

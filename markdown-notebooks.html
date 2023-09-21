@@ -62,6 +62,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'markdown-notebooks';</script>
     <link rel="shortcut icon" href="_static/logo2.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -188,9 +190,20 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">FPGA programming</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="docs/programming/verilog_guide.html">Verilog coding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="docs/programming/blocks.html">blocks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="docs/programming/code_structure.html">Code structure</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="docs/programming/HDL_env.html">HDL Environment</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/programming/quartus.html">Quartus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/programming/VSC_env.html">Visual Studio Code</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="docs/programming/verilog_guide.html">Verilog coding</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/programming/modules.html">Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="docs/programming/project_code.html">Project Code</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/programming/blocks.html">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/programming/code_structure.html">Code structure</a></li>
+</ul>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Diary</span></p>
 <ul class="nav bd-sidenav">
@@ -200,7 +213,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Some ideas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Alt tit toc</a></li>
 </ul>
 
     </div>
@@ -384,6 +397,10 @@ document.write(`
 <p class="admonition-title">Note</p>
 <p>nota</p>
 </div>
+<div class="admonition-amm admonition">
+<p class="admonition-title">Amm</p>
+<p>ammonizione</p>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>consiglio</p>
@@ -391,6 +408,10 @@ document.write(`
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p>vedi anche</p>
+</div>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>errore</p>
 </div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
@@ -426,7 +447,15 @@ document.write(`
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">&lt;a</span> <span class="pre">href</span> <span class="pre">=</span> <span class="pre">&quot;relative_path&quot;</span> <span class="pre">target=&quot;_blank&quot;&gt;</span> <span class="pre">link_name</span> <span class="pre">&lt;/a&gt;</span></code></p>
 </div></blockquote>
-<p>cheers</p>
+<p><code class="docutils literal notranslate"><span class="pre">(label_to_sth)=</span></code></p>
+<p>to recall the label
+… not sure … <span class="xref std std-ref">label_to_sth</span></p>
+<div class="math notranslate nohighlight" id="equation-eqn-best">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eqn-best" title="Permalink to this equation">#</a></span>\[
+e = mc^2
+\]</div>
+<p>This is the best equation <a class="reference internal" href="#equation-eqn-best">(1)</a></p>
+<p><a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/syntax/optional.html">look at this source material for substitution</a></p>
 <hr class="docutils" />
 <section id="notebooks-with-myst-markdown">
 <h2>Notebooks with MyST Markdown<a class="headerlink" href="#notebooks-with-myst-markdown" title="Permalink to this heading">#</a></h2>
