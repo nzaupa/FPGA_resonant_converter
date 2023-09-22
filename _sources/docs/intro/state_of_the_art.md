@@ -14,7 +14,7 @@ kernelspec:
 #   - \usepackage{siunitx}
 ---
 
-# SOTA in battery charging with
+# State of the Art
 
 -   FHA: First Harmonic Analysis
 

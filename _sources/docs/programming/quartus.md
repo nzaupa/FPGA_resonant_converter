@@ -41,7 +41,7 @@ ethernet network (MAC address)
 
 ## How to use it
 
-- go to the RTL1 view
+- go to the RTL1 view ![Quartus RTL viewer](../images/ico/quartus_RTL.png) 
 - assign the PIN (use csv file to define the connection)
   
 ### NEW PROJECT
@@ -59,14 +59,14 @@ ethernet network (MAC address)
 2. *Import Assignment*
 3. Select the `*.csv` file, then *Ok*
 
-Press the button play to compile the code
+Press the button ![Quartus compile](../images/ico/quartus_compile.png)  to compile the code
 
 ### LOAD the CODE
-1. Open the Programmer [small image]
+1. Open the Programmer ![Quartus programmer](../images/ico/quartus_programmer.png) 
 2. Press on `Hardware Setup`
 3. On *Currently selected hardware* select `USB-Blaster [USB-0]`. If not present maybe is necessary to update the driver of the USB blaster (on your PC go to device-Select the USB-Update Driver-Make windows search
 in the installation folder of Quartus)
-4. Press `Start` to load the code [A blue led should be ON on the board]
+1. Press `Start` to load the code [A blue led should be ON on the board]
 
 ### POSSIBLE PROBLEMS
 
