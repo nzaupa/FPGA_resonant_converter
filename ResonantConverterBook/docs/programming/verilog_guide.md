@@ -1,7 +1,5 @@
 # Verilog coding
 
-## FROM tex FPGA_note
-
 ## Coding
 Type of signal:
 - `wire` can used with assign: `assign a = b & c`

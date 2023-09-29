@@ -12,6 +12,7 @@ kernelspec:
   name: python3
 ---
 
+(label_to_sth)=
 # Some ideas
 
 admonition blocks
@@ -57,6 +58,15 @@ admonition blocks
 <p class="title">This is the **title**</p>
 This is the *content*
 </div>
+
+
+Link a una parte [](sec:signal_transformer).
+```
+(sec:signal_transformer)=
+
+Link a una parte [](sec:signal_transformer).
+```
+
 
 ```{sidebar} My sidebar title
 My sidebar content

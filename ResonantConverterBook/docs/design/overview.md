@@ -1,4 +1,4 @@
-# Preliminary work
+# Overview
 
 **Analysis of the requirements that we want to achieve**
 
@@ -23,16 +23,6 @@ i.e. transformer model, how impedance move between primary and secondary
 
 
 
-### BALUN circuit
-
-It’s a circuit use to transform an unbalanced signal to a balanced one.
-An input series-resistance is used for impedance matching to that the
-output voltage corresponds to the input before the resistance (it is the
-double of the one in **B+**)
-
-<img src="attachment:media/image5.png" style="width:6.26806in;height:1.48542in" />
-
-Figure 15: schematics of the BALUN circuit
 
 ### DSP 
 

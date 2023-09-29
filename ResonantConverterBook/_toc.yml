@@ -10,31 +10,53 @@ parts:
     - file: docs/intro/state_of_the_art
     - file: docs/intro/developments
     - file: docs/intro/useful_material
-      # sections:
-      # -file: sdsdsd
+      sections:
+      - file: docs/intro/altium_help
+      - file: docs/intro/FPGA_board
+    - file: docs/intro/publications
 
   - caption: Electronic design
     chapters: 
-    - file: docs/design/preliminaries
-    - file: docs/design/resonant_tank_design
-    - file: docs/design/rectifier_design
-    - file: docs/design/simulation
+    - file: docs/design/overview
+    # Power stage
+    - file: docs/design/power_stage
+    # Resonant Tank
+    - file: docs/design/RT_resonant_tank_design
+      sections:
+      - file: docs/design/RT_sensing
+      - file: docs/design/RT_signal_transformer_design
+      - file: docs/design/RT_trafo_calc
+      - file: docs/design/RT_pcb
+    # Rectifier
+    - file: docs/design/RC_rectifier_design
+      sections:
+      - file: docs/design/RC_sensing
+      - file: docs/design/RC_ADC
+      # - file: docs/design/
+      - file: docs/design/simulation
+      - file: docs/design/RC_pcb
+    # - file: docs/design/useful_material
+    #   sections:
 
-  - caption: Prototype design
-    chapters:
-    - file: docs/prototype/altium_help
-    - file: docs/prototype/signal_transformer_design
 
   - caption: FPGA programming
     numbered: False
     chapters:
-    - file: docs/programming/quartus
+    - file: docs/programming/HDL_env
+      sections:
+      - file: docs/programming/quartus
+      - file: docs/programming/VSC_env
     - file: docs/programming/verilog_guide
-    - file: docs/programming/blocks
-    - file: docs/programming/code_structure
+      sections:
+      - file: docs/programming/modules
+    - file: docs/programming/project_code
+      sections:
+      - file: docs/programming/blocks
+      - file: docs/programming/code_structure
 
   - caption: Diary
     chapters:
+    - file: docs/diary/2020_diary   
     - file: docs/diary/2023_diary   
 
   - caption: Template
