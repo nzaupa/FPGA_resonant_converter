@@ -15,6 +15,10 @@ parts:
       - file: docs/intro/FPGA_board
     - file: docs/intro/publications
 
+  - caption: Control
+    chapters:
+    - file: docs/control/RT_control
+    - file: docs/control/RC_control
   - caption: Electronic design
     chapters: 
     - file: docs/design/overview
@@ -49,6 +53,7 @@ parts:
     - file: docs/programming/verilog_guide
       sections:
       - file: docs/programming/modules
+      - file: docs/programming/statements
     - file: docs/programming/project_code
       sections:
       - file: docs/programming/blocks
