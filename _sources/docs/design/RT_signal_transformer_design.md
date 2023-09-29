@@ -1,3 +1,4 @@
+(sec:signal_transformer)=
 # Signal Transformers
 
 The transformers for the sensing stage are handmade. 
@@ -43,7 +44,7 @@ The magnetizing inductance is
 where $N$ is the number of turn of the side where we are interested to model the inductance.
 In brief: 
 
-   $$ L_m=\underbrace{\frac{\mu_0\mu_r A_e}{l_e}}_{\text{ficed by the core}}{N^2} $$
+   $$ L_m=\underbrace{\frac{\mu_0\mu_r A_e}{l_e}}_{\text{fixed by the core}}{N^2} $$
 
 The value of permeability in vacuum is $\mu_0=1.256\times 10^{-6}\;\frac{N}{A^2}$, equivalently $\mu_0=4\pi\times 10^{-7} \frac{H}{m} = 4\pi\times 10^{-4} \frac{H}{mm}$.
 

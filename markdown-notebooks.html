@@ -172,25 +172,35 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resonant Converters</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="docs/intro/state_of_the_art.html">State of the Art</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="docs/intro/developments.html">Developments</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="docs/intro/useful_material.html">Useful Material</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="docs/intro/altium_help.html">Altium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/intro/FPGA_board.html">FPGA board</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="docs/intro/publications.html">Publications</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Control</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="docs/control/RT_control.html">Oscillation controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/control/RC_control.html">Closed-loop control</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Electronic design</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="docs/design/overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docs/design/power_stage.html">Power stage</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="docs/design/RT_resonant_tank_design.html">Resonant Tank</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/design/RT_sensing.html">Sensing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs/design/RT_signal_transformer_design.html">Signal Transformers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs/design/RT_trafo_calc.html">Transformer calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/design/RT_pcb.html">PCB design</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="docs/design/RC_rectifier_design.html">Rectifier</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="docs/design/RC_ADC.html">ADC used in Rect.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/design/RC_sensing.html">Sensing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/design/RC_ADC.html">ADCs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs/design/simulation.html">Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/design/RC_pcb.html">PCB design</a></li>
 </ul>
 </li>
 </ul>
@@ -203,6 +213,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="docs/programming/verilog_guide.html">Verilog coding</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="docs/programming/modules.html">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/programming/statements.html">Statements and Blocks</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="docs/programming/project_code.html">Project Code</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -441,6 +452,12 @@ document.write(`
 <div class="admonition note" id="html-admonition">
 <p class="admonition-title">This is the <strong>title</strong></p>
 <p>This is the <em>content</em></p>
+</div>
+<p>Link a una parte <a class="reference internal" href="docs/design/RT_signal_transformer_design.html#sec-signal-transformer"><span class="std std-ref">Signal Transformers</span></a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">sec</span><span class="p">:</span><span class="n">signal_transformer</span><span class="p">)</span><span class="o">=</span>
+
+<span class="n">Link</span> <span class="n">a</span> <span class="n">una</span> <span class="n">parte</span> <span class="p">[](</span><span class="n">sec</span><span class="p">:</span><span class="n">signal_transformer</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
 </div>
 <aside class="sidebar">
 <p class="sidebar-title">My sidebar title</p>

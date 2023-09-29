@@ -1,19 +1,3 @@
----
-jupytext:
-  formats: md:myst
-  text_representation:
-    extension: .md
-    format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.11.5
-kernelspec:
-  display_name: Python 3
-  language: python
-  name: python3
-# header-includes:
-#   - \usepackage{siunitx}
----
-
 # State of the Art
 
 -   FHA: First Harmonic Analysis
@@ -248,7 +232,7 @@ They include DAB (page 7) and resonant LLC (page 8). There is also a
 3-levels (5-levels if we consider all positive and negative) with
 half-bridge topology.
 
-# Reference example for the prototype - OBC LLC
+## Reference example for the prototype - OBC LLC
 
 We consider the On Board Charger (OCB) case equipped with a LLC
 converter as a reference for the design. An example can be found in the
@@ -266,13 +250,13 @@ are other designs at different power ratings
 
 Specifications for OBC--TND6318/D:
 
--   Input voltage $\beta$ $700\pm\SI{35}{V}$
+-   Input voltage $\beta$ $700\pm{35}{V}$
 
--   Output voltage $200/\SI{450}{V}$
+-   Output voltage $200/{450}{V}$
 
--   Output current $0/\SI{40}{A}$
+-   Output current $0/{40}{A}$
 
--   Maximum output power $\SI{10}{kW}$
+-   Maximum output power ${10}{kW}$
 
 -   Maximum switching frequency 400 kHz
 
@@ -281,6 +265,7 @@ converter is composed of the following two stages: AC--DC and DC--DC
 (ensures galvanic isolation).
 
 
+## Bibliography
 
 ```{bibliography}
    :style: unsrt

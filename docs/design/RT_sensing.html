@@ -1,0 +1,709 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Sensing &#8212; Resonant Converter 2023</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/design/RT_sensing';</script>
+    <link rel="shortcut icon" href="../../_static/logo2.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Signal Transformers" href="RT_signal_transformer_design.html" />
+    <link rel="prev" title="Resonant Tank" href="RT_resonant_tank_design.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo2.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo2.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Index
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resonant Converters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../intro/state_of_the_art.html">State of the Art</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/developments.html">Developments</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro/useful_material.html">Useful Material</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/altium_help.html">Altium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/FPGA_board.html">FPGA board</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/publications.html">Publications</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Control</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../control/RT_control.html">Oscillation controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../control/RC_control.html">Closed-loop control</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Electronic design</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power_stage.html">Power stage</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="RT_resonant_tank_design.html">Resonant Tank</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Sensing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RT_signal_transformer_design.html">Signal Transformers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RT_trafo_calc.html">Transformer calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RT_pcb.html">PCB design</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="RC_rectifier_design.html">Rectifier</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="RC_sensing.html">Sensing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RC_ADC.html">ADCs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html">Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RC_pcb.html">PCB design</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">FPGA programming</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../programming/HDL_env.html">HDL Environment</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../programming/quartus.html">Quartus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../programming/VSC_env.html">Visual Studio Code</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../programming/verilog_guide.html">Verilog coding</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../programming/modules.html">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../programming/statements.html">Statements and Blocks</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../programming/project_code.html">Project Code</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../programming/blocks.html">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../programming/code_structure.html">Code structure</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Diary</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../diary/2020_diary.html">Diary 2020-2022</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diary/2023_diary.html">Diary 2023</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Template</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../markdown-notebooks.html">Some ideas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notebooks.html">Alt tit toc</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/nzaupa/FPGA_resonant_converter" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/design/RT_sensing.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Sensing</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-sensing">Current Sensing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#voltage-sensing">Voltage Sensing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extra">EXTRA</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sensing">
+<h1>Sensing<a class="headerlink" href="#sensing" title="Permalink to this heading">#</a></h1>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><sup>1</sup> Indeed, the FPGA is then connected to the resonant tank through the gate driver of the H-bridge. We might think to isolate also the drivers but it not extremely necessary.</p>
+</aside>
+<p>The current and the voltage on the capacitor <span class="math notranslate nohighlight">\(C_r\)</span> are measured in order to close the loop and ensure the oscillation.
+Two sensing circuits are used to measure these quantities. Thanks to the use of signal transformer, the resonant tank is galvanically isolated from the sensing output, i.e. the FPGA<sup>1</sup>.
+The transformer design procedure is described in <a class="reference internal" href="RT_signal_transformer_design.html#sec-signal-transformer"><span class="std std-ref">Signal Transformers</span></a>.</p>
+<p>Every sensing circuit must have the least influence possible on the resonant tank.</p>
+<p>The output of the transformers need to be interfaced with a <a class="reference internal" href="../intro/FPGA_board.html#sec-balun"><span class="std std-ref">BALUN circuit</span></a> which is embedded in the daughter board of the FPGA. Essentially, we can see it as a <span class="math notranslate nohighlight">\(49.9\;\Omega\)</span> resistor in parallel with the output of the sensing circuit. Remember that, the voltage that is read by the ADC is the double of the output, i.e. apart from filtering behavior, it corresponds to the voltage out of the transformer. (the two <span class="math notranslate nohighlight">\(49.9\;\Omega\)</span> resistors are dividing in half the voltage, which is the doubled by the BALUN circuit thanks to a transformer).
+The limit voltage is <span class="math notranslate nohighlight">\(0.5\;V\)</span>.</p>
+<p>Practically, every sensing stage is connected with a SMA connector via a coaxial cable to the ADC board.</p>
+<section id="current-sensing">
+<h2>Current Sensing<a class="headerlink" href="#current-sensing" title="Permalink to this heading">#</a></h2>
+<p>The capacitor current corresponds to the input current of the resonant tank. A current-transformer is used to sense it and to ensure isolation.
+The primary current is reduced at the secondary according to the transformation ratio <span class="math notranslate nohighlight">\(1:n_i\)</span>, which is then transformed to a voltage thanks to the resistor <span class="math notranslate nohighlight">\(R_i\)</span>. The best choice is to have the least number of windings at the primary, so that the magnetizing inductance is negligible with respect to the resonant inductance <span class="math notranslate nohighlight">\(L_r\)</span>.</p>
+<p>The static equation relating input current <span class="math notranslate nohighlight">\(i_S\)</span> and output voltage <span class="math notranslate nohighlight">\(v_{R_i}\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[ v_{R_i} = \frac{1}{n_i}\frac{100 R_i}{100+R_i}i_S \approx \frac{R_i}{n_i}i_S\]</div>
+<p>where the approximation is valid in the case <span class="math notranslate nohighlight">\(R_i\ll100\Omega\)</span>.</p>
+<p>The dissipated (AC) power on <span class="math notranslate nohighlight">\(R_i\)</span> is approximately <span class="math notranslate nohighlight">\(P_{R_i}\approx \frac{R_i}{n_i^2}\frac{I_{S}^2}{2} \)</span>, where <span class="math notranslate nohighlight">\(I_{S}\)</span> is the peak value (<span class="math notranslate nohighlight">\(i_S\)</span> is an AC signal so we should consider the RMS value for the power or the peak divided by <span class="math notranslate nohighlight">\(\sqrt{2}\)</span>).</p>
+<p>The equivalent resistance at the primary side is: <span class="math notranslate nohighlight">\(R_{T1,eq}=\frac{R_i}{n_i^2}\)</span>.</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../../_images/RT_current_sensing.png"><img alt="../../_images/RT_current_sensing.png" src="../../_images/RT_current_sensing.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Current sensing circuit</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>A transfer function can be written between input and output:</p>
+<div class="math notranslate nohighlight">
+\[ TF = \frac{V_{ADC}}{I_S} \]</div>
+<p>Where <span class="math notranslate nohighlight">\(V_{ADC}\)</span> indicates the voltage that is than transformed to binary code (double of the voltage on the filter capacitor).</p>
+<p>The output of <span class="math notranslate nohighlight">\(T_1\)</span> is connected to a SMA connector through a low pass filter with cut-off frequency <span class="math notranslate nohighlight">\(f_{rcf}=\frac{1}{\pi\ R_{rcf}C_{rcf}}\)</span>.  <span class="math notranslate nohighlight">\(R_{rcf}=49.9\Omega\)</span> for impedance matching with the input stage of the ADC.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/RT_current_sensing_table.png"><img alt="../../_images/RT_current_sensing_table.png" src="../../_images/RT_current_sensing_table.png" style="width: 700px;" /></a>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Small interface to calculate de maximum current from ADC data and values of the components.</p>
+</div>
+</section>
+<section id="voltage-sensing">
+<h2>Voltage Sensing<a class="headerlink" href="#voltage-sensing" title="Permalink to this heading">#</a></h2>
+<p>After have experience some problem with high voltage sensing, we can generalize the acquisition chain as:</p>
+<ul class="simple">
+<li><p>capacitor grid reducing of an integer factor. e.g. <span class="math notranslate nohighlight">\(3\times3\)</span> grid (<span class="math notranslate nohighlight">\(9\)</span> capacitors) reduces of a factor <span class="math notranslate nohighlight">\(3\)</span>. It is suggested to keep it symmetric with an odd number. We might think of some other configurations. The important is that the equivalent capacitance is <span class="math notranslate nohighlight">\(C_r\)</span> (does not waste power);</p></li>
+<li><p>voltage divider with 3 resistor to attenuate the voltage (waste power);</p></li>
+<li><p>signal transformer: connected to the central resistor, step down the voltage and ensure galvanic isolation.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>These considerations are important for high voltage and, indeed, they haven’t been tested.</p>
+</div>
+<p>The voltage is initially attenuated by a grid of capacitors (the resonant ones) of a factor <span class="math notranslate nohighlight">\(n_c\)</span>, then by a voltage divider by a factor <span class="math notranslate nohighlight">\(\frac{R_{pv2}}{R_{pv1}+R_{pv2}+R_{pv3}}\)</span>, which is then attenuated by a signal transformer with transformation ratio <span class="math notranslate nohighlight">\(n_v:1\)</span>. Therefore, we have that the voltage read by the ADC corresponds to</p>
+<div class="math notranslate nohighlight">
+\[ v_{T2_{sec}}=\frac{1}{n_i n_v}\frac{R_{pv2}}{R_{pv1}+R_{pv2}+R_{pv3}}v_{C_r} \]</div>
+<p>Equivalent resistance at the primary is <span class="math notranslate nohighlight">\(R_{T2,eq}=2R_{rvf}n_v^2\)</span> and we need to have that <span class="math notranslate nohighlight">\(R_{pv2}\ll R_{T2,eq}\)</span>.</p>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../../_images/RT_voltage_sensing.png"><img alt="../../_images/RT_voltage_sensing.png" src="../../_images/RT_voltage_sensing.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Voltage sensing circuit</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>A transfer function can be written between input and output:</p>
+<div class="math notranslate nohighlight">
+\[ TF = \frac{V_{ADC}}{V_{C_r}} \]</div>
+<p>Where <span class="math notranslate nohighlight">\(V_{ADC}\)</span> indicates the voltage that is than transformed to binary code (double of the voltage on the filter capacitor).</p>
+<p>Then, the output of <span class="math notranslate nohighlight">\(T_2\)</span> is connected to a SMA connector through a low pass filter with cut-off frequency <span class="math notranslate nohighlight">\(f_{rvf}=\frac{1}{\pi\ R_{rvf}C_{rvf}}\)</span>.  <span class="math notranslate nohighlight">\(R_{rvf}=49.9\Omega\)</span> for impedance matching with the input stage of the ADC.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>It’s really import to consider the magnetizing inductance of the signal transformer. Its effect should be negligible and to evaluate this we can consider the equivalent impedance at the resonance frequency. Essentially, <span class="math notranslate nohighlight">\(Z_{eq} // R_{T2,eq}\)</span> must be higher that <span class="math notranslate nohighlight">\(R_{pv2}\)</span>.</p>
+</div>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/RT_voltage_sensing_table.png"><img alt="../../_images/RT_voltage_sensing_table.png" src="../../_images/RT_voltage_sensing_table.png" style="width: 700px;" /></a>
+</figure>
+</section>
+<section id="extra">
+<h2>EXTRA<a class="headerlink" href="#extra" title="Permalink to this heading">#</a></h2>
+<p>need to understand where an how to put this</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(n_i\)</span></p></td>
+<td><p>20</p></td>
+<td><p><span class="math notranslate nohighlight">\(\gamma_{ri,ADC}=0.0135\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(R_i\)</span></p></td>
+<td><p>270 <span class="math notranslate nohighlight">\(mΩ\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\max\{I_s\}=37.0\ A\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 32%" />
+<col style="width: 13%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math display"><em>n</em><sub><em>i</em></sub></span></th>
+<th>20</th>
+<th rowspan="2"><p><span class="math display"><em>γ</em><sub><em>r</em><em>i</em>, <em>A</em><em>D</em><em>C</em></sub> = 0.0135</span></p>
+<p><span class="math display">max {<em>I</em><sub><em>s</em></sub>} = 37.0 <em>A</em></span></p></th>
+<th>20</th>
+<th rowspan="2"><p><span class="math display"><em>γ</em><sub><em>r</em><em>v</em>, <em>A</em><em>D</em><em>C</em></sub> = 0.028</span></p>
+<p><span class="math display">max {<em>I</em><sub><em>s</em></sub>} = 17.9 <em>A</em></span></p></th>
+</tr>
+<tr class="odd">
+<th><span class="math display"><em>R</em><sub><em>i</em></sub></span></th>
+<th>270 mΩ</th>
+<th>560 mΩ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math display"><em>R</em><sub>rcf</sub></span></td>
+<td>49.9 Ω</td>
+<td rowspan="2"><span class="math display"><em>f</em><sub>rcf</sub> = 318<em>k</em><em>H</em><em>z</em></span></td>
+<td colspan="2" rowspan="2">* Q high: Ri is at the limit might need to lower it</td>
+</tr>
+<tr class="even">
+<td><span class="math display"><em>C</em><sub>rcf</sub></span></td>
+<td>10 nF</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 13%" />
+<col style="width: 31%" />
+<col style="width: 13%" />
+<col style="width: 32%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math display"><em>n</em><sub><em>v</em></sub></span></th>
+<th>20</th>
+<th rowspan="3"><p><span class="math display"><em>γ</em><sub><em>r</em><em>v</em><em>i</em>, <em>A</em><em>D</em><em>C</em></sub> = 495 × 10<sup>−6</sup></span></p>
+<p><span class="math display">max {<em>V</em><sub><em>c</em></sub>} = 1010<em>V</em></span></p></th>
+<th>20</th>
+<th rowspan="3"><p><span class="math display"><em>γ</em><sub><em>r</em><em>v</em><em>i</em>, <em>A</em><em>D</em><em>C</em></sub> = 1.47 × 10<sup>−3</sup></span></p>
+<p><span class="math display">max {<em>V</em><sub><em>c</em></sub>} = 57<em>V</em></span></p></th>
+</tr>
+<tr class="odd">
+<th><span class="math display"><em>R</em><sub><em>p</em><em>v</em>1</sub></span></th>
+<th>100 kΩ</th>
+<th>4.7 kΩ</th>
+</tr>
+<tr class="header">
+<th><span class="math display"><em>R</em><sub><em>p</em><em>v</em>2</sub></span></th>
+<th>1 kΩ</th>
+<th>1 kΩ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math display"><em>R</em><sub>rvf</sub></span></td>
+<td>49.9 Ω</td>
+<td rowspan="2"><span class="math display"><em>f</em><sub>rcf</sub> = 318<em>k</em><em>H</em><em>z</em></span></td>
+<td colspan="2" rowspan="2">* Q low: we might reduce <span class="math inline"><em>n</em><sub><em>v</em></sub> <em>a</em><em>n</em><em>d</em> <em>i</em><em>n</em><em>c</em><em>r</em><em>e</em><em>a</em><em>s</em><em>e</em> <em>R</em>_{<em>p</em><em>v</em>1}</span> we should keep the total resistance not too low (10mA)</td>
+</tr>
+<tr class="even">
+<td><span class="math display"><em>C</em><sub>rvf</sub></span></td>
+<td>10 nF</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs\design"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="RT_resonant_tank_design.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Resonant Tank</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="RT_signal_transformer_design.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Signal Transformers</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-sensing">Current Sensing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#voltage-sensing">Voltage Sensing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extra">EXTRA</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Nicola ZAUPA
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

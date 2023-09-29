@@ -66,8 +66,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../_static/logo2.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="HDL Environment" href="../programming/HDL_env.html" />
-    <link rel="prev" title="ADC used in Rect." href="RC_ADC.html" />
+    <link rel="next" title="PCB design" href="RC_pcb.html" />
+    <link rel="prev" title="ADCs" href="RC_ADC.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -170,25 +170,35 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resonant Converters</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../intro/state_of_the_art.html">State of the Art</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../intro/developments.html">Developments</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../intro/useful_material.html">Useful Material</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro/altium_help.html">Altium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/FPGA_board.html">FPGA board</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/publications.html">Publications</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Control</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../control/RT_control.html">Oscillation controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../control/RC_control.html">Closed-loop control</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Electronic design</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="power_stage.html">Power stage</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="RT_resonant_tank_design.html">Resonant Tank</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="RT_sensing.html">Sensing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="RT_signal_transformer_design.html">Signal Transformers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="RT_trafo_calc.html">Transformer calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RT_pcb.html">PCB design</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="RC_rectifier_design.html">Rectifier</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="RC_ADC.html">ADC used in Rect.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RC_sensing.html">Sensing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RC_ADC.html">ADCs</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RC_pcb.html">PCB design</a></li>
 </ul>
 </li>
 </ul>
@@ -201,6 +211,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../programming/verilog_guide.html">Verilog coding</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../programming/modules.html">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../programming/statements.html">Statements and Blocks</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../programming/project_code.html">Project Code</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -422,15 +433,15 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">ADC used in Rect.</p>
+        <p class="prev-next-title">ADCs</p>
       </div>
     </a>
     <a class="right-next"
-       href="../programming/HDL_env.html"
+       href="RC_pcb.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">HDL Environment</p>
+        <p class="prev-next-title">PCB design</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -18,12 +18,25 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import ipywidgets as widgets
-widgets.IntSlider()
+# Utils widgets
+from ipywidgets import Button, Layout, jslink, IntText, IntSlider
+
+def create_expanded_button(description, button_style):
+    return Button(description=description, button_style=button_style, layout=Layout(height='auto', width='auto'))
+
+top_left_button = create_expanded_button("Top left", 'info')
+top_right_button = create_expanded_button("Top right", 'success')
+bottom_left_button = create_expanded_button("Bottom left", 'danger')
+bottom_right_button = create_expanded_button("Bottom right", 'warning')
+
+top_left_text = IntText(description='Top left', layout=Layout(width='auto', height='auto'))
+top_right_text = IntText(description='Top right', layout=Layout(width='auto', height='auto'))
+bottom_left_slider = IntSlider(description='Bottom left', layout=Layout(width='auto', height='auto'))
+bottom_right_slider = IntSlider(description='Bottom right', layout=Layout(width='auto', height='auto'))
 
 app = TwoByTwoLayout(top_left=top_left_text, top_right=top_right_text,
                      bottom_left=bottom_left_slider, bottom_right=bottom_right_slider)
-                     
+              
 link_left = jslink((app.top_left, 'value'), (app.bottom_left, 'value'))
 link_right = jslink((app.top_right, 'value'), (app.bottom_right, 'value'))
 app.bottom_right.value = 30
@@ -33,12 +46,14 @@ app
 
 
 [1;31m---------------------------------------------------------------------------[0m
-[1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [1;32mIn[1], line 1[0m
-[1;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01mipywidgets[39;00m [38;5;28;01mas[39;00m [38;5;21;01mwidgets[39;00m
-[0;32m      2[0m widgets[38;5;241m.[39mIntSlider()
-[0;32m      4[0m app [38;5;241m=[39m TwoByTwoLayout(top_left[38;5;241m=[39mtop_left_text, top_right[38;5;241m=[39mtop_right_text,
-[0;32m      5[0m                      bottom_left[38;5;241m=[39mbottom_left_slider, bottom_right[38;5;241m=[39mbottom_right_slider)
+[1;31mNameError[0m                                 Traceback (most recent call last)
+Cell [1;32mIn[1], line 17[0m
+[0;32m     14[0m bottom_left_slider [38;5;241m=[39m IntSlider(description[38;5;241m=[39m[38;5;124m'[39m[38;5;124mBottom left[39m[38;5;124m'[39m, layout[38;5;241m=[39mLayout(width[38;5;241m=[39m[38;5;124m'[39m[38;5;124mauto[39m[38;5;124m'[39m, height[38;5;241m=[39m[38;5;124m'[39m[38;5;124mauto[39m[38;5;124m'[39m))
+[0;32m     15[0m bottom_right_slider [38;5;241m=[39m IntSlider(description[38;5;241m=[39m[38;5;124m'[39m[38;5;124mBottom right[39m[38;5;124m'[39m, layout[38;5;241m=[39mLayout(width[38;5;241m=[39m[38;5;124m'[39m[38;5;124mauto[39m[38;5;124m'[39m, height[38;5;241m=[39m[38;5;124m'[39m[38;5;124mauto[39m[38;5;124m'[39m))
+[1;32m---> 17[0m app [38;5;241m=[39m [43mTwoByTwoLayout[49m(top_left[38;5;241m=[39mtop_left_text, top_right[38;5;241m=[39mtop_right_text,
+[0;32m     18[0m                      bottom_left[38;5;241m=[39mbottom_left_slider, bottom_right[38;5;241m=[39mbottom_right_slider)
+[0;32m     20[0m link_left [38;5;241m=[39m jslink((app[38;5;241m.[39mtop_left, [38;5;124m'[39m[38;5;124mvalue[39m[38;5;124m'[39m), (app[38;5;241m.[39mbottom_left, [38;5;124m'[39m[38;5;124mvalue[39m[38;5;124m'[39m))
+[0;32m     21[0m link_right [38;5;241m=[39m jslink((app[38;5;241m.[39mtop_right, [38;5;124m'[39m[38;5;124mvalue[39m[38;5;124m'[39m), (app[38;5;241m.[39mbottom_right, [38;5;124m'[39m[38;5;124mvalue[39m[38;5;124m'[39m))
 
-[1;31mModuleNotFoundError[0m: No module named 'ipywidgets'
+[1;31mNameError[0m: name 'TwoByTwoLayout' is not defined
 
