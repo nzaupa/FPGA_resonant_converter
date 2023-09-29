@@ -72,6 +72,10 @@
 *.cb
 *.cb2
 .*.lb
+*.fdb_latexmk
+*.gz
+
+~$*
 
 # ignore Quartus II generated folders
 # */db/
@@ -86,4 +90,8 @@ work/
 
 __bin/
 
-*.code-workspace
+_note/
+
+ResonantConverterBook/_build
+
+# *.code-workspace

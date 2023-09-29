@@ -108,9 +108,10 @@ trigonometry_deg trigonometry_inst (
 );
 
 
-regularization_4bit #(
+regularization #(
    .DEBOUNCE_TIME(2), 
-   .DELAY(500)
+   .DELAY(500),
+   .N(4)
 ) regularization_4bit_inst (
    .o_signal( {C4,C3,C2,C1} ),
    .i_clk(i_clock),

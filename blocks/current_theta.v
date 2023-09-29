@@ -9,6 +9,8 @@
 // Lookup table for nonlinear function relating the 
 // current with the control parameter theta
 // 
+//    TO BE DEVELOPED
+// 
 //------------------------------------------------------------
 
 
@@ -31,10 +33,6 @@ assign o_theta = r_theta;
 always @ ( i_current )
 begin
 
-// computation of sine and cosine using integers
-// taking advanatges of look-up-table
-// input angle is multiplied by x100
-// trigonometric output is multiplied by x1000
 
 case(i_theta)
       32'h00000000: r_sin = 32'h00000000;

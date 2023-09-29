@@ -10,6 +10,40 @@ TO BE UPDATED
 
 `SensingTest_ADC`: programs that generate a square waveform in the H-bridge, which is then used to test the ADC measurements on the daughter board by replicating the signal in the DAC.
 
+### Blocks in Verilog for helpful functions
+
+> I have discovered that we can create more module on the same `*.v` file, the name of the file has no importance. Therefore, I have grouped the functions. Also, with a `for` it is possible to instantiate `N` modules. The basic module has the suffix `_core` and code in backward compatible (at least for now).
+
+ - `dead_time.v` main file with the following modules
+   - `dead_time_core`: introduce a delay on the rising edge of a signal1
+   - `dead_time`: instantiate `N` modules of `dead_time_core` in order to operate on a multi-wire signal
+ - `debounce.v` main file with the following modules
+   - `debounce_core`: let a signal change only after it is stable for `DEBOUNCE_TIME` clock cycles
+   - `debounce`: instantiate `N` modules of `debounce_core` in order to operate on a multi-wire signal
+ - `display_7seg.v` main file managing the 7-segment display
+   - `hex2seg`: creates the link between 0-F and the segments (DP excluded)  
+   - `dec2hex`: prepare 2-digit decimal number into "hex-equivalent" so that with `hex2seg` they can be shown
+   - `dec2seg`: the same as up, here still for compatibility purpose. It will be removed
+   - `num2seg`: might become `dec2seg`
+ - `trigonometry.v`
+   - `trigonometry_deg` compute sine and cosine of an angle in degrees
+   - `trigonometry_rad` compute sine and cosine of an angle in radiants
+ - different files for the hybrid control
+   - `hybrid_control_theta.v`  -  working
+   - `hybrid_control_phi.v`    -  working
+   - `hybrid_control_theta_phi.v` - not working
+- `regularization.v` main file with the following modules
+   - `regularization_core`: debounce a signal and prevent it to change for a fixed time
+   - `regularization`: parametric multi-wire extension
+ - `manual_value_control.v`
+   - `theta_control`: used to control theta within a fixed range
+   - `phi_control`: use to control there within a fixed range
+   - `angle_control_theta_phi`: currently it should not be used anywhere
+
+TO BE DONE
+ - parametric LPF
+
+
 ---
 ---
 
@@ -64,4 +98,3 @@ Interaction with online repository
 - `git remote -v` show the current *origin*
 - `git push -u origin <branch_name>` load into GitHub the current branch
 - `git pull origin <branch_name>`
-
