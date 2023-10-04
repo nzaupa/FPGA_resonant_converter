@@ -391,10 +391,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daughter-board-with-adcs-and-dacs">Daughter board with ADCs and DACs</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#balun-circuit">BALUN circuit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#de4">DE4</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-sockets">Connection sockets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interface">Interface</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dcc-adcs-and-dacs">DCC - ADCs and DACs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adc">ADC</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources</a></li>
 </ul>
             </nav>
         </div>
@@ -409,22 +415,123 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="fpga-board">
 <h1>FPGA board<a class="headerlink" href="#fpga-board" title="Permalink to this heading">#</a></h1>
 <p>explanation of the peculiarities of the board, ADC extension included.</p>
-<section id="daughter-board-with-adcs-and-dacs">
-<h2>Daughter board with ADCs and DACs<a class="headerlink" href="#daughter-board-with-adcs-and-dacs" title="Permalink to this heading">#</a></h2>
-<section id="balun-circuit">
-<span id="sec-balun"></span><h3>BALUN circuit<a class="headerlink" href="#balun-circuit" title="Permalink to this heading">#</a></h3>
-<p>BALUN (<em>balanced-unbalanced</em>) is a circuit use to transform an unbalanced signal to a balanced one.
-Usually, an input series-resistance is used for impedance matching so that the
-output voltage corresponds to the input before the resistance (it is the
-double of the one in <strong>B+</strong>-<strong>B-</strong>)</p>
+<p>There is the possibility to control directly the FAN and sense the CPU temperature.</p>
 <figure class="align-default" id="id1">
-<a class="reference internal image-reference" href="../../_images/FPGA_balun.png"><img alt="../../_images/FPGA_balun.png" src="../../_images/FPGA_balun.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../../_images/FPGA-DE4-layout_1000.jpg"><img alt="../../_images/FPGA-DE4-layout_1000.jpg" src="../../_images/FPGA-DE4-layout_1000.jpg" style="width: 600px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Schematics BALUN circuit in the daughter board.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Overview of the DE4 board.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<section id="de4">
+<h2>DE4<a class="headerlink" href="#de4" title="Permalink to this heading">#</a></h2>
+<section id="connection-sockets">
+<h3>Connection sockets<a class="headerlink" href="#connection-sockets" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>×2 HSMC: 160-pin out of with 120-pin for signals</p></li>
+<li><p>×2 GPIO: 40-pin header</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPIO-0</span></code> - JP3 - has pins in common with JP6</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GPIO-1</span></code> - JP4 -</p></li>
+</ul>
+</li>
+<li><p>×1 14-pin GPIO - JP6</p></li>
+</ul>
+<p>The GPIO has a level of 3V standard for input/output. GPIO-0/1 have also GND, 5V and 3.3V pins.</p>
+<p>40-pin GPIOs can be connected with standard 40-pin cable for IDE hard-drive. [take care of the length. Somme connectors are larger or the better, the socket is smaller and does not allow proper fitting]</p>
+</section>
+<section id="interface">
+<h3>Interface<a class="headerlink" href="#interface" title="Permalink to this heading">#</a></h3>
+<p>On the board there are:</p>
+<ul class="simple">
+<li><p>×2 7-segment displays</p></li>
+<li><p>×4 switches <code class="docutils literal notranslate"><span class="pre">SW0-3</span></code></p></li>
+<li><p>×5 buttons <code class="docutils literal notranslate"><span class="pre">PB1-4</span></code>. <code class="docutils literal notranslate"><span class="pre">PB0</span></code> is reserved to CPU-reset</p></li>
+<li><p>×1 8-position DIP switch <code class="docutils literal notranslate"><span class="pre">SW6</span></code></p></li>
+<li><p>×8 LEDs</p></li>
+</ul>
+</section>
+</section>
+<section id="dcc-adcs-and-dacs">
+<h2>DCC - ADCs and DACs<a class="headerlink" href="#dcc-adcs-and-dacs" title="Permalink to this heading">#</a></h2>
+<p>The daughter card used for acquire the signals in the resonant tank is the
+<a href = "https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&CategoryNo=67&No=360#contents" target="_blank"> <strong>AD/DA Data Conversion Card</strong> </a>.</p>
+<p>Essentially the card has</p>
+<ul class="simple">
+<li><p>two 14-bit ADCs, the <a href = "../pdf/DCC-AD9254.pdf" target="_blank"> AD9254</a>;</p></li>
+<li><p>two 14-bit DACs, the <a href = "../pdf/DCC-DAC5672.pdf" target="_blank"> DAC5672</a>.</p></li>
+</ul>
+<p>The card is connected to the FPGA board through one of the two HSMC connector</p>
+<blockquote>
+<div><p>describe pin connection with setup possibilities.</p>
+</div></blockquote>
+<div class="highlight-verilog notranslate"><div class="highlight"><pre><span></span><span class="c1">// ADCs clocks</span>
+<span class="k">assign</span><span class="w">  </span><span class="n">FPGA_CLK_A_P</span><span class="w">  </span><span class="o">=</span><span class="w">  </span><span class="n">clk_100M</span><span class="p">;</span>
+<span class="k">assign</span><span class="w">  </span><span class="n">FPGA_CLK_A_N</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">clk_100M</span><span class="p">;</span>
+<span class="k">assign</span><span class="w">  </span><span class="n">FPGA_CLK_B_P</span><span class="w">  </span><span class="o">=</span><span class="w">  </span><span class="n">clk_100M</span><span class="p">;</span>
+<span class="k">assign</span><span class="w">  </span><span class="n">FPGA_CLK_B_N</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">clk_100M</span><span class="p">;</span><span class="w"> </span>
+
+<span class="c1">// ADC control signal</span>
+<span class="k">assign</span><span class="w">   </span><span class="n">AD_SCLK</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span><span class="c1">//SW[2];   // (DFS) Data Format Select</span>
+<span class="w">                                      </span><span class="c1">// 0 -&gt; binary</span>
+<span class="w">                                      </span><span class="c1">// 1 -&gt; twos complement</span>
+<span class="k">assign</span><span class="w">   </span><span class="n">AD_SDIO</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span><span class="w">           </span><span class="c1">// (DCS) Duty Cycle Stabilizer</span>
+<span class="k">assign</span><span class="w">   </span><span class="n">ADA_OE</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span><span class="w">           </span><span class="c1">// enable ADA output</span>
+<span class="k">assign</span><span class="w">   </span><span class="n">ADA_SPI_CS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span><span class="w">           </span><span class="c1">// disable ADA_SPI_CS (CSB)</span>
+<span class="k">assign</span><span class="w">   </span><span class="n">ADB_OE</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span><span class="w">           </span><span class="c1">// enable ADB output</span>
+<span class="k">assign</span><span class="w">   </span><span class="n">ADB_SPI_CS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span><span class="w">           </span><span class="c1">// disable ADB_SPI_CS (CSB) </span>
+</pre></div>
+</div>
+<section id="adc">
+<h3>ADC<a class="headerlink" href="#adc" title="Permalink to this heading">#</a></h3>
+<p>The AD9254 can work up to 150 MSPS with 14-bit. The ADCs are interfaced with the external through SMA connector and a BALUN circuit, which make the signal balanced.</p>
+<ul class="simple">
+<li><p>the input range is 1 Vpp (i.e ±0.5V) (VREF connected to SENSE)</p></li>
+<li><p>the input voltage is equal to the voltage before the impedance matching resistor (iff R=49.9Ω)</p></li>
+</ul>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>The ADC polarity is internally inverted! (look at the schematics). We managed this from a software point-of-view.</p>
+<figure class="align-default">
+<img alt="../../_images/FPGA-ADC_inversion.png" src="../../_images/FPGA-ADC_inversion.png" />
+</figure>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+
+(sec:BALUN)=
+### BALUN circuit
+
+BALUN (*balanced-unbalanced*) is a circuit use to transform an unbalanced signal to a balanced one.
+Usually, an input series-resistance is used for impedance matching so that the
+output voltage corresponds to the input before the resistance (it is the
+double of the one in **B+**--**B-**)
+
+&lt;!-- ```{figure} ../images/FPGA_balun.png
+---
+width: 500px
+---
+Schematics BALUN circuit in the daughter board.
+``` --&gt;
+
+```{figure} ../images/FPGA_balun_sch.png
+BALUN circuit in the daughter board from the  &lt;a href = &quot;../pdf/DCC-schematic.pdf&quot; target=&quot;_blank&quot;&gt; schematic&lt;/a&gt;.
+</pre></div>
+</div>
 <p>More info at this <a href = "https://www.digikey.com/en/articles/understanding-the-rf-balun-and-its-transformative-function" target="_blank"> link</a> from Digikey.</p>
 </section>
+</section>
+<section id="resources">
+<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this heading">#</a></h2>
+<p>Link to all the resources</p>
+<p>zip file</p>
+<ul class="simple">
+<li><p>DE4 schematics</p></li>
+<li><p>DE4 manual</p></li>
+<li><p>DE4 getting started</p></li>
+<li><p>c</p></li>
+<li><p>DCC schematics</p></li>
+<li><p>DCC DAC5672</p></li>
+<li><p>DCC AD9254</p></li>
+</ul>
 </section>
 </section>
 
@@ -491,10 +598,16 @@ double of the one in <strong>B+</strong>-<strong>B-</strong>)</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daughter-board-with-adcs-and-dacs">Daughter board with ADCs and DACs</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#balun-circuit">BALUN circuit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#de4">DE4</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-sockets">Connection sockets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interface">Interface</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dcc-adcs-and-dacs">DCC - ADCs and DACs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adc">ADC</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources</a></li>
 </ul>
   </nav></div>
 

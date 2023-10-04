@@ -368,7 +368,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -384,6 +386,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#crush-course-on-how-to-get-an-run-the-program">Crush course on how to get an run the program</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -401,15 +411,15 @@ document.write(`
 <p>Driver bootstrap
 It is important to charge the bootstrap capacitors of the drivers in order to have the proper switching conditions. The risk is that the MOSFETs are not commuting if the capacitors are discharged.</p>
 </div>
-<div class="admonition error">
-<p class="admonition-title">Error</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
 <p>Take care that there is a real mess with the identification of the MOSFET in the bridge. A different numeration has been used in the: PCBs, schematics, and programming.</p>
 <p>In the last version is</p>
 <table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>FPGA</p></th>
+<tr class="row-odd"><th class="head"><p>FPGA code</p></th>
 <th class="head"><p>PIN</p></th>
-<th class="head"><p>SCHEM</p></th>
+<th class="head"><p>SCHEM FPGA</p></th>
 <th class="head"><p></p></th>
 <th class="head"><p>PCB</p></th>
 <th class="head"><p>LEG</p></th>
@@ -452,6 +462,22 @@ It is important to charge the bootstrap capacitors of the drivers in order to ha
 </tbody>
 </table>
 </div>
+<hr class="docutils" />
+<hr class="docutils" />
+<section id="crush-course-on-how-to-get-an-run-the-program">
+<h2>Crush course on how to get an run the program<a class="headerlink" href="#crush-course-on-how-to-get-an-run-the-program" title="Permalink to this heading">#</a></h2>
+<p>i.e.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pull</span></code> from github <em>give the command to clone the repository</em></p></li>
+<li><p>identify the working folder</p></li>
+<li><p>launch quartus (need to be installed <link>)</p></li>
+<li><p>compile</p></li>
+<li><p>launch the programmer</p></li>
+<li><p>do modifications</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">commit</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">push</span></code> to github</p></li>
+</ol>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -510,6 +536,20 @@ It is important to charge the bootstrap capacitors of the drivers in order to ha
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#crush-course-on-how-to-get-an-run-the-program">Crush course on how to get an run the program</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
