@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Useful Material &#8212; Resonant Converter 2023</title>
+    <title>Resonant Converters &#8212; Resonant Converter 2023</title>
   
   
   
@@ -62,12 +62,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/intro/useful_material';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/intro/SOTA_resonant_converter';</script>
     <link rel="shortcut icon" href="../../_static/logo2.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Altium" href="altium_help.html" />
-    <link rel="prev" title="Developments" href="developments.html" />
+    <link rel="next" title="OBC" href="SOTA_obc.html" />
+    <link rel="prev" title="State of the Art" href="state_of_the_art.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -167,15 +167,15 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resonant Converters</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="state_of_the_art.html">State of the Art</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developments.html">Developments</a></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Useful Material</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="altium_help.html">Altium</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FPGA_board.html">FPGA board</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="state_of_the_art.html">State of the Art</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Resonant Converters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SOTA_obc.html">OBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SOTA_biblio.html">Bibliography</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="developments.html">Developments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="publications.html">Publications</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Control</span></p>
@@ -230,6 +230,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../markdown-notebooks.html">Some ideas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../markdown.html">Markdown Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../notebooks.html">Alt tit toc</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Useful Material</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../handbook/useful_material.html">LAB electronics tips</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handbook/altium_help.html">Altium</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handbook/FPGA_board.html">FPGA board</a></li>
 </ul>
 
     </div>
@@ -299,7 +305,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/docs/intro/useful_material.md" target="_blank"
+      <li><a href="../../_sources/docs/intro/SOTA_resonant_converter.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -368,9 +374,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -381,19 +385,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Useful Material</h1>
+    <h1>Resonant Converters</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-resistance-table">Standard resistance table</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -403,130 +399,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="useful-material">
-<h1>Useful Material<a class="headerlink" href="#useful-material" title="Permalink to this heading">#</a></h1>
-<section id="standard-resistance-table">
-<h2>Standard resistance table<a class="headerlink" href="#standard-resistance-table" title="Permalink to this heading">#</a></h2>
-<p>Table with E12 and E24 series</p>
-<p><a class="reference external" href="https://eepower.com/resistor-guide/resistor-standards-and-codes/resistor-values/#">https://eepower.com/resistor-guide/resistor-standards-and-codes/resistor-values/#</a></p>
-<p>table with color code</p>
-<p><a class="reference external" href="https://www.calculator.net/resistor-calculator.html">https://www.calculator.net/resistor-calculator.html</a></p>
-<table class="cinfoT" align="center">
-	<tbody><tr valign="bottom" align="center">
-		<td class="cinfoHd">Color</td>
-		<td class="cinfoHdL">1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup><br>Band Significant Figures</td>
-		<td class="cinfoHdL">Multiplier</td>
-		<td class="cinfoHdL">Tolerance</td>
-		<td class="cinfoHdL">Temperature Coefficient</td>
-	</tr>
-	<tr>
-		<td nowrap=""><div style="background-color:#000;width:18px;display:inline-block;border: 1px solid #000;">&nbsp;</div>
-			Black</td>
-		<td align="center">0</td>
-		<td align="center">× 1</td>
-		<td>&nbsp;</td>
-		<td align="center">250 ppm/K (U)</td>
-	</tr>
-	<tr>
-		<td nowrap=""><div style="background-color:#964b00;width:18px;display:inline-block;border: 1px solid #000;">&nbsp;</div>
-			Brown</td>
-		<td align="center">1</td>
-		<td align="center">× 10</td>
-		<td>±1% (F)</td>
-		<td align="center">100 ppm/K (S)</td>
-	</tr>
-	<tr>
-		<td nowrap=""><div style="background-color:#ff0000;width:18px;display:inline-block;border: 1px solid #000;">&nbsp;</div>
-			Red</td>
-		<td align="center">2</td>
-		<td align="center">× 100</td>
-		<td>±2% (G)</td>
-		<td align="center">50 ppm/K (R)</td>
-	</tr>
-	<tr>
-		<td nowrap=""><div style="background-color:#ffa500;width:18px;display:inline-block;border: 1px solid #000;">&nbsp;</div>
-			Orange</td>
-		<td align="center">3</td>
-		<td align="center">× 1K</td>
-		<td>±0.05% (W)</td>
-		<td align="center">15 ppm/K (P)</td>
-	</tr>
-	<tr>
-		<td nowrap=""><div style="background-color:#ffff00;width:18px;display:inline-block;border: 1px solid #000;">&nbsp;</div>
-			Yellow</td>
-		<td align="center">4</td>
-		<td align="center">× 10K</td>
-		<td>±0.02% (P)</td>
-		<td align="center">25 ppm/K (Q)</td>
-	</tr>
-	<tr>
-		<td nowrap=""><div style="background-color:#9acd32;width:18px;display:inline-block;border: 1px solid #000;">&nbsp;</div>
-			Green</td>
-		<td align="center">5</td>
-		<td align="center">× 100K</td>
-		<td>±0.5% (D)</td>
-		<td align="center">20 ppm/K (Z)</td>
-	</tr>
-	<tr>
-		<td nowrap=""><div style="background-color:#6495ed;width:18px;display:inline-block;border: 1px solid #000;">&nbsp;</div>
-			Blue</td>
-		<td align="center">6</td>
-		<td align="center">× 1M</td>
-		<td>±0.25% (C)</td>
-		<td align="center">10 ppm/K (Z)</td>
-	</tr>
-	<tr>
-		<td nowrap=""><div style="background-color:#9400d3;width:18px;display:inline-block;border: 1px solid #000;">&nbsp;</div>
-			Violet</td>
-		<td align="center">7</td>
-		<td align="center">× 10M</td>
-		<td>±0.1% (B)</td>
-		<td align="center">5 ppm/K (M)</td>
-	</tr>
-	<tr>
-		<td nowrap=""><div style="background-color:#a0a0a0;width:18px;display:inline-block;border: 1px solid #000;">&nbsp;</div>
-			Grey</td>
-		<td align="center">8</td>
-		<td align="center">× 100M</td>
-		<td>±0.01% (L)</td>
-		<td align="center">1 ppm/K (K)</td>
-	</tr>
-	<tr>
-		<td nowrap=""><div style="background-color:#fff;width:18px;display:inline-block;border: 1px solid #000;">&nbsp;</div>
-			White</td>
-		<td align="center">9</td>
-		<td align="center">× 1G</td>
-		<td>&nbsp;</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td nowrap=""><div style="background-color:#cfb53b;width:18px;display:inline-block;border: 1px solid #000;">&nbsp;</div>
-			Gold</td>
-		<td>&nbsp;</td>
-		<td align="center">× 0.1</td>
-		<td>±5% (J)</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td nowrap=""><div style="background-color:#c0c0c0;width:18px;display:inline-block;border: 1px solid #000;">&nbsp;</div>
-			Silver</td>
-		<td>&nbsp;</td>
-		<td align="center">× 0.01</td>
-		<td>±10% (K)</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td nowrap=""><div style="background-color:#fff;width:18px;display:inline-block;border: 1px solid #fff;">&nbsp;</div>
-			None</td>
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-		<td>±20% (M)</td>
-		<td>&nbsp;</td>
-	</tr>
-</tbody></table>
-</section>
-<div class="toctree-wrapper compound">
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="resonant-converters">
+<h1>Resonant Converters<a class="headerlink" href="#resonant-converters" title="Permalink to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -560,20 +434,20 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="developments.html"
+       href="state_of_the_art.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Developments</p>
+        <p class="prev-next-title">State of the Art</p>
       </div>
     </a>
     <a class="right-next"
-       href="altium_help.html"
+       href="SOTA_obc.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Altium</p>
+        <p class="prev-next-title">OBC</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -583,20 +457,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-resistance-table">Standard resistance table</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>

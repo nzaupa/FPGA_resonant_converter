@@ -68,8 +68,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../_static/logo2.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Useful Material" href="useful_material.html" />
-    <link rel="prev" title="State of the Art" href="state_of_the_art.html" />
+    <link rel="next" title="Publications" href="publications.html" />
+    <link rel="prev" title="Bibliography" href="SOTA_biblio.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -169,15 +169,15 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resonant Converters</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="state_of_the_art.html">State of the Art</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Developments</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="useful_material.html">Useful Material</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="altium_help.html">Altium</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FPGA_board.html">FPGA board</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="state_of_the_art.html">State of the Art</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="SOTA_resonant_converter.html">Resonant Converters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SOTA_obc.html">OBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SOTA_biblio.html">Bibliography</a></li>
 </ul>
 </li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Developments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="publications.html">Publications</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Control</span></p>
@@ -232,6 +232,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../markdown-notebooks.html">Some ideas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../markdown.html">Markdown Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../notebooks.html">Alt tit toc</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Useful Material</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../handbook/useful_material.html">LAB electronics tips</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handbook/altium_help.html">Altium</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handbook/FPGA_board.html">FPGA board</a></li>
 </ul>
 
     </div>
@@ -433,7 +439,7 @@ max. 500 W) and two resonant tanks:</p>
 <p>2) Low Q tank, with Lr = 10 uH and 1:1 transformer with Lm = 33 uH.</p>
 <section id="transformer">
 <h3>Transformer<a class="headerlink" href="#transformer" title="Permalink to this heading">#</a></h3>
-<p><span id="id1">[<a class="reference internal" href="state_of_the_art.html#id68" title="Le Anh Dao Ta, Ngoc Dat Dao, and Dong-Choon Lee. High-Efficiency Hybrid LLC Resonant Converter for On-Board Chargers of Plug-In Electric Vehicles. IEEE Transactions on Power Electronics, 35(8):8324–8334, August 2020. doi:10.1109/TPEL.2020.2968084.">Ta <em>et al.</em>, 2020</a>]</span>: the magnetizing inductance can be kept low, so that it can be
+<p><span id="id1">[<a class="reference internal" href="SOTA_biblio.html#id43" title="Le Anh Dao Ta, Ngoc Dat Dao, and Dong-Choon Lee. High-Efficiency Hybrid LLC Resonant Converter for On-Board Chargers of Plug-In Electric Vehicles. IEEE Transactions on Power Electronics, 35(8):8324–8334, August 2020. doi:10.1109/TPEL.2020.2968084.">Ta <em>et al.</em>, 2020</a>]</span>: the magnetizing inductance can be kept low, so that it can be
 integrated in the transformer. This allows higher power density.</p>
 </section>
 <section id="sensing-circuit">
@@ -441,7 +447,7 @@ integrated in the transformer. This allows higher power density.</p>
 </section>
 <section id="resonant-tank">
 <h3>Resonant Tank<a class="headerlink" href="#resonant-tank" title="Permalink to this heading">#</a></h3>
-<p><span id="id2">[<a class="reference internal" href="state_of_the_art.html#id39" title="S. De Simone, C. Adragna, and C. Spini. Design guideline for magnetic integration in LLC resonant converters. In Automation and Motion 2008 International Symposium on Power Electronics, Electrical Drives, 950–957. June 2008. doi:10.1109/SPEEDHAM.2008.4581225.">De Simone <em>et al.</em>, 2008</a>]</span> guidelines for the construction of a transformer for a
+<p><span id="id2">[<a class="reference internal" href="SOTA_biblio.html#id14" title="S. De Simone, C. Adragna, and C. Spini. Design guideline for magnetic integration in LLC resonant converters. In Automation and Motion 2008 International Symposium on Power Electronics, Electrical Drives, 950–957. June 2008. doi:10.1109/SPEEDHAM.2008.4581225.">De Simone <em>et al.</em>, 2008</a>]</span> guidelines for the construction of a transformer for a
 LLC converter which includes all inductors inside it <a class="reference external" href="https://ieeexplore.ieee.org/document/4581225">IEEE
 link</a>
 [<span class="math notranslate nohighlight">\(f_r=\SI{120}{kHz}\)</span>, <span class="math notranslate nohighlight">\(L_r=\SI{56}{\mu H}\)</span>, <span class="math notranslate nohighlight">\(L_p=\si{305}{\mu +H}\)</span>]</p>
@@ -505,20 +511,20 @@ addition to the control one.</p>
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="state_of_the_art.html"
+       href="SOTA_biblio.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">State of the Art</p>
+        <p class="prev-next-title">Bibliography</p>
       </div>
     </a>
     <a class="right-next"
-       href="useful_material.html"
+       href="publications.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Useful Material</p>
+        <p class="prev-next-title">Publications</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

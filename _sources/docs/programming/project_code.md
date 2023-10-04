@@ -26,8 +26,6 @@ In the last version is
 
 ---
 
----
-
 ## Crush course on how to get an run the program
 
 i.e.
