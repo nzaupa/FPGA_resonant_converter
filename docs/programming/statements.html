@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -180,21 +181,27 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Control</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../control/RT_control.html">Oscillation controls</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../control/RT_control.html">Oscillation controls</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../control/RT_model.html">Unified model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../control/RT_theta.html"><span class="math notranslate nohighlight">\(\theta\)</span> control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../control/RT_phi.html"><span class="math notranslate nohighlight">\(\varphi\)</span>-control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../control/RT_theta_phi.html"><span class="math notranslate nohighlight">\(\theta-\varphi\)</span> control</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../control/RC_control.html">Closed-loop control</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Electronic design</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../design/overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design/power_stage.html">Power stage</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../design/RT_resonant_tank_design.html">Resonant Tank</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../design/RT_resonant_tank_design.html">Resonant Tank</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../design/RT_sensing.html">Sensing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../design/RT_signal_transformer_design.html">Signal Transformers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../design/RT_trafo_calc.html">Transformer calculation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../design/RT_pcb.html">PCB design</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../design/RC_rectifier_design.html">Rectifier</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../design/RC_rectifier_design.html">Rectifier</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../design/RC_sensing.html">Sensing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../design/RC_ADC.html">ADCs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../design/simulation.html">Simulation</a></li>
@@ -204,17 +211,17 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">FPGA programming</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="HDL_env.html">HDL Environment</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="HDL_env.html">HDL Environment</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="quartus.html">Quartus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="VSC_env.html">Visual Studio Code</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="verilog_guide.html">Verilog coding</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="verilog_guide.html">Verilog coding</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="modules.html">Modules</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Statements and Blocks</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="project_code.html">Project Code</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="project_code.html">Project Code</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="blocks.html">Modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="code_structure.html">Code structure</a></li>
 </ul>

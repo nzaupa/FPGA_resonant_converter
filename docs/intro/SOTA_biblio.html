@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -180,21 +181,27 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Control</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../control/RT_control.html">Oscillation controls</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../control/RT_control.html">Oscillation controls</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../control/RT_model.html">Unified model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../control/RT_theta.html"><span class="math notranslate nohighlight">\(\theta\)</span> control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../control/RT_phi.html"><span class="math notranslate nohighlight">\(\varphi\)</span>-control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../control/RT_theta_phi.html"><span class="math notranslate nohighlight">\(\theta-\varphi\)</span> control</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../control/RC_control.html">Closed-loop control</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Electronic design</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../design/overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design/power_stage.html">Power stage</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../design/RT_resonant_tank_design.html">Resonant Tank</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../design/RT_resonant_tank_design.html">Resonant Tank</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../design/RT_sensing.html">Sensing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../design/RT_signal_transformer_design.html">Signal Transformers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../design/RT_trafo_calc.html">Transformer calculation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../design/RT_pcb.html">PCB design</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../design/RC_rectifier_design.html">Rectifier</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../design/RC_rectifier_design.html">Rectifier</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../design/RC_sensing.html">Sensing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../design/RC_ADC.html">ADCs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../design/simulation.html">Simulation</a></li>
@@ -204,17 +211,17 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">FPGA programming</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../programming/HDL_env.html">HDL Environment</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../programming/HDL_env.html">HDL Environment</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../programming/quartus.html">Quartus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../programming/VSC_env.html">Visual Studio Code</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../programming/verilog_guide.html">Verilog coding</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../programming/verilog_guide.html">Verilog coding</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../programming/modules.html">Modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../programming/statements.html">Statements and Blocks</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../programming/project_code.html">Project Code</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../programming/project_code.html">Project Code</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../programming/blocks.html">Modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../programming/code_structure.html">Code structure</a></li>
 </ul>
@@ -402,104 +409,208 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="bibliography">
 <h1>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this heading">#</a></h1>
 <div class="docutils container" id="id1">
-<div class="citation" id="id13" role="doc-biblioentry">
+<div class="citation" id="id84" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p>O. Lucía, J. M. Burdío, I. Millán, J. Acero, and L. A. Barragán. Efficiency-oriented design of ZVS half-bridge series resonant inverter with variable frequency duty cycle control. <em>IEEE Transactions on Power Electronics</em>, 2010.</p>
+</div>
+<div class="citation" id="id85" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<p>J. Park and S. Choi. Design and control of a bidirectional resonant DC-DC converter for automotive engine/battery hybrid power generators. <em>IEEE Transactions on Power Electronics</em>, 2014.</p>
+</div>
+<div class="citation" id="id91" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></span>
+<p>AK. Bhat. A unified approach for the steady-state analysis of resonant converters. <em>IEEE Transactions on industrial electronics.</em>, 1991.</p>
+</div>
+<div class="citation" id="id90" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></span>
+<p>C. Cutrona and C. Di Miceli. A unified approach to series, parallel and series-parallel resonant converters. <em>In Proceedings of 14th International Telecommunications Energy Conference (pp. 139-146).</em>, 1992.</p>
+</div>
+<div class="citation" id="id92" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></span>
+<p>S. Sooksatra. A unified approach to the classification and analyses of resonant converters. <em>Doctoral dissertation, University of Illinois at Chicago</em>, 1991.</p>
+</div>
+<div class="citation" id="id93" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></span>
+<p>R. Silva-Ortigoza and H. Sira-Ramírez. Control of a parallel resonant inverter. <em>In 43rd IEEE Conference on Decision and Control.</em>, 2004.</p>
+</div>
+<div class="citation" id="id94" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></span>
+<p>H. Sira-Ramírez and R Silva-Ortigoza. On the control of the resonant converter: a hybrid-flatness approach. <em>In Proceedings of 15th International Symposium on Mathematical Theory of Networks and Systems.</em>, 2002.</p>
+</div>
+<div class="citation" id="id95" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>8<span class="fn-bracket">]</span></span>
+<p>VM. Hernández, R. Silva, and H. Sira-Ramírez. On the stability of limit cycles in resonant dc-to-dc power converters. <em>In 42nd IEEE Conference on Decision and Control (pp. 1141-1146).</em>, 2003.</p>
+</div>
+<div class="citation" id="id77" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>9<span class="fn-bracket">]</span></span>
+<p>H. Molla-Ahmadian, A. Karimpour, N. Pariz, and F. Tahami. Hybrid modeling of a DC-DC series resonant converter: direct piecewise affine approach. <em>IEEE Transactions on Circuits and Systems I: Regular Papers</em>, 2012.</p>
+</div>
+<div class="citation" id="id78" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>10<span class="fn-bracket">]</span></span>
+<p>H. Molla-Ahmadian, F. Tahami, A. Karimpour, and N. Pariz. Hybrid control of DC-DC series resonant converters: the direct piecewise affine approach. <em>IEEE Transactions on Power Electronics</em>, 2015.</p>
+</div>
+<div class="citation" id="id79" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>11<span class="fn-bracket">]</span></span>
+<p>Hamid Afshang, Farzad Tahami, and Hamed Mollaahmadian. Hybrid control of the DC-DC series resonant converter operating below resonance. <em>IET Power Electronics</em>, 10:, 10 2016.</p>
+</div>
+<div class="citation" id="id72" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>12<span class="fn-bracket">]</span></span>
+<p>R. Bonache-Samaniego, C. Olalla, L. Martínez-Salamero, and H. Valderrama-Blavi. Design of self-oscillating resonant converters based on a variable structure systems approach. <em>IET Power Electronics</em>, 9(1):111–119, 2016.</p>
+</div>
+<div class="citation" id="id73" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>13<span class="fn-bracket">]</span></span>
+<p>R. Bonache-Samaniego, C. Olalla, and L. Martínez-Salamero. Dynamic modeling and control of self-oscillating parallel resonant converters based on a variable structure systems approach. <em>IEEE Transactions on Power Electronics</em>, 32(2):1469–1480, 2017.</p>
+</div>
+<div class="citation" id="id86" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>14<span class="fn-bracket">]</span></span>
+<p>A. El Aroudi, L. Benadero, E. Ponce, C. Olalla, F. Torres, and L. Martinez-Salamero. Suppression of undesired attractors in a self-oscillating H-Bridge parallel resonant converters under zero current switching control. <em>IEEE Transactions on Circuits and Systems II: Express Briefs</em>, 2019.</p>
+</div>
+<div class="citation" id="id74" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>15<span class="fn-bracket">]</span></span>
+<p>R. Goebel, R.G. Sanfelice, and A.R. Teel. <em>Hybrid Dynamical Systems: modeling, stability, and robustness</em>. Princeton University Press, 2012.</p>
+</div>
+<div class="citation" id="id68" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>16<span class="fn-bracket">]</span></span>
+<p>J. Chai and R.G. Sanfelice. A robust hybrid control algorithm for a single-phase DC/AC inverter with variable input voltage. In <em>Proc. of the 2014 American Control Conference</em>, 1420–1425. 2014.</p>
+</div>
+<div class="citation" id="id69" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>17<span class="fn-bracket">]</span></span>
+<p>L. Torquati, R. Sanfelice, and L. Zaccarian. A hybrid predictive control algorithm for tracking in a single-phase DC/AC inverter. In <em>IEEE Conference on Control Technology and Applications</em>, 904–909. Kohala Coast (HI), USA, August 2017.</p>
+</div>
+<div class="citation" id="id65" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>18<span class="fn-bracket">]</span></span>
+<p>T. A.F. Theunisse, J. Chai, R.G. Sanfelice, and W.P. Heemels. Robust global stabilization of the DC-DC boost converter via hybrid control. <em>IEEE Trans. on Circuits and Systems I: Regular Papers</em>, 62(4):1052–1061, 2015.</p>
+</div>
+<div class="citation" id="id67" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>19<span class="fn-bracket">]</span></span>
+<p>C. Albea-Sanchez, G. Garcia, S. Hadjeras, W.P.M.H. Heemels, and L. Zaccarian. Practical stabilisation of switched affine systems with dwell-time guarantees. <em>IEEE Transactions on Automatic Control</em>, 64(11):4811–4817, 2019.</p>
+</div>
+<div class="citation" id="id66" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>20<span class="fn-bracket">]</span></span>
+<p>Antonino Sferlazza, Carolina Albea-Sanchez, Luis Martínez-Salamero, Germain Garcia, and Corinne Alonso. Min-type control strategy of a DC-DC synchronous boost converter. <em>IEEE Transactions on Industrial Electronics</em>, 2019.</p>
+</div>
+<div class="citation" id="id64" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>21<span class="fn-bracket">]</span></span>
+<p>Antonino Sferlazza, Carolina Albea-Sanchez, and Germain Garcia. A hybrid control strategy for quadratic boost converters with inductor currents estimation. <em>Control Engineering Practice</em>, 2020.</p>
+</div>
+<div class="citation" id="id63" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>22<span class="fn-bracket">]</span></span>
+<p>Nicola Zaupa, Luis Martínez-Salamero, Carlos Olalla, and Luca Zaccarian. Results on hybrid control of self-oscillating resonant converters. In <em>IFAC Conference on Analysis and Design of Hybrid Systems</em>. July 2021.</p>
+</div>
+<div class="citation" id="id13" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>23<span class="fn-bracket">]</span></span>
 <p>Junjun Deng, Siqi Li, Sideng Hu, Chunting Chris Mi, and Ruiqing Ma. Design Methodology of LLC Resonant Converters for Electric Vehicle Battery Chargers. <em>IEEE Transactions on Vehicular Technology</em>, 63(4):1581–1592, May 2014. <a class="reference external" href="https://doi.org/10.1109/TVT.2013.2287379">doi:10.1109/TVT.2013.2287379</a>.</p>
 </div>
 <div class="citation" id="id41" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>24<span class="fn-bracket">]</span></span>
 <p>Mohamed Salem, Awang Jusoh, N. Rumzi N. Idris, Himadry Shekhar Das, and Ibrahim Alhamrouni. Resonant power converters with respect to passive storage (LC) elements and control techniques – An overview. <em>Renewable and Sustainable Energy Reviews</em>, 91:504–520, August 2018. <a class="reference external" href="https://doi.org/10.1016/j.rser.2018.04.020">doi:10.1016/j.rser.2018.04.020</a>.</p>
 </div>
 <div class="citation" id="id40" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>25<span class="fn-bracket">]</span></span>
 <p>Md Safayatullah, Mohamed Tamasas Elrais, Sumana Ghosh, Reza Rezaii, and Issa Batarseh. A Comprehensive Review of Power Converter Topologies and Control Methods for Electric Vehicle Fast Charging Applications. <em>IEEE Access</em>, 10:40753–40793, 2022. <a class="reference external" href="https://doi.org/10.1109/ACCESS.2022.3166935">doi:10.1109/ACCESS.2022.3166935</a>.</p>
 </div>
 <div class="citation" id="id11" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>26<span class="fn-bracket">]</span></span>
 <p>J.M. Burdio, F. Canales, P.M. Barbosa, and F.C. Lee. Comparison study of fixed-frequency control strategies for ZVS DC/DC series resonant converters. In <em>2001 IEEE 32nd Annual Power Electronics Specialists Conference (IEEE Cat. No.01CH37230)</em>, volume 1, 427–432 vol. 1. June 2001. <a class="reference external" href="https://doi.org/10.1109/PESC.2001.954057">doi:10.1109/PESC.2001.954057</a>.</p>
 </div>
 <div class="citation" id="id23" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>27<span class="fn-bracket">]</span></span>
 <p>Nicola Zaupa, Carlos Olalla, Isabelle Queinnec, Luis Martínez-Salamero, and Luca Zaccarian. Hybrid Control of Self-Oscillating Resonant Converters With Three-Level Input. <em>IEEE Control Systems Letters</em>, 7:1375–1380, 2023. <a class="reference external" href="https://doi.org/10.1109/LCSYS.2023.3240887">doi:10.1109/LCSYS.2023.3240887</a>.</p>
 </div>
 <div class="citation" id="id54" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>28<span class="fn-bracket">]</span></span>
 <p>M.Z. Youssef and P.K. Jain. A review and performance evaluation of control techniques in resonant converters. In <em>30th Annual Conference of IEEE Industrial Electronics Society, 2004. IECON 2004</em>, volume 1, 215–221 Vol. 1. November 2004. <a class="reference external" href="https://doi.org/10.1109/IECON.2004.1433312">doi:10.1109/IECON.2004.1433312</a>.</p>
 </div>
 <div class="citation" id="id10" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>29<span class="fn-bracket">]</span></span>
 <p>Ricardo Bonache-Samaniego, Carlos Olalla, Hugo Valderrama-Blavi, and Luis Martínez-Salamero. Analysis and Design of Self-Oscillating Resonant Converters with Loss-Free Resistor Characteristics. <em>Energies</em>, 13(14):3743, January 2020. <a class="reference external" href="https://doi.org/10.3390/en13143743">doi:10.3390/en13143743</a>.</p>
 </div>
 <div class="citation" id="id22" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>8<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>30<span class="fn-bracket">]</span></span>
 <p>Nicola Zaupa, Luis Martínez-Salamero, Carlos Olalla, and Luca Zaccarian. Hybrid Control of Self-Oscillating Resonant Converters. <em>IEEE Transactions on Control Systems Technology</em>, 31(2):881–888, March 2023. <a class="reference external" href="https://doi.org/10.1109/TCST.2022.3179948">doi:10.1109/TCST.2022.3179948</a>.</p>
 </div>
 <div class="citation" id="id55" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>9<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>31<span class="fn-bracket">]</span></span>
 <p>M.Z. Youssef, H. Pinheiro, and P.K. Jain. Self-sustained phase-shift modulated resonant converters: modeling, design, and performance. <em>IEEE Transactions on Power Electronics</em>, 21(2):401–414, March 2006. <a class="reference external" href="https://doi.org/10.1109/TPEL.2005.869751">doi:10.1109/TPEL.2005.869751</a>.</p>
 </div>
 <div class="citation" id="id38" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>10<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>32<span class="fn-bracket">]</span></span>
 <p>Yue Qin, Chunguang Ren, Jiansheng Kong, Baifu Zhang, Xiaoqing Han, and Zixu Dong. High Efficiency Resonant Converter with Smooth Frequency Regulation for Wide Input Voltage Applications. In <em>2022 IEEE International Power Electronics and Application Conference and Exposition (PEAC)</em>, 1115–1119. November 2022. <a class="reference external" href="https://doi.org/10.1109/PEAC56338.2022.9959481">doi:10.1109/PEAC56338.2022.9959481</a>.</p>
 </div>
 <div class="citation" id="id12" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>11<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>33<span class="fn-bracket">]</span></span>
 <p>Davide Cittanti, Matteo Gregorio, Enrico Vico, Fabio Mandrile, Eric Armando, and Radu Bojoi. High-Performance Digital Multiloop Control of LLC Resonant Converters for EV Fast Charging With LUT-Based Feedforward and Adaptive Gain. <em>IEEE Transactions on Industry Applications</em>, 58(5):6266–6285, September 2022. <a class="reference external" href="https://doi.org/10.1109/TIA.2022.3178394">doi:10.1109/TIA.2022.3178394</a>.</p>
 </div>
 <div class="citation" id="id39" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>12<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>34<span class="fn-bracket">]</span></span>
 <p>Masoud Saadati, Abbas Ghayebloo, and Asghar Taheri. A novel analog controller design scheme for LLC resonant converter used in battery charging application. <em>IET Power Electronics</em>, 15(9):802–814, 2022. <a class="reference external" href="https://doi.org/10.1049/pel2.12269">doi:10.1049/pel2.12269</a>.</p>
 </div>
 <div class="citation" id="id5" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>13<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>35<span class="fn-bracket">]</span></span>
 <p>Mariusz Bojarski, Kiran Krishnan Kutty, Dariusz Czarkowski, and Francisco de Leon. Multiphase resonant inverters for bidirectional wireless power transfer. In <em>2014 IEEE International Electric Vehicle Conference (IEVC)</em>, 1–7. December 2014. <a class="reference external" href="https://doi.org/10.1109/IEVC.2014.7056191">doi:10.1109/IEVC.2014.7056191</a>.</p>
 </div>
 <div class="citation" id="id6" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>14<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>36<span class="fn-bracket">]</span></span>
 <p>Mariusz Bojarski, Erdem Asa, Maria Teresa Outeiro, and Dariusz Czarkowski. Control and analysis of multi-level type multi-phase resonant converter for wireless EV charging. In <em>IECON 2015 - 41st Annual Conference of the IEEE Industrial Electronics Society</em>, 005008–005013. November 2015. <a class="reference external" href="https://doi.org/10.1109/IECON.2015.7392886">doi:10.1109/IECON.2015.7392886</a>.</p>
 </div>
 <div class="citation" id="id7" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>15<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>37<span class="fn-bracket">]</span></span>
 <p>Mariusz Bojarski, Erdem Asa, Kerim Colak, and Dariusz Czarkowski. A 25 kW industrial prototype wireless electric vehicle charger. In <em>2016 IEEE Applied Power Electronics Conference and Exposition (APEC)</em>, 1756–1761. March 2016. <a class="reference external" href="https://doi.org/10.1109/APEC.2016.7468105">doi:10.1109/APEC.2016.7468105</a>.</p>
 </div>
 <div class="citation" id="id35" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>16<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>38<span class="fn-bracket">]</span></span>
 <p>Antony K. Peter and Jaison Mathew. A Single Phase, Single Stage AC-DC Multilevel LLC Resonant Converter With Power Factor Correction. <em>IEEE Access</em>, 9:70884–70895, 2021. <a class="reference external" href="https://doi.org/10.1109/ACCESS.2021.3078300">doi:10.1109/ACCESS.2021.3078300</a>.</p>
 </div>
 <div class="citation" id="id3" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>17<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>39<span class="fn-bracket">]</span></span>
 <p>Salah Alatai, Mohamed Salem, Ibrahim Alhamrouni, Dahaman Ishak, Ali Bughneda, and Mohamad Kamarol. Design Methodology and Analysis of Five-Level LLC Resonant Converter for Battery Chargers. <em>Sustainability</em>, 14(14):8255, January 2022. <a class="reference external" href="https://doi.org/10.3390/su14148255">doi:10.3390/su14148255</a>.</p>
 </div>
 <div class="citation" id="id24" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>18<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>40<span class="fn-bracket">]</span></span>
 <p>Fuxin Liu, Yue Chen, and Xuling Chen. Comprehensive Analysis of Three-Phase Three-Level LC-Type Resonant DC/DC Converter With Variable Frequency Control—Series Resonant Converter. <em>IEEE Transactions on Power Electronics</em>, 32(7):5122–5131, July 2017. <a class="reference external" href="https://doi.org/10.1109/TPEL.2016.2613127">doi:10.1109/TPEL.2016.2613127</a>.</p>
 </div>
 <div class="citation" id="id43" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>19<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>41<span class="fn-bracket">]</span></span>
 <p>Le Anh Dao Ta, Ngoc Dat Dao, and Dong-Choon Lee. High-Efficiency Hybrid LLC Resonant Converter for On-Board Chargers of Plug-In Electric Vehicles. <em>IEEE Transactions on Power Electronics</em>, 35(8):8324–8334, August 2020. <a class="reference external" href="https://doi.org/10.1109/TPEL.2020.2968084">doi:10.1109/TPEL.2020.2968084</a>.</p>
 </div>
 <div class="citation" id="id25" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>20<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>42<span class="fn-bracket">]</span></span>
 <p>Haoran Li, Zhiliang Zhang, Shengdong Wang, Jiacheng Tang, Xiaoyong Ren, and Qianhong Chen. A 300-kHz 6.6-kW SiC Bidirectional LLC Onboard Charger. <em>IEEE Transactions on Industrial Electronics</em>, 67(2):1435–1445, February 2020. <a class="reference external" href="https://doi.org/10.1109/TIE.2019.2910048">doi:10.1109/TIE.2019.2910048</a>.</p>
 </div>
 <div class="citation" id="id26" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>21<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>43<span class="fn-bracket">]</span></span>
 <p>Xiaobin Li, Hongbo Ma, Sheng Ren, Junhong Yi, Song Lu, and Quanyuan Feng. A Novel LCL Resonant Converter With Inherent CC-CV Output for On-Board Chargers of Plug-In Electric Vehicles. <em>IEEE Transactions on Power Electronics</em>, 38(4):4212–4217, April 2023. <a class="reference external" href="https://doi.org/10.1109/TPEL.2022.3229025">doi:10.1109/TPEL.2022.3229025</a>.</p>
 </div>
 <div class="citation" id="id50" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>22<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>44<span class="fn-bracket">]</span></span>
 <p>Fengjiang Wu, Kaixuan Wang, Guangfu Hu, Yang Shen, and Suhua Luo. Overview of Single-Stage High-Frequency Isolated AC–DC Converters and Modulation Strategies. <em>IEEE Transactions on Power Electronics</em>, 38(2):1583–1598, February 2023. <a class="reference external" href="https://doi.org/10.1109/TPEL.2022.3210745">doi:10.1109/TPEL.2022.3210745</a>.</p>
 </div>
 <div class="citation" id="id14" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>23<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>45<span class="fn-bracket">]</span></span>
 <p>S. De Simone, C. Adragna, and C. Spini. Design guideline for magnetic integration in LLC resonant converters. In <em>Automation and Motion 2008 International Symposium on Power Electronics, Electrical Drives</em>, 950–957. June 2008. <a class="reference external" href="https://doi.org/10.1109/SPEEDHAM.2008.4581225">doi:10.1109/SPEEDHAM.2008.4581225</a>.</p>
 </div>
+<div class="citation" id="id76" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>46<span class="fn-bracket">]</span></span>
+<p>A. Bisoffi, F. Forni, M. Da Lio, and L. Zaccarian. Global results on reset-induced periodic trajectories of planar systems. In <em>European Control Conference</em>, 2644–2649. June 2016.</p>
+</div>
+<div class="citation" id="id75" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>47<span class="fn-bracket">]</span></span>
+<p>A. Bisoffi, F. Forni, M. Da Lio, and L. Zaccarian. Relay-based hybrid control of minimal-order mechanical systems with applications. <em>Automatica</em>, 97:104–114, 2018.</p>
+</div>
+<div class="citation" id="id61" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>48<span class="fn-bracket">]</span></span>
+<p>Xuyang Lou, Yuchun Li, and Ricardo G. Sanfelice. Robust stability of hybrid limit cycles with multiple jumps in hybrid dynamical systems. <em>IEEE Transactions on Automatic Control</em>, 63(4):1220–1226, 2018. <a class="reference external" href="https://doi.org/10.1109/TAC.2018.2797219">doi:10.1109/TAC.2018.2797219</a>.</p>
+</div>
+<div class="citation" id="id70" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>49<span class="fn-bracket">]</span></span>
+<p>A. Seuret, C. Prieur, S. Tarbouriech, A.R. Teel, and L. Zaccarian. A nonsmooth hybrid invariance principle applied to robust event-triggered design. <em>IEEE TAC</em>, 64(5):2061–2068, 2019.</p>
+</div>
 <div class="citation" id="id16" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>24<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>50<span class="fn-bracket">]</span></span>
 <p>Robert W. Erickson and Dragan Maksimović. <em>Fundamentals of Power Electronics</em>. Springer International Publishing, Cham, 2020. ISBN 978-3-030-43879-1 978-3-030-43881-4. <a class="reference external" href="https://doi.org/10.1007/978-3-030-43881-4">doi:10.1007/978-3-030-43881-4</a>.</p>
 </div>
 <div class="citation" id="id56" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>25<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>51<span class="fn-bracket">]</span></span>
 <p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
 </div>
 </div>

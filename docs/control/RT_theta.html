@@ -1,0 +1,847 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>\(\theta\) control &#8212; Resonant Converter 2023</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/control/RT_theta';</script>
+    <link rel="shortcut icon" href="../../_static/logo2.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="\(\varphi\)-control" href="RT_phi.html" />
+    <link rel="prev" title="Unified model" href="RT_model.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo2.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo2.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Index
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro/state_of_the_art.html">State of the Art</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/SOTA_resonant_converter.html">Resonant Converters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/SOTA_obc.html">OBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/SOTA_biblio.html">Bibliography</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/developments.html">Developments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/publications.html">Publications</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Control</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="RT_control.html">Oscillation controls</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="RT_model.html">Unified model</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#"><span class="math notranslate nohighlight">\(\theta\)</span> control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RT_phi.html"><span class="math notranslate nohighlight">\(\varphi\)</span>-control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RT_theta_phi.html"><span class="math notranslate nohighlight">\(\theta-\varphi\)</span> control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="RC_control.html">Closed-loop control</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Electronic design</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../design/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/power_stage.html">Power stage</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../design/RT_resonant_tank_design.html">Resonant Tank</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../design/RT_sensing.html">Sensing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/RT_signal_transformer_design.html">Signal Transformers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/RT_trafo_calc.html">Transformer calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/RT_pcb.html">PCB design</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../design/RC_rectifier_design.html">Rectifier</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../design/RC_sensing.html">Sensing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/RC_ADC.html">ADCs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/simulation.html">Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/RC_pcb.html">PCB design</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">FPGA programming</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../programming/HDL_env.html">HDL Environment</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../programming/quartus.html">Quartus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../programming/VSC_env.html">Visual Studio Code</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../programming/verilog_guide.html">Verilog coding</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../programming/modules.html">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../programming/statements.html">Statements and Blocks</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../programming/project_code.html">Project Code</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../programming/blocks.html">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../programming/code_structure.html">Code structure</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Diary</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../diary/2020_diary.html">Diary 2020-2022</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diary/2023_diary.html">Diary 2023</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Template</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../markdown-notebooks.html">Some ideas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notebooks.html">Alt tit toc</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Useful Material</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../handbook/useful_material.html">LAB electronics tips</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handbook/altium_help.html">Altium</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handbook/FPGA_board.html">FPGA board</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/nzaupa/FPGA_resonant_converter" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/control/RT_theta.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>\theta control</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hybrid-model-and-switching-law">Hybrid model and switching law</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#asymtotically-stable-hybrid-limit-cycle">Asymtotically Stable Hybrid Limit Cycle</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#main-stability-theorem">Main Stability Theorem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hybrid-lyapunov-function-and-proof-of-th-main">Hybrid Lyapunov function and proof of <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">th:main</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="theta-control">
+<h1><span class="math notranslate nohighlight">\(\theta\)</span> control<a class="headerlink" href="#theta-control" title="Permalink to this heading">#</a></h1>
+<section id="hybrid-model-and-switching-law">
+<h2>Hybrid model and switching law<a class="headerlink" href="#hybrid-model-and-switching-law" title="Permalink to this heading">#</a></h2>
+<p>The following unified dynamics represents both the parallel and series resonant converters, where we recall that <span class="math notranslate nohighlight">\(z=(z_1,z_2) \in \mathbb R^2\)</span> is a physical state related to the current and voltage in the circuit, and <span class="math notranslate nohighlight">\(\sigma \in \{-1,1\}\)</span> is a logical state representing the position of the switch:</p>
+<div class="math notranslate nohighlight" id="equation-eq-hyb-dynamics">
+<span class="eqno">(7)<a class="headerlink" href="#equation-eq-hyb-dynamics" title="Permalink to this equation">#</a></span>\[\begin{split}	\begin{align}
+		\begin{bmatrix}
+			\dot z \\ \dot\sigma
+		\end{bmatrix} = f(z,\sigma)&amp;:=
+		\begin{bmatrix}
+			A_F z \\ 0
+		\end{bmatrix}
+	 &amp;&amp; (z,\sigma) \in \mathcal C (\theta)\\
+	\begin{bmatrix}
+		z^+ \\ \sigma^+
+	\end{bmatrix} = g(z,\sigma)&amp;:=
+	\begin{bmatrix}
+		z + \begin{bmatrix}2\sigma \\ 0\end{bmatrix} \\ -\sigma
+	\end{bmatrix}
+	 &amp;&amp; (z,\sigma) \in \mathcal D (\theta), 
+	\end{align}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(A_F := \left[ \begin{smallmatrix} 0 &amp; \omega\\ -\omega &amp; -\beta\end{smallmatrix} \right]\)</span>, <span class="math notranslate nohighlight">\(\omega&gt;0\)</span> is the natural frequency  and <span class="math notranslate nohighlight">\(\beta&gt;0\)</span> is the internal dissipation.</p>
+<p>The sets <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> in <a class="reference internal" href="#equation-eq-hyb-dynamics">(7)</a> are called, respectively, <em>flow set</em> and <em>jump set</em> and are subsets of <span class="math notranslate nohighlight">\(\mathbb R^2 \times \{-1,1\}\)</span> whose intuitive meaning is that whenever the (augmented) state <span class="math notranslate nohighlight">\(\xi:= (z, \sigma)\)</span> belongs to <span class="math notranslate nohighlight">\(\mathcal{D}\)</span>, it is time to change the switch position in the H-bridge driving the converter, whereas as long as <span class="math notranslate nohighlight">\(\xi \in \mathcal{C}\)</span>, one may let the converter evolve continuously without changing the switch position.
+We design below <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{D}\)</span>, parametrized by a so-called <em>switching angle</em> <span class="math notranslate nohighlight">\(\theta\in (0,\pi]\)</span>, representing a tuning knob of the proposed hybrid controller.</p>
+<p>Following similar ideas to those in <span id="id1">[<a class="reference internal" href="../intro/SOTA_biblio.html#id73" title="R. Bonache-Samaniego, C. Olalla, and L. Martínez-Salamero. Dynamic modeling and control of self-oscillating parallel resonant converters based on a variable structure systems approach. IEEE Transactions on Power Electronics, 32(2):1469-1480, 2017.">Bonache-Samaniego <em>et al.</em>, 2017</a>]</span>, select the jump and the flow sets as</p>
+<div class="math notranslate nohighlight" id="equation-eq-cd-sets">
+<span class="eqno">(8)<a class="headerlink" href="#equation-eq-cd-sets" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{align}
+\begin{array}{rl}
+    \mathcal{C}(\theta) &amp;:= \mathcal{C}_1(\theta) \cup \mathcal{C}_{\mathrm{-}1}(\theta) , \\
+  \mathcal{D}(\theta) &amp;:= \mathcal{D}_1(\theta) \cup \mathcal{D}_{\mathrm{-}1}(\theta) ,
+\end{array}
+\end{align} 
+\end{split}\]</div>
+<p>where each set <span class="math notranslate nohighlight">\(\mathcal{C}_1\)</span> and <span class="math notranslate nohighlight">\(\mathcal{C}_{\mathrm{-}1}\)</span> denotes a half plane
+and <span class="math notranslate nohighlight">\(\mathcal{D}_1\)</span> and <span class="math notranslate nohighlight">\(\mathcal{D}_{\mathrm{-}1}\)</span> are two half lines delimiting the flow sets, namely for each <span class="math notranslate nohighlight">\(q\in \{1, \mathrm{-}1\}\)</span>,</p>
+<div class="math notranslate nohighlight" id="equation-eq-d-sets">
+<span class="eqno">(9)<a class="headerlink" href="#equation-eq-d-sets" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{align}
+  \label{eq:C_sets}
+  \mathcal{C}_q(\theta) &amp;:= \{ (z,\sigma) : \; \sigma=q, 
+  \sigma(z_1 \sin \theta + z_2 \cos \theta) \le 0 \},\\
+	\mathcal{D}_q(\theta) &amp;:= \{ (z,\sigma): \;  \sigma=q,
+	\sigma z_2\ge0, z_1 \sin \theta + z_2 \cos \theta = 0 \},
+\end{align} 
+\end{split}\]</div>
+<!-- \begin{figure}[ht!]
+	\centering
+	\includegraphics[width=\columnwidth]{phase_map_z_double}
+	\caption{Projection on the phase plane $(z_1,z_2)$ of two possible solutions of system {eq}`eq:hyb_dynamics}, {eq}`eq:CD_sets` with $\theta<\frac{\pi}{2}$ (left) and $\theta > \frac{\pi}{2}$ (right).}
+	\label{fig:illustration}
+\end{figure}  -->
+<p>The rationale behind the switching mechanism captured by <a class="reference internal" href="#equation-eq-cd-sets">(8)</a> is illustrated in <code class="xref std std-numref docutils literal notranslate"><span class="pre">fig:illustration</span></code>, where two possible trajectories are shown by projecting the three-dimensional state-space <span class="math notranslate nohighlight">\((z_1,z_2,\sigma)\)</span> on the <em>phase plane</em> <span class="math notranslate nohighlight">\((z_1,z_2)\)</span> (voltage, current). The left figure represents the case <span class="math notranslate nohighlight">\(\theta&lt; \frac{\pi}{2}\)</span> while the right figure corresponds to <span class="math notranslate nohighlight">\(\theta&gt;\frac{\pi}{2}\)</span>.
+During flowing (in <span class="math notranslate nohighlight">\(\mathcal{C}(\theta)\)</span>), the continuous evolution revolves in the clockwise direction. Switching always occurs when the continuous motion hits the tilted solid line.
+When a switch occurs, the <span class="math notranslate nohighlight">\(z_1\)</span> voltage is shifted horizontally by two units, and the specific choice of <span class="math notranslate nohighlight">\(\mathcal{C}(\theta)\)</span> and <span class="math notranslate nohighlight">\(\mathcal{D}(\theta)\)</span> ensures that shifts always provide a clockwise rotation.<br />
+The choice to split <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> in two half lines regularizes the domain avoiding Zeno solutions with <span class="math notranslate nohighlight">\(\theta = \pi\)</span>. With this choice, after a solution jumps, it is forced to flow because it never lands again into the jump set.
+The angle <span class="math notranslate nohighlight">\(\theta\)</span> controls the tilting of the blue-red line, namely the subspace where the switch takes place.
+It is apparent that with small values of <span class="math notranslate nohighlight">\(\theta\)</span> (left case in <code class="xref std std-numref docutils literal notranslate"><span class="pre">fig:illustration</span></code>) solutions
+are forced to jump <em>earlier</em> when starting from the same initial condition.</p>
+<p>Selection <a class="reference internal" href="#equation-eq-cd-sets">(8)</a> provides a feedback control law. Indeed, checking whether or not the converter input should switch amounts to checking whether the state <span class="math notranslate nohighlight">\(\xi=(z,\sigma)\)</span> belongs to <span class="math notranslate nohighlight">\(\mathcal{D}(\theta)\)</span> or not. We show here that this feedback induces
+a self-oscillating behavior in the closed loop
+<a class="reference internal" href="#equation-eq-hyb-dynamics">(7)</a>, <a class="reference internal" href="#equation-eq-cd-sets">(8)</a>.</p>
+</section>
+<section id="asymtotically-stable-hybrid-limit-cycle">
+<h2>Asymtotically Stable Hybrid Limit Cycle<a class="headerlink" href="#asymtotically-stable-hybrid-limit-cycle" title="Permalink to this heading">#</a></h2>
+<section id="main-stability-theorem">
+<h3>Main Stability Theorem<a class="headerlink" href="#main-stability-theorem" title="Permalink to this heading">#</a></h3>
+<p>According to <span id="id2">[<a class="reference internal" href="../intro/SOTA_biblio.html#id75" title="A. Bisoffi, F. Forni, M. Da Lio, and L. Zaccarian. Relay-based hybrid control of minimal-order mechanical systems with applications. Automatica, 97:104–114, 2018.">Bisoffi <em>et al.</em>, 2018</a>]</span>, the notion of periodicity for a hybrid trajectory is reported below.
+Alternative equivalent definitions are given in <span id="id3">[<a class="reference internal" href="../intro/SOTA_biblio.html#id61" title="Xuyang Lou, Yuchun Li, and Ricardo G. Sanfelice. Robust stability of hybrid limit cycles with multiple jumps in hybrid dynamical systems. IEEE Transactions on Automatic Control, 63(4):1220-1226, 2018. doi:10.1109/TAC.2018.2797219.">Lou <em>et al.</em>, 2018</a>]</span>.</p>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definition 1 </span></p>
+<section class="definition-content" id="proof-content">
+<p>Given an hybrid system <span class="math notranslate nohighlight">\(\mathcal{H}=(\mathcal{C},f,\mathcal{D},g)\)</span>, a nontrivial <em>hybrid periodic trajectory</em> <span class="math notranslate nohighlight">\(\varphi\)</span> is a complete solution (namely, a solution that evolves forever) that is not identically zero and for which there exists a pair <span class="math notranslate nohighlight">\((T,J)\in \mathbb{R}_{\geq0} \times \mathbb{Z}_{\geq0}\)</span> satisfying <span class="math notranslate nohighlight">\(T+J&gt;0\)</span>, such that <span class="math notranslate nohighlight">\((t,j)\in\mathrm{dom}(\varphi)\)</span> implies <span class="math notranslate nohighlight">\((t+T,j+J)\in\mathrm{dom}(\varphi)\)</span> and, moreover,</p>
+<div class="math notranslate nohighlight">
+\[ \varphi(t,j)=\varphi(t+T,j+J) \]</div>
+<p>The image of <span class="math notranslate nohighlight">\(\varphi\)</span> is a nontrivial <em>hybrid periodic orbit</em>.</p>
+</section>
+</div><p>The next assumption on the parameters of <a class="reference internal" href="#equation-eq-hyb-dynamics">(7)</a> is necessary for the existence of a nontrivial hybrid periodic trajectory.</p>
+<div class="proof assumption admonition" id="assumption:underdamped">
+<p class="admonition-title"><span class="caption-number">Assumption 1 </span></p>
+<section class="assumption-content" id="proof-content">
+<p>Parameters <span class="math notranslate nohighlight">\(\omega\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> are strictly positive reals.
+Moreover, the relation <span class="math notranslate nohighlight">\(\beta&lt;2\omega\)</span> is satisfied, namely the resonant tank is underdamped. Equivalently, the roots of <span class="math notranslate nohighlight">\(s^2+\beta s+\omega^2=0\)</span> are complex conjugate.</p>
+</section>
+</div><p>The following theorem, whose proof is reported in <span class="xref std std-ref">sec:proof</span>,
+provides a justification for the proposed self-oscillating control law.
+In our preliminary work <span id="id4">[<a class="reference internal" href="../intro/SOTA_biblio.html#id63" title="Nicola Zaupa, Luis Martínez-Salamero, Carlos Olalla, and Luca Zaccarian. Results on hybrid control of self-oscillating resonant converters. In IFAC Conference on Analysis and Design of Hybrid Systems. July 2021.">Zaupa <em>et al.</em>, 2021</a>]</span> we reported its proof only for the case <span class="math notranslate nohighlight">\(\theta=\frac{\pi}{2}\)</span>. We prove it here for any value of <span class="math notranslate nohighlight">\(\theta\in(0,\pi]\)</span>.</p>
+<div class="proof theorem admonition" id="th:main">
+<p class="admonition-title"><span class="caption-number">Theorem 1 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>Under <a class="reference internal" href="#assumption:underdamped">Assumption 1</a>, for each selection of <span class="math notranslate nohighlight">\(\theta \in (0, \pi]\)</span>, the closed loop <a class="reference internal" href="#equation-eq-hyb-dynamics">(7)</a>, <a class="reference internal" href="#equation-eq-cd-sets">(8)</a> has a unique nontrivial
+hybrid periodic orbit <span class="math notranslate nohighlight">\(\mathcal{O}_\theta\)</span> that is stable and almost globally attractive (its basin of attraction includes all points such that <span class="math notranslate nohighlight">\(z \neq 0\)</span>).
+Moreover, the nontrivial hybrid periodic trajectories of <a class="reference internal" href="#equation-eq-hyb-dynamics">(7)</a>, <a class="reference internal" href="#equation-eq-cd-sets">(8)</a> are characterized by <span class="math notranslate nohighlight">\(J=2\)</span> and <span class="math notranslate nohighlight">\(T(\theta)&gt;0\)</span>, and exhibit periodic jumps interlaced by flowing intervals of length <span class="math notranslate nohighlight">\(T(\theta)/2\)</span>.</p>
+</section>
+</div><figure class="align-default" id="fig-phase-plane-x">
+<a class="reference internal image-reference" href="../../_images/OC_theta_phaseplane_trajectory.png"><img alt="../../_images/OC_theta_phaseplane_trajectory.png" src="../../_images/OC_theta_phaseplane_trajectory.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Evolution of solutions and sets <span class="math notranslate nohighlight">\({\mathcal G}_1\)</span> (in green) and <span class="math notranslate nohighlight">\(\mathcal{D}_1\)</span> (in red) discussed in the proof of <a class="reference internal" href="#th:main">Theorem 1</a>.</span><a class="headerlink" href="#fig-phase-plane-x" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="proof remark admonition" id="rem:Q">
+<p class="admonition-title"><span class="caption-number">Remark 1 </span></p>
+<section class="remark-content" id="proof-content">
+<p><a class="reference internal" href="#assumption:underdamped">Assumption 1</a> imposes constraints on the physical components to ensure that a natural oscillatory motion occurs, as certified by <a class="reference internal" href="#th:main">Theorem 1</a>.
+For the two circuit configurations in <a class="reference internal" href="RT_model.html#fig-circuits"><span class="std std-numref">Fig. 1</span></a>, the constraint <span class="math notranslate nohighlight">\(\beta&lt;2\omega\)</span> corresponds to:</p>
+<div class="math notranslate nohighlight" id="equation-eq-requirement">
+<span class="eqno">(10)<a class="headerlink" href="#equation-eq-requirement" title="Permalink to this equation">#</a></span>\[
+PRC:\ 2R&gt;\sqrt{\frac{L}{C}} \qquad
+SRC:\ \frac{R}{2}&lt;\sqrt{\frac{L}{C}}.
+\]</div>
+<p>Requirements <a class="reference internal" href="#equation-eq-requirement">(10)</a> are reasonable since the effect of the load <span class="math notranslate nohighlight">\(R\)</span> must be sufficiently small to not destroy the natural oscillatory behavior of the <span class="math notranslate nohighlight">\(LC\)</span> resonant network.
+Ideally one would want, <span class="math notranslate nohighlight">\(R\rightarrow\infty\)</span> (open circuit) for the PRC and <span class="math notranslate nohighlight">\(R\rightarrow0\)</span> (short circuit) for the SRC.
+Both conditions in <a class="reference internal" href="#equation-eq-requirement">(10)</a> can be
+stated in terms of quality factor <span class="math notranslate nohighlight">\(Q\)</span>. Considering that
+<span class="math notranslate nohighlight">\(Q_{\text{PRC}}=R\sqrt{\frac{C}{L}}\)</span> and <span class="math notranslate nohighlight">\(Q_{\text{SRC}}=\frac{1}{R}\sqrt{\frac{L}{C}}\)</span>
+we have that:</p>
+<div class="math notranslate nohighlight" id="equation-eq-qualitynew">
+<span class="eqno">(11)<a class="headerlink" href="#equation-eq-qualitynew" title="Permalink to this equation">#</a></span>\[ Q=\frac{\omega}{\beta}&gt;0.5, \]</div>
+<p>which interestingly corresponds to the same requirement for both architectures. Constraint <a class="reference internal" href="#equation-eq-qualitynew">(11)</a> immediately shows the advantage of our novel switching law, as compared to the alternative solutions of  <span id="id5">[<a class="reference internal" href="../intro/SOTA_biblio.html#id72" title="R. Bonache-Samaniego, C. Olalla, L. Martínez-Salamero, and H. Valderrama-Blavi. Design of self-oscillating resonant converters based on a variable structure systems approach. IET Power Electronics, 9(1):111–119, 2016.">Bonache-Samaniego <em>et al.</em>, 2016</a>, <a class="reference internal" href="../intro/SOTA_biblio.html#id73" title="R. Bonache-Samaniego, C. Olalla, and L. Martínez-Salamero. Dynamic modeling and control of self-oscillating parallel resonant converters based on a variable structure systems approach. IEEE Transactions on Power Electronics, 32(2):1469-1480, 2017.">Bonache-Samaniego <em>et al.</em>, 2017</a>]</span>. Indeed,
+a nontrivial discussion is present in <span id="id6">[<a class="reference internal" href="../intro/SOTA_biblio.html#id72" title="R. Bonache-Samaniego, C. Olalla, L. Martínez-Salamero, and H. Valderrama-Blavi. Design of self-oscillating resonant converters based on a variable structure systems approach. IET Power Electronics, 9(1):111–119, 2016.">Bonache-Samaniego <em>et al.</em>, 2016</a>]</span> showing
+for the PRC case that with <span class="math notranslate nohighlight">\(Q &lt; 3.15\)</span> there is no guarantee of a self-oscillating behavior (the controller in <span id="id7">[<a class="reference internal" href="../intro/SOTA_biblio.html#id72" title="R. Bonache-Samaniego, C. Olalla, L. Martínez-Salamero, and H. Valderrama-Blavi. Design of self-oscillating resonant converters based on a variable structure systems approach. IET Power Electronics, 9(1):111–119, 2016.">Bonache-Samaniego <em>et al.</em>, 2016</a>]</span> may reach an equilibrium). The result of <a class="reference internal" href="#th:main">Theorem 1</a>, only requiring the mild assumption <a class="reference internal" href="#equation-eq-qualitynew">(11)</a> provides an important improvement.</p>
+</section>
+</div><div class="proof remark admonition" id="rem:robustness">
+<p class="admonition-title"><span class="caption-number">Remark 2 </span></p>
+<section class="remark-content" id="proof-content">
+<p>The flow and jump sets of hybrid dynamics <a class="reference internal" href="#equation-eq-hyb-dynamics">(7)</a>, <a class="reference internal" href="#equation-eq-cd-sets">(8)</a>
+are closed, and the flow and jump maps are continuous functions,
+therefore <a class="reference internal" href="#equation-eq-hyb-dynamics">(7)</a>, <a class="reference internal" href="#equation-eq-cd-sets">(8)</a> enjoys the so-called hybrid basic conditions of <em>As. 6.5</em> <span id="id8">[<a class="reference internal" href="../intro/SOTA_biblio.html#id74" title="R. Goebel, R.G. Sanfelice, and A.R. Teel. Hybrid Dynamical Systems: modeling, stability, and robustness. Princeton University Press, 2012.">Goebel <em>et al.</em>, 2012</a>]</span>.
+This, among other things, implies robustness of asymptotic stability of compact attractors, as characterized in <em>Ch. 7</em> <span id="id9">[<a class="reference internal" href="../intro/SOTA_biblio.html#id74" title="R. Goebel, R.G. Sanfelice, and A.R. Teel. Hybrid Dynamical Systems: modeling, stability, and robustness. Princeton University Press, 2012.">Goebel <em>et al.</em>, 2012</a>]</span>.
+A consequence of robustness is that one expects a graceful degradation of the closed-loop stability properties (the so-called semiglobal practical robustness): an important feature for the experimental results discussed in Sections~\ref{sec:controller} and~\ref{sec:validation}.</p>
+</section>
+</div></section>
+<section id="hybrid-lyapunov-function-and-proof-of-th-main">
+<h3>Hybrid Lyapunov function and proof of <a class="reference internal" href="#th:main">Theorem 1</a><a class="headerlink" href="#hybrid-lyapunov-function-and-proof-of-th-main" title="Permalink to this heading">#</a></h3>
+<p>In this section we prove <a class="reference internal" href="#th:main">Theorem 1</a>, based on hybrid Lyapunov theory <span id="id10">[<a class="reference internal" href="../intro/SOTA_biblio.html#id74" title="R. Goebel, R.G. Sanfelice, and A.R. Teel. Hybrid Dynamical Systems: modeling, stability, and robustness. Princeton University Press, 2012.">Goebel <em>et al.</em>, 2012</a>]</span>.
+Our proof shares interesting similarities with the approach reported in   <span id="id11">[<a class="reference internal" href="../intro/SOTA_biblio.html#id76" title="A. Bisoffi, F. Forni, M. Da Lio, and L. Zaccarian. Global results on reset-induced periodic trajectories of planar systems. In European Control Conference, 2644–2649. June 2016.">Bisoffi <em>et al.</em>, 2016</a>]</span> (see also <span id="id12">[<a class="reference internal" href="../intro/SOTA_biblio.html#id75" title="A. Bisoffi, F. Forni, M. Da Lio, and L. Zaccarian. Relay-based hybrid control of minimal-order mechanical systems with applications. Automatica, 97:104–114, 2018.">Bisoffi <em>et al.</em>, 2018</a>]</span>), which address relay-based control of mechanical systems.
+In particular for the case <span class="math notranslate nohighlight">\(\theta=\frac{\pi}{2}\)</span> it is shown in <span id="id13">[<a class="reference internal" href="../intro/SOTA_biblio.html#id63" title="Nicola Zaupa, Luis Martínez-Salamero, Carlos Olalla, and Luca Zaccarian. Results on hybrid control of self-oscillating resonant converters. In IFAC Conference on Analysis and Design of Hybrid Systems. July 2021.">Zaupa <em>et al.</em>, 2021</a>]</span> that <a class="reference internal" href="#th:main">Theorem 1</a> immediately follows from <span id="id14">[<a class="reference internal" href="../intro/SOTA_biblio.html#id76" title="A. Bisoffi, F. Forni, M. Da Lio, and L. Zaccarian. Global results on reset-induced periodic trajectories of planar systems. In European Control Conference, 2644–2649. June 2016.">Bisoffi <em>et al.</em>, 2016</a>]</span>.
+Here we provide nontrivial derivations to allow extending the result to any <span class="math notranslate nohighlight">\(\theta\in(0,\pi]\)</span>.</p>
+<p>Before proving <a class="reference internal" href="#th:main">Theorem 1</a>, let us recall from
+\cite[Def. 5.1]{convex} that a function <span class="math notranslate nohighlight">\(\psi: \mathbb{R}\rightarrow\mathbb{R}\)</span> is <span class="math notranslate nohighlight">\(\alpha\)</span>-strongly convex if and only if
+there exists <span class="math notranslate nohighlight">\(\alpha&gt;0\)</span> such that for each <span class="math notranslate nohighlight">\(a,b\in\mathbb{R}\)</span> it holds that</p>
+<div class="math notranslate nohighlight" id="equation-eq-strongly-convex">
+<span class="eqno">(12)<a class="headerlink" href="#equation-eq-strongly-convex" title="Permalink to this equation">#</a></span>\[
+	\psi(a)-\psi(b)\geq \sigma(a-b) + \frac{\alpha}{2}|a-b|^2, \;\forall\sigma\in\partial\psi(b),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\partial\psi(b)\subset\mathbb{R}\)</span> is the subdifferential of <span class="math notranslate nohighlight">\(\psi\)</span> at <span class="math notranslate nohighlight">\(b\)</span>.</p>
+<p>Based on <a class="reference internal" href="#equation-eq-strongly-convex">(12)</a> we can prove the following lemma, which is instrumental for the proof of <a class="reference internal" href="#th:main">Theorem 1</a>.</p>
+<div class="proof lemma admonition" id="lemma:unique_">
+<p class="admonition-title"><span class="caption-number">Lemma 1 </span></p>
+<section class="lemma-content" id="proof-content">
+<p>Consider two continuous functions of the scalar variable <span class="math notranslate nohighlight">\(\xi\in\mathbb{R}_{\geq 0}\)</span>. A linear function <span class="math notranslate nohighlight">\(\xi\mapsto \psi_1(\xi) = \psi_0 + \gamma\xi\)</span>,
+with <span class="math notranslate nohighlight">\(\psi_0,\gamma\in\mathbb{R}\)</span>, and a strongly convex function <span class="math notranslate nohighlight">\(\psi_2\)</span> with <span class="math notranslate nohighlight">\(\psi_2(0) &lt; \psi_0\)</span>. Function <span class="math notranslate nohighlight">\(\xi\mapsto\psi_1(\xi)-\psi_2(\xi)\)</span> grows unbounded as <span class="math notranslate nohighlight">\(\xi\rightarrow+\infty\)</span> and has exactly one zero for <span class="math notranslate nohighlight">\(\xi\geq 0\)</span>.</p>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Denote <span class="math notranslate nohighlight">\(\tilde\psi(\xi) := \psi_2 (\xi)-\psi_1 (\xi)\)</span> and note that it is strongly convex because, for each <span class="math notranslate nohighlight">\(a,b\in\mathbb{R}\)</span> and each <span class="math notranslate nohighlight">\(\sigma\in \partial \psi_2(b)\)</span>, it satisfies, from <a class="reference internal" href="#equation-eq-strongly-convex">(12)</a> applied with <span class="math notranslate nohighlight">\(\psi=\psi_2\)</span>,</p>
+<div class="math notranslate nohighlight" id="equation-eq-delta-strong-convexity">
+<span class="eqno">(13)<a class="headerlink" href="#equation-eq-delta-strong-convexity" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{align}
+	\tilde\psi(a) - \tilde\psi(b) &amp;= \psi_2(a) - \psi_2(b) - \gamma (a-b) \\ \nonumber
+	&amp;\geq \tilde\sigma (a-b) + \frac{\alpha}{2} |a-b|^2,
+\end{align}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\tilde\sigma=\sigma-\gamma\)</span> characterizes any vector in the subdifferential of <span class="math notranslate nohighlight">\(\tilde\psi\)</span> at <span class="math notranslate nohighlight">\(b\)</span>.</p>
+<p>Let us first prove that function <span class="math notranslate nohighlight">\(\tilde\psi\)</span> has at least one zero for <span class="math notranslate nohighlight">\(\xi\in[0,+\infty)\)</span>. From <span class="math notranslate nohighlight">\(\psi_1(0) = \psi_0&gt;\psi_2(0)\)</span>, we have <span class="math notranslate nohighlight">\(\tilde\psi(0) &lt; 0\)</span>.
+Applying <a class="reference internal" href="#equation-eq-delta-strong-convexity">(13)</a> at the unique global minimum <span class="math notranslate nohighlight">\(\xi^*\)</span> (wherein <span class="math notranslate nohighlight">\(\tilde\sigma=0\)</span> belongs to <span class="math notranslate nohighlight">\(\partial\tilde\psi (\xi^*))\)</span>, we have <span class="math notranslate nohighlight">\(\tilde\psi (\xi) \geq\tilde\psi(\xi^*) +\frac{\alpha}{2} |\xi-\xi^*|^2\)</span>, which proves that <span class="math notranslate nohighlight">\(\lim\limits_{\xi \to +\infty} \tilde\psi(\xi) = +\infty\)</span>, showing unboundedness of <span class="math notranslate nohighlight">\(\psi(\xi)\)</span> as <span class="math notranslate nohighlight">\(\xi\rightarrow+\infty\)</span>.
+Moreover, with <span class="math notranslate nohighlight">\(\tilde\psi(0) &lt; 0\)</span> and continuity, there exists at least one <span class="math notranslate nohighlight">\(\xi_0\)</span> where <span class="math notranslate nohighlight">\(\tilde\psi(\xi_0) = 0\)</span>.</p>
+<p>Let us now prove that <span class="math notranslate nohighlight">\(\xi_0\)</span> is unique. Assume that there are two points <span class="math notranslate nohighlight">\(0 &lt; \xi_0 &lt; \xi_1\)</span> where <span class="math notranslate nohighlight">\(\tilde\psi\)</span> is zero and fix <span class="math notranslate nohighlight">\(a = \xi_1, b = \xi_0\)</span>. Then from <a class="reference internal" href="#equation-eq-delta-strong-convexity">(13)</a> with these selections, we get:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2512b9e4-5335-444a-b38c-1ad71d08814e">
+<span class="eqno">(14)<a class="headerlink" href="#equation-2512b9e4-5335-444a-b38c-1ad71d08814e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+	0&gt;\tilde\sigma (\xi_1-\xi_0)+\frac{\alpha}{2}|\xi_1-\xi_0|^2,
+\end{equation}\]</div>
+<p>which clearly implies <span class="math notranslate nohighlight">\(\tilde\sigma&lt;0\)</span>. Since <span class="math notranslate nohighlight">\(\tilde\sigma\in\partial\tilde\psi(\xi_0)\)</span> and <span class="math notranslate nohighlight">\(\tilde\psi(\xi_0)=0\)</span>, by definition of subdifferential, using <span class="math notranslate nohighlight">\(0&lt;\xi_0\)</span>, we have <span class="math notranslate nohighlight">\(\tilde\psi(0)\geq\tilde\psi(\xi_0)-\tilde\sigma\xi_0=-\tilde\sigma\xi_0&gt;0\)</span>,
+which is a contradiction, because we proved above that <span class="math notranslate nohighlight">\(\tilde\psi(0)&lt;0\)</span>.</p>
+</div>
+<p>For proving <a class="reference internal" href="#th:main">Theorem 1</a>,
+we formulate the following corollary of \cite[Lemma 1]{BisoffiECC16}, relating the dissipated energy along a flowing solution of <a class="reference internal" href="#equation-eq-hyb-dynamics">(7)</a>, <a class="reference internal" href="#equation-eq-cd-sets">(8)</a> to the hatched area in <a class="reference internal" href="#fig-phase-plane-x"><span class="std std-numref">Fig. 2</span></a>~(right).</p>
+<div class="proof lemma admonition" id="lemma:dissipation">
+<p class="admonition-title"><span class="caption-number">Lemma 2 </span></p>
+<section class="lemma-content" id="proof-content">
+<p>Consider any solution <span class="math notranslate nohighlight">\(z\)</span> to <a class="reference internal" href="#equation-eq-hyb-dynamics">(7)</a>, <a class="reference internal" href="#equation-eq-cd-sets">(8)</a> flowing from <span class="math notranslate nohighlight">\(\mathcal{G}_{1}\)</span> at ordinary time <span class="math notranslate nohighlight">\(t_1\)</span> to <span class="math notranslate nohighlight">\(\mathcal{D}_1\)</span> at ordinary time <span class="math notranslate nohighlight">\(t_2&gt;t_1\)</span> and define energy-like function <span class="math notranslate nohighlight">\(E(z)=\frac{1}{2}z_1^2 + \frac{1}{2}z_2^2 = \frac{1}{2}|z|^2\)</span>.
+The dissipated energy <span class="math notranslate nohighlight">\(E(z(t_2))-E(z(t_1))\)</span> is equal to <span class="math notranslate nohighlight">\(\frac{\beta}{\omega}\Pi\)</span>, where <span class="math notranslate nohighlight">\(\Pi\)</span> is the (unsigned) area hatched between the
+graph of the trajectory <span class="math notranslate nohighlight">\(z(t), \ t\in [t_1, t_2]\)</span> and the coordinate axis <span class="math notranslate nohighlight">\(z_2=0\)</span>.</p>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Consider the following selection of the parameters and states in <span id="id15">[<a class="reference internal" href="../intro/SOTA_biblio.html#id76" title="A. Bisoffi, F. Forni, M. Da Lio, and L. Zaccarian. Global results on reset-induced periodic trajectories of planar systems. In European Control Conference, 2644–2649. June 2016.">Bisoffi <em>et al.</em>, 2016</a>]</span></p>
+<div class="math notranslate nohighlight" id="equation-eq-parameters">
+<span class="eqno">(15)<a class="headerlink" href="#equation-eq-parameters" title="Permalink to this equation">#</a></span>\[
+	x_1 = z_1, \
+	x_2 = \omega z_2,\ m=1, \ c=\beta,\ k=\omega^2.
+\]</div>
+<p>From \cite[Lemma 1]{BisoffiECC16} the function <span class="math notranslate nohighlight">\(E_{[21]}(x)=\frac{1}{2}\omega^2x_1^2 + \frac{1}{2}x_2^2 = \omega^2E(z)\)</span> dissipates <span class="math notranslate nohighlight">\(\Delta E_{[21]}=\beta\Pi_{[21]}\)</span> between <span class="math notranslate nohighlight">\(t_1\)</span> and <span class="math notranslate nohighlight">\(t_2\)</span>.
+From <a class="reference internal" href="#equation-eq-parameters">(15)</a>, in the <span class="math notranslate nohighlight">\(z\)</span> coordinates we have <span class="math notranslate nohighlight">\(\Pi_{[21]}=\omega\Pi\)</span> and since  <span class="math notranslate nohighlight">\(\Delta E_{[21]}=\omega^2\Delta E\)</span>, we have <span class="math notranslate nohighlight">\(\Delta E = \frac{1}{\omega^2}\Delta E_{[21]} = \frac{\beta}{\omega^2}\Pi_{[21]} = \frac{\beta}{\omega}\Pi\)</span> as to be proven.</p>
+</div>
+<p>To construct a Lyapunov function proving <a class="reference internal" href="#th:main">Theorem 1</a>, let us only consider the half-space <span class="math notranslate nohighlight">\(\mathcal{C}_1\)</span>, which also contains <span class="math notranslate nohighlight">\(\mathcal{D}_1\)</span> (parallel definitions apply to <span class="math notranslate nohighlight">\(\mathcal{C}_{-1}\)</span>) and introduce the set</p>
+<div class="math notranslate nohighlight" id="equation-eq-calg">
+<span class="eqno">(16)<a class="headerlink" href="#equation-eq-calg" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{align}
+	\nonumber
+	\mathcal{G}_1:=&amp;\{ z  \in \mathcal{C}_1 : z_2 \leq 0,  (z_1+2)\sin\theta+z_2\cos\theta=0 \} \cup \\
+	&amp;\{ z \in \mathcal{C}_1 : z_1 \in[-2,0], z_2 = 0 \},
+\end{align}
+\end{split}\]</div>
+<p>which corresponds to the green-colored half line parallel to <span class="math notranslate nohighlight">\(\mathcal{D}_{\mathrm{-}1}\)</span> in <a class="reference internal" href="#fig-phase-plane-x"><span class="std std-numref">Fig. 2</span></a>.
+Then, for each point <span class="math notranslate nohighlight">\(z \in\mathcal{C}_1\setminus\{0\}\)</span>, denote the compact time interval associated with the unique backward and forward flowing solutions of <a class="reference internal" href="#equation-eq-hyb-dynamics">(7)</a>, flowing in <span class="math notranslate nohighlight">\(\mathcal{C}_1\)</span>, as</p>
+<div class="math notranslate nohighlight">
+\[
+	{\mathcal T}_1(z) := \{\tau \in \mathbb{R}: {\mathrm e}^{A s} z \in \mathcal{C}_1, \; \forall s\in  [\tau, 0] \cup [0,\tau] \},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\([t_2,t_1]\)</span> should be understood as the empty set when <span class="math notranslate nohighlight">\(t_2&gt;t_1\)</span>, so that <span class="math notranslate nohighlight">\([\tau, 0] \cup [0,\tau]\)</span> always describes an interval containing zero, whether <span class="math notranslate nohighlight">\(\tau\)</span> is positive or negative. Clearly, <span class="math notranslate nohighlight">\(0 \in {\mathcal T}_1(z)\)</span> for all <span class="math notranslate nohighlight">\(z\in \mathcal{C}_1\setminus\{0\}\)</span>.
+Based on <span class="math notranslate nohighlight">\({\mathcal T}_1(z)\)</span>, define the following two times, which exist and are unique for each <span class="math notranslate nohighlight">\(z \in\mathcal{C}_1\setminus\{0\}\)</span> due to the revolving nature of solutions, as per <a class="reference internal" href="#assumption:underdamped">Assumption 1</a>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-tau-g">
+<span class="eqno">(17)<a class="headerlink" href="#equation-eq-tau-g" title="Permalink to this equation">#</a></span>\[
+	\tau_G (z):= \{ \tau \in {\mathcal T}_1(z) : {\mathrm e}^{A \tau} z \in \mathcal{G}_1 \}, 
+\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-tau-d">
+<span class="eqno">(18)<a class="headerlink" href="#equation-eq-tau-d" title="Permalink to this equation">#</a></span>\[
+	\tau_D (z):= \{ \tau \in {\mathcal T}_1(z) : {\mathrm e}^{A \tau} z \in \mathcal{D}_1 \}.
+\]</div>
+<p>The Lyapunov function proposed in this proof,
+which is represented in <a class="reference internal" href="#fig-lyapunov"><span class="std std-numref">Fig. 3</span></a> for the special case <span class="math notranslate nohighlight">\(\theta = 3\pi/4\)</span>,
+is based on <a class="reference internal" href="#equation-eq-tau-g">(17)</a>, <a class="reference internal" href="#equation-eq-tau-d">(18)</a> and corresponds to</p>
+<div class="math notranslate nohighlight" id="equation-eq-vdefinition">
+<span class="eqno">(19)<a class="headerlink" href="#equation-eq-vdefinition" title="Permalink to this equation">#</a></span>\[
+	V(z) := \max\{\tau_G(z),0\}
+	+ \frac{(\delta_V(z) - \frac{\beta}{\omega}\Pi(z))^2}{(\left[ \begin{smallmatrix}1 &amp; 0\end{smallmatrix} \right] {\mathrm e}^{A \tau_G(z)} z)^2},
+\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-delta-v">
+<span class="eqno">(20)<a class="headerlink" href="#equation-eq-delta-v" title="Permalink to this equation">#</a></span>\[
+	\delta_V(z) := 2\left( 1+\sigma \left[ \begin{smallmatrix}  1 &amp; 0\end{smallmatrix} \right] {\mathrm e}^{A \tau_D(z)}z\right),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Pi(z)\)</span> has been defined in <a class="reference internal" href="#lemma:dissipation">Lemma 2</a>.</p>
+<figure class="align-default" id="fig-lyapunov">
+<a class="reference internal image-reference" href="../../_images/OC_theta_Lyapunov.png"><img alt="../../_images/OC_theta_Lyapunov.png" src="../../_images/OC_theta_Lyapunov.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Logarithmic representation of the Lyapunov function <span class="math notranslate nohighlight">\(V\)</span> in <a class="reference internal" href="#equation-eq-vdefinition">(19)</a>, for the value <span class="math notranslate nohighlight">\(\theta = 3\pi/4\)</span>.</span><a class="headerlink" href="#fig-lyapunov" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The first term of <span class="math notranslate nohighlight">\(V(z)\)</span> in <a class="reference internal" href="#equation-eq-vdefinition">(19)</a> is positive when <span class="math notranslate nohighlight">\(z\)</span> lies in the stripe between the set <span class="math notranslate nohighlight">\(\mathcal{D}_{\mathrm{-}1}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{G}_1\)</span>
+of <a class="reference internal" href="#fig-phase-plane-x"><span class="std std-numref">Fig. 2</span></a>, wherein
+<span class="math notranslate nohighlight">\(\tau_G(z)&gt;0\)</span>, but it is zero in the remaining points of <span class="math notranslate nohighlight">\(\mathcal{C}_1\)</span>, wherein
+<span class="math notranslate nohighlight">\(\tau_G(z)\leq 0\)</span>. The second term of <span class="math notranslate nohighlight">\(V(z)\)</span> is inspired by <span id="id16">[<a class="reference internal" href="../intro/SOTA_biblio.html#id76" title="A. Bisoffi, F. Forni, M. Da Lio, and L. Zaccarian. Global results on reset-induced periodic trajectories of planar systems. In European Control Conference, 2644–2649. June 2016.">Bisoffi <em>et al.</em>, 2016</a>]</span>.
+Referring to the energy <span class="math notranslate nohighlight">\(E\)</span> defined in <a class="reference internal" href="#lemma:dissipation">Lemma 2</a>, its numerator corresponds to the difference between the dissipated energy <span class="math notranslate nohighlight">\(\frac{\beta}{\omega}\Pi(z)\)</span> (sampled in a Poincar’e fashion) along the flow from <span class="math notranslate nohighlight">\(\mathcal{G}_1\)</span> to <span class="math notranslate nohighlight">\(\mathcal{D}_1\)</span> with   the increase of energy across the jump from <span class="math notranslate nohighlight">\(z_{1,D}= \left[ \begin{smallmatrix}1 &amp; 0\end{smallmatrix} \right] {\mathrm e}^{A \tau_D(z)} z\)</span>, which belongs to <span class="math notranslate nohighlight">\(\mathcal{D}_1\)</span>, namely</p>
+<div class="math notranslate nohighlight" id="equation-eq-delta-v-def">
+<span class="eqno">(21)<a class="headerlink" href="#equation-eq-delta-v-def" title="Permalink to this equation">#</a></span>\[
+	\delta_V(z)   = \frac{1}{2}((z_{1,D}^+)^2-z_{1,D}^2)
+	= 2\left( 1+\sigma z_{1,\mathcal{D}} \right),
+\]</div>
+<p>as defined in <a class="reference internal" href="#equation-eq-delta-v">(20)</a>. Note that by construction <span class="math notranslate nohighlight">\(\Pi\)</span> and <span class="math notranslate nohighlight">\(\delta_V\)</span> are constant along flowing solutions, therefore, whenever {<span class="math notranslate nohighlight">\(\tau_G(z)\leq0\)</span>}, <span class="math notranslate nohighlight">\(V\)</span> remains constant along flowing solutions.
+Comparing <span class="math notranslate nohighlight">\(\delta_V(z)\)</span> with <span class="math notranslate nohighlight">\(\frac{\beta}{\omega}\Pi(z)\)</span>, an energy balance between flows and jumps emerges when <span class="math notranslate nohighlight">\(\delta_V(z)-\frac{\beta}{\omega}\Pi(z)=0\)</span>, that is when <span class="math notranslate nohighlight">\(V(z)=0\)</span>.
+The denominator of the right term in <a class="reference internal" href="#equation-eq-vdefinition">(19)</a> simply ensures that, close to the origin, <span class="math notranslate nohighlight">\(V\)</span> blows up to infinity, as it should because the origin is a weak equilibrium (it admits a constant flowing solution not converging to the hybrid periodic orbit) and cannot belong to the basin of attraction.</p>
+<p>Defining <span class="math notranslate nohighlight">\(V(z)\)</span> in a parallel way for <span class="math notranslate nohighlight">\(z\in\mathcal{C}_{\mathrm{-}1}\)</span>,
+we prove below that the following set, the zero level set of <span class="math notranslate nohighlight">\(V\)</span>, corresponds to the set <span class="math notranslate nohighlight">\(\mathcal{O}_\theta\)</span> characterized in <a class="reference internal" href="#th:main">Theorem 1</a>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-attractor">
+<span class="eqno">(22)<a class="headerlink" href="#equation-eq-attractor" title="Permalink to this equation">#</a></span>\[
+	{\mathcal A} := \{ (z,\sigma): \delta_V(z) = \frac{\beta}{\omega}\Pi(z),\ and\ \tau_G(z)\leq 0 \},
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(\delta_V\)</span> defined in <a class="reference internal" href="#equation-eq-delta-v">(20)</a>.
+We are now ready to prove <a class="reference internal" href="#th:main">Theorem 1</a>.</p>
+<div class="proof dropdown admonition" id="proof">
+<p>Proof. Let us first characterize function <span class="math notranslate nohighlight">\(\Pi\)</span>, which is constant by construction along flowing solutions.
+Due to this fact we can parametrize all values of <span class="math notranslate nohighlight">\(\Pi(z)\)</span>, <span class="math notranslate nohighlight">\(z\in\mathcal{C}\cup\mathcal{D}\)</span>, following a Poincar’e approach for each <span class="math notranslate nohighlight">\(z\in\mathcal{D}_1\)</span>, via <span class="math notranslate nohighlight">\(\Pi(z)=\psi_2(|z|)\)</span>, where <span class="math notranslate nohighlight">\(\psi_2(|z|)\)</span> is the sum of the upper area <span class="math notranslate nohighlight">\(\psi_2^{\mathrm{up}}(|z|)=\alpha^{\mathrm{up}}|z|^2\)</span>, which is homogeneous of degree two by construction, and the lower area <span class="math notranslate nohighlight">\(\psi_2^{\mathrm{lw}} (|z|) = \alpha^{\mathrm{lw}}\max\left\lbrace|z|-|z_0| , 0\right\rbrace^2\)</span>, with <span class="math notranslate nohighlight">\(z_0\in\mathcal{D}\)</span> being the unique point such that <span class="math notranslate nohighlight">\(\mathrm{e}^{A\tau_G(z_0)}z_0=\left[ \begin{smallmatrix} \mathrm{-}2\\0 \end{smallmatrix} \right]\)</span>,
+namely the point where <span class="math notranslate nohighlight">\(\mathcal G_1\)</span> has a kink, in <a class="reference internal" href="#fig-phase-plane-x"><span class="std std-numref">Fig. 2</span></a>.
+Due to homogeneity of the linear solutions (larger solutions are scaled versions of the smallest ones),
+it is immediate to see that <span class="math notranslate nohighlight">\(\psi_2^{\mathrm{lw}}(|z|)\)</span> is (non-strictly) convex and <span class="math notranslate nohighlight">\(\psi_2^{\mathrm{up}}(|z|)\)</span> is strongly convex.
+Therefore their sum is strongly convex.
+Let us continue by observing that for each <span class="math notranslate nohighlight">\(z\in\mathcal{D}_1\)</span>,
+we can express the injected energy as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f8f52a4c-e617-4027-8707-32c9602d39e6">
+<span class="eqno">(23)<a class="headerlink" href="#equation-f8f52a4c-e617-4027-8707-32c9602d39e6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+   \label{eq:delta_x_}
+   \psi_1(|z|) := |z^+|^2-|z|^2 = 2(1-|z|\cos\theta) = \delta_V(z).
+\end{equation}\]</div>
+<p>Then, from <a class="reference internal" href="#lemma:unique_">Lemma 1</a>,
+there exists only one positive value {<span class="math notranslate nohighlight">\(\xi^*=|z^*|\)</span>} of <span class="math notranslate nohighlight">\(|z|\)</span> leading to the energy balance <span class="math notranslate nohighlight">\(\psi_2(|z^*|)=\psi_1(|z^*|)\)</span>.
+In particular, the hybrid periodic orbit <span class="math notranslate nohighlight">\(\mathcal{O}_\theta\)</span> corresponds to the image of the hybrid periodic trajectory starting at the unique point <span class="math notranslate nohighlight">\(z^*\in\mathcal{D}_1\)</span>.</p>
+<p>By uniqueness of <span class="math notranslate nohighlight">\(z^*\)</span>, the nontrivial hybrid periodic orbit <span class="math notranslate nohighlight">\(\mathcal{O}_\theta\)</span> is unique and coincides with set <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> in <a class="reference internal" href="#equation-eq-attractor">(22)</a>.</p>
+<p>Let us now prove the asymptotic stability of <span class="math notranslate nohighlight">\(\mathcal A\)</span> with basin of attraction <span class="math notranslate nohighlight">\(\mathcal{B_A}= (\mathbb{R}^2\setminus\lbrace0\rbrace) \times \{-1,1\}\)</span>.
+To this end, let us first note that <span class="math notranslate nohighlight">\(V\)</span> is zero in <span class="math notranslate nohighlight">\(\mathcal A\)</span>, positive in <span class="math notranslate nohighlight">\(\mathcal{B_A}\)</span> and, from <a class="reference internal" href="#lemma:unique_">Lemma 1</a>, radially unbounded, relative to the open set <span class="math notranslate nohighlight">\(\mathcal{B_A}\)</span>, with respect to <span class="math notranslate nohighlight">\({\mathcal A}\)</span>.
+Moreover, since the points <span class="math notranslate nohighlight">\({\mathrm e}^{A \tau_D(z)}z\)</span>
+and <span class="math notranslate nohighlight">\({\mathrm e}^{A \tau_G(z)}z\)</span> remain constant along flowing solutions and <span class="math notranslate nohighlight">\(\tau_G(z)\)</span> is a decreasing function of time (due to the revolving nature of the solutions stemming from <a class="reference internal" href="#assumption:underdamped">Assumption 1</a>), then <span class="math notranslate nohighlight">\(V\)</span> in
+<a class="reference internal" href="#equation-eq-vdefinition">(19)</a> is nonincreasing when flowing in <span class="math notranslate nohighlight">\(\mathcal{C}\)</span>. Finally, from <a class="reference internal" href="#lemma:unique_">Lemma 1</a>, and using similar arguments to those of \cite[Lemma 2]{BisoffiECC16}, the Lyapunov function decreases across jumps. More specifically,
+the following weak Lyapunov properties hold</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+   &amp;  \dot V := \langle \nabla V(z), f(z,\sigma) \rangle \leq 0,
+   \; \forall (z, \sigma)\in \mathcal{C} \setminus (\{0\}\times\{\mathrm{-}1,1\}), \\
+   &amp;  \Delta V:= V(g(z,\sigma)) - V(z) &lt; 0, \; \forall (z, \sigma)\in \mathcal{D} \setminus {\mathcal A}.
+\end{align*}
+\end{split}\]</div>
+<p>As in <span id="id17">[<a class="reference internal" href="../intro/SOTA_biblio.html#id76" title="A. Bisoffi, F. Forni, M. Da Lio, and L. Zaccarian. Global results on reset-induced periodic trajectories of planar systems. In European Control Conference, 2644–2649. June 2016.">Bisoffi <em>et al.</em>, 2016</a>]</span>, the asymptotic stability of <span class="math notranslate nohighlight">\({\mathcal A}\)</span> with basin of attraction <span class="math notranslate nohighlight">\(\mathcal{B_A}\)</span> then follows from the nonsmooth hybrid invariance principle of Thm 1 from <span id="id18">[<a class="reference internal" href="../intro/SOTA_biblio.html#id70" title="A. Seuret, C. Prieur, S. Tarbouriech, A.R. Teel, and L. Zaccarian. A nonsmooth hybrid invariance principle applied to robust event-triggered design. IEEE TAC, 64(5):2061–2068, 2019.">Seuret <em>et al.</em>, 2019</a>]</span>.</p>
+<p>The proof is completed by noting that, except for the trivial flowing solution at zero, the hybrid limit cycle whose orbit is <span class="math notranslate nohighlight">\({\mathcal A}\)</span>, is globally attractive and therefore it is the only possible one. Moreover, due to the symmetry of the flow/jump sets and maps, this cycle is associated with periodic jumps, where the period <span class="math notranslate nohighlight">\(T(\theta)\)</span> of the jumps is given by the time it takes for a solution to reach <span class="math notranslate nohighlight">\(\mathcal{D}_1\)</span> from <span class="math notranslate nohighlight">\({\mathcal G}_1\)</span>, along the periodic orbit. The period of the limit cycle is <span class="math notranslate nohighlight">\((2T(\theta),2)\)</span> because, by construction, it takes two half revolutions for the periodic trajectory starting in
+from <span class="math notranslate nohighlight">\({\mathcal G}_1\)</span> to revisit the same point in <span class="math notranslate nohighlight">\({\mathcal G}_1\)</span>.</p>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs\control"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="RT_model.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Unified model</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="RT_phi.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="math notranslate nohighlight">\(\varphi\)</span>-control</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hybrid-model-and-switching-law">Hybrid model and switching law</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#asymtotically-stable-hybrid-limit-cycle">Asymtotically Stable Hybrid Limit Cycle</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#main-stability-theorem">Main Stability Theorem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hybrid-lyapunov-function-and-proof-of-th-main">Hybrid Lyapunov function and proof of <code class="xref prf prf-ref docutils literal notranslate"><span class="pre">th:main</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Nicola ZAUPA
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

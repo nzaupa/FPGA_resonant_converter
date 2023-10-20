@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Rectifier &#8212; Resonant Converter 2023</title>
+    <title>Unified model &#8212; Resonant Converter 2023</title>
   
   
   
@@ -65,12 +65,12 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/design/RC_rectifier_design';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/control/RT_model';</script>
     <link rel="shortcut icon" href="../../_static/logo2.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Sensing" href="RC_sensing.html" />
-    <link rel="prev" title="PCB design" href="RT_pcb.html" />
+    <link rel="next" title="\(\theta\) control" href="RT_theta.html" />
+    <link rel="prev" title="Oscillation controls" href="RT_control.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -182,32 +182,32 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../intro/publications.html">Publications</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Control</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../control/RT_control.html">Oscillation controls</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../control/RT_model.html">Unified model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../control/RT_theta.html"><span class="math notranslate nohighlight">\(\theta\)</span> control</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../control/RT_phi.html"><span class="math notranslate nohighlight">\(\varphi\)</span>-control</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../control/RT_theta_phi.html"><span class="math notranslate nohighlight">\(\theta-\varphi\)</span> control</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="RT_control.html">Oscillation controls</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Unified model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RT_theta.html"><span class="math notranslate nohighlight">\(\theta\)</span> control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RT_phi.html"><span class="math notranslate nohighlight">\(\varphi\)</span>-control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RT_theta_phi.html"><span class="math notranslate nohighlight">\(\theta-\varphi\)</span> control</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../control/RC_control.html">Closed-loop control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RC_control.html">Closed-loop control</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Electronic design</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="power_stage.html">Power stage</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="RT_resonant_tank_design.html">Resonant Tank</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="RT_sensing.html">Sensing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RT_signal_transformer_design.html">Signal Transformers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RT_trafo_calc.html">Transformer calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RT_pcb.html">PCB design</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../design/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/power_stage.html">Power stage</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../design/RT_resonant_tank_design.html">Resonant Tank</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../design/RT_sensing.html">Sensing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/RT_signal_transformer_design.html">Signal Transformers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/RT_trafo_calc.html">Transformer calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/RT_pcb.html">PCB design</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Rectifier</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="RC_sensing.html">Sensing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RC_ADC.html">ADCs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="simulation.html">Simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RC_pcb.html">PCB design</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../design/RC_rectifier_design.html">Rectifier</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../design/RC_sensing.html">Sensing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/RC_ADC.html">ADCs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/simulation.html">Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/RC_pcb.html">PCB design</a></li>
 </ul>
 </li>
 </ul>
@@ -314,7 +314,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/docs/design/RC_rectifier_design.md" target="_blank"
+      <li><a href="../../_sources/docs/control/RT_model.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -396,7 +396,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Rectifier</h1>
+    <h1>Unified model</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -406,11 +406,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diode-bridge">Diode Bridge</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter">Filter</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choice-of-the-inductors-mathbf-l-mathbf-f-mathbf-1-and-mathbf-l-mathbf-f-mathbf-2">Choice of the inductors <span class="math notranslate nohighlight">\(\mathbf{L}_{\mathbf{f}\mathbf{1}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{L}_{\mathbf{f}\mathbf{2}}\)</span></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unifying-coordinate-change">Unifying coordinate change</a></li>
 </ul>
             </nav>
         </div>
@@ -422,169 +418,70 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="rectifier">
-<h1>Rectifier<a class="headerlink" href="#rectifier" title="Permalink to this heading">#</a></h1>
-<p>At the power level objective is to rectify the AC output of the transformer and filter it so that the ripple is at an acceptable level for the battery.</p>
-<p>The main parts of the board are:</p>
-<ul class="simple">
-<li><p>power part with:</p>
-<ul>
-<li><p>rectifier</p></li>
-<li><p>3<sup>rd</sup> filter low-pass filter</p></li>
-<li><p>battery connection</p></li>
-</ul>
-</li>
-<li><p>sensing part with:</p>
-<ul>
-<li><p>voltage sensor</p></li>
-<li><p>current sensor</p></li>
-<li><p>ADCs.</p></li>
-</ul>
-</li>
-</ul>
-<p>At high level, the main objective is to control the current charging the battery
-while ensuring galvanic isolation between the battery and the FPGA
-(ideally, the FPGA should be isolated from both battery and H-bridge).</p>
-<figure class="align-default" id="id1">
-<img alt="../../_images/RC_power_scheme.png" src="../../_images/RC_power_scheme.png" />
+  <section class="tex2jax_ignore mathjax_ignore" id="unified-model">
+<h1>Unified model<a class="headerlink" href="#unified-model" title="Permalink to this heading">#</a></h1>
+<figure class="align-default" id="fig-circuits">
+<a class="reference internal image-reference" href="../../_images/OC_scheme_2nd.png"><img alt="../../_images/OC_scheme_2nd.png" src="../../_images/OC_scheme_2nd.png" style="width: 400px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Overview of the main power parts</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Equivalent circuits associated with the parallel resonant converter
+(PRC, top) and series resonant converter (SRC, bottom).</span><a class="headerlink" href="#fig-circuits" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<section id="diode-bridge">
-<h2>Diode Bridge<a class="headerlink" href="#diode-bridge" title="Permalink to this heading">#</a></h2>
-<p>The diodes used for the bridge should have a fast recovery. To this end, Schottky diodes are suggested. Moreover, the two parameters important for the design/choice are: the current flowing through them, and the maximum reverse voltage.</p>
-<p>On the other side, parameters that are influencing the behavior are the threshold voltage and recovery time.</p>
-<p>The bridge output current is a pulsating wave
-<span class="math notranslate nohighlight">\(i_{r}(t) = I_{r}\left| \sin\left( \text{ωt} \right) \right|\)</span>.
-The average DC value is <span class="math notranslate nohighlight">\(\frac{2}{\pi}I_{r}\)</span>.</p>
-<p>Diodes are subject to 50% of <span class="math notranslate nohighlight">\(i_{r}(t)\)</span>. The diodes need a heat-sink in
-order to dissipate the heat. The ‘head’ is connected to the cathode and
-must be isolated from the others (silicone + mica).<br />
-Average forward current is equal to <span class="math notranslate nohighlight">\(\frac{I_{r}}{\pi}\)</span>.</p>
-<p>Two possible choices for the diodes from
-Vishay are:</p>
-<table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p></p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\(\mathbf{I_F}\)</span></p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\(\mathbf{V_R}\)</span></p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\(\mathbf{V_F}\)</span></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>VS-15TQ060-M3</p></td>
-<td><p>15A</p></td>
-<td><p>60V</p></td>
-<td><p>0.56V</p></td>
-</tr>
-<tr class="row-odd"><td><p>FES16BT-E3/45</p></td>
-<td><p>16A</p></td>
-<td><p>100V</p></td>
-<td><p>0.975V</p></td>
-</tr>
-</tbody>
-</table>
+<section id="unifying-coordinate-change">
+<h2>Unifying coordinate change<a class="headerlink" href="#unifying-coordinate-change" title="Permalink to this heading">#</a></h2>
+<p>We address parallel and series resonant converters (PRC and SRC, respectively), whose circuits are shown in <a class="reference internal" href="#fig-circuits"><span class="std std-numref">Fig. 1</span></a>,
+where <span class="math notranslate nohighlight">\(v_C\)</span> and <span class="math notranslate nohighlight">\(i_C\)</span> denote the voltage and the current in the capacitor.
+Both configurations exhibit a (parallel or series) resonant tank driven by an H-bridge applying a supply voltage <span class="math notranslate nohighlight">\(v_s\)</span> equal to either <span class="math notranslate nohighlight">\(V_g\)</span> or <span class="math notranslate nohighlight">\(-V_g\)</span> to the left terminal, where <span class="math notranslate nohighlight">\(V_g\)</span> is an external DC supply.
+The H-bridge is modeled here by a binary variable <span class="math notranslate nohighlight">\(\sigma \in \{-1,1\}\)</span> describing the switch position, so that
+<span class="math notranslate nohighlight">\(v_s = V_g\)</span> when <span class="math notranslate nohighlight">\(\sigma =1\)</span> and <span class="math notranslate nohighlight">\(v_s = -V_g\)</span> when <span class="math notranslate nohighlight">\(\sigma = -1\)</span> (in summary <span class="math notranslate nohighlight">\(v_s = \sigma V_g\)</span>).</p>
+<p>The linear equations governing
+the current and voltage evolution of <span class="math notranslate nohighlight">\(v_C\)</span> and <span class="math notranslate nohighlight">\(i_C\)</span> for the parallel configuration at the top of <a class="reference internal" href="#fig-circuits"><span class="std std-numref">Fig. 1</span></a> are the following ones:</p>
+<div class="math notranslate nohighlight" id="equation-eq-parallel">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-parallel" title="Permalink to this equation">#</a></span>\[
+L \frac{ {\rm d} i_L}{{\rm d} t} = \sigma V_g -v_C , \quad
+C \frac{ {\rm d} v_C}{{\rm d} t} = i_L - \frac{v_C}{R}.
+\]</div>
+<p>We emphasize that the last term, <span class="math notranslate nohighlight">\(\left( i_L -\frac{v_C}{R}\right)\)</span>, is the current <span class="math notranslate nohighlight">\(i_C\)</span> flowing in the capacitor.
+Similarly, the linear equations governing the series configuration at the bottom of <a class="reference internal" href="#fig-circuits"><span class="std std-numref">Fig. 1</span></a> correspond to:</p>
+<div class="math notranslate nohighlight" id="equation-eq-series">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eq-series" title="Permalink to this equation">#</a></span>\[
+	L \frac{ {\rm d} i_L}{{\rm d} t} = \sigma V_g -v_C - R i_L, \quad
+	C \frac{ {\rm d} v_C}{{\rm d} t} = i_C.
+\]</div>
+<p>Note that in this case <span class="math notranslate nohighlight">\(i_L=i_C\)</span>.
+The novel approach proposed there stems from
+introducing the next input-dependent quantities for the converters</p>
+<div class="math notranslate nohighlight" id="equation-eq-z-change">
+<span class="eqno">(3)<a class="headerlink" href="#equation-eq-z-change" title="Permalink to this equation">#</a></span>\[
+	z_1 := \frac{v_C}{V_g} - \sigma, \quad
+	z_2:=\frac{1}{V_g}\sqrt{\frac{L}{C}} i_C,
+\]</div>
+<p>the first one clearly corresponding to a transformed voltage and
+the second one being a transformed current.</p>
+<p>Keeping in mind that any variation of <span class="math notranslate nohighlight">\(\sigma \in \{-1, 1\}\)</span> must be instantaneous,
+so that <span class="math notranslate nohighlight">\(\dot \sigma = 0\)</span>,
+we may compute the differential equations governing the evolution of variables <span class="math notranslate nohighlight">\(z:=(z_1,z_2)\)</span> in <a class="reference internal" href="#equation-eq-z-change">(3)</a>.
+As shown in \cite{ADHS}, the dynamics is the same for the two circuits
+and corresponds to the following damped oscillator</p>
+<div class="math notranslate nohighlight" id="equation-eq-z-dot">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eq-z-dot" title="Permalink to this equation">#</a></span>\[
+  \dot z_1 = \omega z_2, \quad \dot z_2 = -\omega z_1 - \beta z_2
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\omega := \left(\sqrt{LC}\right)^{-1}\)</span> is the natural frequency and <span class="math notranslate nohighlight">\(\beta&gt;0\)</span> is the inverse of the time constant of the exponential decay associated with each one of the linear circuits:</p>
+<div class="math notranslate nohighlight" id="equation-eq-beta">
+<span class="eqno">(5)<a class="headerlink" href="#equation-eq-beta" title="Permalink to this equation">#</a></span>\[
+	\beta_{\text{PRC}}:= \frac{1}{RC}, \quad
+	\beta_{\text{SRC}}:= \frac{R}{L}.
+\]</div>
+<p>Since the coordinates <span class="math notranslate nohighlight">\((z_1,z_2)\)</span> depend on the input <span class="math notranslate nohighlight">\(\sigma\)</span>, they experience an instantaneous change when <span class="math notranslate nohighlight">\(\sigma\)</span> is toggled. In particular, since <span class="math notranslate nohighlight">\(\sigma\)</span> toggles between <span class="math notranslate nohighlight">\(-1\)</span> and <span class="math notranslate nohighlight">\(+1\)</span>, namely
+<span class="math notranslate nohighlight">\(\sigma^+ = -\sigma\)</span>,
+then <a class="reference internal" href="#equation-eq-z-change">(3)</a> provides, for both circuits:</p>
+<div class="math notranslate nohighlight" id="equation-eq-z-plus">
+<span class="eqno">(6)<a class="headerlink" href="#equation-eq-z-plus" title="Permalink to this equation">#</a></span>\[
+(z_1^+, z_2^+, \sigma^+) = (z_1 +2 \sigma, z_2, -\sigma),
+\]</div>
+<p>where we emphasize that <span class="math notranslate nohighlight">\(\sigma\)</span> represents the switch position before the update and <span class="math notranslate nohighlight">\(\sigma^+\)</span> represents its position after the update (and similarly for the other variables).</p>
 </section>
-<section id="filter">
-<h2>Filter<a class="headerlink" href="#filter" title="Permalink to this heading">#</a></h2>
-<blockquote>
-<div><p>Maybe add some consideration on the harmonic decomposition: MATLAB <strong>FFT</strong> analysis? Useful to understand the behavior of the filter.</p>
-</div></blockquote>
-<p>The filter is composed of one capacitor, two inductors and a resistor.
-The input is a pulsating wave and the filter has the objective to smooth
-the oscillation (reduce the ripple).</p>
-<p>We can write the following relation between input and output current in
-the frequency domain:</p>
-<div class="math notranslate nohighlight">
-\[I_{\text{bat}}(s) = H_{i}(s)I_{r}(s) - H_{v}(s)V_{\text{bat}}\]</div>
-<p>The transfer functions are</p>
-<div class="math notranslate nohighlight">
-\[ H_{i}(s) = \frac{R_{f}\left( 1 + s\frac{L_{f1}}{R_{f}} \right)}{s^{3}C_{f}L_{f1}L_{f2} + s^{2}R_{f}C_{f}(L_{f1} + L_{f2}) + sL_{f1} + R_{f}}\]</div>
-<div class="math notranslate nohighlight">
-\[H_{s}(s) = \frac{sR_{f}C_{f}\left( 1 + s\frac{L_{f1}}{R_{f}} \right)}{s^{3}C_{f}L_{f1}L_{f2} + s^{2}R_{f}C_{f}\left( L_{f1} + L_{f2} \right) + sL_{f1} + R_{f}} \]</div>
-<p>with DC gains <span class="math notranslate nohighlight">\(H_{i}(0) = 1\)</span> and <span class="math notranslate nohighlight">\(H_{v}(0) = 0\)</span>. Therefore, since we can
-consider the battery voltage almost constant, it has no influence on the
-filtered current that fully depends on the rectified current. The DC
-part is kept, and we have cut-off frequency at: <em>need numerical solution!</em></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Can put a widget to calculate the cut-off frequencies of the filter. A 3rd order equation need to be solved</p>
-</div>
-<p><strong>TO CHECK</strong>: Lower cut-off frequency (2<sup>nd</sup> order pole) depends mostly on the reactive components and not on <span class="math notranslate nohighlight">\(R_{f}\)</span>. <span class="math notranslate nohighlight">\(R_{f}\)</span> has an stronger influence on the higher cut-off frequency (1<sup>st</sup> order pole).</p>
-<section id="choice-of-the-inductors-mathbf-l-mathbf-f-mathbf-1-and-mathbf-l-mathbf-f-mathbf-2">
-<h3>Choice of the inductors <span class="math notranslate nohighlight">\(\mathbf{L}_{\mathbf{f}\mathbf{1}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{L}_{\mathbf{f}\mathbf{2}}\)</span><a class="headerlink" href="#choice-of-the-inductors-mathbf-l-mathbf-f-mathbf-1-and-mathbf-l-mathbf-f-mathbf-2" title="Permalink to this heading">#</a></h3>
-<p>We need inductors in the range 1uH-3uH. Würth Elektronik offers some
-compact solutions; another solution is to use classical toroidal one
-like the ones from Bourns</p>
-<table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p></p></th>
-<th class="head"><p>code</p></th>
-<th class="head"><p>L</p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\(I_{R}\)</span></p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\(I_{\text{sat}}\)</span></p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\(R_{\text{DC}}\)</span></p></th>
-<th class="head"><p></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>WE-HCFT</p></td>
-<td><p>7443762504010</p></td>
-<td><p>1uH</p></td>
-<td><p>39A</p></td>
-<td><p>33A</p></td>
-<td><p>0.86m</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p></p></td>
-<td><p></p></td>
-<td><p>7443762504022</p></td>
-<td><p>2.2uH</p></td>
-<td><p>30A</p></td>
-<td><p>23.8A</p></td>
-<td><p>1.78m</p></td>
-</tr>
-<tr class="row-even"><td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>BOURNS</strong></p></td>
-<td><p><strong>2100LL-1R0-V-RC</strong></p></td>
-<td><p><strong>1uH</strong></p></td>
-<td><p><strong>21.4A</strong></p></td>
-<td><p></p></td>
-<td><p><strong>2m</strong></p></td>
-<td><p><img src="attachment:media/image2.png" style="width:0.456in;height:0.53835in" /></p></td>
-</tr>
-<tr class="row-even"><td><p></p></td>
-<td><p></p></td>
-<td><p>2100LL-1R5-V-RC</p></td>
-<td><p>1.5uH</p></td>
-<td><p>18.5A</p></td>
-<td><p></p></td>
-<td><p>3m</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>actual selection</strong></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<p><a class="reference external" href="https://www.coilcraft.com/en-us/products/power/shielded-inductors/high-current-flat-wire/agp-ver/agm2222/?skuId=30433">https://www.coilcraft.com/en-us/products/power/shielded-inductors/high-current-flat-wire/agp-ver/agm2222/?skuId=30433</a></p>
-<p>At the end, we opted for the Wurth inductors.</p>
-</section>
-</section>
-<div class="toctree-wrapper compound">
-</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -600,7 +497,7 @@ like the ones from Bourns</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./docs\design"
+            path: "./docs\control"
         },
         predefinedOutput: true
     }
@@ -618,20 +515,20 @@ like the ones from Bourns</p>
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="RT_pcb.html"
+       href="RT_control.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">PCB design</p>
+        <p class="prev-next-title">Oscillation controls</p>
       </div>
     </a>
     <a class="right-next"
-       href="RC_sensing.html"
+       href="RT_theta.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Sensing</p>
+        <p class="prev-next-title"><span class="math notranslate nohighlight">\(\theta\)</span> control</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -650,11 +547,7 @@ like the ones from Bourns</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diode-bridge">Diode Bridge</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter">Filter</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choice-of-the-inductors-mathbf-l-mathbf-f-mathbf-1-and-mathbf-l-mathbf-f-mathbf-2">Choice of the inductors <span class="math notranslate nohighlight">\(\mathbf{L}_{\mathbf{f}\mathbf{1}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{L}_{\mathbf{f}\mathbf{2}}\)</span></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unifying-coordinate-change">Unifying coordinate change</a></li>
 </ul>
   </nav></div>
 

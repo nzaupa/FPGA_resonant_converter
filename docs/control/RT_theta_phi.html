@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Rectifier &#8212; Resonant Converter 2023</title>
+    <title>\(\theta-\varphi\) control &#8212; Resonant Converter 2023</title>
   
   
   
@@ -65,12 +65,12 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/design/RC_rectifier_design';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/control/RT_theta_phi';</script>
     <link rel="shortcut icon" href="../../_static/logo2.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Sensing" href="RC_sensing.html" />
-    <link rel="prev" title="PCB design" href="RT_pcb.html" />
+    <link rel="next" title="Closed-loop control" href="RC_control.html" />
+    <link rel="prev" title="\(\varphi\)-control" href="RT_phi.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -182,32 +182,32 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../intro/publications.html">Publications</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Control</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../control/RT_control.html">Oscillation controls</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../control/RT_model.html">Unified model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../control/RT_theta.html"><span class="math notranslate nohighlight">\(\theta\)</span> control</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../control/RT_phi.html"><span class="math notranslate nohighlight">\(\varphi\)</span>-control</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../control/RT_theta_phi.html"><span class="math notranslate nohighlight">\(\theta-\varphi\)</span> control</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="RT_control.html">Oscillation controls</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="RT_model.html">Unified model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RT_theta.html"><span class="math notranslate nohighlight">\(\theta\)</span> control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RT_phi.html"><span class="math notranslate nohighlight">\(\varphi\)</span>-control</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#"><span class="math notranslate nohighlight">\(\theta-\varphi\)</span> control</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../control/RC_control.html">Closed-loop control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RC_control.html">Closed-loop control</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Electronic design</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="power_stage.html">Power stage</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="RT_resonant_tank_design.html">Resonant Tank</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="RT_sensing.html">Sensing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RT_signal_transformer_design.html">Signal Transformers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RT_trafo_calc.html">Transformer calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RT_pcb.html">PCB design</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../design/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/power_stage.html">Power stage</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../design/RT_resonant_tank_design.html">Resonant Tank</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../design/RT_sensing.html">Sensing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/RT_signal_transformer_design.html">Signal Transformers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/RT_trafo_calc.html">Transformer calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/RT_pcb.html">PCB design</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Rectifier</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="RC_sensing.html">Sensing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RC_ADC.html">ADCs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="simulation.html">Simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RC_pcb.html">PCB design</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../design/RC_rectifier_design.html">Rectifier</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../design/RC_sensing.html">Sensing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/RC_ADC.html">ADCs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/simulation.html">Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/RC_pcb.html">PCB design</a></li>
 </ul>
 </li>
 </ul>
@@ -314,7 +314,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/docs/design/RC_rectifier_design.md" target="_blank"
+      <li><a href="../../_sources/docs/control/RT_theta_phi.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -383,9 +383,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -396,23 +394,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Rectifier</h1>
+    <h1>\theta-\varphi control</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diode-bridge">Diode Bridge</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter">Filter</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choice-of-the-inductors-mathbf-l-mathbf-f-mathbf-1-and-mathbf-l-mathbf-f-mathbf-2">Choice of the inductors <span class="math notranslate nohighlight">\(\mathbf{L}_{\mathbf{f}\mathbf{1}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{L}_{\mathbf{f}\mathbf{2}}\)</span></a></li>
-</ul>
-</li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -422,169 +408,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="rectifier">
-<h1>Rectifier<a class="headerlink" href="#rectifier" title="Permalink to this heading">#</a></h1>
-<p>At the power level objective is to rectify the AC output of the transformer and filter it so that the ripple is at an acceptable level for the battery.</p>
-<p>The main parts of the board are:</p>
-<ul class="simple">
-<li><p>power part with:</p>
-<ul>
-<li><p>rectifier</p></li>
-<li><p>3<sup>rd</sup> filter low-pass filter</p></li>
-<li><p>battery connection</p></li>
-</ul>
-</li>
-<li><p>sensing part with:</p>
-<ul>
-<li><p>voltage sensor</p></li>
-<li><p>current sensor</p></li>
-<li><p>ADCs.</p></li>
-</ul>
-</li>
-</ul>
-<p>At high level, the main objective is to control the current charging the battery
-while ensuring galvanic isolation between the battery and the FPGA
-(ideally, the FPGA should be isolated from both battery and H-bridge).</p>
-<figure class="align-default" id="id1">
-<img alt="../../_images/RC_power_scheme.png" src="../../_images/RC_power_scheme.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Overview of the main power parts</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<section id="diode-bridge">
-<h2>Diode Bridge<a class="headerlink" href="#diode-bridge" title="Permalink to this heading">#</a></h2>
-<p>The diodes used for the bridge should have a fast recovery. To this end, Schottky diodes are suggested. Moreover, the two parameters important for the design/choice are: the current flowing through them, and the maximum reverse voltage.</p>
-<p>On the other side, parameters that are influencing the behavior are the threshold voltage and recovery time.</p>
-<p>The bridge output current is a pulsating wave
-<span class="math notranslate nohighlight">\(i_{r}(t) = I_{r}\left| \sin\left( \text{ωt} \right) \right|\)</span>.
-The average DC value is <span class="math notranslate nohighlight">\(\frac{2}{\pi}I_{r}\)</span>.</p>
-<p>Diodes are subject to 50% of <span class="math notranslate nohighlight">\(i_{r}(t)\)</span>. The diodes need a heat-sink in
-order to dissipate the heat. The ‘head’ is connected to the cathode and
-must be isolated from the others (silicone + mica).<br />
-Average forward current is equal to <span class="math notranslate nohighlight">\(\frac{I_{r}}{\pi}\)</span>.</p>
-<p>Two possible choices for the diodes from
-Vishay are:</p>
-<table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p></p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\(\mathbf{I_F}\)</span></p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\(\mathbf{V_R}\)</span></p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\(\mathbf{V_F}\)</span></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>VS-15TQ060-M3</p></td>
-<td><p>15A</p></td>
-<td><p>60V</p></td>
-<td><p>0.56V</p></td>
-</tr>
-<tr class="row-odd"><td><p>FES16BT-E3/45</p></td>
-<td><p>16A</p></td>
-<td><p>100V</p></td>
-<td><p>0.975V</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="filter">
-<h2>Filter<a class="headerlink" href="#filter" title="Permalink to this heading">#</a></h2>
-<blockquote>
-<div><p>Maybe add some consideration on the harmonic decomposition: MATLAB <strong>FFT</strong> analysis? Useful to understand the behavior of the filter.</p>
-</div></blockquote>
-<p>The filter is composed of one capacitor, two inductors and a resistor.
-The input is a pulsating wave and the filter has the objective to smooth
-the oscillation (reduce the ripple).</p>
-<p>We can write the following relation between input and output current in
-the frequency domain:</p>
-<div class="math notranslate nohighlight">
-\[I_{\text{bat}}(s) = H_{i}(s)I_{r}(s) - H_{v}(s)V_{\text{bat}}\]</div>
-<p>The transfer functions are</p>
-<div class="math notranslate nohighlight">
-\[ H_{i}(s) = \frac{R_{f}\left( 1 + s\frac{L_{f1}}{R_{f}} \right)}{s^{3}C_{f}L_{f1}L_{f2} + s^{2}R_{f}C_{f}(L_{f1} + L_{f2}) + sL_{f1} + R_{f}}\]</div>
-<div class="math notranslate nohighlight">
-\[H_{s}(s) = \frac{sR_{f}C_{f}\left( 1 + s\frac{L_{f1}}{R_{f}} \right)}{s^{3}C_{f}L_{f1}L_{f2} + s^{2}R_{f}C_{f}\left( L_{f1} + L_{f2} \right) + sL_{f1} + R_{f}} \]</div>
-<p>with DC gains <span class="math notranslate nohighlight">\(H_{i}(0) = 1\)</span> and <span class="math notranslate nohighlight">\(H_{v}(0) = 0\)</span>. Therefore, since we can
-consider the battery voltage almost constant, it has no influence on the
-filtered current that fully depends on the rectified current. The DC
-part is kept, and we have cut-off frequency at: <em>need numerical solution!</em></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Can put a widget to calculate the cut-off frequencies of the filter. A 3rd order equation need to be solved</p>
-</div>
-<p><strong>TO CHECK</strong>: Lower cut-off frequency (2<sup>nd</sup> order pole) depends mostly on the reactive components and not on <span class="math notranslate nohighlight">\(R_{f}\)</span>. <span class="math notranslate nohighlight">\(R_{f}\)</span> has an stronger influence on the higher cut-off frequency (1<sup>st</sup> order pole).</p>
-<section id="choice-of-the-inductors-mathbf-l-mathbf-f-mathbf-1-and-mathbf-l-mathbf-f-mathbf-2">
-<h3>Choice of the inductors <span class="math notranslate nohighlight">\(\mathbf{L}_{\mathbf{f}\mathbf{1}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{L}_{\mathbf{f}\mathbf{2}}\)</span><a class="headerlink" href="#choice-of-the-inductors-mathbf-l-mathbf-f-mathbf-1-and-mathbf-l-mathbf-f-mathbf-2" title="Permalink to this heading">#</a></h3>
-<p>We need inductors in the range 1uH-3uH. Würth Elektronik offers some
-compact solutions; another solution is to use classical toroidal one
-like the ones from Bourns</p>
-<table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p></p></th>
-<th class="head"><p>code</p></th>
-<th class="head"><p>L</p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\(I_{R}\)</span></p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\(I_{\text{sat}}\)</span></p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\(R_{\text{DC}}\)</span></p></th>
-<th class="head"><p></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>WE-HCFT</p></td>
-<td><p>7443762504010</p></td>
-<td><p>1uH</p></td>
-<td><p>39A</p></td>
-<td><p>33A</p></td>
-<td><p>0.86m</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p></p></td>
-<td><p></p></td>
-<td><p>7443762504022</p></td>
-<td><p>2.2uH</p></td>
-<td><p>30A</p></td>
-<td><p>23.8A</p></td>
-<td><p>1.78m</p></td>
-</tr>
-<tr class="row-even"><td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>BOURNS</strong></p></td>
-<td><p><strong>2100LL-1R0-V-RC</strong></p></td>
-<td><p><strong>1uH</strong></p></td>
-<td><p><strong>21.4A</strong></p></td>
-<td><p></p></td>
-<td><p><strong>2m</strong></p></td>
-<td><p><img src="attachment:media/image2.png" style="width:0.456in;height:0.53835in" /></p></td>
-</tr>
-<tr class="row-even"><td><p></p></td>
-<td><p></p></td>
-<td><p>2100LL-1R5-V-RC</p></td>
-<td><p>1.5uH</p></td>
-<td><p>18.5A</p></td>
-<td><p></p></td>
-<td><p>3m</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>actual selection</strong></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<p><a class="reference external" href="https://www.coilcraft.com/en-us/products/power/shielded-inductors/high-current-flat-wire/agp-ver/agm2222/?skuId=30433">https://www.coilcraft.com/en-us/products/power/shielded-inductors/high-current-flat-wire/agp-ver/agm2222/?skuId=30433</a></p>
-<p>At the end, we opted for the Wurth inductors.</p>
-</section>
-</section>
-<div class="toctree-wrapper compound">
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="theta-varphi-control">
+<h1><span class="math notranslate nohighlight">\(\theta-\varphi\)</span> control<a class="headerlink" href="#theta-varphi-control" title="Permalink to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -600,7 +425,7 @@ like the ones from Bourns</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./docs\design"
+            path: "./docs\control"
         },
         predefinedOutput: true
     }
@@ -618,20 +443,20 @@ like the ones from Bourns</p>
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="RT_pcb.html"
+       href="RT_phi.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">PCB design</p>
+        <p class="prev-next-title"><span class="math notranslate nohighlight">\(\varphi\)</span>-control</p>
       </div>
     </a>
     <a class="right-next"
-       href="RC_sensing.html"
+       href="RC_control.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Sensing</p>
+        <p class="prev-next-title">Closed-loop control</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -641,24 +466,6 @@ like the ones from Bourns</p>
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diode-bridge">Diode Bridge</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter">Filter</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choice-of-the-inductors-mathbf-l-mathbf-f-mathbf-1-and-mathbf-l-mathbf-f-mathbf-2">Choice of the inductors <span class="math notranslate nohighlight">\(\mathbf{L}_{\mathbf{f}\mathbf{1}}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{L}_{\mathbf{f}\mathbf{2}}\)</span></a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
