@@ -71,10 +71,16 @@ wire  signed [31:0]  sphi;   //
 
    assign b0 = counter[0];
    assign b1 = counter[1];
-   assign C1_db = ~S1[31];
-   assign C2_db =  S2[31];
-   assign C3_db =  S3[31];
-   assign C4_db = ~S2[31];
+   // assign C1_db = ~S1[31];
+   // assign C2_db =  S2[31];
+   // assign C3_db =  S3[31];
+   // assign C4_db = ~S2[31];
+
+   assign C1 = ~S1[31];
+   assign C2 =  S2[31];
+   assign C3 =  S3[31];
+   assign C4 = ~S2[31];
+
 
    assign CLK_jump_OR = ( C1 & (~b1) & (~b0) ) | ( C2 & (~b1) & b0 ) | ( C3 & b1 & (~b0) ) | ( C4 & b1 & b0 );
    assign CLK_jump    = CLK_jump_OR & (~CLK_jump_prev);
@@ -108,16 +114,16 @@ trigonometry_deg trigonometry_inst (
 );
 
 
-regularization #(
-   .DEBOUNCE_TIME(2), 
-   .DELAY(500),
-   .N(4)
-) regularization_4bit_inst (
-   .o_signal( {C4,C3,C2,C1} ),
-   .i_clk(i_clock),
-   .i_reset(i_RESET),
-   .i_signal({C4_db,C3_db,C2_db,C1_db})
-);
+// regularization #(
+//    .DEBOUNCE_TIME(2), 
+//    .DELAY(50),
+//    .N(4)
+// ) regularization_4bit_inst (
+//    .o_signal( {C4,C3,C2,C1} ),
+//    .i_clk(i_clock),
+//    .i_reset(i_RESET),
+//    .i_signal({C4_db,C3_db,C2_db,C1_db})
+// );
 
 // variable initialization
 initial begin

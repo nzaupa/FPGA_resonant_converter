@@ -45,9 +45,12 @@ html:
 bibtex_bibfiles:
   - references.bib
 
-sphinx:
+sphinx:   
   config:
     bibtex_reference_style: author_year
+  extra_extensions:
+    - sphinx_proof
+    - sphinx_togglebutton
 
 # Information about where the book exists on the web
 repository:

@@ -1,7 +1,7 @@
 |TOP_HybridControl_theta_phi_OL
 CPU_RESET => CPU_RESET.IN5
 OSC => OSC.IN1
-FAN_CTRL <= PLL_theta_phi_OL:PLL_inst.c4
+FAN_CTRL << PLL_theta_phi_OL:PLL_inst.c4
 ADB_DATA[0] => Add3.IN28
 ADB_DATA[1] => Add3.IN27
 ADB_DATA[2] => Add3.IN26
@@ -30,42 +30,42 @@ ADA_DATA[10] => Add2.IN18
 ADA_DATA[11] => Add2.IN17
 ADA_DATA[12] => Add2.IN16
 ADA_DATA[13] => Add2.IN15
-DA[0] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
-DA[1] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
-DA[2] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
-DA[3] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
-DA[4] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
-DA[5] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
-DA[6] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
-DA[7] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
-DA[8] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
-DA[9] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
-DA[10] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
-DA[11] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
-DA[12] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
-DA[13] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
-DB[0] <= DAB_copy[0].DB_MAX_OUTPUT_PORT_TYPE
-DB[1] <= DAB_copy[1].DB_MAX_OUTPUT_PORT_TYPE
-DB[2] <= DAB_copy[2].DB_MAX_OUTPUT_PORT_TYPE
-DB[3] <= DAB_copy[3].DB_MAX_OUTPUT_PORT_TYPE
-DB[4] <= DAB_copy[4].DB_MAX_OUTPUT_PORT_TYPE
-DB[5] <= DAB_copy[5].DB_MAX_OUTPUT_PORT_TYPE
-DB[6] <= DAB_copy[6].DB_MAX_OUTPUT_PORT_TYPE
-DB[7] <= DAB_copy[7].DB_MAX_OUTPUT_PORT_TYPE
-DB[8] <= DAB_copy[8].DB_MAX_OUTPUT_PORT_TYPE
-DB[9] <= DAB_copy[9].DB_MAX_OUTPUT_PORT_TYPE
-DB[10] <= DAB_copy[10].DB_MAX_OUTPUT_PORT_TYPE
-DB[11] <= DAB_copy[11].DB_MAX_OUTPUT_PORT_TYPE
-DB[12] <= DAB_copy[12].DB_MAX_OUTPUT_PORT_TYPE
-DB[13] <= DAB_copy[13].DB_MAX_OUTPUT_PORT_TYPE
+DA[0] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
+DA[1] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
+DA[2] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
+DA[3] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
+DA[4] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
+DA[5] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
+DA[6] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
+DA[7] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
+DA[8] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
+DA[9] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
+DA[10] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
+DA[11] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
+DA[12] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
+DA[13] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
+DB[0] << DAB_copy[0].DB_MAX_OUTPUT_PORT_TYPE
+DB[1] << DAB_copy[1].DB_MAX_OUTPUT_PORT_TYPE
+DB[2] << DAB_copy[2].DB_MAX_OUTPUT_PORT_TYPE
+DB[3] << DAB_copy[3].DB_MAX_OUTPUT_PORT_TYPE
+DB[4] << DAB_copy[4].DB_MAX_OUTPUT_PORT_TYPE
+DB[5] << DAB_copy[5].DB_MAX_OUTPUT_PORT_TYPE
+DB[6] << DAB_copy[6].DB_MAX_OUTPUT_PORT_TYPE
+DB[7] << DAB_copy[7].DB_MAX_OUTPUT_PORT_TYPE
+DB[8] << DAB_copy[8].DB_MAX_OUTPUT_PORT_TYPE
+DB[9] << DAB_copy[9].DB_MAX_OUTPUT_PORT_TYPE
+DB[10] << DAB_copy[10].DB_MAX_OUTPUT_PORT_TYPE
+DB[11] << DAB_copy[11].DB_MAX_OUTPUT_PORT_TYPE
+DB[12] << DAB_copy[12].DB_MAX_OUTPUT_PORT_TYPE
+DB[13] << DAB_copy[13].DB_MAX_OUTPUT_PORT_TYPE
 ADA_OR => ~NO_FANOUT~
 ADB_OR => ~NO_FANOUT~
 AD_SCLK <> <VCC>
 AD_SDIO <> <GND>
-ADA_OE <= <GND>
-ADA_SPI_CS <= <VCC>
-ADB_OE <= <GND>
-ADB_SPI_CS <= <VCC>
+ADA_OE << <GND>
+ADA_SPI_CS << <VCC>
+ADB_OE << <GND>
+ADB_SPI_CS << <VCC>
 FPGA_CLK_A_N <> FPGA_CLK_A_N
 FPGA_CLK_A_P <> FPGA_CLK_A_P
 FPGA_CLK_B_N <> FPGA_CLK_B_N
@@ -120,7 +120,7 @@ ADC_BAT_V[4] => ~NO_FANOUT~
 ADC_BAT_V[5] => ~NO_FANOUT~
 ADC_BAT_V[6] => ~NO_FANOUT~
 ADC_BAT_V[7] => ~NO_FANOUT~
-ADC_BAT_V_CONVST <= PLL_theta_phi_OL:PLL_inst.c3
+ADC_BAT_V_CONVST << PLL_theta_phi_OL:PLL_inst.c3
 ADC_BAT_V_EOC => ~NO_FANOUT~
 ADC_BAT_I[0] => ~NO_FANOUT~
 ADC_BAT_I[1] => ~NO_FANOUT~
@@ -130,24 +130,24 @@ ADC_BAT_I[4] => ~NO_FANOUT~
 ADC_BAT_I[5] => ~NO_FANOUT~
 ADC_BAT_I[6] => ~NO_FANOUT~
 ADC_BAT_I[7] => ~NO_FANOUT~
-ADC_BAT_I_CONVST <= PLL_theta_phi_OL:PLL_inst.c3
+ADC_BAT_I_CONVST << PLL_theta_phi_OL:PLL_inst.c3
 ADC_BAT_I_EOC => ~NO_FANOUT~
-Q[0] <= Q.DB_MAX_OUTPUT_PORT_TYPE
-Q[1] <= Q.DB_MAX_OUTPUT_PORT_TYPE
-Q[2] <= Q.DB_MAX_OUTPUT_PORT_TYPE
-Q[3] <= Q.DB_MAX_OUTPUT_PORT_TYPE
-EX[0] <= SW[3].DB_MAX_OUTPUT_PORT_TYPE
-EX[1] <= SW[3].DB_MAX_OUTPUT_PORT_TYPE
-EX[2] <= ENABLE.DB_MAX_OUTPUT_PORT_TYPE
-EX[3] <= dead_time:dead_time_inst.o_signal
-EX[4] <= dead_time:dead_time_inst.o_signal
-EX[5] <= dead_time:dead_time_inst.o_signal
-EX[6] <= dead_time:dead_time_inst.o_signal
-EX[7] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
-EX[8] <= <GND>
-EX[9] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
-EX[10] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
-EX[11] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
+Q[0] << Q.DB_MAX_OUTPUT_PORT_TYPE
+Q[1] << Q.DB_MAX_OUTPUT_PORT_TYPE
+Q[2] << Q.DB_MAX_OUTPUT_PORT_TYPE
+Q[3] << Q.DB_MAX_OUTPUT_PORT_TYPE
+EX[0] << SW[3].DB_MAX_OUTPUT_PORT_TYPE
+EX[1] << SW[3].DB_MAX_OUTPUT_PORT_TYPE
+EX[2] << ENABLE.DB_MAX_OUTPUT_PORT_TYPE
+EX[3] << dead_time:dead_time_inst.o_signal
+EX[4] << dead_time:dead_time_inst.o_signal
+EX[5] << dead_time:dead_time_inst.o_signal
+EX[6] << dead_time:dead_time_inst.o_signal
+EX[7] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
+EX[8] << <GND>
+EX[9] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
+EX[10] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
+EX[11] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
 SW[0] => SW[0].IN1
 SW[1] => SW[1].IN1
 SW[2] => SW[2].IN1
@@ -156,52 +156,52 @@ BUTTON[0] => BUTTON[0].IN1
 BUTTON[1] => BUTTON[1].IN1
 BUTTON[2] => BUTTON[2].IN1
 BUTTON[3] => BUTTON[3].IN1
-LED[0] <= <VCC>
-LED[1] <= <VCC>
-LED[2] <= <VCC>
-LED[3] <= <VCC>
-LED[4] <= <VCC>
-LED[5] <= <VCC>
-LED[6] <= <VCC>
-LED[7] <= <VCC>
-SEG0[0] <= Mux7.DB_MAX_OUTPUT_PORT_TYPE
-SEG0[1] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
-SEG0[2] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
-SEG0[3] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
-SEG0[4] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
-SEG0[5] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
-SEG0[6] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
-SEG0[7] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
-SEG1[0] <= Mux15.DB_MAX_OUTPUT_PORT_TYPE
-SEG1[1] <= Mux14.DB_MAX_OUTPUT_PORT_TYPE
-SEG1[2] <= Mux13.DB_MAX_OUTPUT_PORT_TYPE
-SEG1[3] <= Mux12.DB_MAX_OUTPUT_PORT_TYPE
-SEG1[4] <= Mux11.DB_MAX_OUTPUT_PORT_TYPE
-SEG1[5] <= Mux10.DB_MAX_OUTPUT_PORT_TYPE
-SEG1[6] <= Mux9.DB_MAX_OUTPUT_PORT_TYPE
-SEG1[7] <= Mux8.DB_MAX_OUTPUT_PORT_TYPE
-GPIO0[0] <= <GND>
-GPIO0[1] <= <GND>
-GPIO0[2] <= <GND>
-GPIO0[3] <= <GND>
-GPIO0[4] <= <GND>
-GPIO0[5] <= <GND>
-GPIO0[6] <= <GND>
-GPIO0[7] <= <GND>
-GPIO0[8] <= <GND>
-GPIO0[9] <= <GND>
-GPIO0[10] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
-GPIO0[11] <= <GND>
-GPIO0[12] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
-GPIO0[13] <= <GND>
-GPIO0[14] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
-GPIO0[15] <= <GND>
-GPIO0[16] <= hybrid_control_theta_phi:hybrid_control_theta_phi_inst.o_debug
-GPIO0[17] <= <GND>
-GPIO0[18] <= <GND>
-GPIO0[19] <= <GND>
-GPIO0[20] <= <GND>
-GPIO0[21] <= <GND>
+LED[0] << <VCC>
+LED[1] << <VCC>
+LED[2] << <VCC>
+LED[3] << <VCC>
+LED[4] << <VCC>
+LED[5] << <VCC>
+LED[6] << <VCC>
+LED[7] << <VCC>
+SEG0[0] << Mux7.DB_MAX_OUTPUT_PORT_TYPE
+SEG0[1] << Mux6.DB_MAX_OUTPUT_PORT_TYPE
+SEG0[2] << Mux5.DB_MAX_OUTPUT_PORT_TYPE
+SEG0[3] << Mux4.DB_MAX_OUTPUT_PORT_TYPE
+SEG0[4] << Mux3.DB_MAX_OUTPUT_PORT_TYPE
+SEG0[5] << Mux2.DB_MAX_OUTPUT_PORT_TYPE
+SEG0[6] << Mux1.DB_MAX_OUTPUT_PORT_TYPE
+SEG0[7] << Mux0.DB_MAX_OUTPUT_PORT_TYPE
+SEG1[0] << Mux15.DB_MAX_OUTPUT_PORT_TYPE
+SEG1[1] << Mux14.DB_MAX_OUTPUT_PORT_TYPE
+SEG1[2] << Mux13.DB_MAX_OUTPUT_PORT_TYPE
+SEG1[3] << Mux12.DB_MAX_OUTPUT_PORT_TYPE
+SEG1[4] << Mux11.DB_MAX_OUTPUT_PORT_TYPE
+SEG1[5] << Mux10.DB_MAX_OUTPUT_PORT_TYPE
+SEG1[6] << Mux9.DB_MAX_OUTPUT_PORT_TYPE
+SEG1[7] << Mux8.DB_MAX_OUTPUT_PORT_TYPE
+GPIO0[0] << <GND>
+GPIO0[1] << <GND>
+GPIO0[2] << <GND>
+GPIO0[3] << <GND>
+GPIO0[4] << <GND>
+GPIO0[5] << <GND>
+GPIO0[6] << <GND>
+GPIO0[7] << <GND>
+GPIO0[8] << <GND>
+GPIO0[9] << <GND>
+GPIO0[10] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
+GPIO0[11] << <GND>
+GPIO0[12] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
+GPIO0[13] << <GND>
+GPIO0[14] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
+GPIO0[15] << <GND>
+GPIO0[16] << hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst.o_debug
+GPIO0[17] << <GND>
+GPIO0[18] << <GND>
+GPIO0[19] << <GND>
+GPIO0[20] << <GND>
+GPIO0[21] << <GND>
 
 
 |TOP_HybridControl_theta_phi_OL|PLL_theta_phi_OL:PLL_inst
@@ -35681,7 +35681,7 @@ i_switch => always0.IN1
 i_switch => r_switch_state.DATAB
 
 
-|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi:hybrid_control_theta_phi_inst
+|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst
 o_MOSFET[0] <= o_MOSFET.DB_MAX_OUTPUT_PORT_TYPE
 o_MOSFET[1] <= o_MOSFET.DB_MAX_OUTPUT_PORT_TYPE
 o_MOSFET[2] <= o_MOSFET.DB_MAX_OUTPUT_PORT_TYPE
@@ -35752,19 +35752,20 @@ i_vC[13] => Mult0.IN22
 i_vC[13] => Mult0.IN23
 i_vC[13] => Mult0.IN24
 i_vC[13] => Mult0.IN25
-i_iC[0] => Mult2.IN39
-i_iC[1] => Mult2.IN38
-i_iC[2] => Mult2.IN37
-i_iC[3] => Mult2.IN36
-i_iC[4] => Mult2.IN35
-i_iC[5] => Mult2.IN34
-i_iC[6] => Mult2.IN33
-i_iC[7] => Mult2.IN32
-i_iC[8] => Mult2.IN31
-i_iC[9] => Mult2.IN30
-i_iC[10] => Mult2.IN29
-i_iC[11] => Mult2.IN28
-i_iC[12] => Mult2.IN27
+i_iC[0] => Mult2.IN38
+i_iC[1] => Mult2.IN37
+i_iC[2] => Mult2.IN36
+i_iC[3] => Mult2.IN35
+i_iC[4] => Mult2.IN34
+i_iC[5] => Mult2.IN33
+i_iC[6] => Mult2.IN32
+i_iC[7] => Mult2.IN31
+i_iC[8] => Mult2.IN30
+i_iC[9] => Mult2.IN29
+i_iC[10] => Mult2.IN28
+i_iC[11] => Mult2.IN27
+i_iC[12] => Mult2.IN26
+i_iC[13] => Mult2.IN7
 i_iC[13] => Mult2.IN8
 i_iC[13] => Mult2.IN9
 i_iC[13] => Mult2.IN10
@@ -35783,7 +35784,6 @@ i_iC[13] => Mult2.IN22
 i_iC[13] => Mult2.IN23
 i_iC[13] => Mult2.IN24
 i_iC[13] => Mult2.IN25
-i_iC[13] => Mult2.IN26
 i_theta[0] => Add0.IN32
 i_theta[0] => Add2.IN64
 i_theta[1] => Add0.IN31
@@ -35978,7 +35978,7 @@ i_sigma[30] => ~NO_FANOUT~
 i_sigma[31] => ~NO_FANOUT~
 
 
-|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi:hybrid_control_theta_phi_inst|trigonometry_deg:trigonometry_plus_inst
+|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst|trigonometry_deg:trigonometry_plus_inst
 o_cos[0] <= WideOr21.DB_MAX_OUTPUT_PORT_TYPE
 o_cos[1] <= WideOr20.DB_MAX_OUTPUT_PORT_TYPE
 o_cos[2] <= WideOr19.DB_MAX_OUTPUT_PORT_TYPE
@@ -53357,7 +53357,7 @@ i_theta[31] => Equal539.IN32
 i_theta[31] => Equal540.IN32
 
 
-|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi:hybrid_control_theta_phi_inst|trigonometry_deg:trigonometry_minus_inst
+|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst|trigonometry_deg:trigonometry_minus_inst
 o_cos[0] <= WideOr21.DB_MAX_OUTPUT_PORT_TYPE
 o_cos[1] <= WideOr20.DB_MAX_OUTPUT_PORT_TYPE
 o_cos[2] <= WideOr19.DB_MAX_OUTPUT_PORT_TYPE
@@ -70736,7 +70736,7 @@ i_theta[31] => Equal539.IN32
 i_theta[31] => Equal540.IN32
 
 
-|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst
+|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst
 o_signal[0] <= regularization_core:REG[0].reg_core.o_signal
 o_signal[1] <= regularization_core:REG[1].reg_core.o_signal
 o_signal[2] <= regularization_core:REG[2].reg_core.o_signal
@@ -70751,21 +70751,21 @@ i_signal[3] => i_signal[3].IN1
 i_signal[4] => ~NO_FANOUT~
 
 
-|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[0].reg_core
+|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[0].reg_core
 o_signal <= o_signal.DB_MAX_OUTPUT_PORT_TYPE
 i_clk => i_clk.IN1
 i_reset => i_reset.IN1
 i_signal => i_signal.IN1
 
 
-|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[0].reg_core|debounce:debounce_inst
+|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[0].reg_core|debounce:debounce_inst
 o_switch[0] <= debounce_core:DB[0].db_core.o_switch
 i_clk => i_clk.IN1
 i_reset => i_reset.IN1
 i_switch[0] => i_switch[0].IN1
 
 
-|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[0].reg_core|debounce:debounce_inst|debounce_core:DB[0].db_core
+|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[0].reg_core|debounce:debounce_inst|debounce_core:DB[0].db_core
 o_switch <= r_switch_state.DB_MAX_OUTPUT_PORT_TYPE
 i_clk => r_switch_state.CLK
 i_clk => counter[0].CLK
@@ -70837,21 +70837,21 @@ i_switch => always0.IN1
 i_switch => r_switch_state.DATAB
 
 
-|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[1].reg_core
+|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[1].reg_core
 o_signal <= o_signal.DB_MAX_OUTPUT_PORT_TYPE
 i_clk => i_clk.IN1
 i_reset => i_reset.IN1
 i_signal => i_signal.IN1
 
 
-|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[1].reg_core|debounce:debounce_inst
+|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[1].reg_core|debounce:debounce_inst
 o_switch[0] <= debounce_core:DB[0].db_core.o_switch
 i_clk => i_clk.IN1
 i_reset => i_reset.IN1
 i_switch[0] => i_switch[0].IN1
 
 
-|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[1].reg_core|debounce:debounce_inst|debounce_core:DB[0].db_core
+|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[1].reg_core|debounce:debounce_inst|debounce_core:DB[0].db_core
 o_switch <= r_switch_state.DB_MAX_OUTPUT_PORT_TYPE
 i_clk => r_switch_state.CLK
 i_clk => counter[0].CLK
@@ -70923,21 +70923,21 @@ i_switch => always0.IN1
 i_switch => r_switch_state.DATAB
 
 
-|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[2].reg_core
+|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[2].reg_core
 o_signal <= o_signal.DB_MAX_OUTPUT_PORT_TYPE
 i_clk => i_clk.IN1
 i_reset => i_reset.IN1
 i_signal => i_signal.IN1
 
 
-|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[2].reg_core|debounce:debounce_inst
+|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[2].reg_core|debounce:debounce_inst
 o_switch[0] <= debounce_core:DB[0].db_core.o_switch
 i_clk => i_clk.IN1
 i_reset => i_reset.IN1
 i_switch[0] => i_switch[0].IN1
 
 
-|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[2].reg_core|debounce:debounce_inst|debounce_core:DB[0].db_core
+|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[2].reg_core|debounce:debounce_inst|debounce_core:DB[0].db_core
 o_switch <= r_switch_state.DB_MAX_OUTPUT_PORT_TYPE
 i_clk => r_switch_state.CLK
 i_clk => counter[0].CLK
@@ -71009,21 +71009,21 @@ i_switch => always0.IN1
 i_switch => r_switch_state.DATAB
 
 
-|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[3].reg_core
+|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[3].reg_core
 o_signal <= o_signal.DB_MAX_OUTPUT_PORT_TYPE
 i_clk => i_clk.IN1
 i_reset => i_reset.IN1
 i_signal => i_signal.IN1
 
 
-|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[3].reg_core|debounce:debounce_inst
+|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[3].reg_core|debounce:debounce_inst
 o_switch[0] <= debounce_core:DB[0].db_core.o_switch
 i_clk => i_clk.IN1
 i_reset => i_reset.IN1
 i_switch[0] => i_switch[0].IN1
 
 
-|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[3].reg_core|debounce:debounce_inst|debounce_core:DB[0].db_core
+|TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi_old:hybrid_control_theta_phi_inst|regularization:regularization_4bit_inst|regularization_core:REG[3].reg_core|debounce:debounce_inst|debounce_core:DB[0].db_core
 o_switch <= r_switch_state.DB_MAX_OUTPUT_PORT_TYPE
 i_clk => r_switch_state.CLK
 i_clk => counter[0].CLK
@@ -71096,21 +71096,21 @@ i_switch => r_switch_state.DATAB
 
 
 |TOP_HybridControl_theta_phi_OL|phi_control:phi_control_inst
-o_seg0[0] <= seven_segment:seven_segment_0_inst.o_seg
-o_seg0[1] <= seven_segment:seven_segment_0_inst.o_seg
-o_seg0[2] <= seven_segment:seven_segment_0_inst.o_seg
-o_seg0[3] <= seven_segment:seven_segment_0_inst.o_seg
-o_seg0[4] <= seven_segment:seven_segment_0_inst.o_seg
-o_seg0[5] <= seven_segment:seven_segment_0_inst.o_seg
-o_seg0[6] <= seven_segment:seven_segment_0_inst.o_seg
+o_seg0[0] <= hex2seg:seven_segment_0_inst.o_seg
+o_seg0[1] <= hex2seg:seven_segment_0_inst.o_seg
+o_seg0[2] <= hex2seg:seven_segment_0_inst.o_seg
+o_seg0[3] <= hex2seg:seven_segment_0_inst.o_seg
+o_seg0[4] <= hex2seg:seven_segment_0_inst.o_seg
+o_seg0[5] <= hex2seg:seven_segment_0_inst.o_seg
+o_seg0[6] <= hex2seg:seven_segment_0_inst.o_seg
 o_seg0[7] <= <VCC>
-o_seg1[0] <= seven_segment:seven_segment_1_inst.o_seg
-o_seg1[1] <= seven_segment:seven_segment_1_inst.o_seg
-o_seg1[2] <= seven_segment:seven_segment_1_inst.o_seg
-o_seg1[3] <= seven_segment:seven_segment_1_inst.o_seg
-o_seg1[4] <= seven_segment:seven_segment_1_inst.o_seg
-o_seg1[5] <= seven_segment:seven_segment_1_inst.o_seg
-o_seg1[6] <= seven_segment:seven_segment_1_inst.o_seg
+o_seg1[0] <= hex2seg:seven_segment_1_inst.o_seg
+o_seg1[1] <= hex2seg:seven_segment_1_inst.o_seg
+o_seg1[2] <= hex2seg:seven_segment_1_inst.o_seg
+o_seg1[3] <= hex2seg:seven_segment_1_inst.o_seg
+o_seg1[4] <= hex2seg:seven_segment_1_inst.o_seg
+o_seg1[5] <= hex2seg:seven_segment_1_inst.o_seg
+o_seg1[6] <= hex2seg:seven_segment_1_inst.o_seg
 o_seg1[7] <= <VCC>
 o_phi32[0] <= angle_sat[0].DB_MAX_OUTPUT_PORT_TYPE
 o_phi32[1] <= angle_sat[1].DB_MAX_OUTPUT_PORT_TYPE
@@ -71166,42 +71166,90 @@ i_decrease => angle[8].CLK
 
 
 |TOP_HybridControl_theta_phi_OL|phi_control:phi_control_inst|dec2seg:dec2seg_inst
-o_seg[0] <= WideOr7.DB_MAX_OUTPUT_PORT_TYPE
-o_seg[1] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
-o_seg[2] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
-o_seg[3] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
-o_seg[4] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
-o_seg[5] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
-o_seg[6] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
-o_seg[7] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
-i_dec[0] => Decoder3.IN6
-i_dec[1] => Decoder2.IN6
-i_dec[2] => Decoder0.IN5
-i_dec[2] => Decoder2.IN5
-i_dec[2] => Decoder3.IN5
-i_dec[3] => Decoder0.IN4
-i_dec[3] => Decoder1.IN4
-i_dec[3] => Decoder2.IN4
-i_dec[3] => Decoder3.IN4
-i_dec[4] => Decoder0.IN3
-i_dec[4] => Decoder1.IN3
-i_dec[4] => Decoder2.IN3
-i_dec[4] => Decoder3.IN3
-i_dec[5] => Decoder0.IN2
-i_dec[5] => Decoder1.IN2
-i_dec[5] => Decoder2.IN2
-i_dec[5] => Decoder3.IN2
-i_dec[6] => Decoder0.IN1
-i_dec[6] => Decoder1.IN1
-i_dec[6] => Decoder2.IN1
-i_dec[6] => Decoder3.IN1
-i_dec[7] => Decoder0.IN0
-i_dec[7] => Decoder1.IN0
-i_dec[7] => Decoder2.IN0
-i_dec[7] => Decoder3.IN0
+o_seg[0] <= str[0].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[1] <= str[1].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[2] <= str[2].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[3] <= str[3].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[4] <= str[4].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[5] <= str[5].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[6] <= str[6].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[7] <= str[7].DB_MAX_OUTPUT_PORT_TYPE
+i_dec[0] => Mux0.IN134
+i_dec[0] => Mux1.IN134
+i_dec[1] => Mux2.IN134
+i_dec[1] => Mux3.IN134
+i_dec[1] => Mux4.IN134
+i_dec[1] => Mux5.IN134
+i_dec[1] => Mux6.IN134
+i_dec[2] => Mux0.IN133
+i_dec[2] => Mux1.IN133
+i_dec[2] => Mux2.IN133
+i_dec[2] => Mux3.IN133
+i_dec[2] => Mux4.IN133
+i_dec[2] => Mux5.IN133
+i_dec[2] => Mux6.IN133
+i_dec[2] => Mux7.IN69
+i_dec[2] => Mux8.IN69
+i_dec[2] => Mux9.IN69
+i_dec[2] => Mux10.IN69
+i_dec[3] => Mux0.IN132
+i_dec[3] => Mux1.IN132
+i_dec[3] => Mux2.IN132
+i_dec[3] => Mux3.IN132
+i_dec[3] => Mux4.IN132
+i_dec[3] => Mux5.IN132
+i_dec[3] => Mux6.IN132
+i_dec[3] => Mux7.IN68
+i_dec[3] => Mux8.IN68
+i_dec[3] => Mux9.IN68
+i_dec[3] => Mux10.IN68
+i_dec[4] => Mux0.IN131
+i_dec[4] => Mux1.IN131
+i_dec[4] => Mux2.IN131
+i_dec[4] => Mux3.IN131
+i_dec[4] => Mux4.IN131
+i_dec[4] => Mux5.IN131
+i_dec[4] => Mux6.IN131
+i_dec[4] => Mux7.IN67
+i_dec[4] => Mux8.IN67
+i_dec[4] => Mux9.IN67
+i_dec[4] => Mux10.IN67
+i_dec[5] => Mux0.IN130
+i_dec[5] => Mux1.IN130
+i_dec[5] => Mux2.IN130
+i_dec[5] => Mux3.IN130
+i_dec[5] => Mux4.IN130
+i_dec[5] => Mux5.IN130
+i_dec[5] => Mux6.IN130
+i_dec[5] => Mux7.IN66
+i_dec[5] => Mux8.IN66
+i_dec[5] => Mux9.IN66
+i_dec[5] => Mux10.IN66
+i_dec[6] => Mux0.IN129
+i_dec[6] => Mux1.IN129
+i_dec[6] => Mux2.IN129
+i_dec[6] => Mux3.IN129
+i_dec[6] => Mux4.IN129
+i_dec[6] => Mux5.IN129
+i_dec[6] => Mux6.IN129
+i_dec[6] => Mux7.IN65
+i_dec[6] => Mux8.IN65
+i_dec[6] => Mux9.IN65
+i_dec[6] => Mux10.IN65
+i_dec[7] => Mux0.IN128
+i_dec[7] => Mux1.IN128
+i_dec[7] => Mux2.IN128
+i_dec[7] => Mux3.IN128
+i_dec[7] => Mux4.IN128
+i_dec[7] => Mux5.IN128
+i_dec[7] => Mux6.IN128
+i_dec[7] => Mux7.IN64
+i_dec[7] => Mux8.IN64
+i_dec[7] => Mux9.IN64
+i_dec[7] => Mux10.IN64
 
 
-|TOP_HybridControl_theta_phi_OL|phi_control:phi_control_inst|seven_segment:seven_segment_0_inst
+|TOP_HybridControl_theta_phi_OL|phi_control:phi_control_inst|hex2seg:seven_segment_0_inst
 o_seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
@@ -71215,7 +71263,7 @@ i_num[2] => Decoder0.IN1
 i_num[3] => Decoder0.IN0
 
 
-|TOP_HybridControl_theta_phi_OL|phi_control:phi_control_inst|seven_segment:seven_segment_1_inst
+|TOP_HybridControl_theta_phi_OL|phi_control:phi_control_inst|hex2seg:seven_segment_1_inst
 o_seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
@@ -71230,21 +71278,21 @@ i_num[3] => Decoder0.IN0
 
 
 |TOP_HybridControl_theta_phi_OL|theta_control:theta_control_inst
-o_seg0[0] <= seven_segment:seven_segment_0_inst.o_seg
-o_seg0[1] <= seven_segment:seven_segment_0_inst.o_seg
-o_seg0[2] <= seven_segment:seven_segment_0_inst.o_seg
-o_seg0[3] <= seven_segment:seven_segment_0_inst.o_seg
-o_seg0[4] <= seven_segment:seven_segment_0_inst.o_seg
-o_seg0[5] <= seven_segment:seven_segment_0_inst.o_seg
-o_seg0[6] <= seven_segment:seven_segment_0_inst.o_seg
+o_seg0[0] <= hex2seg:seven_segment_0_inst.o_seg
+o_seg0[1] <= hex2seg:seven_segment_0_inst.o_seg
+o_seg0[2] <= hex2seg:seven_segment_0_inst.o_seg
+o_seg0[3] <= hex2seg:seven_segment_0_inst.o_seg
+o_seg0[4] <= hex2seg:seven_segment_0_inst.o_seg
+o_seg0[5] <= hex2seg:seven_segment_0_inst.o_seg
+o_seg0[6] <= hex2seg:seven_segment_0_inst.o_seg
 o_seg0[7] <= angle_sat.DB_MAX_OUTPUT_PORT_TYPE
-o_seg1[0] <= seven_segment:seven_segment_1_inst.o_seg
-o_seg1[1] <= seven_segment:seven_segment_1_inst.o_seg
-o_seg1[2] <= seven_segment:seven_segment_1_inst.o_seg
-o_seg1[3] <= seven_segment:seven_segment_1_inst.o_seg
-o_seg1[4] <= seven_segment:seven_segment_1_inst.o_seg
-o_seg1[5] <= seven_segment:seven_segment_1_inst.o_seg
-o_seg1[6] <= seven_segment:seven_segment_1_inst.o_seg
+o_seg1[0] <= hex2seg:seven_segment_1_inst.o_seg
+o_seg1[1] <= hex2seg:seven_segment_1_inst.o_seg
+o_seg1[2] <= hex2seg:seven_segment_1_inst.o_seg
+o_seg1[3] <= hex2seg:seven_segment_1_inst.o_seg
+o_seg1[4] <= hex2seg:seven_segment_1_inst.o_seg
+o_seg1[5] <= hex2seg:seven_segment_1_inst.o_seg
+o_seg1[6] <= hex2seg:seven_segment_1_inst.o_seg
 o_seg1[7] <= <VCC>
 o_theta32[0] <= angle_sat.DB_MAX_OUTPUT_PORT_TYPE
 o_theta32[1] <= angle_sat[1].DB_MAX_OUTPUT_PORT_TYPE
@@ -71301,42 +71349,90 @@ i_decrease => angle[8].CLK
 
 
 |TOP_HybridControl_theta_phi_OL|theta_control:theta_control_inst|dec2seg:dec2seg_inst
-o_seg[0] <= WideOr7.DB_MAX_OUTPUT_PORT_TYPE
-o_seg[1] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
-o_seg[2] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
-o_seg[3] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
-o_seg[4] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
-o_seg[5] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
-o_seg[6] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
-o_seg[7] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
-i_dec[0] => Decoder3.IN6
-i_dec[1] => Decoder2.IN6
-i_dec[2] => Decoder0.IN5
-i_dec[2] => Decoder2.IN5
-i_dec[2] => Decoder3.IN5
-i_dec[3] => Decoder0.IN4
-i_dec[3] => Decoder1.IN4
-i_dec[3] => Decoder2.IN4
-i_dec[3] => Decoder3.IN4
-i_dec[4] => Decoder0.IN3
-i_dec[4] => Decoder1.IN3
-i_dec[4] => Decoder2.IN3
-i_dec[4] => Decoder3.IN3
-i_dec[5] => Decoder0.IN2
-i_dec[5] => Decoder1.IN2
-i_dec[5] => Decoder2.IN2
-i_dec[5] => Decoder3.IN2
-i_dec[6] => Decoder0.IN1
-i_dec[6] => Decoder1.IN1
-i_dec[6] => Decoder2.IN1
-i_dec[6] => Decoder3.IN1
-i_dec[7] => Decoder0.IN0
-i_dec[7] => Decoder1.IN0
-i_dec[7] => Decoder2.IN0
-i_dec[7] => Decoder3.IN0
+o_seg[0] <= str[0].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[1] <= str[1].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[2] <= str[2].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[3] <= str[3].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[4] <= str[4].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[5] <= str[5].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[6] <= str[6].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[7] <= str[7].DB_MAX_OUTPUT_PORT_TYPE
+i_dec[0] => Mux0.IN134
+i_dec[0] => Mux1.IN134
+i_dec[1] => Mux2.IN134
+i_dec[1] => Mux3.IN134
+i_dec[1] => Mux4.IN134
+i_dec[1] => Mux5.IN134
+i_dec[1] => Mux6.IN134
+i_dec[2] => Mux0.IN133
+i_dec[2] => Mux1.IN133
+i_dec[2] => Mux2.IN133
+i_dec[2] => Mux3.IN133
+i_dec[2] => Mux4.IN133
+i_dec[2] => Mux5.IN133
+i_dec[2] => Mux6.IN133
+i_dec[2] => Mux7.IN69
+i_dec[2] => Mux8.IN69
+i_dec[2] => Mux9.IN69
+i_dec[2] => Mux10.IN69
+i_dec[3] => Mux0.IN132
+i_dec[3] => Mux1.IN132
+i_dec[3] => Mux2.IN132
+i_dec[3] => Mux3.IN132
+i_dec[3] => Mux4.IN132
+i_dec[3] => Mux5.IN132
+i_dec[3] => Mux6.IN132
+i_dec[3] => Mux7.IN68
+i_dec[3] => Mux8.IN68
+i_dec[3] => Mux9.IN68
+i_dec[3] => Mux10.IN68
+i_dec[4] => Mux0.IN131
+i_dec[4] => Mux1.IN131
+i_dec[4] => Mux2.IN131
+i_dec[4] => Mux3.IN131
+i_dec[4] => Mux4.IN131
+i_dec[4] => Mux5.IN131
+i_dec[4] => Mux6.IN131
+i_dec[4] => Mux7.IN67
+i_dec[4] => Mux8.IN67
+i_dec[4] => Mux9.IN67
+i_dec[4] => Mux10.IN67
+i_dec[5] => Mux0.IN130
+i_dec[5] => Mux1.IN130
+i_dec[5] => Mux2.IN130
+i_dec[5] => Mux3.IN130
+i_dec[5] => Mux4.IN130
+i_dec[5] => Mux5.IN130
+i_dec[5] => Mux6.IN130
+i_dec[5] => Mux7.IN66
+i_dec[5] => Mux8.IN66
+i_dec[5] => Mux9.IN66
+i_dec[5] => Mux10.IN66
+i_dec[6] => Mux0.IN129
+i_dec[6] => Mux1.IN129
+i_dec[6] => Mux2.IN129
+i_dec[6] => Mux3.IN129
+i_dec[6] => Mux4.IN129
+i_dec[6] => Mux5.IN129
+i_dec[6] => Mux6.IN129
+i_dec[6] => Mux7.IN65
+i_dec[6] => Mux8.IN65
+i_dec[6] => Mux9.IN65
+i_dec[6] => Mux10.IN65
+i_dec[7] => Mux0.IN128
+i_dec[7] => Mux1.IN128
+i_dec[7] => Mux2.IN128
+i_dec[7] => Mux3.IN128
+i_dec[7] => Mux4.IN128
+i_dec[7] => Mux5.IN128
+i_dec[7] => Mux6.IN128
+i_dec[7] => Mux7.IN64
+i_dec[7] => Mux8.IN64
+i_dec[7] => Mux9.IN64
+i_dec[7] => Mux10.IN64
 
 
-|TOP_HybridControl_theta_phi_OL|theta_control:theta_control_inst|seven_segment:seven_segment_0_inst
+|TOP_HybridControl_theta_phi_OL|theta_control:theta_control_inst|hex2seg:seven_segment_0_inst
 o_seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
@@ -71350,7 +71446,7 @@ i_num[2] => Decoder0.IN1
 i_num[3] => Decoder0.IN0
 
 
-|TOP_HybridControl_theta_phi_OL|theta_control:theta_control_inst|seven_segment:seven_segment_1_inst
+|TOP_HybridControl_theta_phi_OL|theta_control:theta_control_inst|hex2seg:seven_segment_1_inst
 o_seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE

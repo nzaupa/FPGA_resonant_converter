@@ -286,7 +286,7 @@ hybrid_control_phi hybrid_control_inst (
 );
 
 // control law PHI + THETA
-hybrid_control_theta_phi #(.mu_z1(86), .mu_z2(90), .mu_Vg(312000)
+hybrid_control_theta_phi #(.mu_z1(32'd86), .mu_z2(32'd90), .mu_Vg(32'd312000)
 ) hybrid_control_theta_phi_inst (
    .o_MOSFET( MOSFET_theta_phi ),  // control signal for the four MOSFETs
    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}

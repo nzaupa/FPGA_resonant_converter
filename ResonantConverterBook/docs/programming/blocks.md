@@ -30,3 +30,25 @@ module debounce #(
 ```
 
 
+## Converter Simulator
+The objective is to have some blocks able to simulate, i.e. compute the next value, the current and voltage in a resonant convert. These values are used to test the part in a more realistic scenario.
+
+
+### SRC simulator
+The dynamics equations governing the SRC are the following
+
+```{math}
+:label: eq:SRC
+\begin{align}
+   \frac{ {\rm d} v_C}{{\rm d} t} &= \frac{1}{C} i_S \\
+   \frac{ {\rm d} i_S}{{\rm d} t} &= \frac{1}{L} \left( V_g\sigma-v_C-v_o \right) \\
+   \frac{ {\rm d} v_o}{{\rm d} t} &= -\frac{R_{eq}}{L} \left( v_C-V_g\sigma - \left( 1+\frac{L}{L_m} \right) v_o\right)
+\end{align}
+```
+
+
+### LLC simulator
+
+
+
+

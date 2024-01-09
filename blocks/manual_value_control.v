@@ -62,12 +62,12 @@ dec2seg dec2seg_inst (
 );
 
 
-seven_segment seven_segment_0_inst(
+hex2seg seven_segment_0_inst(
    .o_seg(segment_0),
    .i_num(to_seg[3:0])
 );
 
-seven_segment seven_segment_1_inst(
+hex2seg seven_segment_1_inst(
    .o_seg(segment_1),
    .i_num(to_seg[7:4])
 );
@@ -162,12 +162,12 @@ dec2seg dec2seg_inst (
    .i_dec(angle_sat)
 );
 
-seven_segment seven_segment_0_inst(
+hex2seg seven_segment_0_inst(
    .o_seg(segment_0),
    .i_num(to_seg[3:0])
 );
 
-seven_segment seven_segment_1_inst(
+hex2seg seven_segment_1_inst(
    .o_seg(segment_1),
    .i_num(to_seg[7:4])
 );
@@ -281,12 +281,12 @@ assign o_phi   = ( phi *32'd1787) >> 10; //phi;
 assign o_theta = (theta*32'd1787) >> 10; //phi;
 
 
-seven_segment seven_segment_0_inst(
+hex2seg seven_segment_0_inst(
    .o_seg(segment_0),
    .i_num(cnt_phi[3:0])
 );
 
-seven_segment seven_segment_1_inst(
+hex2seg seven_segment_1_inst(
    .o_seg(segment_1),
    .i_num(cnt_theta[3:0])
 );

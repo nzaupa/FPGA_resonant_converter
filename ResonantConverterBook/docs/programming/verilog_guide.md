@@ -10,8 +10,40 @@ Some useful page
 <https://nandland.com/learn-verilog/>
 
 
+We can write functions: <https://nandland.com/function-2/>
+
+```verilog
+module function_example ();
+ 
+  reg r_Bit1=1'b1, r_Bit2=1'b0, r_Bit3=1'b1;
+  wire w_Result;
+  reg  r_Global;
+ 
+  function do_math;
+    input i_bit1, i_bit2, i_bit3; 
+    reg   v_Temp; // Local Variable
+    begin
+      // Demonstrates driving external Global Reg
+      r_Global = 1'b1; 
+       
+      v_Temp  = (i_bit1 & i_bit2);
+      do_math = (v_Temp | i_bit3);
+    end
+  endfunction
+ 
+  assign w_Result = do_math(r_Bit1, r_Bit2, r_Bit3);
+ 
+endmodule
+```
+
 
 ## Data types
+
+<https://www.chipverify.com/verilog/verilog-syntax>
+
+NB: Verilog prefers unsigned arithmetic and will jump at the chance to do it. All operands have to be signed for signed arithmetic.
+
+Detecting overflow and underflow in an elegant way: <https://stackoverflow.com/questions/24586842/signed-multiplication-overflow-detection-in-verilog/24587824#24587824>
 
 ### Variable values
 
@@ -45,6 +77,8 @@ Initialize a variable
 
 Avoid to do it both, since is not sure which is executed first. Underscores '`_`' are not counted as bytes, their are
 useful to separate long numbers.
+
+Can cast values ` $signed(r_Shift1) >>> 2`
 
 
 **Others**:
@@ -114,7 +148,7 @@ Structure for the loop `always`
 |                |               | `data <<< 1 = 01011` |
 
 
-**Conditional operator**: `assign out = condition ? true : false`
+**Conditional operator**: `assign out = <condition> ? <if_true> : <if_false>`
 
 **Concatenation**: use the curly brackets `{ }` $\rightarrow$ `{a, b, c [1 : 0] , 2′b00, {2{a}}}`
 

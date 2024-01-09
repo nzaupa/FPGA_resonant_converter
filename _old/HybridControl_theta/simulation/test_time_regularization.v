@@ -38,7 +38,7 @@ always
 end
 
 always
-   begin //100MHz
+   begin //
       sigma = 1'b1;
       #10000
       sigma = 1'b0;
