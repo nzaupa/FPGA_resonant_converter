@@ -147,6 +147,10 @@ Structure for the loop `always`
 |                |               | `data << 2 = 10100`  |
 |                |               | `data <<< 1 = 01011` |
 
+```{important}
+Algebraic operation have priority over logic operations. Therefore $A+(B+C)>>>3$ is equivalent to $(A+(B+C))>>>3$, which is different from $A+((B+C)>>>3)$.
+```
+
 
 **Conditional operator**: `assign out = <condition> ? <if_true> : <if_false>`
 
