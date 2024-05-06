@@ -102,15 +102,13 @@ wire signed [31:0]  stmf;  // sin( theta-phi )
    // 1  1    0  
    assign sigma   = { {31{b1&(~b0)}} , ~b0 };
 
+   // assign o_debug = { C3_db, S3[30:17],
+   //                    C4,C3,C2,C1, 
+   //                    CLK_jump , b0 , b1};
    assign o_debug = { C3_db, S3[30:17],
-                      C4,C3,C2,C1, 
-                      CLK_jump , b0 , b1};
-
-   // assign o_debug = {   {S2[31], S2[26:14]},
-   //                      C1_db , C2_db , C3_db, C4_db,
-   //                      C1 , C2 , C3, C4, 
-   //                      CLK_jump , CLK_jump_OR, 
-   //                      1'b0 , ~vC_32[31] , ~iC_32[31] , CLK_jump_prev, counter[1:0] };
+                     o_sigma[1:0], 6'b0,
+                     C4, C3, C2, C1,
+                     CLK_jump, CLK_jump , b0 , b1};
 
    assign o_sigma = sigma[1:0];
 
@@ -124,7 +122,8 @@ wire signed [31:0]  stmf;  // sin( theta-phi )
 trigonometry_deg trigonometry_plus_inst (
    .o_cos(ctpf),    // cosine of the input
    .o_sin(stpf),    // sine of the input
-   .i_theta(i_theta+i_phi)  // input angle "theta+phi"
+   .i_theta(i_theta)  // input angle "theta+phi"
+   // .i_theta(i_theta+i_phi)  // input angle "theta+phi"
 );
 
 trigonometry_deg trigonometry_minus_inst (
