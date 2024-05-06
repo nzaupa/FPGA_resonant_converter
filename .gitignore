@@ -92,6 +92,8 @@ __bin/
 
 _note/
 
+HybridControl_theta_phi_OL_previous_version/
+
 ResonantConverterBook/_build
 
 # *.code-workspace

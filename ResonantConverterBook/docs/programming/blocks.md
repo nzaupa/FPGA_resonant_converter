@@ -109,3 +109,89 @@ $$
    v_{o_{[mV]}}^{k+1}    &= v_{o_{[mV]}}^k    + {\mu_4} \cdot v_{C_{[mV]}}^k \cdot \frac{1}{2^{10}} + {\mu_5} \cdot v_{o_{[mV]}}^k \cdot \frac{1}{2^{17}} + {\mu_6} \cdot \sigma^k 
 $$
 
+In the end, we reach this representation that can be implemented in an FPGA.
+To compute the parameters we have the following Python script
+```python
+# parameters
+L   = 10    # uH
+C   = 850   # nF
+Lm  = 36    # uH
+Req = 10000 # mOhm
+Vg  = 48000 # mV
+dt  = 10    # ns
+
+print('Considering integer operations')
+print('  mu_1 = '+str(round( (dt*(2**20))/(1000*C),2)))
+print('  mu_2 = '+str(round(-dt/L,2)))
+print('  mu_3 = '+str(round( (dt*Vg)/L,2)))
+print('  mu_4 = '+str(round(-(dt*Req*(2**10))/(L*1e6),2)))
+print('  mu_5 = '+str(round(-(dt*Req*(2**17))*(1+L/Lm)/(L*1e6),2)))
+print('  mu_6 = '+str(round( (dt*Req*Vg)/(L*1e6),2)))
+
+```
+
+Computation of the gain without considering the normalization wrt the unit of measure
+```matlab
+mu(1) = round( (dt*(2^20))/(1000*Cr),2);
+mu(2) = round(-dt/Lr*1e3,2);
+mu(3) = round( (dt*Vg*1e6)/Lr,2);
+mu(4) = round(-(dt*Req*(2^10))/(Lr),2);
+mu(5) = round(-(dt*Req*(2^17))*(1+Lr/Lm)/(Lr),2);
+mu(6) = round( (dt*Req*Vg)/(Lr*1e-3),2);
+```
+
+
+Then, the modules code is the following (take care of the priority of the arithmetic operations over logic one):
+
+```verilog
+module simulator_LLC #(
+   parameter mu_1 =  12,
+   parameter mu_2 = -1,
+   parameter mu_3 =  48000,
+   parameter mu_4 = -10,
+   parameter mu_5 = -1675,
+   parameter mu_6 =  480
+)(
+   output signed [31:0]  vC_p, 
+   output signed [31:0]  iS_p, 
+   output signed [31:0]  Vo_p,    
+   input                 CLK,    
+   input                 RESET,   
+   input  signed [1:0]   sigma
+);
+
+// INTERNAL VARIABLE
+integer vC; // equivalent to reg signed [31:0] vC;
+integer iS;
+integer Vo;
+
+wire signed [31:0] sigma_32;
+
+// assign output variable
+assign vC_p = vC;
+assign iS_p = iS;
+assign Vo_p = Vo; 
+assign sigma_32   = { {30{sigma[1]}} , sigma };
+
+// variable initialization
+initial begin
+   vC = 0;
+   iS = 0;
+   Vo = 0;
+end
+
+always @(posedge CLK or negedge RESET) begin
+   if (~RESET) begin
+      vC <= 0;
+      iS <= 0;
+      Vo <= 0;
+   end else begin
+      vC <= vC + ((mu_1*iS)>>>20);
+      iS <= iS + mu_2*(vC + Vo) + mu_3*sigma_32;
+      Vo <= Vo + ((mu_4*vC)>>>10) + ((mu_5*Vo)>>>17) + mu_6*sigma_32;
+   end
+end
+
+endmodule
+```
+

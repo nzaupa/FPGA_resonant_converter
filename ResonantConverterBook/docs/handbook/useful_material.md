@@ -1,6 +1,26 @@
 # LAB electronics tips
 
 
+Representation of unit of measure standard <https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-7-rules-and-style-conventions-expressing-values>
+
+```
+7.1 Value and numerical value of a quantity
+
+The value of a quantity is its magnitude expressed as the product of a number and a unit, and the number multiplying the unit is the numerical value of the quantity expressed in that unit.
+
+More formally, the value of quantity A can be written as A = {A}[A], where {A} is the numerical value of A when the value of A is expressed in the unit [A]. The numerical value can therefore be written as {A} = A / [A], which is a convenient form for use in figures and tables. Thus, to eliminate the possibility of misunderstanding, an axis of a graph or the heading of a column of a table can be labeled "t/°C" instead of "t (°C)" or "Temperature (°C)." Similarly, an axis or column heading can be labeled "E/(V/m)" instead of "E (V/m)" or "Electric field strength (V/m)."
+
+Examples:
+
+In the SI, the value of the velocity of light in vacuum is c = 299 792 458 m/s exactly. The number 299 792 458 is the numerical value of c when c is expressed in the unit m/s, and equals c/(m/s).
+The ordinate of a graph is labeled T/(103 K), where T is thermodynamic temperature and K is the unit symbol for kelvin, and has scale marks at 0, 1, 2, 3, 4, and 5. If the ordinate value of a point on a curve in the graph is estimated to be 3.2, the corresponding temperature is T / (103 K) = 3.2 or T = 3200 K. Notice the lack of ambiguity in this form of labeling compared with "Temperature (103 K)."
+An expression such as ln(p/MPa), where p is the quantity symbol for pressure and MPa is the unit symbol for megapascal, is perfectly acceptable, because p/MPa is the numerical value of p when p is expressed in the unit MPa and is simply a number.
+Notes:
+
+For the conventions concerning the grouping of digits, see Sec. 10.5.3.
+An alternative way of writing c/(m/s) is {c}m/s, meaning the numerical value of c when c is expressed in the unit m/s.
+```
+
 ## Standard resistance table
 
 Table with E12 and E24 series

@@ -68,8 +68,9 @@ parts:
 
   - caption: Diary
     chapters:
-    - file: docs/diary/2020_diary   
-    - file: docs/diary/2023_diary   
+    - file: docs/diary/2020_diary
+    - file: docs/diary/2023_diary
+    - file: docs/diary/2024_diary
 
   - caption: Template
     chapters:

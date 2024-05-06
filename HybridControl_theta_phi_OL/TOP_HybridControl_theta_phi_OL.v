@@ -192,26 +192,64 @@ assign   LED[7]   = ~1'b0;
 assign SEG0 = SEG0_reg; //SEG0_reg;
 assign SEG1 = SEG1_reg; //SEG1_reg;
 
+// // connected to GPIO1 and available on the rectifier board
+// // all are available on the 2×6 connector, 6 of them are connected to LED
+// assign EX[0]  = SW[3];     // over voltage
+// assign EX[1]  = ~SW[3];    // over current
+// assign EX[2]  = ENABLE;    // H-bridge ENABLE
+// assign EX[3]  = Q1;        // free
+// assign EX[4]  = Q2;        // free
+// assign EX[5]  = Q3;        // free
+// assign EX[6]  = Q4;        // free
+// assign EX[7]  = debug[2];  // free
+// assign EX[8]  = 1'b0;      // free
+// assign EX[9]  = debug[0];  // LED 3
+// assign EX[10] = debug[1];  // LED 2
+// assign EX[11] = debug[21];  // LED 1
+
+// // connected to GPIO0
+// assign GPIO0[10] = debug[3];
+// assign GPIO0[12] = debug[4];
+// assign GPIO0[14] = debug[5];
+// assign GPIO0[16] = debug[6];
+
+
 // connected to GPIO1 and available on the rectifier board
 // all are available on the 2×6 connector, 6 of them are connected to LED
+//CO: 22/12/23 update ex bits
 assign EX[0]  = SW[3];     // over voltage
 assign EX[1]  = ~SW[3];    // over current
 assign EX[2]  = ENABLE;    // H-bridge ENABLE
-assign EX[3]  = Q1;        // free
-assign EX[4]  = Q2;        // free
-assign EX[5]  = Q3;        // free
-assign EX[6]  = Q4;        // free
-assign EX[7]  = debug[2];  // free
-assign EX[8]  = 1'b0;      // free
-assign EX[9]  = debug[0];  // LED 3
-assign EX[10] = debug[1];  // LED 2
+//assign EX[3]  = Q1;        // free
+//assign EX[4]  = Q2;        // free
+//assign EX[5]  = Q3;        // free
+//assign EX[6]  = Q4;        // free
+//assign EX[7]  = debug[2];  // free
+//assign EX[8]  = 1'b0;      // free
+assign EX[3]  = debug[8];        // Pin 4 D0
+assign EX[4]  = debug[9];        // Pin 5 D1
+assign EX[5]  = debug[10];        // Pin 6 D2
+assign EX[6]  = debug[11];        // Pin 7 D3
+assign EX[7]  = debug[12];   // Pin 8 D4
+assign EX[8]  = debug[13];   // Pin 9 D5
+assign EX[9]  = debug[14];   // Pin 10 ?
+assign EX[10]  = debug[15];   // Pin 11 ?
+//assign EX[9]  = debug[0];  // LED 3
+//assign EX[10] = debug[1];  // LED 2
 assign EX[11] = debug[21];  // LED 1
+// CO COMPARE PHI
+//assign EX[8] = ADC_A[13]; // sign of vC
+//assign EX[7] = ADC_B[13]; // sign of iC
 
 // connected to GPIO0
-assign GPIO0[10] = debug[3];
-assign GPIO0[12] = debug[4];
-assign GPIO0[14] = debug[5];
-assign GPIO0[16] = debug[6];
+// D8
+assign GPIO0[10] = debug[4];
+// D9
+assign GPIO0[12] = debug[5];
+// D10
+assign GPIO0[14] = debug[6];
+// D11
+assign GPIO0[16] = debug[7];
 
 // ##### assign for DEBUG END #####
 
@@ -239,7 +277,8 @@ assign Ibat_dec = (ADC_Ibat>>3) + (~8'd21+1);
 
 assign   phi_HC   = phi;
 // assign   theta_HC = sw[3] ? (32'd170+(~phi+1)) : theta;
-assign   theta_HC = 32'd170 + (~phi+1);
+// assign   theta_HC = 32'd170 + (~phi+1);
+assign   theta_HC = 32'd160;
 
 
 // -------------------------------------
@@ -322,7 +361,7 @@ theta_control theta_control_inst(
 
 // ----- DEAD TIME ----- //
 
-dead_time #(.DEADTIME(10), .N(4)) dead_time_inst(
+dead_time #(.DEADTIME(20), .N(4)) dead_time_inst(
    .o_signal( {Q4, Q3, Q2, Q1} ),          // output switching variable
    .i_clock(  clk_100M ),            // for sequential behavior
    .i_signal( MOSFET )
