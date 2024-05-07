@@ -84,7 +84,7 @@ module TOP_HybridControl_theta_phi_OL (
    output [7:0]   LED,
    output [7:0]   SEG0,
    output [7:0]   SEG1,
-   output [21:0]  GPIO0
+   output [35:0]  GPIO0
 );
 
 //=======================================================
