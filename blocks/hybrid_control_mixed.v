@@ -56,7 +56,7 @@ wire signed [31:0]  sphi;  // sin( theta-phi )
 // INTERNAL VARIABLE
    integer Z1, Z2, C;     // variable associated to the coordinates
    integer X1, X2;     // variable associated to the coordinates
-   integer S1, S2, S3;  // variable to evaluate the current set
+   integer S0, S1, S3;  // variable to evaluate the current set
 
    reg  [1:0] counter, counter_prev;   // counter for the automata: sigma => +1 -> 0 -> -1 -> 0 -> +1 -> ...
    wire [1:0] inc;   // increment for the counter
@@ -66,6 +66,7 @@ wire signed [31:0]  sphi;  // sin( theta-phi )
    reg  CLK_jump_prev;   // previous value of the clock
    wire CLK_jump_OR;    // output of the conditions (need to be filtered to avoid constant value 1)
    wire b1, b0;
+   wire [1:0] S;     // regularized version of the switching surface
    
    // wire signed [31:0] sigma;
    wire [31:0] sigma;
@@ -79,16 +80,12 @@ wire signed [31:0]  sphi;  // sin( theta-phi )
    assign b0 = counter[0];
    assign b1 = counter[1];
 
-   assign C0 = ( S1[31]) & ( S2[31]);  // zone where sigma = +1
-   assign C1 = (~S1[31]) & ( S2[31]);  // zone where sigma =  0
-   assign C2 = (~S1[31]) & (~S2[31]);  // zone where sigma = -1
-   assign C3 = ( S1[31]) & (~S2[31]);  // zone where sigma =  0
-
-   // assign C1 = ~S1[31];
-   // assign C2 = ~S2[31];
-   // assign C3 =  S3[31];
-   // assign C4 =  S2[31];
-
+   assign C0 = ( S0[31]) & ( S1[31]);  // zone where sigma = +1
+   // assign C1 = (~S0[31]) & ( S1[31]);  // zone where sigma =  0
+   assign C1 = ~S0[31];  // zone where sigma =  0
+   assign C2 = (~S0[31]) & (~S1[31]);  // zone where sigma = -1
+   // assign C3 = ( S0[31]) & (~S1[31]);  // zone where sigma =  0
+   assign C3 = S0[31];  // zone where sigma =  0
 
    assign CLK_jump_OR = ( C1 & (~b1) & (~b0) ) | 
                         ( C2 & (~b1) &   b0  ) | 
@@ -111,7 +108,7 @@ wire signed [31:0]  sphi;  // sin( theta-phi )
    assign o_debug = { 1'b0, S3[30:17],
                      o_sigma[1:0], 6'b0,
                      C3, C2, C1, C0,
-                     CLK_jump, CLK_jump_OR , b0 , b1};
+                     S[1], S[0] , b0 , b1};
 
    assign o_sigma = sigma[1:0];
 
@@ -136,6 +133,17 @@ trigonometry_deg trigonometry_phi_ZVS_inst (
    // .i_theta(i_ZVS+(i_phi<<1))  // input angle "ZVS+2*phi"
 );
 
+regularization #(
+   .DEBOUNCE_TIME(20), 
+   .DELAY(100),
+   .N(2)
+) regularization_4bit_inst (
+   .o_signal( S ),
+   .i_clk(i_clock),
+   .i_reset(i_RESET),
+   .i_signal({S1[31],S0[31]})
+);
+
 
 // variable initialization
 initial begin
@@ -151,7 +159,7 @@ end
 
 always @(posedge CLK_jump or negedge i_RESET) begin
    if (~i_RESET) begin
-      counter <= 2'b00;
+      counter <= 2'b10;
    end else begin
       counter <= counter_prev + inc;
    end
@@ -167,12 +175,12 @@ always @(posedge i_clock) begin
    X1  = $signed(mu_z1) * vC_32;
    X2  = $signed(mu_z2) * iC_32;    
 
-   // S1 = Z1*sphi + Z2*cphi + C;          // change z1*sin(theta-phi)-z2*cos(theta-phi)+Vg*sin(theta-phi)
-   // S2 = Z1*szvs + Z2*czvs;              // change z1*sin(theta+phi)+z2*cos(theta+phi)
+   // S0 = Z1*sphi + Z2*cphi + C;          // change z1*sin(theta-phi)-z2*cos(theta-phi)+Vg*sin(theta-phi)
+   // S1 = Z1*szvs + Z2*czvs;              // change z1*sin(theta+phi)+z2*cos(theta+phi)
    // S3 = Z1*sphi + Z2*cphi + (~C+1);     // change z1*sin(theta-phi)-z2*cos(theta-phi)-Vg*sin(theta-phi)
 
-   S1 = X1*sphi + (~(X2*cphi)+1);
-   S2 = X1*szvs + (~(X2*czvs)+1);
+   S0 = X1*sphi + (~(X2*cphi)+1);
+   S1 = X1*szvs + (~(X2*czvs)+1);
    
 end
 

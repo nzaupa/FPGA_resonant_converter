@@ -224,18 +224,18 @@ assign EX[1]  = ~SW[3];      // over current
 assign EX[2]  = ENABLE;      // H-bridge ENABLE
 assign EX[3]  = debug[2];    // Pin 4 D0
 assign EX[4]  = debug[3];    // Pin 5 D1
-assign EX[5]  = Q1;          // Pin 6 D2  M1_delayed
-assign EX[6]  = MOSFET[0];   // Pin 7 D3  M1
+assign EX[5]  = VG;          // Pin 6 D2  M1_delayed
+assign EX[6]  = ON;          // Pin 7 D3  M1
 assign EX[7]  = test[0];     // Pin 8 D4  b0
 assign EX[8]  = test[1];     // Pin 9 D5  b1
 assign EX[9]  = debug[14];   // Pin 10 ?
 assign EX[10] = debug[15];   // Pin 11 D6
 assign EX[11] = ENABLE;      // Pin 12 D7  (and LED 1)
 
-assign GPIO0[18] = Q1;   // D12
-assign GPIO0[20] = Q2;   // D13
-assign GPIO0[22] = Q3;   // D14
-assign GPIO0[24] = Q4;   // D15
+assign GPIO0[18] = Q[0]; //Q1;   // D12
+assign GPIO0[20] = Q[1]; //Q2;   // D13
+assign GPIO0[22] = Q[2]; //Q3;   // D14
+assign GPIO0[24] = Q[3]; //Q4;   // D15
 
 // connected to GPIO0
 // debug for Ci signals
@@ -255,16 +255,16 @@ assign GPIO0[16] = debug[7];
 assign ALERT   = ~((Q1 & Q3) | (Q2 & Q4));
 
 //                  normal        boot-strap      force sigma=1
-assign Q[1] = ( (Q2 & ON & VG) | (1'b0 & ~ON) | (1'b0 & ON & ~VG) ) & ENABLE & ALERT;
-assign Q[3] = ( (Q4 & ON & VG) | (1'b1 & ~ON) | (1'b1 & ON & ~VG) ) & ENABLE & ALERT;
-assign Q[0] = ( (Q1 & ON & VG) | (1'b0 & ~ON) | (1'b1 & ON & ~VG) ) & ENABLE & ALERT;
-assign Q[2] = ( (Q3 & ON & VG) | (1'b1 & ~ON) | (1'b0 & ON & ~VG) ) & ENABLE & ALERT;
+assign Q[0] = ( (Q1 & ON & VG) | (1'b0 & ~ON) | (1'b1 & ON & (~VG)) ) & ENABLE & ALERT;
+assign Q[1] = ( (Q2 & ON & VG) | (1'b0 & ~ON) | (1'b0 & ON & (~VG)) ) & ENABLE & ALERT;
+assign Q[2] = ( (Q3 & ON & VG) | (1'b1 & ~ON) | (1'b0 & ON & (~VG)) ) & ENABLE & ALERT;
+assign Q[3] = ( (Q4 & ON & VG) | (1'b1 & ~ON) | (1'b1 & ON & (~VG)) ) & ENABLE & ALERT;
 
 // assign MOSFET = MOSFET_theta_phi;
 
 // start-up counter - charge the bootstrap capacitor by activating Q3 and Q4 (low side)
 assign ON = cnt_startup > 8'd10; //10us to charge bootstrap capacitor
-assign VG = cnt_Vg      > 10'd10; //10us to charge bootstrap capacitor
+assign VG = cnt_Vg      > 8'd16; //10us to charge bootstrap capacitor
 
 // --- assign for the ADCs in the rectifier ---      
 assign Vbat_dec = (ADC_Ibat>>4)*5;  // ADC*0.3125
@@ -327,10 +327,10 @@ hybrid_control_phi hybrid_control_inst (
 hybrid_control_theta_phi #(.mu_z1(32'd86), .mu_z2(32'd90), .mu_Vg(32'd312000)
 ) hybrid_control_theta_phi_inst (
    .o_MOSFET( MOSFET_phi ),  // control signal for the four MOSFETs
-   .o_sigma( test ),         // 2 bit for signed sigma -> {-1,0,1}
+   .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
    .o_debug(  ),    // ---
    .i_clock( clk_100M ), // 
-   .i_RESET( CPU_RESET),    // 
+   .i_RESET( CPU_RESET ),    // 
    .i_vC( ADC_A ),       // 
    .i_iC( ADC_B ),       // 
    .i_theta( theta_HC ),    // 32'd314
@@ -341,10 +341,10 @@ hybrid_control_theta_phi #(.mu_z1(32'd86), .mu_z2(32'd90), .mu_Vg(32'd312000)
 hybrid_control_mixed #(.mu_z1(32'd86), .mu_z2(32'd90)
 ) hybrid_control_mixed_inst (
    .o_MOSFET( MOSFET_theta_phi ),  // control signal for the four MOSFETs
-   .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
+   .o_sigma( test ),         // 2 bit for signed sigma -> {-1,0,1}
    .o_debug( debug ),    // ---
    .i_clock( clk_100M ), // 
-   .i_RESET( CPU_RESET ),    // 
+   .i_RESET( CPU_RESET  ),    // 
    .i_vC( ADC_A ),       // 
    .i_iC( ADC_B ),       // 
    .i_ZVS( 32'd20 ),    // 32'd314
