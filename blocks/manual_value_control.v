@@ -195,7 +195,7 @@ always @( negedge i_reset or negedge i_decrease  ) begin
    if (~i_reset)
       angle <= 9'd0;
    else if (~i_decrease)
-      angle <= angle_sat + 9'd20;
+      angle <= angle_sat + 9'd5;
 end
 
 // // Control the angle from the buttons
