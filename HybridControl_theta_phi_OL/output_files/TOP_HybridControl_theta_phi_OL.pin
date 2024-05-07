@@ -251,11 +251,11 @@ VCCR_R                       : AD5       : power  :                   : 1.1V    
 GND                          : AD6       : gnd    :                   :         :           :                
 VCCL_GXBR0                   : AD7       : power  :                   : 1.1V    : QR0       :                
 GND                          : AD8       : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AD9       :        :                   :         : 5C        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AD10      :        :                   :         : 5C        :                
+GPIO0[33]                    : AD9       : output : 2.5 V             :         : 5C        : Y              
+GPIO0[32]                    : AD10      : output : 2.5 V             :         : 5C        : Y              
 VREFB5CN0                    : AD11      : power  :                   :         : 5C        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AD12      :        :                   :         : 5A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AD13      :        :                   :         : 5A        :                
+GPIO0[34]                    : AD12      : output : 2.5 V             :         : 5A        : Y              
+GPIO0[35]                    : AD13      : output : 2.5 V             :         : 5A        : Y              
 VCCPD4A                      : AD14      : power  :                   : 2.5V    : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AD15      :        :                   :         : 4A        :                
 VCCPD4B                      : AD16      : power  :                   : 2.5V    : 4B        :                
@@ -330,8 +330,8 @@ GPIO0[0]                     : AF6       : output : 2.5 V             :         
 GND                          : AF7       : gnd    :                   :         :           :                
 VCC                          : AF8       : power  :                   : 0.9V    :           :                
 GND                          : AF9       : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AF10      :        :                   :         : 5C        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AF11      :        :                   :         : 5C        :                
+GPIO0[31]                    : AF10      : output : 2.5 V             :         : 5C        : Y              
+GPIO0[29]                    : AF11      : output : 2.5 V             :         : 5C        : Y              
 GND                          : AF12      : gnd    :                   :         :           :                
 Q[3]                         : AF13      : output : 2.5 V             :         : 5A        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AF14      :        :                   :         : 4A        :                
@@ -368,11 +368,11 @@ BUTTON[1]                    : AG5       : input  : 2.5 V             :         
 RESERVED_INPUT_WITH_WEAK_PULLUP : AG6       :        :                   :         : 5C        :                
 BUTTON[2]                    : AG7       : input  : 2.5 V             :         : 5C        : Y              
 BUTTON[3]                    : AG8       : input  : 2.5 V             :         : 5C        : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AG9       :        :                   :         : 5C        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AG10      :        :                   :         : 5C        :                
+GPIO0[28]                    : AG9       : output : 2.5 V             :         : 5C        : Y              
+GPIO0[26]                    : AG10      : output : 2.5 V             :         : 5C        : Y              
 VREFB5AN0                    : AG11      : power  :                   :         : 5A        :                
 Q[1]                         : AG12      : output : 2.5 V             :         : 5A        : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AG13      :        :                   :         : 5A        :                
+GPIO0[27]                    : AG13      : output : 2.5 V             :         : 5A        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AG14      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AG15      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AG16      :        :                   :         : 4B        :                
@@ -410,7 +410,7 @@ Q[0]                         : AH8       : output : 2.5 V             :         
 ADC_BAT_I[3]                 : AH9       : input  : 2.5 V             :         : 5C        : Y              
 ADC_BAT_I[4]                 : AH10      : input  : 2.5 V             :         : 5A        : Y              
 ADC_BAT_I[2]                 : AH11      : input  : 2.5 V             :         : 5A        : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AH12      :        :                   :         : 5A        :                
+GPIO0[25]                    : AH12      : output : 2.5 V             :         : 5A        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AH13      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AH14      :        :                   :         : 4A        :                
 VCCIO4A                      : AH15      : power  :                   : 2.5V    : 4A        :                
@@ -442,13 +442,13 @@ GXB_GND*                     : AJ1       :        :                   :         
 GXB_GND*                     : AJ2       :        :                   :         : QR0       :                
 GND                          : AJ3       : gnd    :                   :         :           :                
 GND                          : AJ4       : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AJ5       :        :                   :         : 5C        :                
+GPIO0[24]                    : AJ5       : output : 2.5 V             :         : 5C        : Y              
 ADC_BAT_I[1]                 : AJ6       : input  : 2.5 V             :         : 5C        : Y              
 GND                          : AJ7       : gnd    :                   :         :           :                
 VCCIO5C                      : AJ8       : power  :                   : 2.5V    : 5C        :                
 GND                          : AJ9       : gnd    :                   :         :           :                
 Q[2]                         : AJ10      : output : 2.5 V             :         : 5A        : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AJ11      :        :                   :         : 5A        :                
+GPIO0[22]                    : AJ11      : output : 2.5 V             :         : 5A        : Y              
 GND                          : AJ12      : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AJ13      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AJ14      :        :                   :         : 4A        :                
@@ -483,7 +483,7 @@ GXB_NC                       : AK3       :        :                   :         
 GXB_NC                       : AK4       :        :                   :         : QR0       :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AK5       :        :                   :         : 5C        :                
 SW[2]                        : AK6       : input  : 2.5 V             :         : 5C        : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AK7       :        :                   :         : 5C        :                
+GPIO0[23]                    : AK7       : output : 2.5 V             :         : 5C        : Y              
 GPIO0[21]                    : AK8       : output : 2.5 V             :         : 5C        : Y              
 EX[11]                       : AK9       : output : 2.5 V             :         : 5A        : Y              
 VCCIO5A                      : AK10      : power  :                   : 2.5V    : 5A        :                
@@ -719,7 +719,7 @@ GPIO0[10]                    : AT5       : output : 2.5 V             :         
 ADC_BAT_V[3]                 : AT6       : input  : 2.5 V             :         : 5A        : Y              
 ADC_BAT_V[5]                 : AT7       : input  : 2.5 V             :         : 5A        : Y              
 GPIO0[11]                    : AT8       : output : 2.5 V             :         : 5A        : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AT9       :        :                   :         : 5A        :                
+GPIO0[30]                    : AT9       : output : 2.5 V             :         : 5A        : Y              
 ADC_BAT_V[2]                 : AT10      : input  : 2.5 V             :         : 5A        : Y              
 nCEO                         : AT11      :        :                   :         : 1A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AT12      :        :                   :         : 4A        :                

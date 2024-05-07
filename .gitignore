@@ -57,6 +57,7 @@
 # *example*
 # *sopc_*
 # *.sdc # I want those timing files
+*.flock
 
 # LaTex files
 

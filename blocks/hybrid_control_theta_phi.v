@@ -130,20 +130,8 @@ trigonometry_deg trigonometry_minus_inst (
    .o_cos(ctmf),    // cosine of the input
    .o_sin(stmf),    // sine of the input
    .i_theta(i_theta+(~i_phi+1))  // input angle "theta-phi"
+   // .i_theta(i_theta+(~(i_phi<<1)+1))  // input angle "theta-phi"
 );
-
-// debunce jump set condition
-
-// regularization #(
-//    .DEBOUNCE_TIME(2), 
-//    .DELAY(50), //20
-//    .N(4)
-// ) regularization_4bit_inst (
-//    .o_signal( {C4,C3,C2,C1} ),
-//    .i_clk(i_clock),
-//    .i_reset(i_RESET),
-//    .i_signal({C4_db,C3_db,C2_db,C1_db})
-// );
 
 // variable initialization
 initial begin

@@ -1,5 +1,5 @@
 Timing Analyzer report for TOP_HybridControl_theta_phi_OL
-Tue May  7 09:02:03 2024
+Tue May  7 11:21:56 2024
 Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
 
 
@@ -95,15 +95,15 @@ https://fpgasoftware.intel.com/eula.
 ; Number detected on machine ; 16          ;
 ; Maximum allowed            ; 8           ;
 ;                            ;             ;
-; Average used               ; 1.10        ;
+; Average used               ; 1.20        ;
 ; Maximum used               ; 8           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   1.6%      ;
-;     Processor 3            ;   1.5%      ;
-;     Processor 4            ;   1.5%      ;
-;     Processors 5-8         ;   1.4%      ;
+;     Processor 2            ;   2.9%      ;
+;     Processor 3            ;   2.9%      ;
+;     Processor 4            ;   2.8%      ;
+;     Processors 5-8         ;   2.8%      ;
 +----------------------------+-------------+
 
 
@@ -117,7 +117,6 @@ https://fpgasoftware.intel.com/eula.
 ; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; Base      ; 1.000      ; 1000.0 MHz ; 0.000 ; 0.500     ;            ;           ;             ;       ;        ;           ;            ;          ;        ;                                                        ; { debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state } ;
 ; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; Base      ; 1.000      ; 1000.0 MHz ; 0.000 ; 0.500     ;            ;           ;             ;       ;        ;           ;            ;          ;        ;                                                        ; { debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state } ;
 ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; Base      ; 1.000      ; 1000.0 MHz ; 0.000 ; 0.500     ;            ;           ;             ;       ;        ;           ;            ;          ;        ;                                                        ; { hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev }           ;
-; hybrid_control_phi:hybrid_control_inst|CLK_jump_prev                   ; Base      ; 1.000      ; 1000.0 MHz ; 0.000 ; 0.500     ;            ;           ;             ;       ;        ;           ;            ;          ;        ;                                                        ; { hybrid_control_phi:hybrid_control_inst|CLK_jump_prev }                   ;
 ; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; Base      ; 1.000      ; 1000.0 MHz ; 0.000 ; 0.500     ;            ;           ;             ;       ;        ;           ;            ;          ;        ;                                                        ; { hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev }   ;
 ; OSC                                                                    ; Base      ; 20.000     ; 50.0 MHz   ; 0.000 ; 10.000    ;            ;           ;             ;       ;        ;           ;            ;          ;        ;                                                        ; { OSC }                                                                    ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; Generated ; 10.000     ; 100.0 MHz  ; 0.000 ; 5.000     ; 50.00      ; 1         ; 2           ;       ;        ;           ;            ; false    ; OSC    ; PLL_inst|altpll_component|auto_generated|pll1|inclk[0] ; { PLL_inst|altpll_component|auto_generated|pll1|clk[1] }                   ;
@@ -132,10 +131,10 @@ https://fpgasoftware.intel.com/eula.
 +------------+-----------------+------------------------------------------------------------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name                                                             ; Note ;
 +------------+-----------------+------------------------------------------------------------------------+------+
-; 83.33 MHz  ; 83.33 MHz       ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ;      ;
-; 157.95 MHz ; 157.95 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ;      ;
-; 406.67 MHz ; 406.67 MHz      ; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ;      ;
-; 486.14 MHz ; 486.14 MHz      ; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ;      ;
+; 81.99 MHz  ; 81.99 MHz       ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ;      ;
+; 266.6 MHz  ; 266.6 MHz       ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ;      ;
+; 398.72 MHz ; 398.72 MHz      ; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ;      ;
+; 421.05 MHz ; 421.05 MHz      ; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ;      ;
 +------------+-----------------+------------------------------------------------------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -151,29 +150,27 @@ HTML report is unavailable in plain text report export.
 +------------------------------------------------------------------------+---------+---------------+
 ; Clock                                                                  ; Slack   ; End Point TNS ;
 +------------------------------------------------------------------------+---------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; -19.149 ; -647.587      ;
-; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -1.467  ; -2.867        ;
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -1.459  ; -11.228       ;
-; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; -1.057  ; -8.195        ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -1.046  ; -2.090        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; -0.978  ; -56.611       ;
-; hybrid_control_phi:hybrid_control_inst|CLK_jump_prev                   ; -0.930  ; -1.768        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; -18.971 ; -569.027      ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -1.815  ; -3.604        ;
+; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; -1.508  ; -11.045       ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -1.375  ; -10.706       ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; -0.971  ; -52.858       ;
+; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -0.819  ; -1.495        ;
 +------------------------------------------------------------------------+---------+---------------+
 
 
-+------------------------------------------------------------------------------------------------+
-; Slow 900mV 85C Model Hold Summary                                                              ;
-+------------------------------------------------------------------------+-------+---------------+
-; Clock                                                                  ; Slack ; End Point TNS ;
-+------------------------------------------------------------------------+-------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 0.276 ; 0.000         ;
-; hybrid_control_phi:hybrid_control_inst|CLK_jump_prev                   ; 0.278 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 0.292 ; 0.000         ;
-; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; 0.365 ; 0.000         ;
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.373 ; 0.000         ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; 0.395 ; 0.000         ;
-; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; 0.517 ; 0.000         ;
-+------------------------------------------------------------------------+-------+---------------+
++-------------------------------------------------------------------------------------------------+
+; Slow 900mV 85C Model Hold Summary                                                               ;
++------------------------------------------------------------------------+--------+---------------+
+; Clock                                                                  ; Slack  ; End Point TNS ;
++------------------------------------------------------------------------+--------+---------------+
+; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -4.233 ; -7.989        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 0.284  ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 0.307  ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.373  ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; 0.533  ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; 0.782  ; 0.000         ;
++------------------------------------------------------------------------+--------+---------------+
 
 
 +--------------------------------------------------------------------------------------------------+
@@ -181,9 +178,9 @@ HTML report is unavailable in plain text report export.
 +------------------------------------------------------------------------+---------+---------------+
 ; Clock                                                                  ; Slack   ; End Point TNS ;
 +------------------------------------------------------------------------+---------+---------------+
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -1.150  ; -10.218       ;
-; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; -0.978  ; -8.712        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 997.407 ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.821  ; -7.389        ;
+; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; -0.631  ; -5.361        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 998.655 ; 0.000         ;
 +------------------------------------------------------------------------+---------+---------------+
 
 
@@ -192,9 +189,9 @@ HTML report is unavailable in plain text report export.
 +------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                  ; Slack ; End Point TNS ;
 +------------------------------------------------------------------------+-------+---------------+
-; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; 0.565 ; 0.000         ;
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.752 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 1.975 ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; 0.246 ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.534 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 0.861 ; 0.000         ;
 +------------------------------------------------------------------------+-------+---------------+
 
 
@@ -203,16 +200,15 @@ HTML report is unavailable in plain text report export.
 +------------------------------------------------------------------------+---------+---------------+
 ; Clock                                                                  ; Slack   ; End Point TNS ;
 +------------------------------------------------------------------------+---------+---------------+
-; ADA_DCO                                                                ; -0.666  ; -46.639       ;
-; ADB_DCO                                                                ; -0.666  ; -30.114       ;
-; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; -0.250  ; -3.006        ;
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.250  ; -2.835        ;
-; hybrid_control_phi:hybrid_control_inst|CLK_jump_prev                   ; -0.250  ; -0.742        ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -0.250  ; -0.708        ;
-; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -0.250  ; -0.647        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 4.452   ; 0.000         ;
+; ADA_DCO                                                                ; -0.666  ; -25.118       ;
+; ADB_DCO                                                                ; -0.250  ; -8.769        ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.250  ; -2.853        ;
+; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; -0.250  ; -2.799        ;
+; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -0.250  ; -0.827        ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -0.250  ; -0.610        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 4.450   ; 0.000         ;
 ; OSC                                                                    ; 9.959   ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 499.452 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 499.453 ; 0.000         ;
 +------------------------------------------------------------------------+---------+---------------+
 
 
@@ -227,10 +223,10 @@ No synchronizer chains to report.
 +------------+-----------------+------------------------------------------------------------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name                                                             ; Note ;
 +------------+-----------------+------------------------------------------------------------------------+------+
-; 86.49 MHz  ; 86.49 MHz       ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ;      ;
-; 167.31 MHz ; 167.31 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ;      ;
-; 421.59 MHz ; 421.59 MHz      ; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ;      ;
-; 503.27 MHz ; 503.27 MHz      ; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ;      ;
+; 85.19 MHz  ; 85.19 MHz       ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ;      ;
+; 283.13 MHz ; 283.13 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ;      ;
+; 412.37 MHz ; 412.37 MHz      ; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ;      ;
+; 436.3 MHz  ; 436.3 MHz       ; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ;      ;
 +------------+-----------------+------------------------------------------------------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -240,29 +236,27 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +------------------------------------------------------------------------+---------+---------------+
 ; Clock                                                                  ; Slack   ; End Point TNS ;
 +------------------------------------------------------------------------+---------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; -18.350 ; -619.279      ;
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -1.372  ; -10.492       ;
-; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -1.350  ; -2.643        ;
-; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; -0.987  ; -7.594        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; -0.939  ; -54.840       ;
-; hybrid_control_phi:hybrid_control_inst|CLK_jump_prev                   ; -0.860  ; -1.624        ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -0.832  ; -1.652        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; -18.136 ; -544.445      ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -1.643  ; -3.215        ;
+; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; -1.425  ; -10.355       ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -1.292  ; -10.049       ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; -0.932  ; -51.242       ;
+; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -0.670  ; -1.205        ;
 +------------------------------------------------------------------------+---------+---------------+
 
 
-+------------------------------------------------------------------------------------------------+
-; Slow 900mV 0C Model Hold Summary                                                               ;
-+------------------------------------------------------------------------+-------+---------------+
-; Clock                                                                  ; Slack ; End Point TNS ;
-+------------------------------------------------------------------------+-------+---------------+
-; hybrid_control_phi:hybrid_control_inst|CLK_jump_prev                   ; 0.176 ; 0.000         ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; 0.261 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 0.271 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 0.290 ; 0.000         ;
-; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; 0.356 ; 0.000         ;
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.363 ; 0.000         ;
-; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; 0.412 ; 0.000         ;
-+------------------------------------------------------------------------+-------+---------------+
++-------------------------------------------------------------------------------------------------+
+; Slow 900mV 0C Model Hold Summary                                                                ;
++------------------------------------------------------------------------+--------+---------------+
+; Clock                                                                  ; Slack  ; End Point TNS ;
++------------------------------------------------------------------------+--------+---------------+
+; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -4.037 ; -7.625        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 0.280  ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 0.317  ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.362  ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; 0.407  ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; 0.769  ; 0.000         ;
++------------------------------------------------------------------------+--------+---------------+
 
 
 +--------------------------------------------------------------------------------------------------+
@@ -270,9 +264,9 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +------------------------------------------------------------------------+---------+---------------+
 ; Clock                                                                  ; Slack   ; End Point TNS ;
 +------------------------------------------------------------------------+---------+---------------+
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.923  ; -8.180        ;
-; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; -0.731  ; -6.494        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 997.533 ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.628  ; -5.649        ;
+; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; -0.469  ; -3.921        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 998.715 ; 0.000         ;
 +------------------------------------------------------------------------+---------+---------------+
 
 
@@ -281,9 +275,9 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                  ; Slack ; End Point TNS ;
 +------------------------------------------------------------------------+-------+---------------+
-; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; 0.448 ; 0.000         ;
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.639 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 1.842 ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; 0.212 ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.470 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 0.808 ; 0.000         ;
 +------------------------------------------------------------------------+-------+---------------+
 
 
@@ -292,16 +286,15 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +------------------------------------------------------------------------+---------+---------------+
 ; Clock                                                                  ; Slack   ; End Point TNS ;
 +------------------------------------------------------------------------+---------+---------------+
-; ADA_DCO                                                                ; -0.666  ; -46.648       ;
-; ADB_DCO                                                                ; -0.666  ; -30.120       ;
-; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; -0.250  ; -3.115        ;
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.250  ; -3.042        ;
-; hybrid_control_phi:hybrid_control_inst|CLK_jump_prev                   ; -0.250  ; -0.672        ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -0.250  ; -0.654        ;
-; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -0.250  ; -0.629        ;
+; ADA_DCO                                                                ; -0.666  ; -25.468       ;
+; ADB_DCO                                                                ; -0.250  ; -8.744        ;
+; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; -0.250  ; -3.003        ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.250  ; -2.952        ;
+; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -0.250  ; -0.741        ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -0.250  ; -0.592        ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 4.433   ; 0.000         ;
 ; OSC                                                                    ; 9.979   ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 499.432 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 499.433 ; 0.000         ;
 +------------------------------------------------------------------------+---------+---------------+
 
 
@@ -316,29 +309,27 @@ No synchronizer chains to report.
 +------------------------------------------------------------------------+---------+---------------+
 ; Clock                                                                  ; Slack   ; End Point TNS ;
 +------------------------------------------------------------------------+---------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; -11.431 ; -380.626      ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -0.759  ; -1.516        ;
-; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -0.744  ; -1.334        ;
-; hybrid_control_phi:hybrid_control_inst|CLK_jump_prev                   ; -0.536  ; -0.987        ;
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.413  ; -2.683        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; -0.407  ; -21.057       ;
-; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; -0.181  ; -1.070        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; -11.382 ; -335.430      ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -0.793  ; -1.568        ;
+; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; -0.446  ; -2.633        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; -0.402  ; -19.192       ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.369  ; -2.389        ;
+; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -0.154  ; -0.200        ;
 +------------------------------------------------------------------------+---------+---------------+
 
 
-+------------------------------------------------------------------------------------------------+
-; Fast 900mV 0C Model Hold Summary                                                               ;
-+------------------------------------------------------------------------+-------+---------------+
-; Clock                                                                  ; Slack ; End Point TNS ;
-+------------------------------------------------------------------------+-------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 0.133 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 0.159 ; 0.000         ;
-; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; 0.204 ; 0.000         ;
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.208 ; 0.000         ;
-; hybrid_control_phi:hybrid_control_inst|CLK_jump_prev                   ; 0.313 ; 0.000         ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; 0.323 ; 0.000         ;
-; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; 0.636 ; 0.000         ;
-+------------------------------------------------------------------------+-------+---------------+
++-------------------------------------------------------------------------------------------------+
+; Fast 900mV 0C Model Hold Summary                                                                ;
++------------------------------------------------------------------------+--------+---------------+
+; Clock                                                                  ; Slack  ; End Point TNS ;
++------------------------------------------------------------------------+--------+---------------+
+; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -2.503 ; -4.711        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 0.143  ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 0.163  ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.208  ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; 0.447  ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; 0.679  ; 0.000         ;
++------------------------------------------------------------------------+--------+---------------+
 
 
 +--------------------------------------------------------------------------------------------------+
@@ -346,9 +337,9 @@ No synchronizer chains to report.
 +------------------------------------------------------------------------+---------+---------------+
 ; Clock                                                                  ; Slack   ; End Point TNS ;
 +------------------------------------------------------------------------+---------+---------------+
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.708  ; -6.289        ;
-; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; -0.585  ; -5.215        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 998.409 ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.488  ; -4.386        ;
+; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; -0.370  ; -3.147        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 999.232 ; 0.000         ;
 +------------------------------------------------------------------------+---------+---------------+
 
 
@@ -357,9 +348,9 @@ No synchronizer chains to report.
 +------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                  ; Slack ; End Point TNS ;
 +------------------------------------------------------------------------+-------+---------------+
-; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; 0.614 ; 0.000         ;
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.726 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 1.234 ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; 0.421 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 0.501 ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.593 ; 0.000         ;
 +------------------------------------------------------------------------+-------+---------------+
 
 
@@ -368,14 +359,13 @@ No synchronizer chains to report.
 +------------------------------------------------------------------------+---------+---------------+
 ; Clock                                                                  ; Slack   ; End Point TNS ;
 +------------------------------------------------------------------------+---------+---------------+
-; ADA_DCO                                                                ; -0.177  ; -2.412        ;
-; ADB_DCO                                                                ; -0.141  ; -3.917        ;
-; hybrid_control_phi:hybrid_control_inst|CLK_jump_prev                   ; 0.062   ; 0.000         ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; 0.077   ; 0.000         ;
-; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; 0.096   ; 0.000         ;
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.159   ; 0.000         ;
-; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; 0.164   ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 4.650   ; 0.000         ;
+; ADA_DCO                                                                ; -0.171  ; -2.354        ;
+; ADB_DCO                                                                ; -0.141  ; -3.878        ;
+; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; 0.042   ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; 0.123   ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; 0.158   ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.166   ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 4.649   ; 0.000         ;
 ; OSC                                                                    ; 9.698   ; 0.000         ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 499.648 ; 0.000         ;
 +------------------------------------------------------------------------+---------+---------------+
@@ -387,34 +377,32 @@ No synchronizer chains to report.
 No synchronizer chains to report.
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------+
-; Multicorner Timing Analysis Summary                                                                                                   ;
-+-------------------------------------------------------------------------+----------+-------+----------+---------+---------------------+
-; Clock                                                                   ; Setup    ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
-+-------------------------------------------------------------------------+----------+-------+----------+---------+---------------------+
-; Worst-case Slack                                                        ; -19.149  ; 0.133 ; -1.150   ; 0.448   ; -0.666              ;
-;  ADA_DCO                                                                ; N/A      ; N/A   ; N/A      ; N/A     ; -0.666              ;
-;  ADB_DCO                                                                ; N/A      ; N/A   ; N/A      ; N/A     ; -0.666              ;
-;  OSC                                                                    ; N/A      ; N/A   ; N/A      ; N/A     ; 9.698               ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; -19.149  ; 0.159 ; N/A      ; N/A     ; 4.433               ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; -0.978   ; 0.133 ; 997.407  ; 1.234   ; 499.432             ;
-;  debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; -1.057   ; 0.204 ; -0.978   ; 0.448   ; -0.250              ;
-;  debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -1.459   ; 0.208 ; -1.150   ; 0.639   ; -0.250              ;
-;  hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -1.046   ; 0.261 ; N/A      ; N/A     ; -0.250              ;
-;  hybrid_control_phi:hybrid_control_inst|CLK_jump_prev                   ; -0.930   ; 0.176 ; N/A      ; N/A     ; -0.250              ;
-;  hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -1.467   ; 0.412 ; N/A      ; N/A     ; -0.250              ;
-; Design-wide TNS                                                         ; -730.346 ; 0.0   ; -18.93   ; 0.0     ; -84.88              ;
-;  ADA_DCO                                                                ; N/A      ; N/A   ; N/A      ; N/A     ; -46.648             ;
-;  ADB_DCO                                                                ; N/A      ; N/A   ; N/A      ; N/A     ; -30.120             ;
-;  OSC                                                                    ; N/A      ; N/A   ; N/A      ; N/A     ; 0.000               ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; -647.587 ; 0.000 ; N/A      ; N/A     ; 0.000               ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; -56.611  ; 0.000 ; 0.000    ; 0.000   ; 0.000               ;
-;  debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; -8.195   ; 0.000 ; -8.712   ; 0.000   ; -3.115              ;
-;  debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -11.228  ; 0.000 ; -10.218  ; 0.000   ; -3.042              ;
-;  hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -2.090   ; 0.000 ; N/A      ; N/A     ; -0.708              ;
-;  hybrid_control_phi:hybrid_control_inst|CLK_jump_prev                   ; -1.768   ; 0.000 ; N/A      ; N/A     ; -0.742              ;
-;  hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -2.867   ; 0.000 ; N/A      ; N/A     ; -0.647              ;
-+-------------------------------------------------------------------------+----------+-------+----------+---------+---------------------+
++----------------------------------------------------------------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                                                                                    ;
++-------------------------------------------------------------------------+----------+--------+----------+---------+---------------------+
+; Clock                                                                   ; Setup    ; Hold   ; Recovery ; Removal ; Minimum Pulse Width ;
++-------------------------------------------------------------------------+----------+--------+----------+---------+---------------------+
+; Worst-case Slack                                                        ; -18.971  ; -4.233 ; -0.821   ; 0.212   ; -0.666              ;
+;  ADA_DCO                                                                ; N/A      ; N/A    ; N/A      ; N/A     ; -0.666              ;
+;  ADB_DCO                                                                ; N/A      ; N/A    ; N/A      ; N/A     ; -0.250              ;
+;  OSC                                                                    ; N/A      ; N/A    ; N/A      ; N/A     ; 9.698               ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; -18.971  ; 0.163  ; N/A      ; N/A     ; 4.433               ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; -0.971   ; 0.143  ; 998.655  ; 0.501   ; 499.433             ;
+;  debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; -1.508   ; 0.447  ; -0.631   ; 0.212   ; -0.250              ;
+;  debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -1.375   ; 0.208  ; -0.821   ; 0.470   ; -0.250              ;
+;  hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -1.815   ; 0.407  ; N/A      ; N/A     ; -0.250              ;
+;  hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -0.819   ; -4.233 ; N/A      ; N/A     ; -0.250              ;
+; Design-wide TNS                                                         ; -648.735 ; -7.989 ; -12.75   ; 0.0     ; -41.5               ;
+;  ADA_DCO                                                                ; N/A      ; N/A    ; N/A      ; N/A     ; -25.468             ;
+;  ADB_DCO                                                                ; N/A      ; N/A    ; N/A      ; N/A     ; -8.769              ;
+;  OSC                                                                    ; N/A      ; N/A    ; N/A      ; N/A     ; 0.000               ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; -569.027 ; 0.000  ; N/A      ; N/A     ; 0.000               ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; -52.858  ; 0.000  ; 0.000    ; 0.000   ; 0.000               ;
+;  debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; -11.045  ; 0.000  ; -5.361   ; 0.000   ; -3.003              ;
+;  debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -10.706  ; 0.000  ; -7.389   ; 0.000   ; -2.952              ;
+;  hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -3.604   ; 0.000  ; N/A      ; N/A     ; -0.610              ;
+;  hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -1.495   ; -7.989 ; N/A      ; N/A     ; -0.827              ;
++-------------------------------------------------------------------------+----------+--------+----------+---------+---------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -519,6 +507,20 @@ No synchronizer chains to report.
 ; GPIO0[19]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; GPIO0[20]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; GPIO0[21]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO0[22]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO0[23]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO0[24]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO0[25]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO0[26]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO0[27]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO0[28]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO0[29]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO0[30]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO0[31]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO0[32]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO0[33]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO0[34]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; GPIO0[35]        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; AD_SCLK          ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; AD_SDIO          ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; FPGA_CLK_A_N     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
@@ -705,6 +707,20 @@ No synchronizer chains to report.
 ; GPIO0[19]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.38e-07 V                   ; 2.34 V              ; -0.00912 V          ; 0.147 V                              ; 0.081 V                              ; 5.97e-10 s                  ; 5.07e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.38e-07 V                  ; 2.34 V             ; -0.00912 V         ; 0.147 V                             ; 0.081 V                             ; 5.97e-10 s                 ; 5.07e-10 s                 ; No                        ; Yes                       ;
 ; GPIO0[20]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.38e-07 V                   ; 2.34 V              ; -0.00912 V          ; 0.147 V                              ; 0.081 V                              ; 5.97e-10 s                  ; 5.07e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.38e-07 V                  ; 2.34 V             ; -0.00912 V         ; 0.147 V                             ; 0.081 V                             ; 5.97e-10 s                 ; 5.07e-10 s                 ; No                        ; Yes                       ;
 ; GPIO0[21]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.38e-07 V                   ; 2.34 V              ; -0.00912 V          ; 0.147 V                              ; 0.081 V                              ; 5.97e-10 s                  ; 5.07e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.38e-07 V                  ; 2.34 V             ; -0.00912 V         ; 0.147 V                             ; 0.081 V                             ; 5.97e-10 s                 ; 5.07e-10 s                 ; No                        ; Yes                       ;
+; GPIO0[22]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.38e-07 V                   ; 2.34 V              ; -0.00912 V          ; 0.147 V                              ; 0.081 V                              ; 5.97e-10 s                  ; 5.07e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.38e-07 V                  ; 2.34 V             ; -0.00912 V         ; 0.147 V                             ; 0.081 V                             ; 5.97e-10 s                 ; 5.07e-10 s                 ; No                        ; Yes                       ;
+; GPIO0[23]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.38e-07 V                   ; 2.34 V              ; -0.00912 V          ; 0.147 V                              ; 0.081 V                              ; 5.97e-10 s                  ; 5.07e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.38e-07 V                  ; 2.34 V             ; -0.00912 V         ; 0.147 V                             ; 0.081 V                             ; 5.97e-10 s                 ; 5.07e-10 s                 ; No                        ; Yes                       ;
+; GPIO0[24]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.39e-07 V                   ; 2.34 V              ; -0.0119 V           ; 0.145 V                              ; 0.082 V                              ; 4.74e-10 s                  ; 4.08e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.39e-07 V                  ; 2.34 V             ; -0.0119 V          ; 0.145 V                             ; 0.082 V                             ; 4.74e-10 s                 ; 4.08e-10 s                 ; No                        ; Yes                       ;
+; GPIO0[25]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.38e-07 V                   ; 2.34 V              ; -0.00912 V          ; 0.147 V                              ; 0.081 V                              ; 5.97e-10 s                  ; 5.07e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.38e-07 V                  ; 2.34 V             ; -0.00912 V         ; 0.147 V                             ; 0.081 V                             ; 5.97e-10 s                 ; 5.07e-10 s                 ; No                        ; Yes                       ;
+; GPIO0[26]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.38e-07 V                   ; 2.34 V              ; -0.00912 V          ; 0.147 V                              ; 0.081 V                              ; 5.97e-10 s                  ; 5.07e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.38e-07 V                  ; 2.34 V             ; -0.00912 V         ; 0.147 V                             ; 0.081 V                             ; 5.97e-10 s                 ; 5.07e-10 s                 ; No                        ; Yes                       ;
+; GPIO0[27]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.38e-07 V                   ; 2.34 V              ; -0.00912 V          ; 0.147 V                              ; 0.081 V                              ; 5.97e-10 s                  ; 5.07e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.38e-07 V                  ; 2.34 V             ; -0.00912 V         ; 0.147 V                             ; 0.081 V                             ; 5.97e-10 s                 ; 5.07e-10 s                 ; No                        ; Yes                       ;
+; GPIO0[28]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.38e-07 V                   ; 2.34 V              ; -0.00912 V          ; 0.147 V                              ; 0.081 V                              ; 5.97e-10 s                  ; 5.07e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.38e-07 V                  ; 2.34 V             ; -0.00912 V         ; 0.147 V                             ; 0.081 V                             ; 5.97e-10 s                 ; 5.07e-10 s                 ; No                        ; Yes                       ;
+; GPIO0[29]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.38e-07 V                   ; 2.34 V              ; -0.00912 V          ; 0.147 V                              ; 0.081 V                              ; 5.97e-10 s                  ; 5.07e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.38e-07 V                  ; 2.34 V             ; -0.00912 V         ; 0.147 V                             ; 0.081 V                             ; 5.97e-10 s                 ; 5.07e-10 s                 ; No                        ; Yes                       ;
+; GPIO0[30]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.39e-07 V                   ; 2.34 V              ; -0.0119 V           ; 0.145 V                              ; 0.082 V                              ; 4.74e-10 s                  ; 4.08e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.39e-07 V                  ; 2.34 V             ; -0.0119 V          ; 0.145 V                             ; 0.082 V                             ; 4.74e-10 s                 ; 4.08e-10 s                 ; No                        ; Yes                       ;
+; GPIO0[31]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.38e-07 V                   ; 2.34 V              ; -0.00912 V          ; 0.147 V                              ; 0.081 V                              ; 5.97e-10 s                  ; 5.07e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.38e-07 V                  ; 2.34 V             ; -0.00912 V         ; 0.147 V                             ; 0.081 V                             ; 5.97e-10 s                 ; 5.07e-10 s                 ; No                        ; Yes                       ;
+; GPIO0[32]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.38e-07 V                   ; 2.34 V              ; -0.00912 V          ; 0.147 V                              ; 0.081 V                              ; 5.97e-10 s                  ; 5.07e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.38e-07 V                  ; 2.34 V             ; -0.00912 V         ; 0.147 V                             ; 0.081 V                             ; 5.97e-10 s                 ; 5.07e-10 s                 ; No                        ; Yes                       ;
+; GPIO0[33]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.38e-07 V                   ; 2.34 V              ; -0.00912 V          ; 0.147 V                              ; 0.081 V                              ; 5.97e-10 s                  ; 5.07e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.38e-07 V                  ; 2.34 V             ; -0.00912 V         ; 0.147 V                             ; 0.081 V                             ; 5.97e-10 s                 ; 5.07e-10 s                 ; No                        ; Yes                       ;
+; GPIO0[34]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.38e-07 V                   ; 2.34 V              ; -0.00912 V          ; 0.147 V                              ; 0.081 V                              ; 5.97e-10 s                  ; 5.07e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.38e-07 V                  ; 2.34 V             ; -0.00912 V         ; 0.147 V                             ; 0.081 V                             ; 5.97e-10 s                 ; 5.07e-10 s                 ; No                        ; Yes                       ;
+; GPIO0[35]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.38e-07 V                   ; 2.34 V              ; -0.00912 V          ; 0.147 V                              ; 0.081 V                              ; 5.97e-10 s                  ; 5.07e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.38e-07 V                  ; 2.34 V             ; -0.00912 V         ; 0.147 V                             ; 0.081 V                             ; 5.97e-10 s                 ; 5.07e-10 s                 ; No                        ; Yes                       ;
 ; AD_SCLK          ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.39e-07 V                   ; 2.34 V              ; -0.0119 V           ; 0.145 V                              ; 0.082 V                              ; 4.74e-10 s                  ; 4.08e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.39e-07 V                  ; 2.34 V             ; -0.0119 V          ; 0.145 V                             ; 0.082 V                             ; 4.74e-10 s                 ; 4.08e-10 s                 ; No                        ; Yes                       ;
 ; AD_SDIO          ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.38e-07 V                   ; 2.34 V              ; -0.00912 V          ; 0.147 V                              ; 0.081 V                              ; 5.97e-10 s                  ; 5.07e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.38e-07 V                  ; 2.34 V             ; -0.00912 V         ; 0.147 V                             ; 0.081 V                             ; 5.97e-10 s                 ; 5.07e-10 s                 ; No                        ; Yes                       ;
 ; FPGA_CLK_A_N     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.38e-07 V                   ; 2.34 V              ; -0.00912 V          ; 0.147 V                              ; 0.081 V                              ; 5.97e-10 s                  ; 5.07e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.38e-07 V                  ; 2.34 V             ; -0.00912 V         ; 0.147 V                             ; 0.081 V                             ; 5.97e-10 s                 ; 5.07e-10 s                 ; No                        ; Yes                       ;
@@ -816,6 +832,20 @@ No synchronizer chains to report.
 ; GPIO0[19]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00486 V          ; 0.217 V                              ; 0.049 V                              ; 6.37e-10 s                  ; 6.23e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00486 V         ; 0.217 V                             ; 0.049 V                             ; 6.37e-10 s                 ; 6.23e-10 s                 ; Yes                       ; Yes                       ;
 ; GPIO0[20]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00486 V          ; 0.217 V                              ; 0.049 V                              ; 6.37e-10 s                  ; 6.23e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00486 V         ; 0.217 V                             ; 0.049 V                             ; 6.37e-10 s                 ; 6.23e-10 s                 ; Yes                       ; Yes                       ;
 ; GPIO0[21]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00486 V          ; 0.217 V                              ; 0.049 V                              ; 6.37e-10 s                  ; 6.23e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00486 V         ; 0.217 V                             ; 0.049 V                             ; 6.37e-10 s                 ; 6.23e-10 s                 ; Yes                       ; Yes                       ;
+; GPIO0[22]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00486 V          ; 0.217 V                              ; 0.049 V                              ; 6.37e-10 s                  ; 6.23e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00486 V         ; 0.217 V                             ; 0.049 V                             ; 6.37e-10 s                 ; 6.23e-10 s                 ; Yes                       ; Yes                       ;
+; GPIO0[23]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00486 V          ; 0.217 V                              ; 0.049 V                              ; 6.37e-10 s                  ; 6.23e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00486 V         ; 0.217 V                             ; 0.049 V                             ; 6.37e-10 s                 ; 6.23e-10 s                 ; Yes                       ; Yes                       ;
+; GPIO0[24]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00488 V          ; 0.21 V                               ; 0.04 V                               ; 5.09e-10 s                  ; 5.03e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00488 V         ; 0.21 V                              ; 0.04 V                              ; 5.09e-10 s                 ; 5.03e-10 s                 ; Yes                       ; Yes                       ;
+; GPIO0[25]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00486 V          ; 0.217 V                              ; 0.049 V                              ; 6.37e-10 s                  ; 6.23e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00486 V         ; 0.217 V                             ; 0.049 V                             ; 6.37e-10 s                 ; 6.23e-10 s                 ; Yes                       ; Yes                       ;
+; GPIO0[26]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00486 V          ; 0.217 V                              ; 0.049 V                              ; 6.37e-10 s                  ; 6.23e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00486 V         ; 0.217 V                             ; 0.049 V                             ; 6.37e-10 s                 ; 6.23e-10 s                 ; Yes                       ; Yes                       ;
+; GPIO0[27]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00486 V          ; 0.217 V                              ; 0.049 V                              ; 6.37e-10 s                  ; 6.23e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00486 V         ; 0.217 V                             ; 0.049 V                             ; 6.37e-10 s                 ; 6.23e-10 s                 ; Yes                       ; Yes                       ;
+; GPIO0[28]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00486 V          ; 0.217 V                              ; 0.049 V                              ; 6.37e-10 s                  ; 6.23e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00486 V         ; 0.217 V                             ; 0.049 V                             ; 6.37e-10 s                 ; 6.23e-10 s                 ; Yes                       ; Yes                       ;
+; GPIO0[29]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00486 V          ; 0.217 V                              ; 0.049 V                              ; 6.37e-10 s                  ; 6.23e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00486 V         ; 0.217 V                             ; 0.049 V                             ; 6.37e-10 s                 ; 6.23e-10 s                 ; Yes                       ; Yes                       ;
+; GPIO0[30]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00488 V          ; 0.21 V                               ; 0.04 V                               ; 5.09e-10 s                  ; 5.03e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00488 V         ; 0.21 V                              ; 0.04 V                              ; 5.09e-10 s                 ; 5.03e-10 s                 ; Yes                       ; Yes                       ;
+; GPIO0[31]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00486 V          ; 0.217 V                              ; 0.049 V                              ; 6.37e-10 s                  ; 6.23e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00486 V         ; 0.217 V                             ; 0.049 V                             ; 6.37e-10 s                 ; 6.23e-10 s                 ; Yes                       ; Yes                       ;
+; GPIO0[32]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00486 V          ; 0.217 V                              ; 0.049 V                              ; 6.37e-10 s                  ; 6.23e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00486 V         ; 0.217 V                             ; 0.049 V                             ; 6.37e-10 s                 ; 6.23e-10 s                 ; Yes                       ; Yes                       ;
+; GPIO0[33]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00486 V          ; 0.217 V                              ; 0.049 V                              ; 6.37e-10 s                  ; 6.23e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00486 V         ; 0.217 V                             ; 0.049 V                             ; 6.37e-10 s                 ; 6.23e-10 s                 ; Yes                       ; Yes                       ;
+; GPIO0[34]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00486 V          ; 0.217 V                              ; 0.049 V                              ; 6.37e-10 s                  ; 6.23e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00486 V         ; 0.217 V                             ; 0.049 V                             ; 6.37e-10 s                 ; 6.23e-10 s                 ; Yes                       ; Yes                       ;
+; GPIO0[35]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00486 V          ; 0.217 V                              ; 0.049 V                              ; 6.37e-10 s                  ; 6.23e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00486 V         ; 0.217 V                             ; 0.049 V                             ; 6.37e-10 s                 ; 6.23e-10 s                 ; Yes                       ; Yes                       ;
 ; AD_SCLK          ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00488 V          ; 0.21 V                               ; 0.04 V                               ; 5.09e-10 s                  ; 5.03e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00488 V         ; 0.21 V                              ; 0.04 V                              ; 5.09e-10 s                 ; 5.03e-10 s                 ; Yes                       ; Yes                       ;
 ; AD_SDIO          ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00486 V          ; 0.217 V                              ; 0.049 V                              ; 6.37e-10 s                  ; 6.23e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00486 V         ; 0.217 V                             ; 0.049 V                             ; 6.37e-10 s                 ; 6.23e-10 s                 ; Yes                       ; Yes                       ;
 ; FPGA_CLK_A_N     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.47e-05 V                   ; 2.34 V              ; -0.00486 V          ; 0.217 V                              ; 0.049 V                              ; 6.37e-10 s                  ; 6.23e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 1.47e-05 V                  ; 2.34 V             ; -0.00486 V         ; 0.217 V                             ; 0.049 V                             ; 6.37e-10 s                 ; 6.23e-10 s                 ; Yes                       ; Yes                       ;
@@ -927,6 +957,20 @@ No synchronizer chains to report.
 ; GPIO0[19]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 8.91e-07 V                   ; 2.66 V              ; -0.0189 V           ; 0.179 V                              ; 0.122 V                              ; 4.9e-10 s                   ; 4.6e-10 s                   ; No                         ; Yes                        ; 2.62 V                      ; 8.91e-07 V                  ; 2.66 V             ; -0.0189 V          ; 0.179 V                             ; 0.122 V                             ; 4.9e-10 s                  ; 4.6e-10 s                  ; No                        ; Yes                       ;
 ; GPIO0[20]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 8.91e-07 V                   ; 2.66 V              ; -0.0189 V           ; 0.179 V                              ; 0.122 V                              ; 4.9e-10 s                   ; 4.6e-10 s                   ; No                         ; Yes                        ; 2.62 V                      ; 8.91e-07 V                  ; 2.66 V             ; -0.0189 V          ; 0.179 V                             ; 0.122 V                             ; 4.9e-10 s                  ; 4.6e-10 s                  ; No                        ; Yes                       ;
 ; GPIO0[21]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 8.91e-07 V                   ; 2.66 V              ; -0.0189 V           ; 0.179 V                              ; 0.122 V                              ; 4.9e-10 s                   ; 4.6e-10 s                   ; No                         ; Yes                        ; 2.62 V                      ; 8.91e-07 V                  ; 2.66 V             ; -0.0189 V          ; 0.179 V                             ; 0.122 V                             ; 4.9e-10 s                  ; 4.6e-10 s                  ; No                        ; Yes                       ;
+; GPIO0[22]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 8.91e-07 V                   ; 2.66 V              ; -0.0189 V           ; 0.179 V                              ; 0.122 V                              ; 4.9e-10 s                   ; 4.6e-10 s                   ; No                         ; Yes                        ; 2.62 V                      ; 8.91e-07 V                  ; 2.66 V             ; -0.0189 V          ; 0.179 V                             ; 0.122 V                             ; 4.9e-10 s                  ; 4.6e-10 s                  ; No                        ; Yes                       ;
+; GPIO0[23]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 8.91e-07 V                   ; 2.66 V              ; -0.0189 V           ; 0.179 V                              ; 0.122 V                              ; 4.9e-10 s                   ; 4.6e-10 s                   ; No                         ; Yes                        ; 2.62 V                      ; 8.91e-07 V                  ; 2.66 V             ; -0.0189 V          ; 0.179 V                             ; 0.122 V                             ; 4.9e-10 s                  ; 4.6e-10 s                  ; No                        ; Yes                       ;
+; GPIO0[24]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 8.92e-07 V                   ; 2.66 V              ; -0.02 V             ; 0.197 V                              ; 0.145 V                              ; 3.75e-10 s                  ; 3.59e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 8.92e-07 V                  ; 2.66 V             ; -0.02 V            ; 0.197 V                             ; 0.145 V                             ; 3.75e-10 s                 ; 3.59e-10 s                 ; No                        ; Yes                       ;
+; GPIO0[25]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 8.91e-07 V                   ; 2.66 V              ; -0.0189 V           ; 0.179 V                              ; 0.122 V                              ; 4.9e-10 s                   ; 4.6e-10 s                   ; No                         ; Yes                        ; 2.62 V                      ; 8.91e-07 V                  ; 2.66 V             ; -0.0189 V          ; 0.179 V                             ; 0.122 V                             ; 4.9e-10 s                  ; 4.6e-10 s                  ; No                        ; Yes                       ;
+; GPIO0[26]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 8.91e-07 V                   ; 2.66 V              ; -0.0189 V           ; 0.179 V                              ; 0.122 V                              ; 4.9e-10 s                   ; 4.6e-10 s                   ; No                         ; Yes                        ; 2.62 V                      ; 8.91e-07 V                  ; 2.66 V             ; -0.0189 V          ; 0.179 V                             ; 0.122 V                             ; 4.9e-10 s                  ; 4.6e-10 s                  ; No                        ; Yes                       ;
+; GPIO0[27]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 8.91e-07 V                   ; 2.66 V              ; -0.0189 V           ; 0.179 V                              ; 0.122 V                              ; 4.9e-10 s                   ; 4.6e-10 s                   ; No                         ; Yes                        ; 2.62 V                      ; 8.91e-07 V                  ; 2.66 V             ; -0.0189 V          ; 0.179 V                             ; 0.122 V                             ; 4.9e-10 s                  ; 4.6e-10 s                  ; No                        ; Yes                       ;
+; GPIO0[28]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 8.91e-07 V                   ; 2.66 V              ; -0.0189 V           ; 0.179 V                              ; 0.122 V                              ; 4.9e-10 s                   ; 4.6e-10 s                   ; No                         ; Yes                        ; 2.62 V                      ; 8.91e-07 V                  ; 2.66 V             ; -0.0189 V          ; 0.179 V                             ; 0.122 V                             ; 4.9e-10 s                  ; 4.6e-10 s                  ; No                        ; Yes                       ;
+; GPIO0[29]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 8.91e-07 V                   ; 2.66 V              ; -0.0189 V           ; 0.179 V                              ; 0.122 V                              ; 4.9e-10 s                   ; 4.6e-10 s                   ; No                         ; Yes                        ; 2.62 V                      ; 8.91e-07 V                  ; 2.66 V             ; -0.0189 V          ; 0.179 V                             ; 0.122 V                             ; 4.9e-10 s                  ; 4.6e-10 s                  ; No                        ; Yes                       ;
+; GPIO0[30]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 8.92e-07 V                   ; 2.66 V              ; -0.02 V             ; 0.197 V                              ; 0.145 V                              ; 3.75e-10 s                  ; 3.59e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 8.92e-07 V                  ; 2.66 V             ; -0.02 V            ; 0.197 V                             ; 0.145 V                             ; 3.75e-10 s                 ; 3.59e-10 s                 ; No                        ; Yes                       ;
+; GPIO0[31]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 8.91e-07 V                   ; 2.66 V              ; -0.0189 V           ; 0.179 V                              ; 0.122 V                              ; 4.9e-10 s                   ; 4.6e-10 s                   ; No                         ; Yes                        ; 2.62 V                      ; 8.91e-07 V                  ; 2.66 V             ; -0.0189 V          ; 0.179 V                             ; 0.122 V                             ; 4.9e-10 s                  ; 4.6e-10 s                  ; No                        ; Yes                       ;
+; GPIO0[32]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 8.91e-07 V                   ; 2.66 V              ; -0.0189 V           ; 0.179 V                              ; 0.122 V                              ; 4.9e-10 s                   ; 4.6e-10 s                   ; No                         ; Yes                        ; 2.62 V                      ; 8.91e-07 V                  ; 2.66 V             ; -0.0189 V          ; 0.179 V                             ; 0.122 V                             ; 4.9e-10 s                  ; 4.6e-10 s                  ; No                        ; Yes                       ;
+; GPIO0[33]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 8.91e-07 V                   ; 2.66 V              ; -0.0189 V           ; 0.179 V                              ; 0.122 V                              ; 4.9e-10 s                   ; 4.6e-10 s                   ; No                         ; Yes                        ; 2.62 V                      ; 8.91e-07 V                  ; 2.66 V             ; -0.0189 V          ; 0.179 V                             ; 0.122 V                             ; 4.9e-10 s                  ; 4.6e-10 s                  ; No                        ; Yes                       ;
+; GPIO0[34]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 8.91e-07 V                   ; 2.66 V              ; -0.0189 V           ; 0.179 V                              ; 0.122 V                              ; 4.9e-10 s                   ; 4.6e-10 s                   ; No                         ; Yes                        ; 2.62 V                      ; 8.91e-07 V                  ; 2.66 V             ; -0.0189 V          ; 0.179 V                             ; 0.122 V                             ; 4.9e-10 s                  ; 4.6e-10 s                  ; No                        ; Yes                       ;
+; GPIO0[35]        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 8.91e-07 V                   ; 2.66 V              ; -0.0189 V           ; 0.179 V                              ; 0.122 V                              ; 4.9e-10 s                   ; 4.6e-10 s                   ; No                         ; Yes                        ; 2.62 V                      ; 8.91e-07 V                  ; 2.66 V             ; -0.0189 V          ; 0.179 V                             ; 0.122 V                             ; 4.9e-10 s                  ; 4.6e-10 s                  ; No                        ; Yes                       ;
 ; AD_SCLK          ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 8.92e-07 V                   ; 2.66 V              ; -0.02 V             ; 0.197 V                              ; 0.145 V                              ; 3.75e-10 s                  ; 3.59e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 8.92e-07 V                  ; 2.66 V             ; -0.02 V            ; 0.197 V                             ; 0.145 V                             ; 3.75e-10 s                 ; 3.59e-10 s                 ; No                        ; Yes                       ;
 ; AD_SDIO          ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 8.91e-07 V                   ; 2.66 V              ; -0.0189 V           ; 0.179 V                              ; 0.122 V                              ; 4.9e-10 s                   ; 4.6e-10 s                   ; No                         ; Yes                        ; 2.62 V                      ; 8.91e-07 V                  ; 2.66 V             ; -0.0189 V          ; 0.179 V                             ; 0.122 V                             ; 4.9e-10 s                  ; 4.6e-10 s                  ; No                        ; Yes                       ;
 ; FPGA_CLK_A_N     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 8.91e-07 V                   ; 2.66 V              ; -0.0189 V           ; 0.179 V                              ; 0.122 V                              ; 4.9e-10 s                   ; 4.6e-10 s                   ; No                         ; Yes                        ; 2.62 V                      ; 8.91e-07 V                  ; 2.66 V             ; -0.0189 V          ; 0.179 V                             ; 0.122 V                             ; 4.9e-10 s                  ; 4.6e-10 s                  ; No                        ; Yes                       ;
@@ -943,20 +987,17 @@ No synchronizer chains to report.
 +------------------------------------------------------------------------+------------------------------------------------------------------------+--------------+--------------+----------+----------+
 ; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; 0            ; 0            ; 0        ; 440      ;
 ; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0            ; 0            ; 0        ; 782      ;
-; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; 0            ; 0            ; 0        ; 78       ;
+; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; 0            ; 0            ; 0        ; 54       ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; 0            ; 0            ; 3        ; 0        ;
-; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; hybrid_control_phi:hybrid_control_inst|CLK_jump_prev                   ; 0            ; 0            ; 0        ; 78       ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; hybrid_control_phi:hybrid_control_inst|CLK_jump_prev                   ; 0            ; 0            ; 3        ; 0        ;
-; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; 0            ; 0            ; 0        ; 78       ;
+; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; 0            ; 0            ; 0        ; 54       ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; 0            ; 0            ; 3        ; 0        ;
 ; ADA_DCO                                                                ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; > 2147483647 ; 0            ; 0        ; 0        ;
-; ADB_DCO                                                                ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 1395609582   ; 0            ; 0        ; 0        ;
+; ADB_DCO                                                                ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 425924000    ; 0            ; 0        ; 0        ;
 ; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 0            ; > 2147483647 ; 0        ; 0        ;
 ; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 0            ; > 2147483647 ; 0        ; 0        ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 1            ; 8            ; 0        ; 0        ;
-; hybrid_control_phi:hybrid_control_inst|CLK_jump_prev                   ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 1            ; > 2147483647 ; 0        ; 0        ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 1            ; 176          ; 0        ; 0        ;
 ; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 1            ; 29295849     ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 1381960733   ; 0            ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 1381960740   ; 0            ; 0        ; 0        ;
 ; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 33           ; 33           ; 0        ; 0        ;
 ; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 33           ; 33           ; 0        ; 0        ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 6166         ; 0            ; 0        ; 0        ;
@@ -971,20 +1012,17 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 +------------------------------------------------------------------------+------------------------------------------------------------------------+--------------+--------------+----------+----------+
 ; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; 0            ; 0            ; 0        ; 440      ;
 ; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0            ; 0            ; 0        ; 782      ;
-; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; 0            ; 0            ; 0        ; 78       ;
+; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; 0            ; 0            ; 0        ; 54       ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; 0            ; 0            ; 3        ; 0        ;
-; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; hybrid_control_phi:hybrid_control_inst|CLK_jump_prev                   ; 0            ; 0            ; 0        ; 78       ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; hybrid_control_phi:hybrid_control_inst|CLK_jump_prev                   ; 0            ; 0            ; 3        ; 0        ;
-; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; 0            ; 0            ; 0        ; 78       ;
+; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; 0            ; 0            ; 0        ; 54       ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; 0            ; 0            ; 3        ; 0        ;
 ; ADA_DCO                                                                ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; > 2147483647 ; 0            ; 0        ; 0        ;
-; ADB_DCO                                                                ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 1395609582   ; 0            ; 0        ; 0        ;
+; ADB_DCO                                                                ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 425924000    ; 0            ; 0        ; 0        ;
 ; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 0            ; > 2147483647 ; 0        ; 0        ;
 ; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 0            ; > 2147483647 ; 0        ; 0        ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 1            ; 8            ; 0        ; 0        ;
-; hybrid_control_phi:hybrid_control_inst|CLK_jump_prev                   ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 1            ; > 2147483647 ; 0        ; 0        ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 1            ; 176          ; 0        ; 0        ;
 ; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 1            ; 29295849     ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 1381960733   ; 0            ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 1381960740   ; 0            ; 0        ; 0        ;
 ; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 33           ; 33           ; 0        ; 0        ;
 ; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 33           ; 33           ; 0        ; 0        ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 6166         ; 0            ; 0        ; 0        ;
@@ -1036,9 +1074,9 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
 ; Unconstrained Input Ports       ; 36    ; 36   ;
-; Unconstrained Input Port Paths  ; 1705  ; 1705 ;
-; Unconstrained Output Ports      ; 59    ; 59   ;
-; Unconstrained Output Port Paths ; 421   ; 421  ;
+; Unconstrained Input Port Paths  ; 989   ; 989  ;
+; Unconstrained Output Ports      ; 64    ; 64   ;
+; Unconstrained Output Port Paths ; 426   ; 426  ;
 +---------------------------------+-------+------+
 
 
@@ -1057,7 +1095,6 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state ; Base      ; Constrained ;
 ; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; Base      ; Constrained ;
 ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; Base      ; Constrained ;
-; hybrid_control_phi:hybrid_control_inst|CLK_jump_prev                   ; hybrid_control_phi:hybrid_control_inst|CLK_jump_prev                   ; Base      ; Constrained ;
 ; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; Base      ; Constrained ;
 +------------------------------------------------------------------------+------------------------------------------------------------------------+-----------+-------------+
 
@@ -1141,6 +1178,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; EX[8]            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; EX[9]            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; EX[10]           ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; EX[11]           ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; FAN_CTRL         ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; FPGA_CLK_A_N     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; FPGA_CLK_A_P     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -1150,6 +1188,10 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; GPIO0[12]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; GPIO0[14]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; GPIO0[16]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; GPIO0[18]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; GPIO0[20]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; GPIO0[22]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; GPIO0[24]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; Q[0]             ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; Q[1]             ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; Q[2]             ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -1252,6 +1294,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; EX[8]            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; EX[9]            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; EX[10]           ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; EX[11]           ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; FAN_CTRL         ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; FPGA_CLK_A_N     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; FPGA_CLK_A_P     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -1261,6 +1304,10 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; GPIO0[12]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; GPIO0[14]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; GPIO0[16]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; GPIO0[18]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; GPIO0[20]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; GPIO0[22]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; GPIO0[24]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; Q[0]             ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; Q[1]             ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; Q[2]             ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -1290,7 +1337,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
-    Info: Processing started: Tue May  7 09:01:52 2024
+    Info: Processing started: Tue May  7 11:21:52 2024
 Info: Command: quartus_sta HybridControl_theta_phi_OL -c TOP_HybridControl_theta_phi_OL
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -1310,10 +1357,9 @@ Info (332105): Deriving Clocks
     Info (332105): create_clock -period 1.000 -name debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state
     Info (332105): create_clock -period 1.000 -name ADA_DCO ADA_DCO
     Info (332105): create_clock -period 1.000 -name ADB_DCO ADB_DCO
-    Info (332105): create_clock -period 1.000 -name hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev
-    Info (332105): create_clock -period 1.000 -name hybrid_control_phi:hybrid_control_inst|CLK_jump_prev hybrid_control_phi:hybrid_control_inst|CLK_jump_prev
-    Info (332105): create_clock -period 1.000 -name debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state
     Info (332105): create_clock -period 1.000 -name hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev
+    Info (332105): create_clock -period 1.000 -name debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state
+    Info (332105): create_clock -period 1.000 -name hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev
 Info (332097): The following timing edges are non-unate.  The Timing Analyzer will assume pos-unate behavior for these edges in the clock network.
     Info (332098): Cell: PLL_inst|altpll_component|auto_generated|pll1  from: inclk[0]  to: observablevcoout
 Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
@@ -1322,51 +1368,48 @@ Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 900mV 85C Model
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -19.149
+Info (332146): Worst-case setup slack is -18.971
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):   -19.149            -647.587 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):    -1.467              -2.867 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
-    Info (332119):    -1.459             -11.228 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):    -1.057              -8.195 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
-    Info (332119):    -1.046              -2.090 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):    -0.978             -56.611 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):    -0.930              -1.768 hybrid_control_phi:hybrid_control_inst|CLK_jump_prev 
-Info (332146): Worst-case hold slack is 0.276
+    Info (332119):   -18.971            -569.027 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):    -1.815              -3.604 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):    -1.508             -11.045 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
+    Info (332119):    -1.375             -10.706 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):    -0.971             -52.858 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):    -0.819              -1.495 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
+Info (332146): Worst-case hold slack is -4.233
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.276               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     0.278               0.000 hybrid_control_phi:hybrid_control_inst|CLK_jump_prev 
-    Info (332119):     0.292               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):     0.365               0.000 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
+    Info (332119):    -4.233              -7.989 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
+    Info (332119):     0.284               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     0.307               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
     Info (332119):     0.373               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):     0.395               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     0.517               0.000 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
-Info (332146): Worst-case recovery slack is -1.150
+    Info (332119):     0.533               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     0.782               0.000 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
+Info (332146): Worst-case recovery slack is -0.821
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.150             -10.218 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):    -0.978              -8.712 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
-    Info (332119):   997.407               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case removal slack is 0.565
+    Info (332119):    -0.821              -7.389 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):    -0.631              -5.361 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
+    Info (332119):   998.655               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case removal slack is 0.246
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.565               0.000 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
-    Info (332119):     0.752               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):     1.975               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):     0.246               0.000 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
+    Info (332119):     0.534               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):     0.861               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
 Info (332146): Worst-case minimum pulse width slack is -0.666
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.666             -46.639 ADA_DCO 
-    Info (332119):    -0.666             -30.114 ADB_DCO 
-    Info (332119):    -0.250              -3.006 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
-    Info (332119):    -0.250              -2.835 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):    -0.250              -0.742 hybrid_control_phi:hybrid_control_inst|CLK_jump_prev 
-    Info (332119):    -0.250              -0.708 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):    -0.250              -0.647 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
-    Info (332119):     4.452               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):    -0.666             -25.118 ADA_DCO 
+    Info (332119):    -0.250              -8.769 ADB_DCO 
+    Info (332119):    -0.250              -2.853 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):    -0.250              -2.799 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
+    Info (332119):    -0.250              -0.827 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
+    Info (332119):    -0.250              -0.610 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     4.450               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     9.959               0.000 OSC 
-    Info (332119):   499.452               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):   499.453               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
 Info: Analyzing Slow 900mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
@@ -1375,108 +1418,102 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -18.350
+Info (332146): Worst-case setup slack is -18.136
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):   -18.350            -619.279 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):    -1.372             -10.492 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):    -1.350              -2.643 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
-    Info (332119):    -0.987              -7.594 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
-    Info (332119):    -0.939             -54.840 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):    -0.860              -1.624 hybrid_control_phi:hybrid_control_inst|CLK_jump_prev 
-    Info (332119):    -0.832              -1.652 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-Info (332146): Worst-case hold slack is 0.176
+    Info (332119):   -18.136            -544.445 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):    -1.643              -3.215 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):    -1.425             -10.355 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
+    Info (332119):    -1.292             -10.049 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):    -0.932             -51.242 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):    -0.670              -1.205 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
+Info (332146): Worst-case hold slack is -4.037
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.176               0.000 hybrid_control_phi:hybrid_control_inst|CLK_jump_prev 
-    Info (332119):     0.261               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     0.271               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     0.290               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):     0.356               0.000 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
-    Info (332119):     0.363               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):     0.412               0.000 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
-Info (332146): Worst-case recovery slack is -0.923
+    Info (332119):    -4.037              -7.625 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
+    Info (332119):     0.280               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     0.317               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):     0.362               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):     0.407               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     0.769               0.000 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
+Info (332146): Worst-case recovery slack is -0.628
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.923              -8.180 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):    -0.731              -6.494 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
-    Info (332119):   997.533               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case removal slack is 0.448
+    Info (332119):    -0.628              -5.649 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):    -0.469              -3.921 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
+    Info (332119):   998.715               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case removal slack is 0.212
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.448               0.000 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
-    Info (332119):     0.639               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):     1.842               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):     0.212               0.000 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
+    Info (332119):     0.470               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):     0.808               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
 Info (332146): Worst-case minimum pulse width slack is -0.666
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.666             -46.648 ADA_DCO 
-    Info (332119):    -0.666             -30.120 ADB_DCO 
-    Info (332119):    -0.250              -3.115 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
-    Info (332119):    -0.250              -3.042 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):    -0.250              -0.672 hybrid_control_phi:hybrid_control_inst|CLK_jump_prev 
-    Info (332119):    -0.250              -0.654 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):    -0.250              -0.629 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
+    Info (332119):    -0.666             -25.468 ADA_DCO 
+    Info (332119):    -0.250              -8.744 ADB_DCO 
+    Info (332119):    -0.250              -3.003 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
+    Info (332119):    -0.250              -2.952 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):    -0.250              -0.741 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
+    Info (332119):    -0.250              -0.592 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
     Info (332119):     4.433               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     9.979               0.000 OSC 
-    Info (332119):   499.432               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):   499.433               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
 Info: Analyzing Fast 900mV 0C Model
 Info (332097): The following timing edges are non-unate.  The Timing Analyzer will assume pos-unate behavior for these edges in the clock network.
     Info (332098): Cell: PLL_inst|altpll_component|auto_generated|pll1  from: inclk[0]  to: observablevcoout
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -11.431
+Info (332146): Worst-case setup slack is -11.382
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):   -11.431            -380.626 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):    -0.759              -1.516 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):    -0.744              -1.334 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
-    Info (332119):    -0.536              -0.987 hybrid_control_phi:hybrid_control_inst|CLK_jump_prev 
-    Info (332119):    -0.413              -2.683 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):    -0.407             -21.057 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):    -0.181              -1.070 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
-Info (332146): Worst-case hold slack is 0.133
+    Info (332119):   -11.382            -335.430 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):    -0.793              -1.568 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):    -0.446              -2.633 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
+    Info (332119):    -0.402             -19.192 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):    -0.369              -2.389 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):    -0.154              -0.200 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
+Info (332146): Worst-case hold slack is -2.503
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.133               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):     0.159               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     0.204               0.000 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
+    Info (332119):    -2.503              -4.711 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
+    Info (332119):     0.143               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):     0.163               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     0.208               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):     0.313               0.000 hybrid_control_phi:hybrid_control_inst|CLK_jump_prev 
-    Info (332119):     0.323               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     0.636               0.000 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
-Info (332146): Worst-case recovery slack is -0.708
+    Info (332119):     0.447               0.000 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
+    Info (332119):     0.679               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+Info (332146): Worst-case recovery slack is -0.488
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.708              -6.289 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):    -0.585              -5.215 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
-    Info (332119):   998.409               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case removal slack is 0.614
+    Info (332119):    -0.488              -4.386 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):    -0.370              -3.147 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
+    Info (332119):   999.232               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case removal slack is 0.421
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.614               0.000 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
-    Info (332119):     0.726               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):     1.234               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case minimum pulse width slack is -0.177
+    Info (332119):     0.421               0.000 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
+    Info (332119):     0.501               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):     0.593               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+Info (332146): Worst-case minimum pulse width slack is -0.171
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.177              -2.412 ADA_DCO 
-    Info (332119):    -0.141              -3.917 ADB_DCO 
-    Info (332119):     0.062               0.000 hybrid_control_phi:hybrid_control_inst|CLK_jump_prev 
-    Info (332119):     0.077               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     0.096               0.000 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
-    Info (332119):     0.159               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):     0.164               0.000 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
-    Info (332119):     4.650               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):    -0.171              -2.354 ADA_DCO 
+    Info (332119):    -0.141              -3.878 ADB_DCO 
+    Info (332119):     0.042               0.000 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
+    Info (332119):     0.123               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     0.158               0.000 debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state 
+    Info (332119):     0.166               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):     4.649               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     9.698               0.000 OSC 
     Info (332119):   499.648               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 5114 megabytes
-    Info: Processing ended: Tue May  7 09:02:02 2024
-    Info: Elapsed time: 00:00:10
-    Info: Total CPU time (on all processors): 00:00:09
+    Info: Peak virtual memory: 5107 megabytes
+    Info: Processing ended: Tue May  7 11:21:56 2024
+    Info: Elapsed time: 00:00:04
+    Info: Total CPU time (on all processors): 00:00:04
 
 

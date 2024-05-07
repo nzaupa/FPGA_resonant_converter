@@ -230,7 +230,7 @@ assign EX[7]  = test[0];     // Pin 8 D4  b0
 assign EX[8]  = test[1];     // Pin 9 D5  b1
 assign EX[9]  = debug[14];   // Pin 10 ?
 assign EX[10] = debug[15];   // Pin 11 D6
-assign EX[11] = debug[21];   // LED 1  D7
+assign EX[11] = ENABLE;      // Pin 12 D7  (and LED 1)
 
 assign GPIO0[18] = Q1;   // D12
 assign GPIO0[20] = Q2;   // D13
@@ -276,8 +276,8 @@ assign Ibat_dec = (ADC_Ibat>>3) + (~8'd21+1);
 
 assign   phi_HC   = phi;
 // assign   theta_HC = sw[3] ? (32'd170+(~phi+1)) : theta;
-assign   theta_HC = 32'd10 + (~phi+1);
-// assign   theta_HC = 32'd160;
+// assign   theta_HC = 32'd160 + (~phi+1);
+assign   theta_HC = 32'd160;
 
 
 // -------------------------------------
@@ -313,7 +313,7 @@ hybrid_control_theta hybrid_control_theta_inst (
 
 // control law PHI
 hybrid_control_phi hybrid_control_inst (
-   .o_MOSFET( MOSFET_phi ),  // control signal for the four MOSFETs
+   .o_MOSFET(  ),  // control signal for the four MOSFETs
    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
    .o_debug( ),    // ? random currently
    .i_clock( clk_100M ), // ADA_DCO
@@ -326,7 +326,7 @@ hybrid_control_phi hybrid_control_inst (
 // control law PHI + THETA
 hybrid_control_theta_phi #(.mu_z1(32'd86), .mu_z2(32'd90), .mu_Vg(32'd312000)
 ) hybrid_control_theta_phi_inst (
-   .o_MOSFET( MOSFET_theta_phi ),  // control signal for the four MOSFETs
+   .o_MOSFET( MOSFET_phi ),  // control signal for the four MOSFETs
    .o_sigma( test ),         // 2 bit for signed sigma -> {-1,0,1}
    .o_debug(  ),    // ---
    .i_clock( clk_100M ), // 
@@ -340,7 +340,7 @@ hybrid_control_theta_phi #(.mu_z1(32'd86), .mu_z2(32'd90), .mu_Vg(32'd312000)
 
 hybrid_control_mixed #(.mu_z1(32'd86), .mu_z2(32'd90)
 ) hybrid_control_mixed_inst (
-   .o_MOSFET(  ),  // control signal for the four MOSFETs
+   .o_MOSFET( MOSFET_theta_phi ),  // control signal for the four MOSFETs
    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
    .o_debug( debug ),    // ---
    .i_clock( clk_100M ), // 
@@ -374,7 +374,7 @@ theta_control theta_control_inst(
 
 // ----- DEAD TIME ----- //
 
-dead_time #(.DEADTIME(20), .N(4)) dead_time_inst(
+dead_time #(.DEADTIME(50), .N(4)) dead_time_inst(
    .o_signal( {Q4, Q3, Q2, Q1} ),          // output switching variable
    .i_clock(  clk_100M ),            // for sequential behavior
    .i_signal( MOSFET )

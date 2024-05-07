@@ -79,10 +79,10 @@ wire signed [31:0]  sphi;  // sin( theta-phi )
    assign b0 = counter[0];
    assign b1 = counter[1];
 
-   assign C0 = (~S1[31]) & (~S2[31]);  // zone where sigma = +1
-   assign C1 = ( S1[31]) & (~S2[31]);  // zone where sigma =  0
-   assign C2 = ( S1[31]) & ( S2[31]);  // zone where sigma = -1
-   assign C3 = (~S1[31]) & ( S2[31]);  // zone where sigma =  0
+   assign C0 = ( S1[31]) & ( S2[31]);  // zone where sigma = +1
+   assign C1 = (~S1[31]) & ( S2[31]);  // zone where sigma =  0
+   assign C2 = (~S1[31]) & (~S2[31]);  // zone where sigma = -1
+   assign C3 = ( S1[31]) & (~S2[31]);  // zone where sigma =  0
 
    // assign C1 = ~S1[31];
    // assign C2 = ~S2[31];
@@ -132,7 +132,8 @@ trigonometry_deg trigonometry_ZVS_inst (
 trigonometry_deg trigonometry_phi_ZVS_inst (
    .o_cos(cphi),    // cosine of the input
    .o_sin(sphi),    // sine of the input
-   .i_theta(i_ZVS+(i_phi<<1))  // input angle "ZVS+2*phi"
+   .i_theta(i_ZVS+i_phi)  // input angle "ZVS+2*phi"
+   // .i_theta(i_ZVS+(i_phi<<1))  // input angle "ZVS+2*phi"
 );
 
 
