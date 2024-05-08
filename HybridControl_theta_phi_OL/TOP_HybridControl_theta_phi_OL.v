@@ -192,8 +192,8 @@ assign   LED[7]   = ~1'b0;
 // RECTIFIER: show the values on 7seg display and LEDs
 // assign LED = SW[3] ? ~ADC_Vbat : ~ADC_Ibat;
 
-assign SEG0 = sw[3] ? SEG0_reg : SEG_Ibat[6:0]; //SEG0_reg;
-assign SEG1 = sw[3] ? SEG1_reg : SEG_Ibat[14:8]; //SEG1_reg;
+assign SEG0 = ~sw[3] ? SEG0_reg : SEG_Ibat[7:0]; //SEG0_reg;
+assign SEG1 = ~sw[3] ? SEG1_reg : SEG_Ibat[15:8]; //SEG1_reg;
 
 // connected to GPIO1 and available on the rectifier board
 // all are available on the 2×6 connector, 6 of them are connected to LEDs
@@ -410,14 +410,15 @@ counter_up counter_up_inst_Vg    (
 // Numeric conversion
 hex2seg_couple Ibat2display(
    .o_SEG(SEG_Ibat),
-   .i_hex(ADC_Ibat)
+   .i_hex(ADC_Ibat),
+   .i_DP(2'b11)
 );
 
 hex2seg_couple Vbat2display(
    .o_SEG(SEG_Vbat),
-   .i_hex(ADC_Vbat)
+   .i_hex(ADC_Vbat),
+   .i_DP(2'b11)
 );
-
 
 // ADC: acquire data from ADC when available
 always @(posedge ADA_DCO) begin
@@ -443,13 +444,13 @@ end
 always  begin
    case (SW[2:1])
       2'b00 : begin // PHI+THETA
-         if (~SW[3]) begin // phi
+         // if (~SW[3]) begin // phi
             SEG0_reg <= digit_0_phi;
             SEG1_reg <= digit_1_phi;
-         end else begin    // theta
-            SEG0_reg <= theta_HC[3:0];
-            SEG1_reg <= theta_HC[7:4];
-         end
+         // end else begin    // theta
+         //    SEG0_reg <= theta_HC[3:0];
+         //    SEG1_reg <= theta_HC[7:4];
+         // end
          MOSFET   <= MOSFET_theta_phi;
       end
       2'b01 : begin  // THETA

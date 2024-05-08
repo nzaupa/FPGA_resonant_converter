@@ -1,5 +1,5 @@
 Analysis & Synthesis report for TOP_HybridControl_theta_phi_OL
-Wed May  8 11:53:56 2024
+Wed May  8 15:06:49 2024
 Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
 
 
@@ -59,21 +59,23 @@ Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
  51. altpll Parameter Settings by Entity Instance
  52. altmult_add Parameter Settings by Entity Instance
  53. lpm_mult Parameter Settings by Entity Instance
- 54. Port Connectivity Checks: "debounce:debounce_SWITCH_inst"
- 55. Port Connectivity Checks: "debounce:debounce_4bit_inst"
- 56. Port Connectivity Checks: "theta_control:theta_control_inst|dec2seg:dec2seg_inst"
- 57. Port Connectivity Checks: "theta_control:theta_control_inst"
- 58. Port Connectivity Checks: "value_control:phi_control"
- 59. Port Connectivity Checks: "hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst"
- 60. Port Connectivity Checks: "hybrid_control_mixed:hybrid_control_mixed_inst"
- 61. Port Connectivity Checks: "hybrid_control_theta_phi:hybrid_control_theta_phi_inst"
- 62. Port Connectivity Checks: "hybrid_control_phi:hybrid_control_inst"
- 63. Port Connectivity Checks: "hybrid_control_theta:hybrid_control_theta_inst"
- 64. Port Connectivity Checks: "PLL_theta_phi_OL:PLL_inst"
- 65. Post-Synthesis Netlist Statistics for Top Partition
- 66. Elapsed Time Per Partition
- 67. Analysis & Synthesis Messages
- 68. Analysis & Synthesis Suppressed Messages
+ 54. Port Connectivity Checks: "hex2seg_couple:Vbat2display"
+ 55. Port Connectivity Checks: "hex2seg_couple:Ibat2display"
+ 56. Port Connectivity Checks: "debounce:debounce_SWITCH_inst"
+ 57. Port Connectivity Checks: "debounce:debounce_4bit_inst"
+ 58. Port Connectivity Checks: "theta_control:theta_control_inst|dec2seg:dec2seg_inst"
+ 59. Port Connectivity Checks: "theta_control:theta_control_inst"
+ 60. Port Connectivity Checks: "value_control:phi_control"
+ 61. Port Connectivity Checks: "hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst"
+ 62. Port Connectivity Checks: "hybrid_control_mixed:hybrid_control_mixed_inst"
+ 63. Port Connectivity Checks: "hybrid_control_theta_phi:hybrid_control_theta_phi_inst"
+ 64. Port Connectivity Checks: "hybrid_control_phi:hybrid_control_inst"
+ 65. Port Connectivity Checks: "hybrid_control_theta:hybrid_control_theta_inst"
+ 66. Port Connectivity Checks: "PLL_theta_phi_OL:PLL_inst"
+ 67. Post-Synthesis Netlist Statistics for Top Partition
+ 68. Elapsed Time Per Partition
+ 69. Analysis & Synthesis Messages
+ 70. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -100,16 +102,16 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                        ;
 +-----------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status       ; Successful - Wed May  8 11:53:56 2024           ;
+; Analysis & Synthesis Status       ; Successful - Wed May  8 15:06:49 2024           ;
 ; Quartus Prime Version             ; 21.1.0 Build 842 10/21/2021 SJ Standard Edition ;
 ; Revision Name                     ; TOP_HybridControl_theta_phi_OL                  ;
 ; Top-level Entity Name             ; TOP_HybridControl_theta_phi_OL                  ;
 ; Family                            ; Stratix IV                                      ;
 ; Logic utilization                 ; N/A                                             ;
-;     Combinational ALUTs           ; 3,110                                           ;
+;     Combinational ALUTs           ; 3,170                                           ;
 ;     Memory ALUTs                  ; 0                                               ;
-;     Dedicated logic registers     ; 411                                             ;
-; Total registers                   ; 411                                             ;
+;     Dedicated logic registers     ; 452                                             ;
+; Total registers                   ; 452                                             ;
 ; Total pins                        ; 177                                             ;
 ; Total virtual pins                ; 0                                               ;
 ; Total block memory bits           ; 0                                               ;
@@ -298,34 +300,34 @@ https://fpgasoftware.intel.com/eula.
 +-----------------------------------------------+----------------------------------------------------------------------------------------------+
 ; Resource                                      ; Usage                                                                                        ;
 +-----------------------------------------------+----------------------------------------------------------------------------------------------+
-; Estimated ALUTs Used                          ; 3110                                                                                         ;
-;     -- Combinational ALUTs                    ; 3110                                                                                         ;
+; Estimated ALUTs Used                          ; 3170                                                                                         ;
+;     -- Combinational ALUTs                    ; 3170                                                                                         ;
 ;     -- Memory ALUTs                           ; 0                                                                                            ;
 ;     -- LUT_REGs                               ; 0                                                                                            ;
-; Dedicated logic registers                     ; 411                                                                                          ;
+; Dedicated logic registers                     ; 452                                                                                          ;
 ;                                               ;                                                                                              ;
-; Estimated ALUTs Unavailable                   ; 541                                                                                          ;
-;     -- Due to unpartnered combinational logic ; 541                                                                                          ;
+; Estimated ALUTs Unavailable                   ; 545                                                                                          ;
+;     -- Due to unpartnered combinational logic ; 545                                                                                          ;
 ;     -- Due to Memory ALUTs                    ; 0                                                                                            ;
 ;                                               ;                                                                                              ;
-; Total combinational functions                 ; 3110                                                                                         ;
+; Total combinational functions                 ; 3170                                                                                         ;
 ; Combinational ALUT usage by number of inputs  ;                                                                                              ;
 ;     -- 7 input functions                      ; 15                                                                                           ;
-;     -- 6 input functions                      ; 530                                                                                          ;
-;     -- 5 input functions                      ; 575                                                                                          ;
-;     -- 4 input functions                      ; 532                                                                                          ;
-;     -- <=3 input functions                    ; 1458                                                                                         ;
+;     -- 6 input functions                      ; 540                                                                                          ;
+;     -- 5 input functions                      ; 573                                                                                          ;
+;     -- 4 input functions                      ; 555                                                                                          ;
+;     -- <=3 input functions                    ; 1487                                                                                         ;
 ;                                               ;                                                                                              ;
 ; Combinational ALUTs by mode                   ;                                                                                              ;
-;     -- normal mode                            ; 2237                                                                                         ;
+;     -- normal mode                            ; 2265                                                                                         ;
 ;     -- extended LUT mode                      ; 15                                                                                           ;
-;     -- arithmetic mode                        ; 836                                                                                          ;
+;     -- arithmetic mode                        ; 868                                                                                          ;
 ;     -- shared arithmetic mode                 ; 22                                                                                           ;
 ;                                               ;                                                                                              ;
-; Estimated ALUT/register pairs used            ; 3656                                                                                         ;
+; Estimated ALUT/register pairs used            ; 3727                                                                                         ;
 ;                                               ;                                                                                              ;
-; Total registers                               ; 411                                                                                          ;
-;     -- Dedicated logic registers              ; 411                                                                                          ;
+; Total registers                               ; 452                                                                                          ;
+;     -- Dedicated logic registers              ; 452                                                                                          ;
 ;     -- I/O registers                          ; 0                                                                                            ;
 ;     -- LUT_REGs                               ; 0                                                                                            ;
 ;                                               ;                                                                                              ;
@@ -338,9 +340,9 @@ https://fpgasoftware.intel.com/eula.
 ;     -- PLLs                                   ; 1                                                                                            ;
 ;                                               ;                                                                                              ;
 ; Maximum fan-out node                          ; PLL_theta_phi_OL:PLL_inst|altpll:altpll_component|PLL_altpll:auto_generated|wire_pll1_clk[0] ;
-; Maximum fan-out                               ; 364                                                                                          ;
-; Total fan-out                                 ; 14314                                                                                        ;
-; Average fan-out                               ; 3.63                                                                                         ;
+; Maximum fan-out                               ; 397                                                                                          ;
+; Total fan-out                                 ; 14655                                                                                        ;
+; Average fan-out                               ; 3.62                                                                                         ;
 +-----------------------------------------------+----------------------------------------------------------------------------------------------+
 
 
@@ -349,7 +351,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------+---------------------+---------------------------+-------------------+---------------------+---------+-----------+-----------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------+--------------+
 ; Compilation Hierarchy Node                                  ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP 18-bit Elements ; DSP 9x9 ; DSP 12x12 ; DSP 18x18 ; DSP 36x36 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                                           ; Entity Name                    ; Library Name ;
 +-------------------------------------------------------------+---------------------+---------------------------+-------------------+---------------------+---------+-----------+-----------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------+--------------+
-; |TOP_HybridControl_theta_phi_OL                             ; 3110 (75)           ; 411 (42)                  ; 0                 ; 48                  ; 0       ; 0         ; 0         ; 12        ; 177  ; 0            ; |TOP_HybridControl_theta_phi_OL                                                                                                                                                                               ; TOP_HybridControl_theta_phi_OL ; work         ;
+; |TOP_HybridControl_theta_phi_OL                             ; 3170 (75)           ; 452 (50)                  ; 0                 ; 48                  ; 0       ; 0         ; 0         ; 12        ; 177  ; 0            ; |TOP_HybridControl_theta_phi_OL                                                                                                                                                                               ; TOP_HybridControl_theta_phi_OL ; work         ;
 ;    |PLL_theta_phi_OL:PLL_inst|                              ; 0 (0)               ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|PLL_theta_phi_OL:PLL_inst                                                                                                                                                     ; PLL_theta_phi_OL               ; work         ;
 ;       |altpll:altpll_component|                             ; 0 (0)               ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|PLL_theta_phi_OL:PLL_inst|altpll:altpll_component                                                                                                                             ; altpll                         ; work         ;
 ;          |PLL_altpll:auto_generated|                        ; 0 (0)               ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|PLL_theta_phi_OL:PLL_inst|altpll:altpll_component|PLL_altpll:auto_generated                                                                                                   ; PLL_altpll                     ; work         ;
@@ -360,12 +362,16 @@ https://fpgasoftware.intel.com/eula.
 ;       |dead_time_core:DT[1].dt_core|                        ; 12 (12)             ; 11 (11)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|dead_time:dead_time_inst|dead_time_core:DT[1].dt_core                                                                                                                         ; dead_time_core                 ; work         ;
 ;       |dead_time_core:DT[2].dt_core|                        ; 12 (12)             ; 11 (11)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|dead_time:dead_time_inst|dead_time_core:DT[2].dt_core                                                                                                                         ; dead_time_core                 ; work         ;
 ;       |dead_time_core:DT[3].dt_core|                        ; 12 (12)             ; 11 (11)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|dead_time:dead_time_inst|dead_time_core:DT[3].dt_core                                                                                                                         ; dead_time_core                 ; work         ;
-;    |debounce:debounce_4bit_inst|                            ; 130 (0)             ; 99 (0)                    ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|debounce:debounce_4bit_inst                                                                                                                                                   ; debounce                       ; work         ;
+;    |debounce:debounce_4bit_inst|                            ; 132 (0)             ; 99 (0)                    ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|debounce:debounce_4bit_inst                                                                                                                                                   ; debounce                       ; work         ;
 ;       |debounce_core:DB[0].db_core|                         ; 44 (44)             ; 33 (33)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|debounce:debounce_4bit_inst|debounce_core:DB[0].db_core                                                                                                                       ; debounce_core                  ; work         ;
-;       |debounce_core:DB[1].db_core|                         ; 43 (43)             ; 33 (33)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|debounce:debounce_4bit_inst|debounce_core:DB[1].db_core                                                                                                                       ; debounce_core                  ; work         ;
-;       |debounce_core:DB[2].db_core|                         ; 43 (43)             ; 33 (33)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|debounce:debounce_4bit_inst|debounce_core:DB[2].db_core                                                                                                                       ; debounce_core                  ; work         ;
-;    |debounce:debounce_SWITCH_inst|                          ; 43 (0)              ; 33 (0)                    ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|debounce:debounce_SWITCH_inst                                                                                                                                                 ; debounce                       ; work         ;
-;       |debounce_core:DB[0].db_core|                         ; 43 (43)             ; 33 (33)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|debounce:debounce_SWITCH_inst|debounce_core:DB[0].db_core                                                                                                                     ; debounce_core                  ; work         ;
+;       |debounce_core:DB[1].db_core|                         ; 44 (44)             ; 33 (33)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|debounce:debounce_4bit_inst|debounce_core:DB[1].db_core                                                                                                                       ; debounce_core                  ; work         ;
+;       |debounce_core:DB[2].db_core|                         ; 44 (44)             ; 33 (33)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|debounce:debounce_4bit_inst|debounce_core:DB[2].db_core                                                                                                                       ; debounce_core                  ; work         ;
+;    |debounce:debounce_SWITCH_inst|                          ; 88 (0)              ; 66 (0)                    ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|debounce:debounce_SWITCH_inst                                                                                                                                                 ; debounce                       ; work         ;
+;       |debounce_core:DB[0].db_core|                         ; 44 (44)             ; 33 (33)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|debounce:debounce_SWITCH_inst|debounce_core:DB[0].db_core                                                                                                                     ; debounce_core                  ; work         ;
+;       |debounce_core:DB[3].db_core|                         ; 44 (44)             ; 33 (33)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|debounce:debounce_SWITCH_inst|debounce_core:DB[3].db_core                                                                                                                     ; debounce_core                  ; work         ;
+;    |hex2seg_couple:Ibat2display|                            ; 14 (0)              ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|hex2seg_couple:Ibat2display                                                                                                                                                   ; hex2seg_couple                 ; work         ;
+;       |hex2seg:hex2seg_0|                                   ; 7 (7)               ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|hex2seg_couple:Ibat2display|hex2seg:hex2seg_0                                                                                                                                 ; hex2seg                        ; work         ;
+;       |hex2seg:hex2seg_1|                                   ; 7 (7)               ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|hex2seg_couple:Ibat2display|hex2seg:hex2seg_1                                                                                                                                 ; hex2seg                        ; work         ;
 ;    |hybrid_control_mixed:hybrid_control_mixed_inst|         ; 780 (139)           ; 139 (7)                   ; 0                 ; 16                  ; 0       ; 0         ; 0         ; 4         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|hybrid_control_mixed:hybrid_control_mixed_inst                                                                                                                                ; hybrid_control_mixed           ; work         ;
 ;       |lpm_mult:Mult2|                                      ; 0 (0)               ; 0 (0)                     ; 0                 ; 4                   ; 0       ; 0         ; 0         ; 1         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|hybrid_control_mixed:hybrid_control_mixed_inst|lpm_mult:Mult2                                                                                                                 ; lpm_mult                       ; work         ;
 ;          |mult_q2t:auto_generated|                          ; 0 (0)               ; 0 (0)                     ; 0                 ; 4                   ; 0       ; 0         ; 0         ; 1         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|hybrid_control_mixed:hybrid_control_mixed_inst|lpm_mult:Mult2|mult_q2t:auto_generated                                                                                         ; mult_q2t                       ; work         ;
@@ -427,7 +433,7 @@ https://fpgasoftware.intel.com/eula.
 ;                   |lpm_add_sub:adder[0]|                    ; 17 (0)              ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi:hybrid_control_theta_phi_inst|lpm_mult:Mult3|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add|lpm_add_sub:adder[0]                            ; lpm_add_sub                    ; work         ;
 ;                      |add_sub_ghh:auto_generated|           ; 17 (17)             ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi:hybrid_control_theta_phi_inst|lpm_mult:Mult3|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add|lpm_add_sub:adder[0]|add_sub_ghh:auto_generated ; add_sub_ghh                    ; work         ;
 ;       |trigonometry_deg:trigonometry_minus_inst|            ; 1092 (1092)         ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|hybrid_control_theta_phi:hybrid_control_theta_phi_inst|trigonometry_deg:trigonometry_minus_inst                                                                               ; trigonometry_deg               ; work         ;
-;    |theta_control:theta_control_inst|                       ; 47 (26)             ; 9 (9)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|theta_control:theta_control_inst                                                                                                                                              ; theta_control                  ; work         ;
+;    |theta_control:theta_control_inst|                       ; 46 (25)             ; 9 (9)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|theta_control:theta_control_inst                                                                                                                                              ; theta_control                  ; work         ;
 ;       |dec2seg:dec2seg_inst|                                ; 7 (7)               ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|theta_control:theta_control_inst|dec2seg:dec2seg_inst                                                                                                                         ; dec2seg                        ; work         ;
 ;       |hex2seg:seven_segment_0_inst|                        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|theta_control:theta_control_inst|hex2seg:seven_segment_0_inst                                                                                                                 ; hex2seg                        ; work         ;
 ;       |hex2seg:seven_segment_1_inst|                        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_OL|theta_control:theta_control_inst|hex2seg:seven_segment_1_inst                                                                                                                 ; hex2seg                        ; work         ;
@@ -473,10 +479,10 @@ Note: number of DSP Blocks used is only available after a successful fit.
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 411   ;
-; Number of registers using Synchronous Clear  ; 306   ;
+; Total registers                              ; 452   ;
+; Number of registers using Synchronous Clear  ; 338   ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 231   ;
+; Number of registers using Asynchronous Clear ; 263   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 137   ;
 ; Number of registers using Preset             ; 0     ;
@@ -503,17 +509,17 @@ Note: number of DSP Blocks used is only available after a successful fit.
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                                                             ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_OL|dead_time:dead_time_inst|dead_time_core:DT[0].dt_core|delay[4]                                                                         ;
-; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_OL|dead_time:dead_time_inst|dead_time_core:DT[2].dt_core|delay[6]                                                                         ;
-; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_OL|dead_time:dead_time_inst|dead_time_core:DT[1].dt_core|delay[2]                                                                         ;
-; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_OL|dead_time:dead_time_inst|dead_time_core:DT[3].dt_core|delay[2]                                                                         ;
-; 4:1                ; 32 bits   ; 64 ALUTs      ; 32 ALUTs             ; 32 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_OL|hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst|regularization_core:REG[0].reg_core|counter[18] ;
-; 4:1                ; 32 bits   ; 64 ALUTs      ; 32 ALUTs             ; 32 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_OL|hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst|regularization_core:REG[1].reg_core|counter[5]  ;
-; 4:1                ; 10 bits   ; 20 ALUTs      ; 10 ALUTs             ; 10 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_OL|hybrid_control_theta:hybrid_control_theta_inst|counter[1]                                                                              ;
-; 4:1                ; 8 bits    ; 16 ALUTs      ; 16 ALUTs             ; 0 ALUTs                ; Yes        ; |TOP_HybridControl_theta_phi_OL|value_control:phi_control|count_reg[4]                                                                                                 ;
-; 4:1                ; 4 bits    ; 8 ALUTs       ; 8 ALUTs              ; 0 ALUTs                ; No         ; |TOP_HybridControl_theta_phi_OL|Mux18                                                                                                                                  ;
+; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_OL|dead_time:dead_time_inst|dead_time_core:DT[0].dt_core|delay[2]                                                                         ;
+; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_OL|dead_time:dead_time_inst|dead_time_core:DT[2].dt_core|delay[0]                                                                         ;
+; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_OL|dead_time:dead_time_inst|dead_time_core:DT[1].dt_core|delay[5]                                                                         ;
+; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_OL|dead_time:dead_time_inst|dead_time_core:DT[3].dt_core|delay[3]                                                                         ;
+; 4:1                ; 32 bits   ; 64 ALUTs      ; 32 ALUTs             ; 32 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_OL|hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst|regularization_core:REG[0].reg_core|counter[21] ;
+; 4:1                ; 32 bits   ; 64 ALUTs      ; 32 ALUTs             ; 32 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_OL|hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst|regularization_core:REG[1].reg_core|counter[30] ;
+; 4:1                ; 10 bits   ; 20 ALUTs      ; 10 ALUTs             ; 10 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_OL|hybrid_control_theta:hybrid_control_theta_inst|counter[6]                                                                              ;
+; 4:1                ; 8 bits    ; 16 ALUTs      ; 16 ALUTs             ; 0 ALUTs                ; Yes        ; |TOP_HybridControl_theta_phi_OL|value_control:phi_control|count_reg[7]                                                                                                 ;
+; 4:1                ; 4 bits    ; 8 ALUTs       ; 8 ALUTs              ; 0 ALUTs                ; No         ; |TOP_HybridControl_theta_phi_OL|Mux16                                                                                                                                  ;
 ; 3:1                ; 9 bits    ; 18 ALUTs      ; 18 ALUTs             ; 0 ALUTs                ; No         ; |TOP_HybridControl_theta_phi_OL|theta_control:theta_control_inst|angle_sat[8]                                                                                          ;
-; 5:1                ; 14 bits   ; 42 ALUTs      ; 28 ALUTs             ; 14 ALUTs               ; No         ; |TOP_HybridControl_theta_phi_OL|Mux10                                                                                                                                  ;
+; 5:1                ; 14 bits   ; 42 ALUTs      ; 28 ALUTs             ; 14 ALUTs               ; No         ; |TOP_HybridControl_theta_phi_OL|SEG1                                                                                                                                   ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -2503,12 +2509,31 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------------------------------+-----------------------------------------------------------------------+
 
 
++-----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "hex2seg_couple:Vbat2display"                                                         ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; Port  ; Type   ; Severity ; Details                                                                             ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; o_SEG ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; i_DP  ; Input  ; Info     ; Stuck at VCC                                                                        ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------+
+; Port Connectivity Checks: "hex2seg_couple:Ibat2display" ;
++------+-------+----------+-------------------------------+
+; Port ; Type  ; Severity ; Details                       ;
++------+-------+----------+-------------------------------+
+; i_DP ; Input ; Info     ; Stuck at VCC                  ;
++------+-------+----------+-------------------------------+
+
+
 +--------------------------------------------------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "debounce:debounce_SWITCH_inst"                                                                ;
 +----------------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port           ; Type   ; Severity ; Details                                                                             ;
 +----------------+--------+----------+-------------------------------------------------------------------------------------+
-; o_switch[3..1] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; o_switch[2..1] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
 +----------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
@@ -2628,30 +2653,30 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 177                         ;
-; stratixiv_ff          ; 411                         ;
+; stratixiv_ff          ; 452                         ;
 ;     CLR               ; 16                          ;
-;     CLR SCLR          ; 192                         ;
+;     CLR SCLR          ; 224                         ;
 ;     ENA CLR           ; 23                          ;
 ;     ENA SCLR          ; 114                         ;
-;     plain             ; 66                          ;
+;     plain             ; 75                          ;
 ; stratixiv_io_obuf     ; 6                           ;
-; stratixiv_lcell_comb  ; 3117                        ;
-;     arith             ; 836                         ;
+; stratixiv_lcell_comb  ; 3177                        ;
+;     arith             ; 868                         ;
 ;         0 data inputs ; 9                           ;
-;         1 data inputs ; 490                         ;
+;         1 data inputs ; 522                         ;
 ;         2 data inputs ; 319                         ;
 ;         3 data inputs ; 14                          ;
 ;         4 data inputs ; 4                           ;
 ;     extend            ; 15                          ;
 ;         7 data inputs ; 15                          ;
-;     normal            ; 2244                        ;
+;     normal            ; 2272                        ;
 ;         0 data inputs ; 2                           ;
 ;         1 data inputs ; 24                          ;
 ;         2 data inputs ; 203                         ;
-;         3 data inputs ; 382                         ;
-;         4 data inputs ; 528                         ;
-;         5 data inputs ; 575                         ;
-;         6 data inputs ; 530                         ;
+;         3 data inputs ; 379                         ;
+;         4 data inputs ; 551                         ;
+;         5 data inputs ; 573                         ;
+;         6 data inputs ; 540                         ;
 ;     shared            ; 22                          ;
 ;         1 data inputs ; 5                           ;
 ;         2 data inputs ; 1                           ;
@@ -2661,7 +2686,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; stratixiv_pll         ; 1                           ;
 ;                       ;                             ;
 ; Max LUT depth         ; 17.20                       ;
-; Average LUT depth     ; 5.91                        ;
+; Average LUT depth     ; 5.84                        ;
 +-----------------------+-----------------------------+
 
 
@@ -2670,7 +2695,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:27     ;
+; Top            ; 00:00:34     ;
 +----------------+--------------+
 
 
@@ -2680,10 +2705,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
-    Info: Processing started: Wed May  8 11:53:08 2024
+    Info: Processing started: Wed May  8 15:06:02 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off HybridControl_theta_phi_OL -c TOP_HybridControl_theta_phi_OL
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20032): Parallel compilation is enabled and will use up to 8 processors
+Info (12021): Found 2 design units, including 2 entities, in source file /fpga/projects/blocks/rectifier_sensing.v
+    Info (12023): Found entity 1: sensing_Ibat File: C:/FPGA/Projects/blocks/rectifier_sensing.v Line: 28
+    Info (12023): Found entity 2: sensing_Vbat File: C:/FPGA/Projects/blocks/rectifier_sensing.v Line: 74
 Info (12021): Found 1 design units, including 1 entities, in source file /fpga/projects/blocks/hybrid_control_mixed.v
     Info (12023): Found entity 1: hybrid_control_mixed File: C:/FPGA/Projects/blocks/hybrid_control_mixed.v Line: 28
 Info (12021): Found 1 design units, including 1 entities, in source file /fpga/projects/blocks/hybrid_control_theta_phi_co_2024.v
@@ -2729,17 +2757,19 @@ Info (12021): Found 1 design units, including 1 entities, in source file /fpga/p
     Info (12023): Found entity 1: counter_up File: C:/FPGA/Projects/blocks/counter.v Line: 11
 Info (12021): Found 1 design units, including 1 entities, in source file pll_theta_phi_ol.v
     Info (12023): Found entity 1: PLL_theta_phi_OL File: C:/FPGA/Projects/HybridControl_theta_phi_OL/PLL_theta_phi_OL.v Line: 50
+Warning (10236): Verilog HDL Implicit Net warning at rectifier_sensing.v(52): created implicit net for "Ibat_HEX" File: C:/FPGA/Projects/blocks/rectifier_sensing.v Line: 52
+Warning (10236): Verilog HDL Implicit Net warning at rectifier_sensing.v(98): created implicit net for "Vbat_HEX" File: C:/FPGA/Projects/blocks/rectifier_sensing.v Line: 98
 Warning (10236): Verilog HDL Implicit Net warning at hybrid_control_mixed.v(90): created implicit net for "C0" File: C:/FPGA/Projects/blocks/hybrid_control_mixed.v Line: 90
 Warning (12125): Using design file top_hybridcontrol_theta_phi_ol.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: TOP_HybridControl_theta_phi_OL File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 38
-Warning (10236): Verilog HDL Implicit Net warning at top_hybridcontrol_theta_phi_ol.v(241): created implicit net for "VG" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 241
+Warning (10236): Verilog HDL Implicit Net warning at top_hybridcontrol_theta_phi_ol.v(242): created implicit net for "VG" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 242
 Info (12127): Elaborating entity "TOP_HybridControl_theta_phi_OL" for the top level hierarchy
 Warning (10036): Verilog HDL or VHDL warning at top_hybridcontrol_theta_phi_ol.v(111): object "DAA_copy" assigned a value but never read File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 111
 Warning (10036): Verilog HDL or VHDL warning at top_hybridcontrol_theta_phi_ol.v(117): object "Vbat_dec" assigned a value but never read File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 117
 Warning (10036): Verilog HDL or VHDL warning at top_hybridcontrol_theta_phi_ol.v(118): object "Ibat_dec" assigned a value but never read File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 118
-Warning (10036): Verilog HDL or VHDL warning at top_hybridcontrol_theta_phi_ol.v(122): object "deadtime" assigned a value but never read File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 122
-Warning (10230): Verilog HDL assignment warning at top_hybridcontrol_theta_phi_ol.v(244): truncated value with size 32 to match size of target (8) File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 244
-Warning (10230): Verilog HDL assignment warning at top_hybridcontrol_theta_phi_ol.v(246): truncated value with size 32 to match size of target (8) File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 246
+Warning (10036): Verilog HDL or VHDL warning at top_hybridcontrol_theta_phi_ol.v(123): object "deadtime" assigned a value but never read File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 123
+Warning (10230): Verilog HDL assignment warning at top_hybridcontrol_theta_phi_ol.v(245): truncated value with size 32 to match size of target (8) File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 245
+Warning (10230): Verilog HDL assignment warning at top_hybridcontrol_theta_phi_ol.v(247): truncated value with size 32 to match size of target (8) File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 247
 Warning (10034): Output port "GPIO0[35..25]" at top_hybridcontrol_theta_phi_ol.v(88) has no driver File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 88
 Warning (10034): Output port "GPIO0[23]" at top_hybridcontrol_theta_phi_ol.v(88) has no driver File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 88
 Warning (10034): Output port "GPIO0[21]" at top_hybridcontrol_theta_phi_ol.v(88) has no driver File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 88
@@ -2749,7 +2779,7 @@ Warning (10034): Output port "GPIO0[15]" at top_hybridcontrol_theta_phi_ol.v(88)
 Warning (10034): Output port "GPIO0[13]" at top_hybridcontrol_theta_phi_ol.v(88) has no driver File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 88
 Warning (10034): Output port "GPIO0[11]" at top_hybridcontrol_theta_phi_ol.v(88) has no driver File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 88
 Warning (10034): Output port "GPIO0[9..0]" at top_hybridcontrol_theta_phi_ol.v(88) has no driver File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 88
-Info (12128): Elaborating entity "PLL_theta_phi_OL" for hierarchy "PLL_theta_phi_OL:PLL_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 269
+Info (12128): Elaborating entity "PLL_theta_phi_OL" for hierarchy "PLL_theta_phi_OL:PLL_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 270
 Info (12128): Elaborating entity "altpll" for hierarchy "PLL_theta_phi_OL:PLL_inst|altpll:altpll_component" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/PLL_theta_phi_OL.v Line: 117
 Info (12130): Elaborated megafunction instantiation "PLL_theta_phi_OL:PLL_inst|altpll:altpll_component" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/PLL_theta_phi_OL.v Line: 117
 Info (12133): Instantiated megafunction "PLL_theta_phi_OL:PLL_inst|altpll:altpll_component" with the following parameter: File: C:/FPGA/Projects/HybridControl_theta_phi_OL/PLL_theta_phi_OL.v Line: 117
@@ -2828,11 +2858,11 @@ Info (12133): Instantiated megafunction "PLL_theta_phi_OL:PLL_inst|altpll:altpll
 Info (12021): Found 1 design units, including 1 entities, in source file db/pll_altpll.v
     Info (12023): Found entity 1: PLL_altpll File: C:/FPGA/Projects/HybridControl_theta_phi_OL/db/pll_altpll.v Line: 30
 Info (12128): Elaborating entity "PLL_altpll" for hierarchy "PLL_theta_phi_OL:PLL_inst|altpll:altpll_component|PLL_altpll:auto_generated" File: c:/fpga/21.1/quartus/libraries/megafunctions/altpll.tdf Line: 898
-Info (12128): Elaborating entity "hybrid_control_theta" for hierarchy "hybrid_control_theta:hybrid_control_theta_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 286
+Info (12128): Elaborating entity "hybrid_control_theta" for hierarchy "hybrid_control_theta:hybrid_control_theta_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 287
 Info (12128): Elaborating entity "trigonometry_deg" for hierarchy "hybrid_control_theta:hybrid_control_theta_inst|trigonometry_deg:trigonometry_inst" File: C:/FPGA/Projects/blocks/hybrid_control_theta.v Line: 83
 Warning (10762): Verilog HDL Case Statement warning at trigonometry.v(40): can't check case statement for completeness because the case expression has too many possible states File: C:/FPGA/Projects/blocks/trigonometry.v Line: 40
 Warning (10762): Verilog HDL Case Statement warning at trigonometry.v(585): can't check case statement for completeness because the case expression has too many possible states File: C:/FPGA/Projects/blocks/trigonometry.v Line: 585
-Info (12128): Elaborating entity "hybrid_control_phi" for hierarchy "hybrid_control_phi:hybrid_control_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 298
+Info (12128): Elaborating entity "hybrid_control_phi" for hierarchy "hybrid_control_phi:hybrid_control_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 299
 Warning (10858): Verilog HDL warning at hybrid_control_phi.v(57): object C1_db used but never assigned File: C:/FPGA/Projects/blocks/hybrid_control_phi.v Line: 57
 Warning (10858): Verilog HDL warning at hybrid_control_phi.v(57): object C2_db used but never assigned File: C:/FPGA/Projects/blocks/hybrid_control_phi.v Line: 57
 Warning (10858): Verilog HDL warning at hybrid_control_phi.v(57): object C3_db used but never assigned File: C:/FPGA/Projects/blocks/hybrid_control_phi.v Line: 57
@@ -2841,9 +2871,9 @@ Warning (10030): Net "C1_db" at hybrid_control_phi.v(57) has no driver or initia
 Warning (10030): Net "C2_db" at hybrid_control_phi.v(57) has no driver or initial value, using a default initial value '0' File: C:/FPGA/Projects/blocks/hybrid_control_phi.v Line: 57
 Warning (10030): Net "C3_db" at hybrid_control_phi.v(57) has no driver or initial value, using a default initial value '0' File: C:/FPGA/Projects/blocks/hybrid_control_phi.v Line: 57
 Warning (10030): Net "C4_db" at hybrid_control_phi.v(57) has no driver or initial value, using a default initial value '0' File: C:/FPGA/Projects/blocks/hybrid_control_phi.v Line: 57
-Info (12128): Elaborating entity "hybrid_control_theta_phi" for hierarchy "hybrid_control_theta_phi:hybrid_control_theta_phi_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 313
+Info (12128): Elaborating entity "hybrid_control_theta_phi" for hierarchy "hybrid_control_theta_phi:hybrid_control_theta_phi_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 314
 Warning (10230): Verilog HDL assignment warning at hybrid_control_theta_phi.v(108): truncated value with size 31 to match size of target (30) File: C:/FPGA/Projects/blocks/hybrid_control_theta_phi.v Line: 108
-Info (12128): Elaborating entity "hybrid_control_mixed" for hierarchy "hybrid_control_mixed:hybrid_control_mixed_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 328
+Info (12128): Elaborating entity "hybrid_control_mixed" for hierarchy "hybrid_control_mixed:hybrid_control_mixed_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 329
 Warning (10858): Verilog HDL warning at hybrid_control_mixed.v(59): object S3 used but never assigned File: C:/FPGA/Projects/blocks/hybrid_control_mixed.v Line: 59
 Warning (10230): Verilog HDL assignment warning at hybrid_control_mixed.v(113): truncated value with size 31 to match size of target (30) File: C:/FPGA/Projects/blocks/hybrid_control_mixed.v Line: 113
 Warning (10030): Net "S3[30..17]" at hybrid_control_mixed.v(59) has no driver or initial value, using a default initial value '0' File: C:/FPGA/Projects/blocks/hybrid_control_mixed.v Line: 59
@@ -2852,7 +2882,7 @@ Warning (10034): Output port "o_signal[2]" at regularization.v(71) has no driver
 Info (12128): Elaborating entity "regularization_core" for hierarchy "hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst|regularization_core:REG[0].reg_core" File: C:/FPGA/Projects/blocks/regularization.v Line: 89
 Info (12128): Elaborating entity "debounce" for hierarchy "hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst|regularization_core:REG[0].reg_core|debounce:debounce_inst" File: C:/FPGA/Projects/blocks/regularization.v Line: 44
 Info (12128): Elaborating entity "debounce_core" for hierarchy "hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst|regularization_core:REG[0].reg_core|debounce:debounce_inst|debounce_core:DB[0].db_core" File: C:/FPGA/Projects/blocks/debounce.v Line: 78
-Info (12128): Elaborating entity "value_control" for hierarchy "value_control:phi_control" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 345
+Info (12128): Elaborating entity "value_control" for hierarchy "value_control:phi_control" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 346
 Warning (10230): Verilog HDL assignment warning at manual_value_control.v(75): truncated value with size 32 to match size of target (8) File: C:/FPGA/Projects/blocks/manual_value_control.v Line: 75
 Warning (10230): Verilog HDL assignment warning at manual_value_control.v(82): truncated value with size 32 to match size of target (8) File: C:/FPGA/Projects/blocks/manual_value_control.v Line: 82
 Warning (10230): Verilog HDL assignment warning at manual_value_control.v(84): truncated value with size 32 to match size of target (8) File: C:/FPGA/Projects/blocks/manual_value_control.v Line: 84
@@ -2860,88 +2890,89 @@ Warning (10230): Verilog HDL assignment warning at manual_value_control.v(88): t
 Warning (10230): Verilog HDL assignment warning at manual_value_control.v(90): truncated value with size 32 to match size of target (8) File: C:/FPGA/Projects/blocks/manual_value_control.v Line: 90
 Info (12128): Elaborating entity "dec2hex" for hierarchy "value_control:phi_control|dec2hex:dec2hex_inst" File: C:/FPGA/Projects/blocks/manual_value_control.v Line: 59
 Info (12128): Elaborating entity "hex2seg" for hierarchy "value_control:phi_control|hex2seg:seven_segment_0_inst" File: C:/FPGA/Projects/blocks/manual_value_control.v Line: 64
-Info (12128): Elaborating entity "theta_control" for hierarchy "theta_control:theta_control_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 364
+Info (12128): Elaborating entity "theta_control" for hierarchy "theta_control:theta_control_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 365
 Info (12128): Elaborating entity "dec2seg" for hierarchy "theta_control:theta_control_inst|dec2seg:dec2seg_inst" File: C:/FPGA/Projects/blocks/manual_value_control.v Line: 140
-Info (12128): Elaborating entity "dead_time" for hierarchy "dead_time:dead_time_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 372
+Info (12128): Elaborating entity "dead_time" for hierarchy "dead_time:dead_time_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 373
 Info (12128): Elaborating entity "dead_time_core" for hierarchy "dead_time:dead_time_inst|dead_time_core:DT[0].dt_core" File: C:/FPGA/Projects/blocks/dead_time.v Line: 73
-Info (12128): Elaborating entity "debounce" for hierarchy "debounce:debounce_4bit_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 381
+Info (12128): Elaborating entity "debounce" for hierarchy "debounce:debounce_4bit_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 382
 Info (12128): Elaborating entity "debounce_core" for hierarchy "debounce:debounce_4bit_inst|debounce_core:DB[0].db_core" File: C:/FPGA/Projects/blocks/debounce.v Line: 78
-Info (12128): Elaborating entity "counter_up" for hierarchy "counter_up:counter_up_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 398
+Info (12128): Elaborating entity "counter_up" for hierarchy "counter_up:counter_up_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 399
+Info (12128): Elaborating entity "hex2seg_couple" for hierarchy "hex2seg_couple:Ibat2display" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 415
 Warning (12011): Net is missing source, defaulting to GND
-    Warning (12110): Net "phi[31]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[30]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[29]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[28]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[27]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[26]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[25]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[24]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[23]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[22]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[21]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[20]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[19]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[18]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[17]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[16]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[15]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[14]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[13]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[12]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[11]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[10]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[9]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[8]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
+    Warning (12110): Net "phi[31]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[30]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[29]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[28]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[27]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[26]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[25]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[24]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[23]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[22]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[21]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[20]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[19]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[18]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[17]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[16]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[15]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[14]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[13]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[12]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[11]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[10]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[9]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[8]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
 Warning (12011): Net is missing source, defaulting to GND
-    Warning (12110): Net "phi[31]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[30]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[29]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[28]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[27]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[26]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[25]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[24]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[23]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[22]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[21]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[20]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[19]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[18]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[17]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[16]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[15]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[14]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[13]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[12]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[11]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[10]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[9]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[8]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
+    Warning (12110): Net "phi[31]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[30]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[29]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[28]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[27]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[26]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[25]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[24]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[23]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[22]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[21]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[20]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[19]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[18]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[17]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[16]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[15]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[14]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[13]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[12]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[11]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[10]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[9]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[8]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
 Warning (12011): Net is missing source, defaulting to GND
-    Warning (12110): Net "phi[31]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[30]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[29]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[28]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[27]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[26]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[25]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[24]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[23]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[22]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[21]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[20]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[19]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[18]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[17]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[16]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[15]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[14]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[13]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[12]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[11]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[10]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[9]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
-    Warning (12110): Net "phi[8]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
+    Warning (12110): Net "phi[31]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[30]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[29]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[28]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[27]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[26]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[25]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[24]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[23]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[22]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[21]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[20]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[19]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[18]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[17]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[16]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[15]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[14]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[13]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[12]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[11]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[10]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[9]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
+    Warning (12110): Net "phi[8]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 132
 Warning (19016): Clock multiplexers are found and protected
     Warning (19017): Found clock multiplexer hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst|regularization_core:REG[1].reg_core|o_signal File: C:/FPGA/Projects/blocks/regularization.v Line: 24
     Warning (19017): Found clock multiplexer hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst|regularization_core:REG[0].reg_core|o_signal File: C:/FPGA/Projects/blocks/regularization.v Line: 24
@@ -3376,6 +3407,7 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LED[5]" is stuck at VCC File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 84
     Warning (13410): Pin "LED[6]" is stuck at VCC File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 84
     Warning (13410): Pin "LED[7]" is stuck at VCC File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 84
+    Warning (13410): Pin "SEG1[7]" is stuck at VCC File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 86
     Warning (13410): Pin "GPIO0[0]" is stuck at GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 88
     Warning (13410): Pin "GPIO0[1]" is stuck at GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 88
     Warning (13410): Pin "GPIO0[2]" is stuck at GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 88
@@ -3412,7 +3444,7 @@ Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
 Warning (15897): PLL "PLL_theta_phi_OL:PLL_inst|altpll:altpll_component|PLL_altpll:auto_generated|pll1" has parameter compensate_clock set to clock0 but port CLK[0] is not connected File: C:/FPGA/Projects/HybridControl_theta_phi_OL/db/pll_altpll.v Line: 44
 Warning (15899): PLL "PLL_theta_phi_OL:PLL_inst|altpll:altpll_component|PLL_altpll:auto_generated|pll1" has parameters clk0_multiply_by and clk0_divide_by specified but port CLK[0] is not connected File: C:/FPGA/Projects/HybridControl_theta_phi_OL/db/pll_altpll.v Line: 44
-Warning (21074): Design contains 21 input pin(s) that do not drive logic
+Warning (21074): Design contains 12 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "ADA_OR" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 52
     Warning (15610): No output dependent on input pin "ADB_OR" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 53
     Warning (15610): No output dependent on input pin "ADC_BAT_V[0]" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 67
@@ -3424,28 +3456,19 @@ Warning (21074): Design contains 21 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "ADC_BAT_V[6]" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 67
     Warning (15610): No output dependent on input pin "ADC_BAT_V[7]" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 67
     Warning (15610): No output dependent on input pin "ADC_BAT_V_EOC" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 69
-    Warning (15610): No output dependent on input pin "ADC_BAT_I[0]" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 70
-    Warning (15610): No output dependent on input pin "ADC_BAT_I[1]" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 70
-    Warning (15610): No output dependent on input pin "ADC_BAT_I[2]" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 70
-    Warning (15610): No output dependent on input pin "ADC_BAT_I[3]" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 70
-    Warning (15610): No output dependent on input pin "ADC_BAT_I[4]" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 70
-    Warning (15610): No output dependent on input pin "ADC_BAT_I[5]" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 70
-    Warning (15610): No output dependent on input pin "ADC_BAT_I[6]" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 70
-    Warning (15610): No output dependent on input pin "ADC_BAT_I[7]" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 70
-    Warning (15610): No output dependent on input pin "ADC_BAT_I_EOC" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 72
     Warning (15610): No output dependent on input pin "BUTTON[3]" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 83
-Info (21057): Implemented 3352 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 3420 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 60 input pins
     Info (21059): Implemented 111 output pins
     Info (21060): Implemented 6 bidirectional pins
-    Info (21061): Implemented 3126 logic cells
+    Info (21061): Implemented 3194 logic cells
     Info (21065): Implemented 1 PLLs
     Info (21062): Implemented 48 DSP elements
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 228 warnings
-    Info: Peak virtual memory: 4969 megabytes
-    Info: Processing ended: Wed May  8 11:53:56 2024
-    Info: Elapsed time: 00:00:48
-    Info: Total CPU time (on all processors): 00:00:49
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 222 warnings
+    Info: Peak virtual memory: 4966 megabytes
+    Info: Processing ended: Wed May  8 15:06:49 2024
+    Info: Elapsed time: 00:00:47
+    Info: Total CPU time (on all processors): 00:01:03
 
 
 +------------------------------------------+
