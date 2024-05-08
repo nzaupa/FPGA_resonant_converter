@@ -45,6 +45,16 @@ SEG1[5]       , Output , PIN_D33     ,,,,,,,,,
 SEG1[6]       , Output , PIN_D34     ,,,,,,,,,
 SEG1[7]       , Output , PIN_AL35    ,,,,,,,,,
 
+DSW[0]        , Output , PIN_AB13     ,,,,,,,,,
+DSW[1]        , Output , PIN_AB12     ,,,,,,,,,
+DSW[2]        , Output , PIN_AB11     ,,,,,,,,,
+DSW[3]        , Output , PIN_AB10     ,,,,,,,,,
+DSW[4]        , Output , PIN_AB9      ,,,,,,,,,
+DSW[5]        , Output , PIN_AC8      ,,,,,,,,,
+DSW[6]        , Output , PIN_AH6      ,,,,,,,,,
+DSW[7]        , Output , PIN_AG6      ,,,,,,,,,
+
+
 # GPIO-1
 
 Q[0]  , Output , PIN_AH8     ,,,,,,,,,

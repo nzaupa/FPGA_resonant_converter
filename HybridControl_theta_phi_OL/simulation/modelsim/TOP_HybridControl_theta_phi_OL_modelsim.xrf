@@ -1,4 +1,5 @@
 vendor_name = ModelSim
+source_file = 1, C:/FPGA/Projects/blocks/rectifier_sensing.v
 source_file = 1, C:/FPGA/Projects/blocks/hybrid_control_mixed.v
 source_file = 1, C:/FPGA/Projects/blocks/hybrid_control_theta_phi_CO_2024.v
 source_file = 1, C:/FPGA/Projects/blocks/hybrid_control_theta_phi_old.v

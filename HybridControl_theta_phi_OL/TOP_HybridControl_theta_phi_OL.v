@@ -439,14 +439,13 @@ always @(posedge ADC_BAT_I_EOC) begin
    ADC_Ibat    = ADC_BAT_I;
 end
 
-// choose what to show on the 7-segment displays
-// and the mode of the converter
+// choose the mode of the controller
 always  begin
    case (SW[2:1])
       2'b00 : begin // PHI+THETA
          // if (~SW[3]) begin // phi
-            SEG0_reg <= digit_0_phi;
-            SEG1_reg <= digit_1_phi;
+            // SEG0_reg <= digit_0_phi;
+            // SEG1_reg <= digit_1_phi;
          // end else begin    // theta
          //    SEG0_reg <= theta_HC[3:0];
          //    SEG1_reg <= theta_HC[7:4];
@@ -454,13 +453,13 @@ always  begin
          MOSFET   <= MOSFET_theta_phi;
       end
       2'b01 : begin  // THETA
-         SEG0_reg <= digit_0_theta;
-         SEG1_reg <= digit_1_theta;
+         // SEG0_reg <= digit_0_theta;
+         // SEG1_reg <= digit_1_theta;
          MOSFET   <= MOSFET_theta;
       end
       2'b10 : begin // PHI
-         SEG0_reg <= digit_0_phi;
-         SEG1_reg <= digit_1_phi;
+         // SEG0_reg <= digit_0_phi;
+         // SEG1_reg <= digit_1_phi;
          MOSFET   <= MOSFET_phi;
       end
       default: begin // shows '--'
