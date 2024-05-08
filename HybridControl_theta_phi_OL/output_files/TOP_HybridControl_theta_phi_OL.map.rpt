@@ -1,5 +1,5 @@
 Analysis & Synthesis report for TOP_HybridControl_theta_phi_OL
-Wed May  8 10:34:05 2024
+Wed May  8 11:53:56 2024
 Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
 
 
@@ -100,7 +100,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                        ;
 +-----------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status       ; Successful - Wed May  8 10:34:05 2024           ;
+; Analysis & Synthesis Status       ; Successful - Wed May  8 11:53:56 2024           ;
 ; Quartus Prime Version             ; 21.1.0 Build 842 10/21/2021 SJ Standard Edition ;
 ; Revision Name                     ; TOP_HybridControl_theta_phi_OL                  ;
 ; Top-level Entity Name             ; TOP_HybridControl_theta_phi_OL                  ;
@@ -2670,7 +2670,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:34     ;
+; Top            ; 00:00:27     ;
 +----------------+--------------+
 
 
@@ -2680,7 +2680,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
-    Info: Processing started: Wed May  8 10:33:20 2024
+    Info: Processing started: Wed May  8 11:53:08 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off HybridControl_theta_phi_OL -c TOP_HybridControl_theta_phi_OL
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20032): Parallel compilation is enabled and will use up to 8 processors
@@ -2713,11 +2713,12 @@ Info (12021): Found 1 design units, including 1 entities, in source file /fpga/p
     Info (12023): Found entity 1: hybrid_control_phi File: C:/FPGA/Projects/blocks/hybrid_control_phi.v Line: 27
 Info (12021): Found 1 design units, including 1 entities, in source file /fpga/projects/blocks/frequency_control.v
     Info (12023): Found entity 1: frequency_control File: C:/FPGA/Projects/blocks/frequency_control.v Line: 17
-Info (12021): Found 4 design units, including 4 entities, in source file /fpga/projects/blocks/display_7seg.v
+Info (12021): Found 5 design units, including 5 entities, in source file /fpga/projects/blocks/display_7seg.v
     Info (12023): Found entity 1: hex2seg File: C:/FPGA/Projects/blocks/display_7seg.v Line: 46
     Info (12023): Found entity 2: dec2hex File: C:/FPGA/Projects/blocks/display_7seg.v Line: 79
     Info (12023): Found entity 3: dec2seg File: C:/FPGA/Projects/blocks/display_7seg.v Line: 198
     Info (12023): Found entity 4: num2seg File: C:/FPGA/Projects/blocks/display_7seg.v Line: 318
+    Info (12023): Found entity 5: hex2seg_couple File: C:/FPGA/Projects/blocks/display_7seg.v Line: 349
 Info (12021): Found 2 design units, including 2 entities, in source file /fpga/projects/blocks/debounce.v
     Info (12023): Found entity 1: debounce_core File: C:/FPGA/Projects/blocks/debounce.v Line: 19
     Info (12023): Found entity 2: debounce File: C:/FPGA/Projects/blocks/debounce.v Line: 59
@@ -2731,16 +2732,14 @@ Info (12021): Found 1 design units, including 1 entities, in source file pll_the
 Warning (10236): Verilog HDL Implicit Net warning at hybrid_control_mixed.v(90): created implicit net for "C0" File: C:/FPGA/Projects/blocks/hybrid_control_mixed.v Line: 90
 Warning (12125): Using design file top_hybridcontrol_theta_phi_ol.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: TOP_HybridControl_theta_phi_OL File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 38
-Warning (10236): Verilog HDL Implicit Net warning at top_hybridcontrol_theta_phi_ol.v(267): created implicit net for "VG" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 267
+Warning (10236): Verilog HDL Implicit Net warning at top_hybridcontrol_theta_phi_ol.v(241): created implicit net for "VG" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 241
 Info (12127): Elaborating entity "TOP_HybridControl_theta_phi_OL" for the top level hierarchy
 Warning (10036): Verilog HDL or VHDL warning at top_hybridcontrol_theta_phi_ol.v(111): object "DAA_copy" assigned a value but never read File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 111
-Warning (10858): Verilog HDL warning at top_hybridcontrol_theta_phi_ol.v(116): object ADC_Ibat used but never assigned File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 116
 Warning (10036): Verilog HDL or VHDL warning at top_hybridcontrol_theta_phi_ol.v(117): object "Vbat_dec" assigned a value but never read File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 117
 Warning (10036): Verilog HDL or VHDL warning at top_hybridcontrol_theta_phi_ol.v(118): object "Ibat_dec" assigned a value but never read File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 118
 Warning (10036): Verilog HDL or VHDL warning at top_hybridcontrol_theta_phi_ol.v(122): object "deadtime" assigned a value but never read File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 122
-Warning (10036): Verilog HDL or VHDL warning at top_hybridcontrol_theta_phi_ol.v(125): object "cnt_startup_reg" assigned a value but never read File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 125
-Warning (10230): Verilog HDL assignment warning at top_hybridcontrol_theta_phi_ol.v(270): truncated value with size 32 to match size of target (8) File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 270
-Warning (10230): Verilog HDL assignment warning at top_hybridcontrol_theta_phi_ol.v(272): truncated value with size 32 to match size of target (8) File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 272
+Warning (10230): Verilog HDL assignment warning at top_hybridcontrol_theta_phi_ol.v(244): truncated value with size 32 to match size of target (8) File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 244
+Warning (10230): Verilog HDL assignment warning at top_hybridcontrol_theta_phi_ol.v(246): truncated value with size 32 to match size of target (8) File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 246
 Warning (10034): Output port "GPIO0[35..25]" at top_hybridcontrol_theta_phi_ol.v(88) has no driver File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 88
 Warning (10034): Output port "GPIO0[23]" at top_hybridcontrol_theta_phi_ol.v(88) has no driver File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 88
 Warning (10034): Output port "GPIO0[21]" at top_hybridcontrol_theta_phi_ol.v(88) has no driver File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 88
@@ -2750,7 +2749,7 @@ Warning (10034): Output port "GPIO0[15]" at top_hybridcontrol_theta_phi_ol.v(88)
 Warning (10034): Output port "GPIO0[13]" at top_hybridcontrol_theta_phi_ol.v(88) has no driver File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 88
 Warning (10034): Output port "GPIO0[11]" at top_hybridcontrol_theta_phi_ol.v(88) has no driver File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 88
 Warning (10034): Output port "GPIO0[9..0]" at top_hybridcontrol_theta_phi_ol.v(88) has no driver File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 88
-Info (12128): Elaborating entity "PLL_theta_phi_OL" for hierarchy "PLL_theta_phi_OL:PLL_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 295
+Info (12128): Elaborating entity "PLL_theta_phi_OL" for hierarchy "PLL_theta_phi_OL:PLL_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 269
 Info (12128): Elaborating entity "altpll" for hierarchy "PLL_theta_phi_OL:PLL_inst|altpll:altpll_component" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/PLL_theta_phi_OL.v Line: 117
 Info (12130): Elaborated megafunction instantiation "PLL_theta_phi_OL:PLL_inst|altpll:altpll_component" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/PLL_theta_phi_OL.v Line: 117
 Info (12133): Instantiated megafunction "PLL_theta_phi_OL:PLL_inst|altpll:altpll_component" with the following parameter: File: C:/FPGA/Projects/HybridControl_theta_phi_OL/PLL_theta_phi_OL.v Line: 117
@@ -2829,11 +2828,11 @@ Info (12133): Instantiated megafunction "PLL_theta_phi_OL:PLL_inst|altpll:altpll
 Info (12021): Found 1 design units, including 1 entities, in source file db/pll_altpll.v
     Info (12023): Found entity 1: PLL_altpll File: C:/FPGA/Projects/HybridControl_theta_phi_OL/db/pll_altpll.v Line: 30
 Info (12128): Elaborating entity "PLL_altpll" for hierarchy "PLL_theta_phi_OL:PLL_inst|altpll:altpll_component|PLL_altpll:auto_generated" File: c:/fpga/21.1/quartus/libraries/megafunctions/altpll.tdf Line: 898
-Info (12128): Elaborating entity "hybrid_control_theta" for hierarchy "hybrid_control_theta:hybrid_control_theta_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 312
+Info (12128): Elaborating entity "hybrid_control_theta" for hierarchy "hybrid_control_theta:hybrid_control_theta_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 286
 Info (12128): Elaborating entity "trigonometry_deg" for hierarchy "hybrid_control_theta:hybrid_control_theta_inst|trigonometry_deg:trigonometry_inst" File: C:/FPGA/Projects/blocks/hybrid_control_theta.v Line: 83
 Warning (10762): Verilog HDL Case Statement warning at trigonometry.v(40): can't check case statement for completeness because the case expression has too many possible states File: C:/FPGA/Projects/blocks/trigonometry.v Line: 40
 Warning (10762): Verilog HDL Case Statement warning at trigonometry.v(585): can't check case statement for completeness because the case expression has too many possible states File: C:/FPGA/Projects/blocks/trigonometry.v Line: 585
-Info (12128): Elaborating entity "hybrid_control_phi" for hierarchy "hybrid_control_phi:hybrid_control_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 324
+Info (12128): Elaborating entity "hybrid_control_phi" for hierarchy "hybrid_control_phi:hybrid_control_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 298
 Warning (10858): Verilog HDL warning at hybrid_control_phi.v(57): object C1_db used but never assigned File: C:/FPGA/Projects/blocks/hybrid_control_phi.v Line: 57
 Warning (10858): Verilog HDL warning at hybrid_control_phi.v(57): object C2_db used but never assigned File: C:/FPGA/Projects/blocks/hybrid_control_phi.v Line: 57
 Warning (10858): Verilog HDL warning at hybrid_control_phi.v(57): object C3_db used but never assigned File: C:/FPGA/Projects/blocks/hybrid_control_phi.v Line: 57
@@ -2842,9 +2841,9 @@ Warning (10030): Net "C1_db" at hybrid_control_phi.v(57) has no driver or initia
 Warning (10030): Net "C2_db" at hybrid_control_phi.v(57) has no driver or initial value, using a default initial value '0' File: C:/FPGA/Projects/blocks/hybrid_control_phi.v Line: 57
 Warning (10030): Net "C3_db" at hybrid_control_phi.v(57) has no driver or initial value, using a default initial value '0' File: C:/FPGA/Projects/blocks/hybrid_control_phi.v Line: 57
 Warning (10030): Net "C4_db" at hybrid_control_phi.v(57) has no driver or initial value, using a default initial value '0' File: C:/FPGA/Projects/blocks/hybrid_control_phi.v Line: 57
-Info (12128): Elaborating entity "hybrid_control_theta_phi" for hierarchy "hybrid_control_theta_phi:hybrid_control_theta_phi_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 339
+Info (12128): Elaborating entity "hybrid_control_theta_phi" for hierarchy "hybrid_control_theta_phi:hybrid_control_theta_phi_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 313
 Warning (10230): Verilog HDL assignment warning at hybrid_control_theta_phi.v(108): truncated value with size 31 to match size of target (30) File: C:/FPGA/Projects/blocks/hybrid_control_theta_phi.v Line: 108
-Info (12128): Elaborating entity "hybrid_control_mixed" for hierarchy "hybrid_control_mixed:hybrid_control_mixed_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 354
+Info (12128): Elaborating entity "hybrid_control_mixed" for hierarchy "hybrid_control_mixed:hybrid_control_mixed_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 328
 Warning (10858): Verilog HDL warning at hybrid_control_mixed.v(59): object S3 used but never assigned File: C:/FPGA/Projects/blocks/hybrid_control_mixed.v Line: 59
 Warning (10230): Verilog HDL assignment warning at hybrid_control_mixed.v(113): truncated value with size 31 to match size of target (30) File: C:/FPGA/Projects/blocks/hybrid_control_mixed.v Line: 113
 Warning (10030): Net "S3[30..17]" at hybrid_control_mixed.v(59) has no driver or initial value, using a default initial value '0' File: C:/FPGA/Projects/blocks/hybrid_control_mixed.v Line: 59
@@ -2853,7 +2852,7 @@ Warning (10034): Output port "o_signal[2]" at regularization.v(71) has no driver
 Info (12128): Elaborating entity "regularization_core" for hierarchy "hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst|regularization_core:REG[0].reg_core" File: C:/FPGA/Projects/blocks/regularization.v Line: 89
 Info (12128): Elaborating entity "debounce" for hierarchy "hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst|regularization_core:REG[0].reg_core|debounce:debounce_inst" File: C:/FPGA/Projects/blocks/regularization.v Line: 44
 Info (12128): Elaborating entity "debounce_core" for hierarchy "hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst|regularization_core:REG[0].reg_core|debounce:debounce_inst|debounce_core:DB[0].db_core" File: C:/FPGA/Projects/blocks/debounce.v Line: 78
-Info (12128): Elaborating entity "value_control" for hierarchy "value_control:phi_control" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 371
+Info (12128): Elaborating entity "value_control" for hierarchy "value_control:phi_control" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 345
 Warning (10230): Verilog HDL assignment warning at manual_value_control.v(75): truncated value with size 32 to match size of target (8) File: C:/FPGA/Projects/blocks/manual_value_control.v Line: 75
 Warning (10230): Verilog HDL assignment warning at manual_value_control.v(82): truncated value with size 32 to match size of target (8) File: C:/FPGA/Projects/blocks/manual_value_control.v Line: 82
 Warning (10230): Verilog HDL assignment warning at manual_value_control.v(84): truncated value with size 32 to match size of target (8) File: C:/FPGA/Projects/blocks/manual_value_control.v Line: 84
@@ -2861,13 +2860,13 @@ Warning (10230): Verilog HDL assignment warning at manual_value_control.v(88): t
 Warning (10230): Verilog HDL assignment warning at manual_value_control.v(90): truncated value with size 32 to match size of target (8) File: C:/FPGA/Projects/blocks/manual_value_control.v Line: 90
 Info (12128): Elaborating entity "dec2hex" for hierarchy "value_control:phi_control|dec2hex:dec2hex_inst" File: C:/FPGA/Projects/blocks/manual_value_control.v Line: 59
 Info (12128): Elaborating entity "hex2seg" for hierarchy "value_control:phi_control|hex2seg:seven_segment_0_inst" File: C:/FPGA/Projects/blocks/manual_value_control.v Line: 64
-Info (12128): Elaborating entity "theta_control" for hierarchy "theta_control:theta_control_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 390
+Info (12128): Elaborating entity "theta_control" for hierarchy "theta_control:theta_control_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 364
 Info (12128): Elaborating entity "dec2seg" for hierarchy "theta_control:theta_control_inst|dec2seg:dec2seg_inst" File: C:/FPGA/Projects/blocks/manual_value_control.v Line: 140
-Info (12128): Elaborating entity "dead_time" for hierarchy "dead_time:dead_time_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 398
+Info (12128): Elaborating entity "dead_time" for hierarchy "dead_time:dead_time_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 372
 Info (12128): Elaborating entity "dead_time_core" for hierarchy "dead_time:dead_time_inst|dead_time_core:DT[0].dt_core" File: C:/FPGA/Projects/blocks/dead_time.v Line: 73
-Info (12128): Elaborating entity "debounce" for hierarchy "debounce:debounce_4bit_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 407
+Info (12128): Elaborating entity "debounce" for hierarchy "debounce:debounce_4bit_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 381
 Info (12128): Elaborating entity "debounce_core" for hierarchy "debounce:debounce_4bit_inst|debounce_core:DB[0].db_core" File: C:/FPGA/Projects/blocks/debounce.v Line: 78
-Info (12128): Elaborating entity "counter_up" for hierarchy "counter_up:counter_up_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 423
+Info (12128): Elaborating entity "counter_up" for hierarchy "counter_up:counter_up_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 398
 Warning (12011): Net is missing source, defaulting to GND
     Warning (12110): Net "phi[31]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
     Warning (12110): Net "phi[30]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_OL/top_hybridcontrol_theta_phi_ol.v Line: 131
@@ -3442,11 +3441,11 @@ Info (21057): Implemented 3352 device resources after synthesis - the final reso
     Info (21061): Implemented 3126 logic cells
     Info (21065): Implemented 1 PLLs
     Info (21062): Implemented 48 DSP elements
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 230 warnings
-    Info: Peak virtual memory: 4992 megabytes
-    Info: Processing ended: Wed May  8 10:34:05 2024
-    Info: Elapsed time: 00:00:45
-    Info: Total CPU time (on all processors): 00:01:01
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 228 warnings
+    Info: Peak virtual memory: 4969 megabytes
+    Info: Processing ended: Wed May  8 11:53:56 2024
+    Info: Elapsed time: 00:00:48
+    Info: Total CPU time (on all processors): 00:00:49
 
 
 +------------------------------------------+

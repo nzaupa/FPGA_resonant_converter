@@ -1,5 +1,5 @@
 Timing Analyzer report for TOP_HybridControl_theta_phi_OL
-Wed May  8 10:35:23 2024
+Wed May  8 11:55:09 2024
 Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
 
 
@@ -95,15 +95,15 @@ https://fpgasoftware.intel.com/eula.
 ; Number detected on machine ; 16          ;
 ; Maximum allowed            ; 8           ;
 ;                            ;             ;
-; Average used               ; 1.19        ;
+; Average used               ; 1.23        ;
 ; Maximum used               ; 8           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   3.4%      ;
-;     Processor 3            ;   2.6%      ;
-;     Processor 4            ;   2.5%      ;
-;     Processors 5-8         ;   2.5%      ;
+;     Processor 2            ;   5.9%      ;
+;     Processor 3            ;   2.9%      ;
+;     Processor 4            ;   2.8%      ;
+;     Processors 5-8         ;   2.8%      ;
 +----------------------------+-------------+
 
 
@@ -130,9 +130,9 @@ https://fpgasoftware.intel.com/eula.
 +------------+-----------------+------------------------------------------------------------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name                                                             ; Note ;
 +------------+-----------------+------------------------------------------------------------------------+------+
-; 68.25 MHz  ; 68.25 MHz       ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ;      ;
-; 220.22 MHz ; 220.22 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ;      ;
-; 415.97 MHz ; 415.97 MHz      ; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ;      ;
+; 71.45 MHz  ; 71.45 MHz       ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ;      ;
+; 273.07 MHz ; 273.07 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ;      ;
+; 354.23 MHz ; 354.23 MHz      ; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ;      ;
 +------------+-----------------+------------------------------------------------------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -148,25 +148,25 @@ HTML report is unavailable in plain text report export.
 +------------------------------------------------------------------------+---------+---------------+
 ; Clock                                                                  ; Slack   ; End Point TNS ;
 +------------------------------------------------------------------------+---------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; -14.260 ; -555.651      ;
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -1.404  ; -10.971       ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; -0.929  ; -27.064       ;
-; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -0.904  ; -1.744        ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -0.814  ; -1.454        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; -14.870 ; -559.751      ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -1.823  ; -13.817       ;
+; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -1.060  ; -2.002        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; -1.048  ; -31.020       ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -0.861  ; -1.670        ;
 +------------------------------------------------------------------------+---------+---------------+
 
 
-+-------------------------------------------------------------------------------------------------+
-; Slow 900mV 85C Model Hold Summary                                                               ;
-+------------------------------------------------------------------------+--------+---------------+
-; Clock                                                                  ; Slack  ; End Point TNS ;
-+------------------------------------------------------------------------+--------+---------------+
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -0.059 ; -0.059        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 0.265  ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 0.277  ; 0.000         ;
-; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; 0.354  ; 0.000         ;
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.373  ; 0.000         ;
-+------------------------------------------------------------------------+--------+---------------+
++------------------------------------------------------------------------------------------------+
+; Slow 900mV 85C Model Hold Summary                                                              ;
++------------------------------------------------------------------------+-------+---------------+
+; Clock                                                                  ; Slack ; End Point TNS ;
++------------------------------------------------------------------------+-------+---------------+
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; 0.154 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 0.265 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 0.276 ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.372 ; 0.000         ;
+; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; 0.409 ; 0.000         ;
++------------------------------------------------------------------------+-------+---------------+
 
 
 +--------------------------------------------------------------------------------------------------+
@@ -174,9 +174,9 @@ HTML report is unavailable in plain text report export.
 +------------------------------------------------------------------------+---------+---------------+
 ; Clock                                                                  ; Slack   ; End Point TNS ;
 +------------------------------------------------------------------------+---------+---------------+
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.921  ; -8.186        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 8.182   ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 995.675 ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.977  ; -8.135        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 4.064   ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 997.159 ; 0.000         ;
 +------------------------------------------------------------------------+---------+---------------+
 
 
@@ -185,9 +185,9 @@ HTML report is unavailable in plain text report export.
 +------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                  ; Slack ; End Point TNS ;
 +------------------------------------------------------------------------+-------+---------------+
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.544 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 1.125 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 3.327 ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.481 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 1.957 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 2.139 ; 0.000         ;
 +------------------------------------------------------------------------+-------+---------------+
 
 
@@ -196,14 +196,14 @@ HTML report is unavailable in plain text report export.
 +------------------------------------------------------------------------+---------+---------------+
 ; Clock                                                                  ; Slack   ; End Point TNS ;
 +------------------------------------------------------------------------+---------+---------------+
-; ADA_DCO                                                                ; -0.666  ; -25.311       ;
-; ADB_DCO                                                                ; -0.250  ; -8.857        ;
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.250  ; -2.925        ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -0.250  ; -0.810        ;
-; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -0.250  ; -0.686        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 4.451   ; 0.000         ;
+; ADA_DCO                                                                ; -0.666  ; -25.290       ;
+; ADB_DCO                                                                ; -0.250  ; -8.855        ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.250  ; -2.763        ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -0.250  ; -0.784        ;
+; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -0.250  ; -0.712        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 4.453   ; 0.000         ;
 ; OSC                                                                    ; 9.959   ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 499.452 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 499.451 ; 0.000         ;
 +------------------------------------------------------------------------+---------+---------------+
 
 
@@ -213,15 +213,15 @@ HTML report is unavailable in plain text report export.
 No synchronizer chains to report.
 
 
-+--------------------------------------------------------------------------------------------------------------+
-; Slow 900mV 0C Model Fmax Summary                                                                             ;
-+------------+-----------------+------------------------------------------------------------------------+------+
-; Fmax       ; Restricted Fmax ; Clock Name                                                             ; Note ;
-+------------+-----------------+------------------------------------------------------------------------+------+
-; 71.12 MHz  ; 71.12 MHz       ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ;      ;
-; 235.29 MHz ; 235.29 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ;      ;
-; 430.48 MHz ; 430.48 MHz      ; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ;      ;
-+------------+-----------------+------------------------------------------------------------------------+------+
++-------------------------------------------------------------------------------------------------------------+
+; Slow 900mV 0C Model Fmax Summary                                                                            ;
++-----------+-----------------+------------------------------------------------------------------------+------+
+; Fmax      ; Restricted Fmax ; Clock Name                                                             ; Note ;
++-----------+-----------------+------------------------------------------------------------------------+------+
+; 74.38 MHz ; 74.38 MHz       ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ;      ;
+; 284.5 MHz ; 284.5 MHz       ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ;      ;
+; 365.5 MHz ; 365.5 MHz       ; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ;      ;
++-----------+-----------------+------------------------------------------------------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
@@ -230,25 +230,25 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +------------------------------------------------------------------------+---------+---------------+
 ; Clock                                                                  ; Slack   ; End Point TNS ;
 +------------------------------------------------------------------------+---------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; -13.797 ; -531.395      ;
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -1.323  ; -10.293       ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; -0.909  ; -26.458       ;
-; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -0.758  ; -1.458        ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -0.613  ; -1.089        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; -14.224 ; -536.884      ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -1.736  ; -13.072       ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; -1.008  ; -30.099       ;
+; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -0.828  ; -1.544        ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -0.637  ; -1.245        ;
 +------------------------------------------------------------------------+---------+---------------+
 
 
-+-------------------------------------------------------------------------------------------------+
-; Slow 900mV 0C Model Hold Summary                                                                ;
-+------------------------------------------------------------------------+--------+---------------+
-; Clock                                                                  ; Slack  ; End Point TNS ;
-+------------------------------------------------------------------------+--------+---------------+
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -0.134 ; -0.208        ;
-; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; 0.250  ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 0.264  ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 0.271  ; 0.000         ;
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.362  ; 0.000         ;
-+------------------------------------------------------------------------+--------+---------------+
++------------------------------------------------------------------------------------------------+
+; Slow 900mV 0C Model Hold Summary                                                               ;
++------------------------------------------------------------------------+-------+---------------+
+; Clock                                                                  ; Slack ; End Point TNS ;
++------------------------------------------------------------------------+-------+---------------+
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; 0.052 ; 0.000         ;
+; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; 0.260 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 0.264 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 0.270 ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.362 ; 0.000         ;
++------------------------------------------------------------------------+-------+---------------+
 
 
 +--------------------------------------------------------------------------------------------------+
@@ -256,9 +256,9 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +------------------------------------------------------------------------+---------+---------------+
 ; Clock                                                                  ; Slack   ; End Point TNS ;
 +------------------------------------------------------------------------+---------+---------------+
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.662  ; -5.846        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 8.268   ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 995.957 ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.701  ; -5.850        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 4.557   ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 997.249 ; 0.000         ;
 +------------------------------------------------------------------------+---------+---------------+
 
 
@@ -267,9 +267,9 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                  ; Slack ; End Point TNS ;
 +------------------------------------------------------------------------+-------+---------------+
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.454 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 1.033 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 3.050 ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.414 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 1.830 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 2.044 ; 0.000         ;
 +------------------------------------------------------------------------+-------+---------------+
 
 
@@ -278,12 +278,12 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +------------------------------------------------------------------------+---------+---------------+
 ; Clock                                                                  ; Slack   ; End Point TNS ;
 +------------------------------------------------------------------------+---------+---------------+
-; ADA_DCO                                                                ; -0.666  ; -25.260       ;
-; ADB_DCO                                                                ; -0.250  ; -8.818        ;
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.250  ; -3.060        ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -0.250  ; -0.736        ;
-; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -0.250  ; -0.648        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 4.432   ; 0.000         ;
+; ADA_DCO                                                                ; -0.666  ; -25.254       ;
+; ADB_DCO                                                                ; -0.250  ; -8.835        ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.250  ; -2.947        ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -0.250  ; -0.726        ;
+; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -0.250  ; -0.668        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 4.433   ; 0.000         ;
 ; OSC                                                                    ; 9.979   ; 0.000         ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 499.434 ; 0.000         ;
 +------------------------------------------------------------------------+---------+---------------+
@@ -300,11 +300,11 @@ No synchronizer chains to report.
 +------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                  ; Slack  ; End Point TNS ;
 +------------------------------------------------------------------------+--------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; -8.339 ; -323.311      ;
-; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -0.570 ; -1.130        ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -0.479 ; -0.849        ;
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.438 ; -2.673        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; -0.379 ; -10.011       ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; -8.806 ; -326.944      ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.640 ; -4.277        ;
+; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -0.599 ; -1.163        ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -0.566 ; -1.102        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; -0.444 ; -12.082       ;
 +------------------------------------------------------------------------+--------+---------------+
 
 
@@ -313,11 +313,11 @@ No synchronizer chains to report.
 +------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                  ; Slack ; End Point TNS ;
 +------------------------------------------------------------------------+-------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 0.154 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 0.158 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 0.153 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 0.157 ; 0.000         ;
 ; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.208 ; 0.000         ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; 0.294 ; 0.000         ;
-; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; 0.507 ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; 0.423 ; 0.000         ;
+; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; 0.582 ; 0.000         ;
 +------------------------------------------------------------------------+-------+---------------+
 
 
@@ -326,9 +326,9 @@ No synchronizer chains to report.
 +------------------------------------------------------------------------+---------+---------------+
 ; Clock                                                                  ; Slack   ; End Point TNS ;
 +------------------------------------------------------------------------+---------+---------------+
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.599  ; -5.309        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 8.869   ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 997.287 ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -0.631  ; -5.264        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 6.031   ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 998.246 ; 0.000         ;
 +------------------------------------------------------------------------+---------+---------------+
 
 
@@ -337,9 +337,9 @@ No synchronizer chains to report.
 +------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                  ; Slack ; End Point TNS ;
 +------------------------------------------------------------------------+-------+---------------+
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.638 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 0.738 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 2.130 ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.609 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 1.262 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 1.378 ; 0.000         ;
 +------------------------------------------------------------------------+-------+---------------+
 
 
@@ -348,14 +348,14 @@ No synchronizer chains to report.
 +------------------------------------------------------------------------+---------+---------------+
 ; Clock                                                                  ; Slack   ; End Point TNS ;
 +------------------------------------------------------------------------+---------+---------------+
-; ADA_DCO                                                                ; -0.183  ; -2.502        ;
+; ADA_DCO                                                                ; -0.167  ; -2.298        ;
 ; ADB_DCO                                                                ; -0.141  ; -3.933        ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; 0.038   ; 0.000         ;
-; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; 0.091   ; 0.000         ;
-; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.163   ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 4.647   ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; 0.039   ; 0.000         ;
+; hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; 0.067   ; 0.000         ;
+; debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; 0.148   ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; 4.648   ; 0.000         ;
 ; OSC                                                                    ; 9.698   ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 499.650 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; 499.649 ; 0.000         ;
 +------------------------------------------------------------------------+---------+---------------+
 
 
@@ -365,30 +365,30 @@ No synchronizer chains to report.
 No synchronizer chains to report.
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------+
-; Multicorner Timing Analysis Summary                                                                                                    ;
-+-------------------------------------------------------------------------+----------+--------+----------+---------+---------------------+
-; Clock                                                                   ; Setup    ; Hold   ; Recovery ; Removal ; Minimum Pulse Width ;
-+-------------------------------------------------------------------------+----------+--------+----------+---------+---------------------+
-; Worst-case Slack                                                        ; -14.260  ; -0.134 ; -0.921   ; 0.454   ; -0.666              ;
-;  ADA_DCO                                                                ; N/A      ; N/A    ; N/A      ; N/A     ; -0.666              ;
-;  ADB_DCO                                                                ; N/A      ; N/A    ; N/A      ; N/A     ; -0.250              ;
-;  OSC                                                                    ; N/A      ; N/A    ; N/A      ; N/A     ; 9.698               ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; -14.260  ; 0.158  ; 8.182    ; 0.738   ; 4.432               ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; -0.929   ; 0.154  ; 995.675  ; 2.130   ; 499.434             ;
-;  debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -1.404   ; 0.208  ; -0.921   ; 0.454   ; -0.250              ;
-;  hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -0.814   ; -0.134 ; N/A      ; N/A     ; -0.250              ;
-;  hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -0.904   ; 0.250  ; N/A      ; N/A     ; -0.250              ;
-; Design-wide TNS                                                         ; -596.884 ; -0.208 ; -8.186   ; 0.0     ; -38.589             ;
-;  ADA_DCO                                                                ; N/A      ; N/A    ; N/A      ; N/A     ; -25.311             ;
-;  ADB_DCO                                                                ; N/A      ; N/A    ; N/A      ; N/A     ; -8.857              ;
-;  OSC                                                                    ; N/A      ; N/A    ; N/A      ; N/A     ; 0.000               ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; -555.651 ; 0.000  ; 0.000    ; 0.000   ; 0.000               ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; -27.064  ; 0.000  ; 0.000    ; 0.000   ; 0.000               ;
-;  debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -10.971  ; 0.000  ; -8.186   ; 0.000   ; -3.060              ;
-;  hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -1.454   ; -0.208 ; N/A      ; N/A     ; -0.810              ;
-;  hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -1.744   ; 0.000  ; N/A      ; N/A     ; -0.686              ;
-+-------------------------------------------------------------------------+----------+--------+----------+---------+---------------------+
++---------------------------------------------------------------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                                                                                   ;
++-------------------------------------------------------------------------+----------+-------+----------+---------+---------------------+
+; Clock                                                                   ; Setup    ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
++-------------------------------------------------------------------------+----------+-------+----------+---------+---------------------+
+; Worst-case Slack                                                        ; -14.870  ; 0.052 ; -0.977   ; 0.414   ; -0.666              ;
+;  ADA_DCO                                                                ; N/A      ; N/A   ; N/A      ; N/A     ; -0.666              ;
+;  ADB_DCO                                                                ; N/A      ; N/A   ; N/A      ; N/A     ; -0.250              ;
+;  OSC                                                                    ; N/A      ; N/A   ; N/A      ; N/A     ; 9.698               ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; -14.870  ; 0.157 ; 4.064    ; 1.262   ; 4.433               ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; -1.048   ; 0.153 ; 997.159  ; 1.378   ; 499.434             ;
+;  debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -1.823   ; 0.208 ; -0.977   ; 0.414   ; -0.250              ;
+;  hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -0.861   ; 0.052 ; N/A      ; N/A     ; -0.250              ;
+;  hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -1.060   ; 0.260 ; N/A      ; N/A     ; -0.250              ;
+; Design-wide TNS                                                         ; -608.26  ; 0.0   ; -8.135   ; 0.0     ; -38.43              ;
+;  ADA_DCO                                                                ; N/A      ; N/A   ; N/A      ; N/A     ; -25.290             ;
+;  ADB_DCO                                                                ; N/A      ; N/A   ; N/A      ; N/A     ; -8.855              ;
+;  OSC                                                                    ; N/A      ; N/A   ; N/A      ; N/A     ; 0.000               ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[1]                   ; -559.751 ; 0.000 ; 0.000    ; 0.000   ; 0.000               ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[2]                   ; -31.020  ; 0.000 ; 0.000    ; 0.000   ; 0.000               ;
+;  debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state ; -13.817  ; 0.000 ; -8.135   ; 0.000   ; -2.947              ;
+;  hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev           ; -1.670   ; 0.000 ; N/A      ; N/A     ; -0.784              ;
+;  hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev   ; -2.002   ; 0.000 ; N/A      ; N/A     ; -0.712              ;
++-------------------------------------------------------------------------+----------+-------+----------+---------+---------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -572,11 +572,11 @@ No synchronizer chains to report.
 ; BUTTON[2]      ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; BUTTON[0]      ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; BUTTON[1]      ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ADA_DATA[0]    ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ADA_DCO        ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ADA_DATA[3]    ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ADA_DATA[2]    ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ADA_DATA[1]    ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
-; ADA_DATA[0]    ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
-; ADA_DCO        ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ADA_DATA[4]    ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ADA_DATA[5]    ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ADA_DATA[6]    ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
@@ -1318,7 +1318,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
-    Info: Processing started: Wed May  8 10:35:18 2024
+    Info: Processing started: Wed May  8 11:55:05 2024
 Info: Command: quartus_sta HybridControl_theta_phi_OL -c TOP_HybridControl_theta_phi_OL
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -1335,11 +1335,11 @@ Info (332110): Deriving PLL clocks
     Info (332110): create_generated_clock -source {PLL_inst|altpll_component|auto_generated|pll1|inclk[0]} -divide_by 5000 -duty_cycle 49.00 -name {PLL_inst|altpll_component|auto_generated|pll1|clk[4]} {PLL_inst|altpll_component|auto_generated|pll1|clk[4]}
 Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
 Info (332105): Deriving Clocks
-    Info (332105): create_clock -period 1.000 -name ADA_DCO ADA_DCO
     Info (332105): create_clock -period 1.000 -name ADB_DCO ADB_DCO
+    Info (332105): create_clock -period 1.000 -name ADA_DCO ADA_DCO
     Info (332105): create_clock -period 1.000 -name hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev
-    Info (332105): create_clock -period 1.000 -name hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev
     Info (332105): create_clock -period 1.000 -name debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state
+    Info (332105): create_clock -period 1.000 -name hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev
 Info (332097): The following timing edges are non-unate.  The Timing Analyzer will assume pos-unate behavior for these edges in the clock network.
     Info (332098): Cell: PLL_inst|altpll_component|auto_generated|pll1  from: inclk[0]  to: observablevcoout
 Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
@@ -1348,45 +1348,45 @@ Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 900mV 85C Model
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -14.260
+Info (332146): Worst-case setup slack is -14.870
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):   -14.260            -555.651 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):    -1.404             -10.971 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):    -0.929             -27.064 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):    -0.904              -1.744 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
-    Info (332119):    -0.814              -1.454 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-Info (332146): Worst-case hold slack is -0.059
+    Info (332119):   -14.870            -559.751 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):    -1.823             -13.817 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):    -1.060              -2.002 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
+    Info (332119):    -1.048             -31.020 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):    -0.861              -1.670 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+Info (332146): Worst-case hold slack is 0.154
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.059              -0.059 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     0.154               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
     Info (332119):     0.265               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):     0.277               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     0.354               0.000 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
-    Info (332119):     0.373               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-Info (332146): Worst-case recovery slack is -0.921
+    Info (332119):     0.276               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     0.372               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):     0.409               0.000 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
+Info (332146): Worst-case recovery slack is -0.977
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.921              -8.186 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):     8.182               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):   995.675               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case removal slack is 0.544
+    Info (332119):    -0.977              -8.135 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):     4.064               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):   997.159               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case removal slack is 0.481
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.544               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):     1.125               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     3.327               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):     0.481               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):     1.957               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     2.139               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
 Info (332146): Worst-case minimum pulse width slack is -0.666
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.666             -25.311 ADA_DCO 
-    Info (332119):    -0.250              -8.857 ADB_DCO 
-    Info (332119):    -0.250              -2.925 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):    -0.250              -0.810 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):    -0.250              -0.686 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
-    Info (332119):     4.451               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):    -0.666             -25.290 ADA_DCO 
+    Info (332119):    -0.250              -8.855 ADB_DCO 
+    Info (332119):    -0.250              -2.763 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):    -0.250              -0.784 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):    -0.250              -0.712 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
+    Info (332119):     4.453               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     9.959               0.000 OSC 
-    Info (332119):   499.452               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):   499.451               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
 Info: Analyzing Slow 900mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
@@ -1395,43 +1395,43 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -13.797
+Info (332146): Worst-case setup slack is -14.224
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):   -13.797            -531.395 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):    -1.323             -10.293 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):    -0.909             -26.458 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):    -0.758              -1.458 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
-    Info (332119):    -0.613              -1.089 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-Info (332146): Worst-case hold slack is -0.134
+    Info (332119):   -14.224            -536.884 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):    -1.736             -13.072 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):    -1.008             -30.099 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):    -0.828              -1.544 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
+    Info (332119):    -0.637              -1.245 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+Info (332146): Worst-case hold slack is 0.052
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.134              -0.208 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     0.250               0.000 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
+    Info (332119):     0.052               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     0.260               0.000 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
     Info (332119):     0.264               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):     0.271               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     0.270               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     0.362               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-Info (332146): Worst-case recovery slack is -0.662
+Info (332146): Worst-case recovery slack is -0.701
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.662              -5.846 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):     8.268               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):   995.957               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case removal slack is 0.454
+    Info (332119):    -0.701              -5.850 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):     4.557               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):   997.249               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case removal slack is 0.414
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.454               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):     1.033               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     3.050               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):     0.414               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):     1.830               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     2.044               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
 Info (332146): Worst-case minimum pulse width slack is -0.666
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.666             -25.260 ADA_DCO 
-    Info (332119):    -0.250              -8.818 ADB_DCO 
-    Info (332119):    -0.250              -3.060 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):    -0.250              -0.736 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):    -0.250              -0.648 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
-    Info (332119):     4.432               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):    -0.666             -25.254 ADA_DCO 
+    Info (332119):    -0.250              -8.835 ADB_DCO 
+    Info (332119):    -0.250              -2.947 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):    -0.250              -0.726 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):    -0.250              -0.668 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
+    Info (332119):     4.433               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     9.979               0.000 OSC 
     Info (332119):   499.434               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
 Info: Analyzing Fast 900mV 0C Model
@@ -1440,51 +1440,51 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -8.339
+Info (332146): Worst-case setup slack is -8.806
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -8.339            -323.311 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):    -0.570              -1.130 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
-    Info (332119):    -0.479              -0.849 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):    -0.438              -2.673 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):    -0.379             -10.011 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case hold slack is 0.154
+    Info (332119):    -8.806            -326.944 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):    -0.640              -4.277 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):    -0.599              -1.163 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
+    Info (332119):    -0.566              -1.102 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):    -0.444             -12.082 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case hold slack is 0.153
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.154               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):     0.158               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     0.153               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):     0.157               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     0.208               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):     0.294               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     0.507               0.000 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
-Info (332146): Worst-case recovery slack is -0.599
+    Info (332119):     0.423               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     0.582               0.000 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
+Info (332146): Worst-case recovery slack is -0.631
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.599              -5.309 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):     8.869               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):   997.287               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case removal slack is 0.638
+    Info (332119):    -0.631              -5.264 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):     6.031               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):   998.246               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case removal slack is 0.609
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.638               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):     0.738               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     2.130               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case minimum pulse width slack is -0.183
+    Info (332119):     0.609               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):     1.262               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     1.378               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case minimum pulse width slack is -0.167
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.183              -2.502 ADA_DCO 
+    Info (332119):    -0.167              -2.298 ADA_DCO 
     Info (332119):    -0.141              -3.933 ADB_DCO 
-    Info (332119):     0.038               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     0.091               0.000 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
-    Info (332119):     0.163               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
-    Info (332119):     4.647               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     0.039               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     0.067               0.000 hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev 
+    Info (332119):     0.148               0.000 debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state 
+    Info (332119):     4.648               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     9.698               0.000 OSC 
-    Info (332119):   499.650               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):   499.649               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 5 warnings
     Info: Peak virtual memory: 5106 megabytes
-    Info: Processing ended: Wed May  8 10:35:23 2024
-    Info: Elapsed time: 00:00:05
-    Info: Total CPU time (on all processors): 00:00:05
+    Info: Processing ended: Wed May  8 11:55:09 2024
+    Info: Elapsed time: 00:00:04
+    Info: Total CPU time (on all processors): 00:00:04
 
 

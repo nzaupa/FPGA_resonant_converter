@@ -117,12 +117,13 @@ reg  [7:0] ADC_Ibat;
 wire [7:0] Vbat_dec;
 wire [7:0] Ibat_dec;
 wire [7:0] Vbat_seg, Ibat_seg;
-wire [6:0] SEG0_Vbat, SEG1_Vbat, SEG0_Ibat, SEG1_Ibat;
+wire [15:0] SEG_Vbat, SEG_Ibat;
+
 
 reg  [7:0] deadtime = 8'd5;
 wire [7:0] cnt_startup;
 wire [7:0] cnt_Vg;
-reg  [7:0] cnt_startup_reg;
+// reg  [7:0] cnt_startup_reg;
 
 
 wire  [31:0] debug;
@@ -191,30 +192,8 @@ assign   LED[7]   = ~1'b0;
 // RECTIFIER: show the values on 7seg display and LEDs
 // assign LED = SW[3] ? ~ADC_Vbat : ~ADC_Ibat;
 
-assign SEG0 = SEG0_reg; //SEG0_reg;
-assign SEG1 = SEG1_reg; //SEG1_reg;
-
-// // connected to GPIO1 and available on the rectifier board
-// // all are available on the 2×6 connector, 6 of them are connected to LED
-// assign EX[0]  = SW[3];     // over voltage
-// assign EX[1]  = ~SW[3];    // over current
-// assign EX[2]  = ENABLE;    // H-bridge ENABLE
-// assign EX[3]  = Q1;        // free
-// assign EX[4]  = Q2;        // free
-// assign EX[5]  = Q3;        // free
-// assign EX[6]  = Q4;        // free
-// assign EX[7]  = debug[2];  // free
-// assign EX[8]  = 1'b0;      // free
-// assign EX[9]  = debug[0];  // LED 3
-// assign EX[10] = debug[1];  // LED 2
-// assign EX[11] = debug[21];  // LED 1
-
-// // connected to GPIO0
-// assign GPIO0[10] = debug[3];
-// assign GPIO0[12] = debug[4];
-// assign GPIO0[14] = debug[5];
-// assign GPIO0[16] = debug[6];
-
+assign SEG0 = sw[3] ? SEG0_reg : SEG_Ibat[6:0]; //SEG0_reg;
+assign SEG1 = sw[3] ? SEG1_reg : SEG_Ibat[14:8]; //SEG1_reg;
 
 // connected to GPIO1 and available on the rectifier board
 // all are available on the 2×6 connector, 6 of them are connected to LEDs
@@ -239,14 +218,10 @@ assign GPIO0[24] = Q[3]; //Q4;   // D15
 
 // connected to GPIO0
 // debug for Ci signals
-// D8
-assign GPIO0[10] = debug[4];
-// D9
-assign GPIO0[12] = debug[5];
-// D10
-assign GPIO0[14] = debug[6];
-// D11
-assign GPIO0[16] = debug[7];
+assign GPIO0[10] = debug[4]; // D8 
+assign GPIO0[12] = debug[5]; // D9 
+assign GPIO0[14] = debug[6]; // D10
+assign GPIO0[16] = debug[7]; // D11
 
 // ##### assign for DEBUG END #####
 
@@ -267,7 +242,7 @@ assign ON = cnt_startup > 8'd10; //10us to charge bootstrap capacitor
 assign VG = cnt_Vg      > 8'd16; //10us to charge bootstrap capacitor
 
 // --- assign for the ADCs in the rectifier ---      
-assign Vbat_dec = (ADC_Ibat>>4)*5;  // ADC*0.3125
+assign Vbat_dec = (ADC_Vbat>>4)*5;  // ADC*0.3125
 // raw reconstruction
 assign Ibat_dec = (ADC_Ibat>>3) + (~8'd21+1);
 
@@ -354,7 +329,7 @@ hybrid_control_mixed #(.mu_z1(32'd86), .mu_z2(32'd90)
 );
 
 //angle control
-
+// PHI
 value_control  #(
    .INTEGER_STEP(5),   // Step size for each button press
    .INTEGER_MIN (0),   // Minimum count value
@@ -414,7 +389,8 @@ debounce #(.DEBOUNCE_TIME(5000), .N(4)) debounce_SWITCH_inst( // 5ms
 );
 
 
-// START UP counter
+// START UP counters
+// -- counter for the bootstrap
 counter_up counter_up_inst    (
    .o_counter(cnt_startup), // Output of the counter
    .enable( ~ON & ENABLE),    // enable for counter
@@ -422,11 +398,24 @@ counter_up counter_up_inst    (
    .reset(ENABLE)      // reset Input
 );
 
+// -- counter to charge the tank
 counter_up counter_up_inst_Vg    (
    .o_counter(cnt_Vg), // Output of the counter
    .enable( ~VG & ENABLE),    // enable for counter
    .clk(clk_1M),       // clock Input
    .reset(ENABLE)      // reset Input
+);
+
+
+// Numeric conversion
+hex2seg_couple Ibat2display(
+   .o_SEG(SEG_Ibat),
+   .i_hex(ADC_Ibat)
+);
+
+hex2seg_couple Vbat2display(
+   .o_SEG(SEG_Vbat),
+   .i_hex(ADC_Vbat)
 );
 
 
@@ -441,6 +430,13 @@ always @(posedge ADB_DCO) begin
    DAB_copy = ~ADB_DATA+14'b1 + 14'd8191;
 end
 
+always @(posedge ADC_BAT_V_EOC) begin
+   ADC_Vbat    = ADC_BAT_V;
+end
+
+always @(posedge ADC_BAT_I_EOC) begin
+   ADC_Ibat    = ADC_BAT_I;
+end
 
 // choose what to show on the 7-segment displays
 // and the mode of the converter
@@ -476,9 +472,10 @@ always  begin
 end
 
 
-always @(posedge clk_main) begin
-   cnt_startup_reg <= cnt_startup;
-end
+// always @(posedge clk_main) begin
+//    cnt_startup_reg <= cnt_startup;
+// end
+
 endmodule
 
 
