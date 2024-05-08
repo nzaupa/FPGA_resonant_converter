@@ -25,6 +25,84 @@
 
 
 
+module value_control #(
+   parameter INTEGER_STEP = 1,   // Step size for each button press
+   parameter INTEGER_MIN  = 0,   // Minimum count value
+   parameter INTEGER_MAX  = 255, // Maximum count value
+   parameter N_BIT        = 8    // Number of bits of the counter
+)(
+   input              i_CLK,
+   input              i_RST,
+   input              inc_btn,
+   input              dec_btn,
+   output [N_BIT-1:0] count,
+   output [7:0]       o_seg0,
+   output [7:0]       o_seg1
+);
+
+// Parameters for step size and range
+
+// Internal registers to hold the count value and previous button states
+reg [N_BIT-1:0] count_reg;
+reg inc_btn_prev, dec_btn_prev;
+wire [7:0] to_seg;
+wire [6:0] segment_0, segment_1;
+
+// Output register
+assign count  = count_reg;
+assign o_seg0 = { 1'b1 , segment_0 };
+assign o_seg1 = { 1'b1 , segment_1 };
+
+dec2hex dec2hex_inst (
+   .o_seg(to_seg),
+   .i_dec(count_reg)
+);
+
+hex2seg seven_segment_0_inst(
+   .o_seg(segment_0),
+   .i_num(to_seg[3:0])
+);
+
+hex2seg seven_segment_1_inst(
+   .o_seg(segment_1),
+   .i_num(to_seg[7:4])
+);
+
+
+// Counter logic
+always @(posedge i_CLK or negedge i_RST) begin
+    if (~i_RST) begin
+        count_reg    <= INTEGER_MIN;
+        inc_btn_prev <= 1'b0;
+        dec_btn_prev <= 1'b0;
+    end else begin
+        // Check for button press and update count
+        if (~inc_btn && inc_btn_prev) begin
+            if (count_reg + INTEGER_STEP <= INTEGER_MAX)
+                count_reg <= count_reg + INTEGER_STEP;
+            else
+                count_reg <= INTEGER_MAX;
+        end
+        if (~dec_btn && dec_btn_prev) begin
+            if (count_reg - INTEGER_STEP >= INTEGER_MIN)
+                count_reg <= count_reg - INTEGER_STEP;
+            else
+                count_reg <= INTEGER_MIN;
+        end
+        // Store current button states
+        inc_btn_prev <= inc_btn;
+        dec_btn_prev <= dec_btn;
+    end
+end
+
+
+endmodule
+
+
+
+
+
+
 module theta_control (
    o_seg0,
    o_seg1,
@@ -127,6 +205,7 @@ endmodule
 // enable to adjust the value of phi from the buttons
 //------------------------------------------------------------
 
+
 module phi_control (
    o_seg0,
    o_seg1,
@@ -215,7 +294,7 @@ end
 
 // control the limit for the angle in degree
 always @( * ) begin
-   if (angle>9'd90 & angle<9'd120)
+   if (angle>9'd180 & angle<9'd200)
       angle_sat <= 0;
    else if (angle[8])
       angle_sat <= 9'd90;

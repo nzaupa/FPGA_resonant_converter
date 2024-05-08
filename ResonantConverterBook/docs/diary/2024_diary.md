@@ -35,6 +35,10 @@ During April, I mostly focus my self on the writing of the thesis. Trying to har
 
 7 May - Checking for the delay: it is actually there, around 600ns. Using $\phi<<1$ creates more glitching. I do not know the reason. The definition of the set in x-coordinates was inverse (1 is negative and 0 positive).
 It seems better by taking the zero zone as half plane. At least we cover the case phi=0.
+In the end, using regularization, the controller in working with the state-machine in $x$
+
+8 May - Improve the code for controlling values, now it goes up and down, thanks to ChatGPT:it was enough to manually recognize a button without going through the `posedge`/`negedge`. 
+Characterization of the sensor for the current in the output of the rectifier: 
 
 
 

@@ -1,5 +1,5 @@
 EDA Netlist Writer report for TOP_HybridControl_theta_phi_OL
-Tue May  7 16:23:35 2024
+Wed May  8 10:35:26 2024
 Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
 
 
@@ -37,7 +37,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Tue May  7 16:23:35 2024 ;
+; EDA Netlist Writer Status ; Successful - Wed May  8 10:35:26 2024 ;
 ; Revision Name             ; TOP_HybridControl_theta_phi_OL        ;
 ; Top-level Entity Name     ; TOP_HybridControl_theta_phi_OL        ;
 ; Family                    ; Stratix IV                            ;
@@ -81,14 +81,14 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime EDA Netlist Writer
     Info: Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
-    Info: Processing started: Tue May  7 16:23:33 2024
+    Info: Processing started: Wed May  8 10:35:25 2024
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off HybridControl_theta_phi_OL -c TOP_HybridControl_theta_phi_OL
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (204019): Generated file TOP_HybridControl_theta_phi_OL.vo in folder "C:/FPGA/Projects/HybridControl_theta_phi_OL/simulation/modelsim/" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
     Info: Peak virtual memory: 4761 megabytes
-    Info: Processing ended: Tue May  7 16:23:35 2024
-    Info: Elapsed time: 00:00:02
+    Info: Processing ended: Wed May  8 10:35:26 2024
+    Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 
 

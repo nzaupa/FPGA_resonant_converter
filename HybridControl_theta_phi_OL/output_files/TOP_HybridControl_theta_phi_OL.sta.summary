@@ -3,103 +3,91 @@ Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 900mV 85C Model Setup 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
-Slack : -19.272
-TNS   : -579.904
+Slack : -14.260
+TNS   : -555.651
 
 Type  : Slow 900mV 85C Model Setup 'debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state'
-Slack : -1.424
-TNS   : -10.937
-
-Type  : Slow 900mV 85C Model Setup 'hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev'
-Slack : -1.206
-TNS   : -2.326
-
-Type  : Slow 900mV 85C Model Setup 'hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev'
-Slack : -1.141
-TNS   : -2.186
-
-Type  : Slow 900mV 85C Model Setup 'debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state'
-Slack : -1.036
-TNS   : -8.171
+Slack : -1.404
+TNS   : -10.971
 
 Type  : Slow 900mV 85C Model Setup 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
-Slack : -0.979
-TNS   : -53.694
+Slack : -0.929
+TNS   : -27.064
+
+Type  : Slow 900mV 85C Model Setup 'hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev'
+Slack : -0.904
+TNS   : -1.744
+
+Type  : Slow 900mV 85C Model Setup 'hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev'
+Slack : -0.814
+TNS   : -1.454
+
+Type  : Slow 900mV 85C Model Hold 'hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev'
+Slack : -0.059
+TNS   : -0.059
 
 Type  : Slow 900mV 85C Model Hold 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
-Slack : 0.264
+Slack : 0.265
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 0.276
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Hold 'hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev'
-Slack : 0.322
+Slack : 0.277
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev'
-Slack : 0.343
-TNS   : 0.000
-
-Type  : Slow 900mV 85C Model Hold 'debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state'
-Slack : 0.368
+Slack : 0.354
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Hold 'debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state'
 Slack : 0.373
 TNS   : 0.000
 
-Type  : Slow 900mV 85C Model Recovery 'debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state'
-Slack : -1.029
-TNS   : -9.261
-
 Type  : Slow 900mV 85C Model Recovery 'debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state'
-Slack : -0.875
-TNS   : -7.859
+Slack : -0.921
+TNS   : -8.186
+
+Type  : Slow 900mV 85C Model Recovery 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 8.182
+TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Recovery 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
-Slack : 997.860
+Slack : 995.675
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Removal 'debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state'
-Slack : 0.592
+Slack : 0.544
 TNS   : 0.000
 
-Type  : Slow 900mV 85C Model Removal 'debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state'
-Slack : 0.737
+Type  : Slow 900mV 85C Model Removal 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 1.125
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Removal 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
-Slack : 1.108
+Slack : 3.327
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Minimum Pulse Width 'ADA_DCO'
 Slack : -0.666
-TNS   : -25.084
+TNS   : -25.311
 
 Type  : Slow 900mV 85C Model Minimum Pulse Width 'ADB_DCO'
 Slack : -0.250
-TNS   : -8.842
+TNS   : -8.857
 
 Type  : Slow 900mV 85C Model Minimum Pulse Width 'debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state'
 Slack : -0.250
-TNS   : -2.871
-
-Type  : Slow 900mV 85C Model Minimum Pulse Width 'debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state'
-Slack : -0.250
-TNS   : -2.781
+TNS   : -2.925
 
 Type  : Slow 900mV 85C Model Minimum Pulse Width 'hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev'
 Slack : -0.250
-TNS   : -0.774
+TNS   : -0.810
 
 Type  : Slow 900mV 85C Model Minimum Pulse Width 'hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev'
 Slack : -0.250
-TNS   : -0.642
+TNS   : -0.686
 
 Type  : Slow 900mV 85C Model Minimum Pulse Width 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 4.452
+Slack : 4.451
 TNS   : 0.000
 
 Type  : Slow 900mV 85C Model Minimum Pulse Width 'OSC'
@@ -111,35 +99,31 @@ Slack : 499.452
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Setup 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
-Slack : -18.444
-TNS   : -553.323
+Slack : -13.797
+TNS   : -531.395
 
 Type  : Slow 900mV 0C Model Setup 'debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state'
-Slack : -1.341
-TNS   : -10.279
-
-Type  : Slow 900mV 0C Model Setup 'hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev'
-Slack : -1.107
-TNS   : -2.117
-
-Type  : Slow 900mV 0C Model Setup 'hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev'
-Slack : -1.034
-TNS   : -1.972
-
-Type  : Slow 900mV 0C Model Setup 'debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state'
-Slack : -0.966
-TNS   : -7.565
+Slack : -1.323
+TNS   : -10.293
 
 Type  : Slow 900mV 0C Model Setup 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
-Slack : -0.942
-TNS   : -52.124
+Slack : -0.909
+TNS   : -26.458
+
+Type  : Slow 900mV 0C Model Setup 'hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev'
+Slack : -0.758
+TNS   : -1.458
+
+Type  : Slow 900mV 0C Model Setup 'hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev'
+Slack : -0.613
+TNS   : -1.089
 
 Type  : Slow 900mV 0C Model Hold 'hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev'
-Slack : 0.179
-TNS   : 0.000
+Slack : -0.134
+TNS   : -0.208
 
 Type  : Slow 900mV 0C Model Hold 'hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev'
-Slack : 0.217
+Slack : 0.250
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
@@ -147,67 +131,59 @@ Slack : 0.264
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 0.270
-TNS   : 0.000
-
-Type  : Slow 900mV 0C Model Hold 'debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state'
-Slack : 0.358
+Slack : 0.271
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Hold 'debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state'
-Slack : 0.363
+Slack : 0.362
 TNS   : 0.000
 
-Type  : Slow 900mV 0C Model Recovery 'debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state'
-Slack : -0.796
-TNS   : -7.164
-
 Type  : Slow 900mV 0C Model Recovery 'debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state'
-Slack : -0.682
-TNS   : -6.122
+Slack : -0.662
+TNS   : -5.846
+
+Type  : Slow 900mV 0C Model Recovery 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 8.268
+TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Recovery 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
-Slack : 997.980
+Slack : 995.957
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Removal 'debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state'
-Slack : 0.494
+Slack : 0.454
 TNS   : 0.000
 
-Type  : Slow 900mV 0C Model Removal 'debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state'
-Slack : 0.596
+Type  : Slow 900mV 0C Model Removal 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 1.033
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Removal 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
-Slack : 1.030
+Slack : 3.050
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'ADA_DCO'
 Slack : -0.666
-TNS   : -25.380
+TNS   : -25.260
 
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'ADB_DCO'
 Slack : -0.250
-TNS   : -8.828
+TNS   : -8.818
 
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state'
 Slack : -0.250
-TNS   : -3.042
-
-Type  : Slow 900mV 0C Model Minimum Pulse Width 'debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state'
-Slack : -0.250
-TNS   : -2.943
+TNS   : -3.060
 
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev'
 Slack : -0.250
-TNS   : -0.682
+TNS   : -0.736
 
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev'
 Slack : -0.250
-TNS   : -0.619
+TNS   : -0.648
 
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 4.434
+Slack : 4.432
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'OSC'
@@ -215,43 +191,35 @@ Slack : 9.979
 TNS   : 0.000
 
 Type  : Slow 900mV 0C Model Minimum Pulse Width 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
-Slack : 499.433
+Slack : 499.434
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Setup 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
-Slack : -11.530
-TNS   : -342.896
-
-Type  : Fast 900mV 0C Model Setup 'hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev'
-Slack : -0.602
-TNS   : -1.113
+Slack : -8.339
+TNS   : -323.311
 
 Type  : Fast 900mV 0C Model Setup 'hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev'
-Slack : -0.533
-TNS   : -1.034
+Slack : -0.570
+TNS   : -1.130
 
-Type  : Fast 900mV 0C Model Setup 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
-Slack : -0.407
-TNS   : -19.852
+Type  : Fast 900mV 0C Model Setup 'hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev'
+Slack : -0.479
+TNS   : -0.849
 
 Type  : Fast 900mV 0C Model Setup 'debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state'
-Slack : -0.403
-TNS   : -2.599
+Slack : -0.438
+TNS   : -2.673
 
-Type  : Fast 900mV 0C Model Setup 'debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state'
-Slack : -0.161
-TNS   : -1.025
+Type  : Fast 900mV 0C Model Setup 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
+Slack : -0.379
+TNS   : -10.011
 
 Type  : Fast 900mV 0C Model Hold 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
-Slack : 0.143
+Slack : 0.154
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
 Slack : 0.158
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Hold 'debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state'
-Slack : 0.205
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state'
@@ -259,63 +227,59 @@ Slack : 0.208
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev'
-Slack : 0.406
+Slack : 0.294
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Hold 'hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev'
-Slack : 0.426
+Slack : 0.507
 TNS   : 0.000
 
-Type  : Fast 900mV 0C Model Recovery 'debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state'
-Slack : -0.629
-TNS   : -5.661
-
 Type  : Fast 900mV 0C Model Recovery 'debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state'
-Slack : -0.530
-TNS   : -4.756
+Slack : -0.599
+TNS   : -5.309
+
+Type  : Fast 900mV 0C Model Recovery 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 8.869
+TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Recovery 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
-Slack : 998.679
+Slack : 997.287
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Removal 'debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state'
-Slack : 0.636
+Slack : 0.638
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Removal 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 0.738
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Removal 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
-Slack : 0.693
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Removal 'debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state'
-Slack : 0.730
+Slack : 2.130
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'ADA_DCO'
-Slack : -0.159
-TNS   : -2.174
+Slack : -0.183
+TNS   : -2.502
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'ADB_DCO'
-Slack : -0.142
-TNS   : -3.928
+Slack : -0.141
+TNS   : -3.933
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev'
-Slack : 0.043
+Slack : 0.038
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'hybrid_control_theta_phi:hybrid_control_theta_phi_inst|CLK_jump_prev'
-Slack : 0.092
-TNS   : 0.000
-
-Type  : Fast 900mV 0C Model Minimum Pulse Width 'debounce:debounce_4bit_inst|debounce_core:DB[1].db_core|r_switch_state'
-Slack : 0.154
+Slack : 0.091
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'debounce:debounce_4bit_inst|debounce_core:DB[2].db_core|r_switch_state'
-Slack : 0.162
+Slack : 0.163
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'PLL_inst|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 4.649
+Slack : 4.647
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'OSC'
@@ -323,7 +287,7 @@ Slack : 9.698
 TNS   : 0.000
 
 Type  : Fast 900mV 0C Model Minimum Pulse Width 'PLL_inst|altpll_component|auto_generated|pll1|clk[2]'
-Slack : 499.648
+Slack : 499.650
 TNS   : 0.000
 
 ------------------------------------------------------------

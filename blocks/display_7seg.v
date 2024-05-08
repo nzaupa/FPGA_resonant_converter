@@ -344,3 +344,27 @@ hex2seg hex2seg_1 (
 endmodule
 
 
+// take a 2 digit number encoded in hexadecimal and the decimal position
+// directly output a string with the two segments
+module hex2seg_couple (
+   output [15:0] o_SEG,
+   input   [7:0] i_hex,
+   input   [1:0] i_DP
+);
+
+assign o_SEG[7] = i_DP[0];
+assign o_SEG[15] = i_DP[1];
+
+hex2seg hex2seg_0 (
+   .o_seg(o_SEG[6:0]),
+   .i_num(i_hex[3:0])
+);
+
+hex2seg hex2seg_1 (
+   .o_seg(o_SEG[14:8]),
+   .i_num(i_hex[7:4])
+);
+
+
+endmodule
+

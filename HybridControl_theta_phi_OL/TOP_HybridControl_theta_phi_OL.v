@@ -224,8 +224,8 @@ assign EX[1]  = ~SW[3];      // over current
 assign EX[2]  = ENABLE;      // H-bridge ENABLE
 assign EX[3]  = debug[2];    // Pin 4 D0
 assign EX[4]  = debug[3];    // Pin 5 D1
-assign EX[5]  = VG;          // Pin 6 D2  M1_delayed
-assign EX[6]  = ON;          // Pin 7 D3  M1
+assign EX[5]  = debug[8]; //VG;          // Pin 6 D2  M1_delayed
+assign EX[6]  = debug[9]; //ON;          // Pin 7 D3  M1
 assign EX[7]  = test[0];     // Pin 8 D4  b0
 assign EX[8]  = test[1];     // Pin 9 D5  b1
 assign EX[9]  = debug[14];   // Pin 10 ?
@@ -348,20 +348,37 @@ hybrid_control_mixed #(.mu_z1(32'd86), .mu_z2(32'd90)
    .i_vC( ADC_A ),       // 
    .i_iC( ADC_B ),       // 
    .i_ZVS( 32'd20 ),    // 32'd314
-   .i_phi( phi_HC ),        // phi // pi/4 - 32'h0000004E
+   .i_phi( phi<<1 ),        // phi // pi/4 - 32'h0000004E
+   // .i_phi( phi_HC ),        // phi // pi/4 - 32'h0000004E
    .i_sigma( ) //{ {31{sigma[1]}} , sigma[0] } )
 );
 
 //angle control
 
-phi_control phi_control_inst(
-   .o_seg0(digit_0_phi), //
-   .o_seg1(digit_1_phi), // 
-   .o_phi32(phi),
-   .i_reset(button[0]),
-   .i_increase(1'b1),
-   .i_decrease(button[1])
+value_control  #(
+   .INTEGER_STEP(5),   // Step size for each button press
+   .INTEGER_MIN (0),   // Minimum count value
+   .INTEGER_MAX (90), // Maximum count value
+   .N_BIT       (8)    // Number of bits of the counter
+) phi_control (
+   .i_CLK(clk_100M),
+   .i_RST(button[0]),
+   .inc_btn(button[1]),
+   .dec_btn(button[2]),
+   .count(phi),
+   .o_seg0(digit_0_phi),
+   .o_seg1(digit_1_phi)
 );
+
+
+// phi_control phi_control_inst(
+//    .o_seg0(digit_0_phi), //
+//    .o_seg1(digit_1_phi), // 
+//    .o_phi32(),
+//    .i_reset(button[0]),
+//    .i_increase(1'b1),
+//    .i_decrease(button[1])
+// );
 
 theta_control theta_control_inst(
    .o_seg0(digit_0_theta), //digit_0
@@ -374,7 +391,7 @@ theta_control theta_control_inst(
 
 // ----- DEAD TIME ----- //
 
-dead_time #(.DEADTIME(50), .N(4)) dead_time_inst(
+dead_time #(.DEADTIME(80), .N(4)) dead_time_inst(
    .o_signal( {Q4, Q3, Q2, Q1} ),          // output switching variable
    .i_clock(  clk_100M ),            // for sequential behavior
    .i_signal( MOSFET )

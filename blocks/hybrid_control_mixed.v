@@ -80,12 +80,17 @@ wire signed [31:0]  sphi;  // sin( theta-phi )
    assign b0 = counter[0];
    assign b1 = counter[1];
 
-   assign C0 = ( S0[31]) & ( S1[31]);  // zone where sigma = +1
-   // assign C1 = (~S0[31]) & ( S1[31]);  // zone where sigma =  0
-   assign C1 = ~S0[31];  // zone where sigma =  0
-   assign C2 = (~S0[31]) & (~S1[31]);  // zone where sigma = -1
-   // assign C3 = ( S0[31]) & (~S1[31]);  // zone where sigma =  0
-   assign C3 = S0[31];  // zone where sigma =  0
+   // assign C0 = ( S0[31]) & ( S1[31]);  // zone where sigma = +1
+   // // assign C1 = (~S0[31]) & ( S1[31]);  // zone where sigma =  0
+   // assign C1 = ~S0[31];  // zone where sigma =  0
+   // assign C2 = (~S0[31]) & (~S1[31]);  // zone where sigma = -1
+   // // assign C3 = ( S0[31]) & (~S1[31]);  // zone where sigma =  0
+   // assign C3 = S0[31];  // zone where sigma =  0
+
+   assign C0 = ( S[0]) & ( S[1]);  // zone where sigma = +1
+   assign C1 =  ~S[0];  // zone where sigma =  0
+   assign C2 = (~S[0]) & (~S[1]);  // zone where sigma = -1
+   assign C3 =   S[0];  // zone where sigma =  0
 
    assign CLK_jump_OR = ( C1 & (~b1) & (~b0) ) | 
                         ( C2 & (~b1) &   b0  ) | 
@@ -106,7 +111,8 @@ wire signed [31:0]  sphi;  // sin( theta-phi )
    assign sigma   = { {31{b1&(~b0)}} , ~b0 };
 
    assign o_debug = { 1'b0, S3[30:17],
-                     o_sigma[1:0], 6'b0,
+                     o_sigma[1:0], 4'b0,
+                     S1[31], S0[31],
                      C3, C2, C1, C0,
                      S[1], S[0] , b0 , b1};
 
@@ -134,7 +140,7 @@ trigonometry_deg trigonometry_phi_ZVS_inst (
 );
 
 regularization #(
-   .DEBOUNCE_TIME(20), 
+   .DEBOUNCE_TIME(2), 
    .DELAY(100),
    .N(2)
 ) regularization_4bit_inst (
