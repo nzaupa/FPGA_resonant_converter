@@ -81,6 +81,7 @@ module TOP_HybridControl_theta_phi_OL (
    //debug
    input  [3:0]   SW,
    input  [3:0]   BUTTON,
+   input  [7:0]   DSW,
    output [7:0]   LED,
    output [7:0]   SEG0,
    output [7:0]   SEG1,
@@ -112,12 +113,12 @@ reg        [13:0] DAA_copy;
 reg        [13:0] DAB_copy;
 
 // rectifier
-reg  [7:0] ADC_Vbat;
-reg  [7:0] ADC_Ibat;
-wire [7:0] Vbat_dec;
-wire [7:0] Ibat_dec;
-wire [7:0] Vbat_seg, Ibat_seg;
-wire [15:0] SEG_Vbat, SEG_Ibat;
+reg  [7:0]  ADC_Vbat;
+reg  [7:0]  ADC_Ibat;
+wire [7:0]  Vbat_DEC;
+wire [7:0]  Ibat_DEC;
+wire [15:0] SEG_Vbat_HEX, SEG_Ibat_HEX, SEG_Vbat_DEC, SEG_Ibat_DEC;
+
 
 
 reg  [7:0] deadtime = 8'd5;
@@ -192,8 +193,10 @@ assign   LED[7]   = ~1'b0;
 // RECTIFIER: show the values on 7seg display and LEDs
 // assign LED = SW[3] ? ~ADC_Vbat : ~ADC_Ibat;
 
-assign SEG0 = ~sw[3] ? SEG0_reg : SEG_Ibat[7:0]; //SEG0_reg;
-assign SEG1 = ~sw[3] ? SEG1_reg : SEG_Ibat[15:8]; //SEG1_reg;
+assign SEG0 = SEG0_reg;
+assign SEG1 = SEG1_reg;
+// assign SEG0 = ~sw[3] ? SEG0_reg : SEG_Ibat[7:0]; //SEG0_reg;
+// assign SEG1 = ~sw[3] ? SEG1_reg : SEG_Ibat[15:8]; //SEG1_reg;
 
 // connected to GPIO1 and available on the rectifier board
 // all are available on the 2×6 connector, 6 of them are connected to LEDs
@@ -242,9 +245,9 @@ assign ON = cnt_startup > 8'd10; //10us to charge bootstrap capacitor
 assign VG = cnt_Vg      > 8'd16; //10us to charge bootstrap capacitor
 
 // --- assign for the ADCs in the rectifier ---      
-assign Vbat_dec = (ADC_Vbat>>4)*5;  // ADC*0.3125
+// assign Vbat_DEC = (ADC_Vbat>>4)*5;  // ADC*0.3125
 // raw reconstruction
-assign Ibat_dec = (ADC_Ibat>>3) + (~8'd21+1);
+// assign Ibat_DEC = (ADC_Ibat>>3) + (~8'd21+1);
 
 
 // --- assign for the control of the Resonant Tank ---      
@@ -331,10 +334,10 @@ hybrid_control_mixed #(.mu_z1(32'd86), .mu_z2(32'd90)
 //angle control
 // PHI
 value_control  #(
-   .INTEGER_STEP(5),   // Step size for each button press
-   .INTEGER_MIN (0),   // Minimum count value
-   .INTEGER_MAX (90), // Maximum count value
-   .N_BIT       (8)    // Number of bits of the counter
+   .INTEGER_STEP(5),
+   .INTEGER_MIN (0),
+   .INTEGER_MAX (90),
+   .N_BIT       (8) 
 ) phi_control (
    .i_CLK(clk_100M),
    .i_RST(button[0]),
@@ -407,20 +410,23 @@ counter_up counter_up_inst_Vg    (
 );
 
 
-// Numeric conversion
-hex2seg_couple Ibat2display(
-   .o_SEG(SEG_Ibat),
-   .i_hex(ADC_Ibat),
-   .i_DP(2'b11)
+// +++ RECTIFIER DEBUG +++
+sensing_Ibat sensing_Ibat_inst(
+   .Ibat_ADC(ADC_Ibat),
+   .Ibat_DEC(Ibat_DEC),
+   .SEG_HEX(SEG_Ibat_HEX),
+   .SEG_DEC(SEG_Ibat_DEC)
 );
 
-hex2seg_couple Vbat2display(
-   .o_SEG(SEG_Vbat),
-   .i_hex(ADC_Vbat),
-   .i_DP(2'b11)
+sensing_Vbat sensing_Vbat_inst(
+   .Vbat_ADC(ADC_Vbat),
+   .Vbat_DEC(Vbat_DEC),
+   .SEG_HEX(SEG_Vbat_HEX),
+   .SEG_DEC(SEG_Vbat_DEC)
 );
 
-// ADC: acquire data from ADC when available
+// +++ ADC +++
+// acquire data from ADC when available
 always @(posedge ADA_DCO) begin
    ADC_A    = ~ADA_DATA+14'b1;
    DAA_copy = ~ADA_DATA+14'b1 + 14'd8191;
@@ -439,43 +445,97 @@ always @(posedge ADC_BAT_I_EOC) begin
    ADC_Ibat    = ADC_BAT_I;
 end
 
-// choose the mode of the controller
+// +++ CONTROLLER MODE +++
+// choose the type of controller
 always  begin
    case (SW[2:1])
       2'b00 : begin // PHI+THETA
-         // if (~SW[3]) begin // phi
-            // SEG0_reg <= digit_0_phi;
-            // SEG1_reg <= digit_1_phi;
-         // end else begin    // theta
-         //    SEG0_reg <= theta_HC[3:0];
-         //    SEG1_reg <= theta_HC[7:4];
-         // end
          MOSFET   <= MOSFET_theta_phi;
       end
       2'b01 : begin  // THETA
-         // SEG0_reg <= digit_0_theta;
-         // SEG1_reg <= digit_1_theta;
          MOSFET   <= MOSFET_theta;
       end
       2'b10 : begin // PHI
-         // SEG0_reg <= digit_0_phi;
-         // SEG1_reg <= digit_1_phi;
          MOSFET   <= MOSFET_phi;
+      end
+      default: begin // shows '--'
+         MOSFET   <= 4'b0;
+      end
+   endcase
+end
+
+// +++ 7-SEGMENTS DISPLAY +++
+// choose what to show on the display
+always  begin
+   case (DSW[7:0])
+      8'b00000001 : begin // PHI
+         SEG0_reg <= digit_0_phi;
+         SEG1_reg <= digit_1_phi;
+      end
+      8'b00000010 : begin // ZVS
+         SEG0_reg <= digit_0_theta;
+         SEG1_reg <= digit_1_theta;
+      end
+      8'b00000100 : begin // DEADTIME
+         SEG0_reg <= digit_0_phi;
+         SEG1_reg <= digit_1_phi;
+      end
+      8'b00001000 : begin // Vbat HEX
+         SEG0_reg <= SEG_Vbat_HEX[ 7:0];
+         SEG1_reg <= SEG_Vbat_HEX[15:8];
+      end
+      8'b00100000 : begin // Ibat HEX
+         SEG0_reg <= SEG_Ibat_HEX[ 7:0];
+         SEG1_reg <= SEG_Ibat_HEX[15:8];
+      end
+      8'b01000000 : begin // Vbat DEC
+         SEG0_reg <= SEG_Vbat_DEC[ 7:0];
+         SEG1_reg <= SEG_Vbat_DEC[15:8];
+      end
+      8'b10000000 : begin // Ibat DEC
+         SEG0_reg <= SEG_Ibat_DEC[ 7:0];
+         SEG1_reg <= SEG_Ibat_DEC[15:8];
       end
       default: begin // shows '--'
          SEG0_reg <= 8'b10111111;
          SEG1_reg <= 8'b10111111;
-         MOSFET   <= 4'b0;
       end
    endcase
-   
 end
-
-
-// always @(posedge clk_main) begin
-//    cnt_startup_reg <= cnt_startup;
-// end
 
 endmodule
 
 
+
+
+// // choose the mode of the controller
+// always  begin
+//    case (SW[2:1])
+//       2'b00 : begin // PHI+THETA
+//          // if (~SW[3]) begin // phi
+//             // SEG0_reg <= digit_0_phi;
+//             // SEG1_reg <= digit_1_phi;
+//          // end else begin    // theta
+//          //    SEG0_reg <= theta_HC[3:0];
+//          //    SEG1_reg <= theta_HC[7:4];
+//          // end
+//          MOSFET   <= MOSFET_theta_phi;
+//       end
+//       2'b01 : begin  // THETA
+//          // SEG0_reg <= digit_0_theta;
+//          // SEG1_reg <= digit_1_theta;
+//          MOSFET   <= MOSFET_theta;
+//       end
+//       2'b10 : begin // PHI
+//          // SEG0_reg <= digit_0_phi;
+//          // SEG1_reg <= digit_1_phi;
+//          MOSFET   <= MOSFET_phi;
+//       end
+//       default: begin // shows '--'
+//          SEG0_reg <= 8'b10111111;
+//          SEG1_reg <= 8'b10111111;
+//          MOSFET   <= 4'b0;
+//       end
+//    endcase
+   
+// end
