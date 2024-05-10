@@ -170,6 +170,14 @@ BUTTON[0] => BUTTON[0].IN1
 BUTTON[1] => BUTTON[1].IN1
 BUTTON[2] => BUTTON[2].IN1
 BUTTON[3] => BUTTON[3].IN1
+DSW[0] => Decoder0.IN7
+DSW[1] => Decoder0.IN6
+DSW[2] => Decoder0.IN5
+DSW[3] => Decoder0.IN4
+DSW[4] => Decoder0.IN3
+DSW[5] => Decoder0.IN2
+DSW[6] => Decoder0.IN1
+DSW[7] => Decoder0.IN0
 LED[0] << <VCC>
 LED[1] << <VCC>
 LED[2] << <VCC>
@@ -106688,7 +106696,58 @@ reset => cnt[6].ACLR
 reset => cnt[7].ACLR
 
 
-|TOP_HybridControl_theta_phi_OL|hex2seg_couple:Ibat2display
+|TOP_HybridControl_theta_phi_OL|sensing_Ibat:sensing_Ibat_inst
+Ibat_ADC[0] => Ibat_ADC[0].IN1
+Ibat_ADC[1] => Ibat_ADC[1].IN1
+Ibat_ADC[2] => Ibat_ADC[2].IN1
+Ibat_ADC[3] => Ibat_ADC[3].IN1
+Ibat_ADC[4] => Ibat_ADC[4].IN1
+Ibat_ADC[5] => Ibat_ADC[5].IN1
+Ibat_ADC[6] => Ibat_ADC[6].IN1
+Ibat_ADC[7] => Ibat_ADC[7].IN1
+Ibat_DEC[0] <= Ibat_DEC[0].DB_MAX_OUTPUT_PORT_TYPE
+Ibat_DEC[1] <= Ibat_DEC[1].DB_MAX_OUTPUT_PORT_TYPE
+Ibat_DEC[2] <= Ibat_DEC[2].DB_MAX_OUTPUT_PORT_TYPE
+Ibat_DEC[3] <= Ibat_DEC[3].DB_MAX_OUTPUT_PORT_TYPE
+Ibat_DEC[4] <= Ibat_DEC[4].DB_MAX_OUTPUT_PORT_TYPE
+Ibat_DEC[5] <= Ibat_DEC[5].DB_MAX_OUTPUT_PORT_TYPE
+Ibat_DEC[6] <= Ibat_DEC[6].DB_MAX_OUTPUT_PORT_TYPE
+Ibat_DEC[7] <= Ibat_DEC[7].DB_MAX_OUTPUT_PORT_TYPE
+SEG_HEX[0] <= hex2seg_couple:IbatHEX2display.o_SEG
+SEG_HEX[1] <= hex2seg_couple:IbatHEX2display.o_SEG
+SEG_HEX[2] <= hex2seg_couple:IbatHEX2display.o_SEG
+SEG_HEX[3] <= hex2seg_couple:IbatHEX2display.o_SEG
+SEG_HEX[4] <= hex2seg_couple:IbatHEX2display.o_SEG
+SEG_HEX[5] <= hex2seg_couple:IbatHEX2display.o_SEG
+SEG_HEX[6] <= hex2seg_couple:IbatHEX2display.o_SEG
+SEG_HEX[7] <= hex2seg_couple:IbatHEX2display.o_SEG
+SEG_HEX[8] <= hex2seg_couple:IbatHEX2display.o_SEG
+SEG_HEX[9] <= hex2seg_couple:IbatHEX2display.o_SEG
+SEG_HEX[10] <= hex2seg_couple:IbatHEX2display.o_SEG
+SEG_HEX[11] <= hex2seg_couple:IbatHEX2display.o_SEG
+SEG_HEX[12] <= hex2seg_couple:IbatHEX2display.o_SEG
+SEG_HEX[13] <= hex2seg_couple:IbatHEX2display.o_SEG
+SEG_HEX[14] <= hex2seg_couple:IbatHEX2display.o_SEG
+SEG_HEX[15] <= hex2seg_couple:IbatHEX2display.o_SEG
+SEG_DEC[0] <= num2seg:num2seg_Ibat.o_SEG
+SEG_DEC[1] <= num2seg:num2seg_Ibat.o_SEG
+SEG_DEC[2] <= num2seg:num2seg_Ibat.o_SEG
+SEG_DEC[3] <= num2seg:num2seg_Ibat.o_SEG
+SEG_DEC[4] <= num2seg:num2seg_Ibat.o_SEG
+SEG_DEC[5] <= num2seg:num2seg_Ibat.o_SEG
+SEG_DEC[6] <= num2seg:num2seg_Ibat.o_SEG
+SEG_DEC[7] <= num2seg:num2seg_Ibat.o_SEG
+SEG_DEC[8] <= num2seg:num2seg_Ibat.o_SEG
+SEG_DEC[9] <= num2seg:num2seg_Ibat.o_SEG
+SEG_DEC[10] <= num2seg:num2seg_Ibat.o_SEG
+SEG_DEC[11] <= num2seg:num2seg_Ibat.o_SEG
+SEG_DEC[12] <= num2seg:num2seg_Ibat.o_SEG
+SEG_DEC[13] <= num2seg:num2seg_Ibat.o_SEG
+SEG_DEC[14] <= num2seg:num2seg_Ibat.o_SEG
+SEG_DEC[15] <= num2seg:num2seg_Ibat.o_SEG
+
+
+|TOP_HybridControl_theta_phi_OL|sensing_Ibat:sensing_Ibat_inst|hex2seg_couple:IbatHEX2display
 o_SEG[0] <= hex2seg:hex2seg_0.o_seg
 o_SEG[1] <= hex2seg:hex2seg_0.o_seg
 o_SEG[2] <= hex2seg:hex2seg_0.o_seg
@@ -106717,7 +106776,7 @@ i_DP[0] => o_SEG[7].DATAIN
 i_DP[1] => o_SEG[15].DATAIN
 
 
-|TOP_HybridControl_theta_phi_OL|hex2seg_couple:Ibat2display|hex2seg:hex2seg_0
+|TOP_HybridControl_theta_phi_OL|sensing_Ibat:sensing_Ibat_inst|hex2seg_couple:IbatHEX2display|hex2seg:hex2seg_0
 o_seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
@@ -106731,7 +106790,7 @@ i_num[2] => Decoder0.IN1
 i_num[3] => Decoder0.IN0
 
 
-|TOP_HybridControl_theta_phi_OL|hex2seg_couple:Ibat2display|hex2seg:hex2seg_1
+|TOP_HybridControl_theta_phi_OL|sensing_Ibat:sensing_Ibat_inst|hex2seg_couple:IbatHEX2display|hex2seg:hex2seg_1
 o_seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
@@ -106745,7 +106804,199 @@ i_num[2] => Decoder0.IN1
 i_num[3] => Decoder0.IN0
 
 
-|TOP_HybridControl_theta_phi_OL|hex2seg_couple:Vbat2display
+|TOP_HybridControl_theta_phi_OL|sensing_Ibat:sensing_Ibat_inst|num2seg:num2seg_Ibat
+o_SEG[0] <= hex2seg:hex2seg_0.o_seg
+o_SEG[1] <= hex2seg:hex2seg_0.o_seg
+o_SEG[2] <= hex2seg:hex2seg_0.o_seg
+o_SEG[3] <= hex2seg:hex2seg_0.o_seg
+o_SEG[4] <= hex2seg:hex2seg_0.o_seg
+o_SEG[5] <= hex2seg:hex2seg_0.o_seg
+o_SEG[6] <= hex2seg:hex2seg_0.o_seg
+o_SEG[7] <= i_DP[0].DB_MAX_OUTPUT_PORT_TYPE
+o_SEG[8] <= hex2seg:hex2seg_1.o_seg
+o_SEG[9] <= hex2seg:hex2seg_1.o_seg
+o_SEG[10] <= hex2seg:hex2seg_1.o_seg
+o_SEG[11] <= hex2seg:hex2seg_1.o_seg
+o_SEG[12] <= hex2seg:hex2seg_1.o_seg
+o_SEG[13] <= hex2seg:hex2seg_1.o_seg
+o_SEG[14] <= hex2seg:hex2seg_1.o_seg
+o_SEG[15] <= i_DP[1].DB_MAX_OUTPUT_PORT_TYPE
+i_num[0] => i_num[0].IN1
+i_num[1] => i_num[1].IN1
+i_num[2] => i_num[2].IN1
+i_num[3] => i_num[3].IN1
+i_num[4] => i_num[4].IN1
+i_num[5] => i_num[5].IN1
+i_num[6] => i_num[6].IN1
+i_num[7] => i_num[7].IN1
+i_DP[0] => o_SEG[7].DATAIN
+i_DP[1] => o_SEG[15].DATAIN
+
+
+|TOP_HybridControl_theta_phi_OL|sensing_Ibat:sensing_Ibat_inst|num2seg:num2seg_Ibat|dec2hex:dec2hex_inst
+o_seg[0] <= str[0].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[1] <= str[1].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[2] <= str[2].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[3] <= str[3].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[4] <= str[4].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[5] <= str[5].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[6] <= str[6].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[7] <= str[7].DB_MAX_OUTPUT_PORT_TYPE
+i_dec[0] => Mux0.IN134
+i_dec[0] => Mux1.IN134
+i_dec[1] => Mux2.IN134
+i_dec[1] => Mux3.IN134
+i_dec[1] => Mux4.IN134
+i_dec[1] => Mux5.IN134
+i_dec[1] => Mux6.IN134
+i_dec[2] => Mux0.IN133
+i_dec[2] => Mux1.IN133
+i_dec[2] => Mux2.IN133
+i_dec[2] => Mux3.IN133
+i_dec[2] => Mux4.IN133
+i_dec[2] => Mux5.IN133
+i_dec[2] => Mux6.IN133
+i_dec[2] => Mux7.IN69
+i_dec[2] => Mux8.IN69
+i_dec[2] => Mux9.IN69
+i_dec[2] => Mux10.IN69
+i_dec[3] => Mux0.IN132
+i_dec[3] => Mux1.IN132
+i_dec[3] => Mux2.IN132
+i_dec[3] => Mux3.IN132
+i_dec[3] => Mux4.IN132
+i_dec[3] => Mux5.IN132
+i_dec[3] => Mux6.IN132
+i_dec[3] => Mux7.IN68
+i_dec[3] => Mux8.IN68
+i_dec[3] => Mux9.IN68
+i_dec[3] => Mux10.IN68
+i_dec[4] => Mux0.IN131
+i_dec[4] => Mux1.IN131
+i_dec[4] => Mux2.IN131
+i_dec[4] => Mux3.IN131
+i_dec[4] => Mux4.IN131
+i_dec[4] => Mux5.IN131
+i_dec[4] => Mux6.IN131
+i_dec[4] => Mux7.IN67
+i_dec[4] => Mux8.IN67
+i_dec[4] => Mux9.IN67
+i_dec[4] => Mux10.IN67
+i_dec[5] => Mux0.IN130
+i_dec[5] => Mux1.IN130
+i_dec[5] => Mux2.IN130
+i_dec[5] => Mux3.IN130
+i_dec[5] => Mux4.IN130
+i_dec[5] => Mux5.IN130
+i_dec[5] => Mux6.IN130
+i_dec[5] => Mux7.IN66
+i_dec[5] => Mux8.IN66
+i_dec[5] => Mux9.IN66
+i_dec[5] => Mux10.IN66
+i_dec[6] => Mux0.IN129
+i_dec[6] => Mux1.IN129
+i_dec[6] => Mux2.IN129
+i_dec[6] => Mux3.IN129
+i_dec[6] => Mux4.IN129
+i_dec[6] => Mux5.IN129
+i_dec[6] => Mux6.IN129
+i_dec[6] => Mux7.IN65
+i_dec[6] => Mux8.IN65
+i_dec[6] => Mux9.IN65
+i_dec[6] => Mux10.IN65
+i_dec[7] => Mux0.IN128
+i_dec[7] => Mux1.IN128
+i_dec[7] => Mux2.IN128
+i_dec[7] => Mux3.IN128
+i_dec[7] => Mux4.IN128
+i_dec[7] => Mux5.IN128
+i_dec[7] => Mux6.IN128
+i_dec[7] => Mux7.IN64
+i_dec[7] => Mux8.IN64
+i_dec[7] => Mux9.IN64
+i_dec[7] => Mux10.IN64
+
+
+|TOP_HybridControl_theta_phi_OL|sensing_Ibat:sensing_Ibat_inst|num2seg:num2seg_Ibat|hex2seg:hex2seg_0
+o_seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+i_num[0] => Decoder0.IN3
+i_num[1] => Decoder0.IN2
+i_num[2] => Decoder0.IN1
+i_num[3] => Decoder0.IN0
+
+
+|TOP_HybridControl_theta_phi_OL|sensing_Ibat:sensing_Ibat_inst|num2seg:num2seg_Ibat|hex2seg:hex2seg_1
+o_seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+i_num[0] => Decoder0.IN3
+i_num[1] => Decoder0.IN2
+i_num[2] => Decoder0.IN1
+i_num[3] => Decoder0.IN0
+
+
+|TOP_HybridControl_theta_phi_OL|sensing_Vbat:sensing_Vbat_inst
+Vbat_ADC[0] => Vbat_ADC[0].IN1
+Vbat_ADC[1] => Vbat_ADC[1].IN1
+Vbat_ADC[2] => Vbat_ADC[2].IN1
+Vbat_ADC[3] => Vbat_ADC[3].IN1
+Vbat_ADC[4] => Vbat_ADC[4].IN1
+Vbat_ADC[5] => Vbat_ADC[5].IN1
+Vbat_ADC[6] => Vbat_ADC[6].IN1
+Vbat_ADC[7] => Vbat_ADC[7].IN1
+Vbat_DEC[0] <= Vbat_DEC[0].DB_MAX_OUTPUT_PORT_TYPE
+Vbat_DEC[1] <= Vbat_DEC[1].DB_MAX_OUTPUT_PORT_TYPE
+Vbat_DEC[2] <= Vbat_DEC[2].DB_MAX_OUTPUT_PORT_TYPE
+Vbat_DEC[3] <= Vbat_DEC[3].DB_MAX_OUTPUT_PORT_TYPE
+Vbat_DEC[4] <= Vbat_DEC[4].DB_MAX_OUTPUT_PORT_TYPE
+Vbat_DEC[5] <= Vbat_DEC[5].DB_MAX_OUTPUT_PORT_TYPE
+Vbat_DEC[6] <= Vbat_DEC[6].DB_MAX_OUTPUT_PORT_TYPE
+Vbat_DEC[7] <= Vbat_DEC[7].DB_MAX_OUTPUT_PORT_TYPE
+SEG_HEX[0] <= hex2seg_couple:VbatHEX2display.o_SEG
+SEG_HEX[1] <= hex2seg_couple:VbatHEX2display.o_SEG
+SEG_HEX[2] <= hex2seg_couple:VbatHEX2display.o_SEG
+SEG_HEX[3] <= hex2seg_couple:VbatHEX2display.o_SEG
+SEG_HEX[4] <= hex2seg_couple:VbatHEX2display.o_SEG
+SEG_HEX[5] <= hex2seg_couple:VbatHEX2display.o_SEG
+SEG_HEX[6] <= hex2seg_couple:VbatHEX2display.o_SEG
+SEG_HEX[7] <= hex2seg_couple:VbatHEX2display.o_SEG
+SEG_HEX[8] <= hex2seg_couple:VbatHEX2display.o_SEG
+SEG_HEX[9] <= hex2seg_couple:VbatHEX2display.o_SEG
+SEG_HEX[10] <= hex2seg_couple:VbatHEX2display.o_SEG
+SEG_HEX[11] <= hex2seg_couple:VbatHEX2display.o_SEG
+SEG_HEX[12] <= hex2seg_couple:VbatHEX2display.o_SEG
+SEG_HEX[13] <= hex2seg_couple:VbatHEX2display.o_SEG
+SEG_HEX[14] <= hex2seg_couple:VbatHEX2display.o_SEG
+SEG_HEX[15] <= hex2seg_couple:VbatHEX2display.o_SEG
+SEG_DEC[0] <= num2seg:num2seg_Vbat.o_SEG
+SEG_DEC[1] <= num2seg:num2seg_Vbat.o_SEG
+SEG_DEC[2] <= num2seg:num2seg_Vbat.o_SEG
+SEG_DEC[3] <= num2seg:num2seg_Vbat.o_SEG
+SEG_DEC[4] <= num2seg:num2seg_Vbat.o_SEG
+SEG_DEC[5] <= num2seg:num2seg_Vbat.o_SEG
+SEG_DEC[6] <= num2seg:num2seg_Vbat.o_SEG
+SEG_DEC[7] <= num2seg:num2seg_Vbat.o_SEG
+SEG_DEC[8] <= num2seg:num2seg_Vbat.o_SEG
+SEG_DEC[9] <= num2seg:num2seg_Vbat.o_SEG
+SEG_DEC[10] <= num2seg:num2seg_Vbat.o_SEG
+SEG_DEC[11] <= num2seg:num2seg_Vbat.o_SEG
+SEG_DEC[12] <= num2seg:num2seg_Vbat.o_SEG
+SEG_DEC[13] <= num2seg:num2seg_Vbat.o_SEG
+SEG_DEC[14] <= num2seg:num2seg_Vbat.o_SEG
+SEG_DEC[15] <= num2seg:num2seg_Vbat.o_SEG
+
+
+|TOP_HybridControl_theta_phi_OL|sensing_Vbat:sensing_Vbat_inst|hex2seg_couple:VbatHEX2display
 o_SEG[0] <= hex2seg:hex2seg_0.o_seg
 o_SEG[1] <= hex2seg:hex2seg_0.o_seg
 o_SEG[2] <= hex2seg:hex2seg_0.o_seg
@@ -106774,7 +107025,7 @@ i_DP[0] => o_SEG[7].DATAIN
 i_DP[1] => o_SEG[15].DATAIN
 
 
-|TOP_HybridControl_theta_phi_OL|hex2seg_couple:Vbat2display|hex2seg:hex2seg_0
+|TOP_HybridControl_theta_phi_OL|sensing_Vbat:sensing_Vbat_inst|hex2seg_couple:VbatHEX2display|hex2seg:hex2seg_0
 o_seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
@@ -106788,7 +107039,148 @@ i_num[2] => Decoder0.IN1
 i_num[3] => Decoder0.IN0
 
 
-|TOP_HybridControl_theta_phi_OL|hex2seg_couple:Vbat2display|hex2seg:hex2seg_1
+|TOP_HybridControl_theta_phi_OL|sensing_Vbat:sensing_Vbat_inst|hex2seg_couple:VbatHEX2display|hex2seg:hex2seg_1
+o_seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+i_num[0] => Decoder0.IN3
+i_num[1] => Decoder0.IN2
+i_num[2] => Decoder0.IN1
+i_num[3] => Decoder0.IN0
+
+
+|TOP_HybridControl_theta_phi_OL|sensing_Vbat:sensing_Vbat_inst|num2seg:num2seg_Vbat
+o_SEG[0] <= hex2seg:hex2seg_0.o_seg
+o_SEG[1] <= hex2seg:hex2seg_0.o_seg
+o_SEG[2] <= hex2seg:hex2seg_0.o_seg
+o_SEG[3] <= hex2seg:hex2seg_0.o_seg
+o_SEG[4] <= hex2seg:hex2seg_0.o_seg
+o_SEG[5] <= hex2seg:hex2seg_0.o_seg
+o_SEG[6] <= hex2seg:hex2seg_0.o_seg
+o_SEG[7] <= i_DP[0].DB_MAX_OUTPUT_PORT_TYPE
+o_SEG[8] <= hex2seg:hex2seg_1.o_seg
+o_SEG[9] <= hex2seg:hex2seg_1.o_seg
+o_SEG[10] <= hex2seg:hex2seg_1.o_seg
+o_SEG[11] <= hex2seg:hex2seg_1.o_seg
+o_SEG[12] <= hex2seg:hex2seg_1.o_seg
+o_SEG[13] <= hex2seg:hex2seg_1.o_seg
+o_SEG[14] <= hex2seg:hex2seg_1.o_seg
+o_SEG[15] <= i_DP[1].DB_MAX_OUTPUT_PORT_TYPE
+i_num[0] => i_num[0].IN1
+i_num[1] => i_num[1].IN1
+i_num[2] => i_num[2].IN1
+i_num[3] => i_num[3].IN1
+i_num[4] => i_num[4].IN1
+i_num[5] => i_num[5].IN1
+i_num[6] => i_num[6].IN1
+i_num[7] => i_num[7].IN1
+i_DP[0] => o_SEG[7].DATAIN
+i_DP[1] => o_SEG[15].DATAIN
+
+
+|TOP_HybridControl_theta_phi_OL|sensing_Vbat:sensing_Vbat_inst|num2seg:num2seg_Vbat|dec2hex:dec2hex_inst
+o_seg[0] <= str[0].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[1] <= str[1].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[2] <= str[2].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[3] <= str[3].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[4] <= str[4].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[5] <= str[5].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[6] <= str[6].DB_MAX_OUTPUT_PORT_TYPE
+o_seg[7] <= str[7].DB_MAX_OUTPUT_PORT_TYPE
+i_dec[0] => Mux0.IN134
+i_dec[0] => Mux1.IN134
+i_dec[1] => Mux2.IN134
+i_dec[1] => Mux3.IN134
+i_dec[1] => Mux4.IN134
+i_dec[1] => Mux5.IN134
+i_dec[1] => Mux6.IN134
+i_dec[2] => Mux0.IN133
+i_dec[2] => Mux1.IN133
+i_dec[2] => Mux2.IN133
+i_dec[2] => Mux3.IN133
+i_dec[2] => Mux4.IN133
+i_dec[2] => Mux5.IN133
+i_dec[2] => Mux6.IN133
+i_dec[2] => Mux7.IN69
+i_dec[2] => Mux8.IN69
+i_dec[2] => Mux9.IN69
+i_dec[2] => Mux10.IN69
+i_dec[3] => Mux0.IN132
+i_dec[3] => Mux1.IN132
+i_dec[3] => Mux2.IN132
+i_dec[3] => Mux3.IN132
+i_dec[3] => Mux4.IN132
+i_dec[3] => Mux5.IN132
+i_dec[3] => Mux6.IN132
+i_dec[3] => Mux7.IN68
+i_dec[3] => Mux8.IN68
+i_dec[3] => Mux9.IN68
+i_dec[3] => Mux10.IN68
+i_dec[4] => Mux0.IN131
+i_dec[4] => Mux1.IN131
+i_dec[4] => Mux2.IN131
+i_dec[4] => Mux3.IN131
+i_dec[4] => Mux4.IN131
+i_dec[4] => Mux5.IN131
+i_dec[4] => Mux6.IN131
+i_dec[4] => Mux7.IN67
+i_dec[4] => Mux8.IN67
+i_dec[4] => Mux9.IN67
+i_dec[4] => Mux10.IN67
+i_dec[5] => Mux0.IN130
+i_dec[5] => Mux1.IN130
+i_dec[5] => Mux2.IN130
+i_dec[5] => Mux3.IN130
+i_dec[5] => Mux4.IN130
+i_dec[5] => Mux5.IN130
+i_dec[5] => Mux6.IN130
+i_dec[5] => Mux7.IN66
+i_dec[5] => Mux8.IN66
+i_dec[5] => Mux9.IN66
+i_dec[5] => Mux10.IN66
+i_dec[6] => Mux0.IN129
+i_dec[6] => Mux1.IN129
+i_dec[6] => Mux2.IN129
+i_dec[6] => Mux3.IN129
+i_dec[6] => Mux4.IN129
+i_dec[6] => Mux5.IN129
+i_dec[6] => Mux6.IN129
+i_dec[6] => Mux7.IN65
+i_dec[6] => Mux8.IN65
+i_dec[6] => Mux9.IN65
+i_dec[6] => Mux10.IN65
+i_dec[7] => Mux0.IN128
+i_dec[7] => Mux1.IN128
+i_dec[7] => Mux2.IN128
+i_dec[7] => Mux3.IN128
+i_dec[7] => Mux4.IN128
+i_dec[7] => Mux5.IN128
+i_dec[7] => Mux6.IN128
+i_dec[7] => Mux7.IN64
+i_dec[7] => Mux8.IN64
+i_dec[7] => Mux9.IN64
+i_dec[7] => Mux10.IN64
+
+
+|TOP_HybridControl_theta_phi_OL|sensing_Vbat:sensing_Vbat_inst|num2seg:num2seg_Vbat|hex2seg:hex2seg_0
+o_seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+o_seg[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+i_num[0] => Decoder0.IN3
+i_num[1] => Decoder0.IN2
+i_num[2] => Decoder0.IN1
+i_num[3] => Decoder0.IN0
+
+
+|TOP_HybridControl_theta_phi_OL|sensing_Vbat:sensing_Vbat_inst|num2seg:num2seg_Vbat|hex2seg:hex2seg_1
 o_seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE

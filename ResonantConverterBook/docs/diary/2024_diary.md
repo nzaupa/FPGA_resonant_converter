@@ -37,8 +37,28 @@ During April, I mostly focus my self on the writing of the thesis. Trying to har
 It seems better by taking the zero zone as half plane. At least we cover the case phi=0.
 In the end, using regularization, the controller in working with the state-machine in $x$
 
-8 May - Improve the code for controlling values, now it goes up and down, thanks to ChatGPT:it was enough to manually recognize a button without going through the `posedge`/`negedge`. 
-Characterization of the sensor for the current in the output of the rectifier: 
+8 May - Improve the code for controlling values, now it goes up and down, thanks to ChatGPT: tip -> it was enough to manually recognize a button without going through the `posedge`/`negedge`. 
+Characterization of the sensor for the current in the output of the rectifier: it takes a lot of time. Measure are done to first evaluate the curve of the sensor and then to link the sensed value to the digital value. When all the chain is known we can compensate for it and show a semi-exact representation.
+The same thing is done for the voltage sensor.
+The current sensor has an offset and it is pretty much linear.
+Instead, the voltage sensor seems to have a slight distortion.
+
+9 May - While testing the current sensor, the characteristic current-voltage remains constant; what does not remain constant in the HEX lecture in the FPGA. It changes every time... I have no idea of the reason. It has been a long day. The test for the output sensor have been done by connecting the power supply directly to the rectifier, without using the bridge.
+Many things have been done
+ - on the current sensor, change the OPAMP from follower to differential: connect the ground to the Vref point. In this way we are removing the offset and we have a wider range for the current. With the current resistor we can read up to 20A more or less.
+ - on the voltage sensor I decrease the range of the input by changing the resistor of the voltage divider from 120 to 180 Ohm. We can go up to 60V before the input of the ACPL reaches the limit value of 200mV.
+ - input/output curves have been obtained.
+   - voltage: it is linear, but the ACPL seems to have a gain of 4.65 instead of 8.2 (from datasheet). The slop of the line is more or less 3
+   - current: now it is linear, without the differential-opamp it seems that the turn ratio N was 0.5 but indeed it is 1. The inclination of the interpolating line is more or less 15.
+Now, also the displays showing the decimal value are working. The wire connecting the blocks was not declared, but also I had a module doing the job `num2seg` that was not used.
+We could tune in a finer way the sensor. Now it is not that bad, we have an error in the order of 0.2A and 2-7V (higher with higher voltage).
+
+10 May - First thing in the morning... wake up late so that I can not go to the swimming pool :|. Apart from the jokes, I've connected back the H-bridge and all is still working. I had the $22.8\;\Omega$ load connected, I've been able to go down until 500mA more or less at the output with $\varphi=50$.
+We can clearly see that also at the resonance the waveform is no more sinusoidal since the quality factor is low.
+
+
+
+
 
 
 

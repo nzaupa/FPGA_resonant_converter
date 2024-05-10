@@ -193,10 +193,10 @@ assign   LED[7]   = ~1'b0;
 // RECTIFIER: show the values on 7seg display and LEDs
 // assign LED = SW[3] ? ~ADC_Vbat : ~ADC_Ibat;
 
-assign SEG0 = SEG0_reg;
-assign SEG1 = SEG1_reg;
-// assign SEG0 = ~sw[3] ? SEG0_reg : SEG_Ibat[7:0]; //SEG0_reg;
-// assign SEG1 = ~sw[3] ? SEG1_reg : SEG_Ibat[15:8]; //SEG1_reg;
+// assign SEG0 = SEG0_reg;
+// assign SEG1 = SEG1_reg;
+assign SEG0 = ~sw[3] ? digit_0_phi : SEG0_reg; //SEG0_reg;
+assign SEG1 = ~sw[3] ? digit_1_phi : SEG1_reg; //SEG1_reg;
 
 // connected to GPIO1 and available on the rectifier board
 // all are available on the 2×6 connector, 6 of them are connected to LEDs
@@ -243,11 +243,6 @@ assign Q[3] = ( (Q4 & ON & VG) | (1'b1 & ~ON) | (1'b1 & ON & (~VG)) ) & ENABLE &
 // start-up counter - charge the bootstrap capacitor by activating Q3 and Q4 (low side)
 assign ON = cnt_startup > 8'd10; //10us to charge bootstrap capacitor
 assign VG = cnt_Vg      > 8'd16; //10us to charge bootstrap capacitor
-
-// --- assign for the ADCs in the rectifier ---      
-// assign Vbat_DEC = (ADC_Vbat>>4)*5;  // ADC*0.3125
-// raw reconstruction
-// assign Ibat_DEC = (ADC_Ibat>>3) + (~8'd21+1);
 
 
 // --- assign for the control of the Resonant Tank ---      
@@ -437,18 +432,18 @@ always @(posedge ADB_DCO) begin
    DAB_copy = ~ADB_DATA+14'b1 + 14'd8191;
 end
 
-always @(posedge ADC_BAT_V_EOC) begin
+always @(negedge ADC_BAT_V_EOC) begin
    ADC_Vbat    = ADC_BAT_V;
 end
 
-always @(posedge ADC_BAT_I_EOC) begin
+always @(negedge ADC_BAT_I_EOC) begin
    ADC_Ibat    = ADC_BAT_I;
 end
 
 // +++ CONTROLLER MODE +++
 // choose the type of controller
 always  begin
-   case (SW[2:1])
+   case (sw[2:1])
       2'b00 : begin // PHI+THETA
          MOSFET   <= MOSFET_theta_phi;
       end
@@ -480,7 +475,7 @@ always  begin
          SEG0_reg <= digit_0_phi;
          SEG1_reg <= digit_1_phi;
       end
-      8'b00001000 : begin // Vbat HEX
+      8'b00010000 : begin // Vbat HEX
          SEG0_reg <= SEG_Vbat_HEX[ 7:0];
          SEG1_reg <= SEG_Vbat_HEX[15:8];
       end

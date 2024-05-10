@@ -32,9 +32,12 @@ module sensing_Ibat(
    output [15:0] SEG_DEC
 );
 
-// comupute current value in dA (10^-1)
-assign Ibat_DEC = ((Ibat_ADC + (~8'd154+1)) * 8'd23)<<4;
-// assign Ibat_DEC = (ADC_Ibat>>3) + (~8'd21+1);
+// wire [7:0] Ibat_conversion;
+
+// compute current value in dA (10^-1)
+// assign Ibat_DEC = ((Ibat_ADC + (~8'd152+1)) * 31'd23)>>4;
+assign Ibat_DEC = (Ibat_ADC*32'd10) >>4;
+// assign Ibat_DEC = Ibat_conversion;
 
 
 // display the hexadecimal encoding
@@ -47,17 +50,22 @@ hex2seg_couple IbatHEX2display(
 
 
 // display the decimal value with the digital point
-// DEC -> HEX
-dec2hex dec2hex_inst (
-   .o_seg(Ibat_HEX),
-   .i_dec(Ibat_DEC)
-);
-// HEX -> SEG
-hex2seg_couple IbatDEC2display(
+num2seg num2seg_Ibat (
    .o_SEG(SEG_DEC),
-   .i_hex(Ibat_HEX),
+   .i_num(Ibat_DEC),
    .i_DP(2'b01)
 );
+// // DEC -> HEX
+// dec2hex dec2hex_inst (
+//    .o_seg(Ibat_HEX),
+//    .i_dec(Ibat_DEC)
+// );
+// // HEX -> SEG
+// hex2seg_couple IbatDEC2display(
+//    .o_SEG(SEG_DEC),
+//    .i_hex(Ibat_HEX),
+//    .i_DP(2'b01)
+// );
 
 endmodule
 
@@ -78,10 +86,18 @@ module sensing_Vbat(
    output [15:0] SEG_DEC
 );
 
-// comupute current value in dA (10^-1)
-assign Vbat_DEC = Vbat_ADC* 8'd23;
-// assign Ibat_DEC = (ADC_Ibat>>3) + (~8'd21+1);
+// wire [31:0] test, Vbat_32;
+// wire [7:0]  test_out;
 
+// compute current value in dA (10^-1)
+// assign Vbat_DEC = (Vbat_ADC * 32'd5)>>3;
+assign Vbat_DEC = (Vbat_ADC * 32'd11)>>5;
+// assign Ibat_DEC = (ADC_Ibat>>3) + (~8'd21+1);
+// assign Vbat_32 = {24'b0,Vbat_ADC};
+
+// assign test = (Vbat_32 * 32'd11);
+// assign test_out = test[12:5];
+// assign Vbat_DEC = test_out;
 
 // display the hexadecimal encoding
 // BIN -> SEG
@@ -94,16 +110,22 @@ hex2seg_couple VbatHEX2display(
 
 // display the decimal value with the digital point
 // DEC -> HEX
-dec2hex dec2hex_inst (
-   .o_seg(Vbat_HEX),
-   .i_dec(Vbat_DEC)
-);
-// HEX -> SEG
-hex2seg_couple VbatDEC2display(
+num2seg num2seg_Vbat (
    .o_SEG(SEG_DEC),
-   .i_hex(Vbat_HEX),
+   .i_num(Vbat_DEC),
    .i_DP(2'b11)
 );
+// dec2hex dec2hex_inst (
+//    .o_seg(Vbat_HEX),
+//    .i_dec(test[12:5])
+// );
+// // HEX -> SEG
+// hex2seg_couple VbatDEC2display(
+//    .o_SEG(SEG_DEC),
+//    // .i_hex(Vbat_DEC),
+//    .i_hex(Vbat_HEX),
+//    .i_DP(2'b11)
+// );
 
 endmodule
 

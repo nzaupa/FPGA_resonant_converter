@@ -173,11 +173,11 @@ VCCT_R                       : AB5       : power  :                   : 1.1V    
 OSC                          : AB6       : input  : 2.5 V             :         : 6C        : Y              
 GND                          : AB7       : gnd    :                   :         :           :                
 VCC                          : AB8       : power  :                   : 0.9V    :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AB9       :        :                   :         : 5C        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AB10      :        :                   :         : 5C        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AB11      :        :                   :         : 5C        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AB12      :        :                   :         : 5C        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AB13      :        :                   :         : 5C        :                
+DSW[4]                       : AB9       : input  : 2.5 V             :         : 5C        : Y              
+DSW[3]                       : AB10      : input  : 2.5 V             :         : 5C        : Y              
+DSW[2]                       : AB11      : input  : 2.5 V             :         : 5C        : Y              
+DSW[1]                       : AB12      : input  : 2.5 V             :         : 5C        : Y              
+DSW[0]                       : AB13      : input  : 2.5 V             :         : 5C        : Y              
 VCC                          : AB14      : power  :                   : 0.9V    :           :                
 GND                          : AB15      : gnd    :                   :         :           :                
 VCC                          : AB16      : power  :                   : 0.9V    :           :                
@@ -211,7 +211,7 @@ GND                          : AC4       : gnd    :                   :         
 GND+                         : AC5       :        :                   :         : 5C        :                
 GND+                         : AC6       :        :                   :         : 5C        :                
 GND                          : AC7       : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AC8       :        :                   :         : 5C        :                
+DSW[5]                       : AC8       : input  : 2.5 V             :         : 5C        : Y              
 GND                          : AC9       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AC10      :        :                   :         : 5C        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AC11      :        :                   :         : 5C        :                
@@ -365,7 +365,7 @@ GXB_GND*                     : AG2       :        :                   :         
 GND                          : AG3       : gnd    :                   :         :           :                
 GND                          : AG4       : gnd    :                   :         :           :                
 BUTTON[1]                    : AG5       : input  : 2.5 V             :         : 5C        : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AG6       :        :                   :         : 5C        :                
+DSW[7]                       : AG6       : input  : 2.5 V             :         : 5C        : Y              
 BUTTON[2]                    : AG7       : input  : 2.5 V             :         : 5C        : Y              
 BUTTON[3]                    : AG8       : input  : 2.5 V             :         : 5C        : Y              
 GPIO0[28]                    : AG9       : output : 2.5 V             :         : 5C        : Y              
@@ -404,7 +404,7 @@ GND                          : AH2       : gnd    :                   :         
 GXB_NC                       : AH3       :        :                   :         : QR0       :                
 GXB_NC                       : AH4       :        :                   :         : QR0       :                
 BUTTON[0]                    : AH5       : input  : 2.5 V             :         : 5C        : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AH6       :        :                   :         : 5C        :                
+DSW[6]                       : AH6       : input  : 2.5 V             :         : 5C        : Y              
 VCCIO5C                      : AH7       : power  :                   : 2.5V    : 5C        :                
 Q[0]                         : AH8       : output : 2.5 V             :         : 5C        : Y              
 ADC_BAT_I[3]                 : AH9       : input  : 2.5 V             :         : 5C        : Y              

@@ -321,7 +321,7 @@ module num2seg (
    input   [1:0] i_DP
 );
 
-reg [7:0] num_hex;
+wire [7:0] num_hex;
 assign o_SEG[7] = i_DP[0];
 assign o_SEG[15] = i_DP[1];
 

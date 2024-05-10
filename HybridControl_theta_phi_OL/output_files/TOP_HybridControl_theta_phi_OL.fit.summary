@@ -1,4 +1,4 @@
-Fitter Status : Successful - Wed May  8 15:07:53 2024
+Fitter Status : Successful - Thu May  9 18:39:13 2024
 Quartus Prime Version : 21.1.0 Build 842 10/21/2021 SJ Standard Edition
 Revision Name : TOP_HybridControl_theta_phi_OL
 Top-level Entity Name : TOP_HybridControl_theta_phi_OL
@@ -6,11 +6,11 @@ Family : Stratix IV
 Device : EP4SGX230KF40C2
 Timing Models : Final
 Logic utilization : 2 %
-    Combinational ALUTs : 3,272 / 182,400 ( 2 % )
+    Combinational ALUTs : 3,457 / 182,400 ( 2 % )
     Memory ALUTs : 0 / 91,200 ( 0 % )
-    Dedicated logic registers : 452 / 182,400 ( < 1 % )
-Total registers : 452
-Total pins : 177 / 888 ( 20 % )
+    Dedicated logic registers : 526 / 182,400 ( < 1 % )
+Total registers : 526
+Total pins : 185 / 888 ( 21 % )
 Total virtual pins : 0
 Total block memory bits : 0 / 14,625,792 ( 0 % )
 DSP block 18-bit elements : 48 / 1,288 ( 4 % )
