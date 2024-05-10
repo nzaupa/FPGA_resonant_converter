@@ -221,10 +221,14 @@ assign  DA = debug[20:7];
 
    // connected to GPIO0
    // debug for Ci signals
-   assign GPIO0[10] = debug[4]; // D8 
-   assign GPIO0[12] = debug[5]; // D9 
-   assign GPIO0[14] = debug[6]; // D10
-   assign GPIO0[16] = debug[7]; // D11
+   assign GPIO0[10] = ADC_B[13]; // D8   iC sign
+   assign GPIO0[12] = debug[2]; // D9    S0
+   assign GPIO0[14] = debug[3]; // D10   S1
+   assign GPIO0[16] = debug[0]; // D11   b0
+   // assign GPIO0[10] = debug[4]; // D8 
+   // assign GPIO0[12] = debug[5]; // D9 
+   // assign GPIO0[14] = debug[6]; // D10
+   // assign GPIO0[16] = debug[7]; // D11
 
    // ##### assign for DEBUG END #####
 
@@ -287,7 +291,7 @@ hybrid_control_theta hybrid_control_theta_inst (
 );
 
 // control law PHI
-hybrid_control_phi hybrid_control_inst (
+hybrid_control_phi_x hybrid_control_inst (
    .o_MOSFET( MOSFET_phi ),  // control signal for the four MOSFETs
    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
    .o_debug( ),    // ? random currently

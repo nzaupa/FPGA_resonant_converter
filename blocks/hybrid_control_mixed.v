@@ -28,7 +28,6 @@
 module hybrid_control_mixed #(
    parameter mu_z1 = 32'd86,
    parameter mu_z2 = 32'd90
-   // parameter mu_Vg = 32'd312000
 )(
    output         [3:0]  o_MOSFET,    // command signal for the MOSFETs
    output         [1:0]  o_sigma,     // output switching variable
@@ -80,17 +79,15 @@ wire signed [31:0]  sphi;  // sin( theta-phi )
    assign b0 = counter[0];
    assign b1 = counter[1];
 
-   // assign C0 = ( S0[31]) & ( S1[31]);  // zone where sigma = +1
-   // // assign C1 = (~S0[31]) & ( S1[31]);  // zone where sigma =  0
-   // assign C1 = ~S0[31];  // zone where sigma =  0
-   // assign C2 = (~S0[31]) & (~S1[31]);  // zone where sigma = -1
-   // // assign C3 = ( S0[31]) & (~S1[31]);  // zone where sigma =  0
-   // assign C3 = S0[31];  // zone where sigma =  0
+   // assign C0 = ( S[0]) & ( S[1]);  // zone where sigma = +1
+   // assign C1 =  ~S[0];  // zone where sigma =  0
+   // assign C2 = (~S[0]) & (~S[1]);  // zone where sigma = -1
+   // assign C3 =   S[0];  // zone where sigma =  0
 
-   assign C0 = ( S[0]) & ( S[1]);  // zone where sigma = +1
-   assign C1 =  ~S[0];  // zone where sigma =  0
-   assign C2 = (~S[0]) & (~S[1]);  // zone where sigma = -1
-   assign C3 =   S[0];  // zone where sigma =  0
+   assign C0 =  S[1];  // zone where sigma = +1
+   assign C1 = ~S[0];  // zone where sigma =  0
+   assign C2 = ~S[1];  // zone where sigma = -1
+   assign C3 =  S[0];  // zone where sigma =  0
 
    assign CLK_jump_OR = ( C1 & (~b1) & (~b0) ) | 
                         ( C2 & (~b1) &   b0  ) | 
@@ -119,10 +116,7 @@ wire signed [31:0]  sphi;  // sin( theta-phi )
    assign o_sigma = sigma[1:0];
 
    assign inc = (i_phi == 0) ? 2'b10 : 2'b01;
-   // assign inc = 2'b01;
 
-   // assign shift = 32'b1;
-   // assign shift = (i_phi==0) ? 32'b0 : 32'b1;
 
 // function instantiation
 trigonometry_deg trigonometry_ZVS_inst (
@@ -135,7 +129,6 @@ trigonometry_deg trigonometry_phi_ZVS_inst (
    .o_cos(cphi),          // cosine of the input
    .o_sin(sphi),          // sine of the input
    .i_theta(i_ZVS+(i_phi<<1))  // input angle "ZVS+2*phi"
-   // .i_theta(i_ZVS+i_phi)  // input angle "ZVS+phi"   // The shift was giving problems
 );
 
 // regularize the sign from the switching surface

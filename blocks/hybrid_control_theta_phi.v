@@ -18,7 +18,8 @@
 //  + sigma is an internal state variable
 //  + input vC and iC are signed 14bit except the
 //    angle which is 32bit signed
-//------------------------------------------------------------
+//
+// it is implemented in the z-plane ------------------------------------------------------------
 
 `timescale 1 ns / 1 ps
 
