@@ -101,22 +101,20 @@ wire     clk_100k;
 // signal for the MOSFETs
 wire       ENABLE, ALERT;
 wire       Q1, Q2, Q3, Q4;
+wire [3:0] Q100, Q200, Q400, Q600;  // different MOSFET control with different deadtimes (in ns)
+reg  [3:0] Qout;
 wire [3:0] MOSFET_theta;
 wire [3:0] MOSFET_phi;
 wire [3:0] MOSFET_theta_phi;
 reg  [3:0] MOSFET;
 
 // ADCs and DACs
-reg signed [13:0] ADC_A;
-reg signed [13:0] ADC_B;
-reg        [13:0] DAA_copy;
-reg        [13:0] DAB_copy;
+reg signed [13:0] ADC_A, ADC_B;
+reg        [13:0] DAA_copy, DAB_copy;
 
 // rectifier
-reg  [7:0]  ADC_Vbat;
-reg  [7:0]  ADC_Ibat;
-wire [7:0]  Vbat_DEC;
-wire [7:0]  Ibat_DEC;
+reg  [7:0]  ADC_Vbat, ADC_Ibat;
+wire [7:0]  Vbat_DEC, Ibat_DEC;
 wire [15:0] SEG_Vbat_HEX, SEG_Ibat_HEX, SEG_Vbat_DEC, SEG_Ibat_DEC;
 
 
@@ -131,6 +129,7 @@ wire  [31:0] debug;
 wire  [1:0]  test;
 
 wire [31:0] phi;
+wire [31:0] delta;
 wire [31:0] theta;
 wire [31:0] phi_HC;
 wire [31:0] theta_HC;
@@ -141,7 +140,8 @@ wire [1:0] sigma; // internal state
 reg  [7:0] SEG0_reg, SEG1_reg;
 
 wire [7:0] digit_0_theta, digit_1_theta, 
-           digit_0_phi,   digit_1_phi;
+           digit_0_phi,   digit_1_phi,
+           digit_0_delta, digit_1_delta;
 wire [3:0] button, sw;   // debounce buttons and switch
 // wire [1:0] sw2;
 // assign GPIO0[4:3] = sw2;
@@ -181,56 +181,58 @@ assign  DA = debug[20:7];
 // ##### assign for DEBUG #####
 // ############################
 
-// LED for DEBUG on the FPGA card [0==ON]
-assign   LED[0]   = ~1'b0;
-assign   LED[1]   = ~1'b0;
-assign   LED[2]   = ~1'b0;
-assign   LED[3]   = ~1'b0;
-assign   LED[4]   = ~1'b0;
-assign   LED[5]   = ~1'b0;
-assign   LED[6]   = ~1'b0;
-assign   LED[7]   = ~1'b0;
-// RECTIFIER: show the values on 7seg display and LEDs
-// assign LED = SW[3] ? ~ADC_Vbat : ~ADC_Ibat;
+   // LED for DEBUG on the FPGA card [0==ON]
+   assign   LED[0]   = ~1'b0;
+   assign   LED[1]   = ~1'b0;
+   assign   LED[2]   = ~1'b0;
+   assign   LED[3]   = ~1'b0;
+   assign   LED[4]   = ~1'b0;
+   assign   LED[5]   = ~1'b0;
+   assign   LED[6]   = ~1'b0;
+   assign   LED[7]   = ~1'b0;
+   // RECTIFIER: show the values on 7seg display and LEDs
+   // assign LED = SW[3] ? ~ADC_Vbat : ~ADC_Ibat;
 
-// assign SEG0 = SEG0_reg;
-// assign SEG1 = SEG1_reg;
-assign SEG0 = ~sw[3] ? digit_0_phi : SEG0_reg; //SEG0_reg;
-assign SEG1 = ~sw[3] ? digit_1_phi : SEG1_reg; //SEG1_reg;
+   // assign SEG0 = SEG0_reg;
+   // assign SEG1 = SEG1_reg;
+   assign SEG0 = ~sw[3] ? digit_0_phi : SEG0_reg; //SEG0_reg;
+   assign SEG1 = ~sw[3] ? digit_1_phi : SEG1_reg; //SEG1_reg;
 
-// connected to GPIO1 and available on the rectifier board
-// all are available on the 2×6 connector, 6 of them are connected to LEDs
-//CO: 22/12/23 update ex bits
-assign EX[0]  =  SW[3];      // over voltage
-assign EX[1]  = ~SW[3];      // over current
-assign EX[2]  = ENABLE;      // H-bridge ENABLE
-assign EX[3]  = debug[2];    // Pin 4 D0
-assign EX[4]  = debug[3];    // Pin 5 D1
-assign EX[5]  = debug[8]; //VG;          // Pin 6 D2  M1_delayed
-assign EX[6]  = debug[9]; //ON;          // Pin 7 D3  M1
-assign EX[7]  = test[0];     // Pin 8 D4  b0
-assign EX[8]  = test[1];     // Pin 9 D5  b1
-assign EX[9]  = debug[14];   // Pin 10 ?
-assign EX[10] = debug[15];   // Pin 11 D6
-assign EX[11] = ENABLE;      // Pin 12 D7  (and LED 1)
+   // connected to GPIO1 and available on the rectifier board
+   // all are available on the 2×6 connector, 6 of them are connected to LEDs
+   //CO: 22/12/23 update ex bits
+   assign EX[0]  =  SW[3];      // over voltage
+   assign EX[1]  = ~SW[3];      // over current
+   assign EX[2]  = ENABLE;      // H-bridge ENABLE
+   assign EX[3]  = debug[2];    // Pin 4 D0
+   assign EX[4]  = debug[3];    // Pin 5 D1
+   assign EX[5]  = debug[8]; //VG;          // Pin 6 D2  M1_delayed
+   assign EX[6]  = debug[9]; //ON;          // Pin 7 D3  M1
+   assign EX[7]  = test[0];     // Pin 8 D4  b0
+   assign EX[8]  = test[1];     // Pin 9 D5  b1
+   assign EX[9]  = debug[14];   // Pin 10 ?
+   assign EX[10] = debug[15];   // Pin 11 D6
+   assign EX[11] = ENABLE;      // Pin 12 D7  (and LED 1)
 
-assign GPIO0[18] = Q[0]; //Q1;   // D12
-assign GPIO0[20] = Q[1]; //Q2;   // D13
-assign GPIO0[22] = Q[2]; //Q3;   // D14
-assign GPIO0[24] = Q[3]; //Q4;   // D15
+   assign GPIO0[18] = Q[0]; //Q1;   // D12
+   assign GPIO0[20] = Q[1]; //Q2;   // D13
+   assign GPIO0[22] = Q[2]; //Q3;   // D14
+   assign GPIO0[24] = Q[3]; //Q4;   // D15
 
-// connected to GPIO0
-// debug for Ci signals
-assign GPIO0[10] = debug[4]; // D8 
-assign GPIO0[12] = debug[5]; // D9 
-assign GPIO0[14] = debug[6]; // D10
-assign GPIO0[16] = debug[7]; // D11
+   // connected to GPIO0
+   // debug for Ci signals
+   assign GPIO0[10] = debug[4]; // D8 
+   assign GPIO0[12] = debug[5]; // D9 
+   assign GPIO0[14] = debug[6]; // D10
+   assign GPIO0[16] = debug[7]; // D11
 
-// ##### assign for DEBUG END #####
+   // ##### assign for DEBUG END #####
 
 // --- assign for the H-bridge ---      
 // check if there is a short circuit
 assign ALERT   = ~((Q1 & Q3) | (Q2 & Q4));
+
+assign {Q4, Q3, Q2, Q1} = Qout;
 
 //                  normal        boot-strap      force sigma=1
 assign Q[0] = ( (Q1 & ON & VG) | (1'b0 & ~ON) | (1'b1 & ON & (~VG)) ) & ENABLE & ALERT;
@@ -242,7 +244,7 @@ assign Q[3] = ( (Q4 & ON & VG) | (1'b1 & ~ON) | (1'b1 & ON & (~VG)) ) & ENABLE &
 
 // start-up counter - charge the bootstrap capacitor by activating Q3 and Q4 (low side)
 assign ON = cnt_startup > 8'd10; //10us to charge bootstrap capacitor
-assign VG = cnt_Vg      > 8'd16; //10us to charge bootstrap capacitor
+assign VG = cnt_startup > 8'd16; //10us to charge bootstrap capacitor
 
 
 // --- assign for the control of the Resonant Tank ---      
@@ -270,7 +272,7 @@ PLL_theta_phi_OL PLL_inst (
 // DIFFERENT WAY TO CONTROL THE RESONANT TANK
 //    1. only theta --> frequency modulation
 //    2. only phi   --> amplitude modulation
-//    3. theta+phi  --> mixte modulation ensuring ZVS
+//    3. delta+phi  --> mixte modulation ensuring ZVS
 
 // control law THETA
 hybrid_control_theta hybrid_control_theta_inst (
@@ -286,7 +288,7 @@ hybrid_control_theta hybrid_control_theta_inst (
 
 // control law PHI
 hybrid_control_phi hybrid_control_inst (
-   .o_MOSFET(  ),  // control signal for the four MOSFETs
+   .o_MOSFET( MOSFET_phi ),  // control signal for the four MOSFETs
    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
    .o_debug( ),    // ? random currently
    .i_clock( clk_100M ), // ADA_DCO
@@ -296,34 +298,20 @@ hybrid_control_phi hybrid_control_inst (
    .i_phi( phi )     // phi // pi/4 - 32'h0000004E
 );
 
-// control law PHI + THETA
-hybrid_control_theta_phi #(.mu_z1(32'd86), .mu_z2(32'd90), .mu_Vg(32'd312000)
-) hybrid_control_theta_phi_inst (
-   .o_MOSFET( MOSFET_phi ),  // control signal for the four MOSFETs
-   .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
-   .o_debug(  ),    // ---
-   .i_clock( clk_100M ), // 
-   .i_RESET( CPU_RESET ),    // 
-   .i_vC( ADC_A ),       // 
-   .i_iC( ADC_B ),       // 
-   .i_theta( theta_HC ),    // 32'd314
-   .i_phi( phi_HC ),        // phi // pi/4 - 32'h0000004E
-   .i_sigma( ) //{ {31{sigma[1]}} , sigma[0] } )
-);
 
+// control law PHI + DELTA
 hybrid_control_mixed #(.mu_z1(32'd86), .mu_z2(32'd90)
 ) hybrid_control_mixed_inst (
    .o_MOSFET( MOSFET_theta_phi ),  // control signal for the four MOSFETs
    .o_sigma( test ),         // 2 bit for signed sigma -> {-1,0,1}
-   .o_debug( debug ),    // ---
-   .i_clock( clk_100M ), // 
-   .i_RESET( CPU_RESET  ),    // 
-   .i_vC( ADC_A ),       // 
-   .i_iC( ADC_B ),       // 
-   .i_ZVS( 32'd20 ),    // 32'd314
-   .i_phi( phi<<1 ),        // phi // pi/4 - 32'h0000004E
-   // .i_phi( phi_HC ),        // phi // pi/4 - 32'h0000004E
-   .i_sigma( ) //{ {31{sigma[1]}} , sigma[0] } )
+   .o_debug( debug ),   
+   .i_clock( clk_100M ),
+   .i_RESET( CPU_RESET  ),   
+   .i_vC( ADC_A ),      
+   .i_iC( ADC_B ),      
+   .i_ZVS( delta ),    
+   .i_phi( phi ),      
+   .i_sigma( ) 
 );
 
 //angle control
@@ -343,15 +331,21 @@ value_control  #(
    .o_seg1(digit_1_phi)
 );
 
-
-// phi_control phi_control_inst(
-//    .o_seg0(digit_0_phi), //
-//    .o_seg1(digit_1_phi), // 
-//    .o_phi32(),
-//    .i_reset(button[0]),
-//    .i_increase(1'b1),
-//    .i_decrease(button[1])
-// );
+// DELTA (ZVS)
+value_control  #(
+   .INTEGER_STEP(1),
+   .INTEGER_MIN (0),
+   .INTEGER_MAX (40),
+   .N_BIT       (8) 
+) delta_control (
+   .i_CLK(clk_100M),
+   .i_RST(CPU_RESET),
+   .inc_btn(button[3]),
+   .dec_btn(1'b0),
+   .count(delta),
+   .o_seg0(digit_0_delta),
+   .o_seg1(digit_1_delta)
+);
 
 theta_control theta_control_inst(
    .o_seg0(digit_0_theta), //digit_0
@@ -364,8 +358,29 @@ theta_control theta_control_inst(
 
 // ----- DEAD TIME ----- //
 
-dead_time #(.DEADTIME(80), .N(4)) dead_time_inst(
-   .o_signal( {Q4, Q3, Q2, Q1} ),          // output switching variable
+// dead_time #(.DEADTIME(80), .N(4)) dead_time_inst(
+//    .o_signal( {Q4, Q3, Q2, Q1} ),          // output switching variable
+//    .i_clock(  clk_100M ),            // for sequential behavior
+//    .i_signal( MOSFET )
+// );
+
+dead_time #(.DEADTIME(10), .N(4)) dead_time_inst_1(
+   .o_signal( Q100 ),          // output switching variable
+   .i_clock(  clk_100M ),            // for sequential behavior
+   .i_signal( MOSFET )
+);
+dead_time #(.DEADTIME(20), .N(4)) dead_time_inst_2(
+   .o_signal( Q200 ),          // output switching variable
+   .i_clock(  clk_100M ),            // for sequential behavior
+   .i_signal( MOSFET )
+);
+dead_time #(.DEADTIME(40), .N(4)) dead_time_inst_4(
+   .o_signal( Q400 ),          // output switching variable
+   .i_clock(  clk_100M ),            // for sequential behavior
+   .i_signal( MOSFET )
+);
+dead_time #(.DEADTIME(60), .N(4)) dead_time_inst_6(
+   .o_signal( Q600 ),          // output switching variable
    .i_clock(  clk_100M ),            // for sequential behavior
    .i_signal( MOSFET )
 );
@@ -387,37 +402,29 @@ debounce #(.DEBOUNCE_TIME(5000), .N(4)) debounce_SWITCH_inst( // 5ms
 );
 
 
-// START UP counters
-// -- counter for the bootstrap
+// +++ START UP counters +++
+// -- counter for the bootstrap and charge the tank
 counter_up counter_up_inst    (
    .o_counter(cnt_startup), // Output of the counter
-   .enable( ~ON & ENABLE),    // enable for counter
-   .clk(clk_1M),       // clock Input
-   .reset(ENABLE)      // reset Input
-);
-
-// -- counter to charge the tank
-counter_up counter_up_inst_Vg    (
-   .o_counter(cnt_Vg), // Output of the counter
-   .enable( ~VG & ENABLE),    // enable for counter
-   .clk(clk_1M),       // clock Input
-   .reset(ENABLE)      // reset Input
+   .enable( ~VG & ENABLE),  // enable for counter, it stops when VG is active
+   .clk(clk_1M),            // clock Input
+   .reset(ENABLE)           // reset Input
 );
 
 
 // +++ RECTIFIER DEBUG +++
 sensing_Ibat sensing_Ibat_inst(
-   .Ibat_ADC(ADC_Ibat),
-   .Ibat_DEC(Ibat_DEC),
-   .SEG_HEX(SEG_Ibat_HEX),
-   .SEG_DEC(SEG_Ibat_DEC)
+   .Ibat_ADC(ADC_Ibat),    // ADC measure
+   .Ibat_DEC(Ibat_DEC),    // converted measure
+   .SEG_HEX(SEG_Ibat_HEX), // show the acquire HEX number
+   .SEG_DEC(SEG_Ibat_DEC)  // show the converted DEC number
 );
 
 sensing_Vbat sensing_Vbat_inst(
-   .Vbat_ADC(ADC_Vbat),
-   .Vbat_DEC(Vbat_DEC),
-   .SEG_HEX(SEG_Vbat_HEX),
-   .SEG_DEC(SEG_Vbat_DEC)
+   .Vbat_ADC(ADC_Vbat),    // ADC measure
+   .Vbat_DEC(Vbat_DEC),    // converted measure
+   .SEG_HEX(SEG_Vbat_HEX), // show the acquire HEX number
+   .SEG_DEC(SEG_Vbat_DEC)  // show the comverted DEC number
 );
 
 // +++ ADC +++
@@ -459,35 +466,56 @@ always  begin
    endcase
 end
 
+// choose the deadtime
+always  begin
+   case (DSW[3:2])
+      2'b00 : begin // PHI+THETA
+         Qout <= Q100;
+      end
+      2'b10 : begin  // THETA
+         Qout <= Q200;
+      end
+      2'b01 : begin // PHI
+         Qout <= Q400;
+      end
+      2'b11 : begin // PHI
+         Qout <= Q600;
+      end
+      default: begin // shows '--'
+         Qout <= 4'b0;
+      end
+   endcase
+end
+
 // +++ 7-SEGMENTS DISPLAY +++
 // choose what to show on the display
 always  begin
-   case (DSW[7:0])
-      8'b00000001 : begin // PHI
+   case ({DSW[7:4],DSW[1:0]})
+      8'b000001 : begin // PHI
          SEG0_reg <= digit_0_phi;
          SEG1_reg <= digit_1_phi;
       end
-      8'b00000010 : begin // ZVS
-         SEG0_reg <= digit_0_theta;
-         SEG1_reg <= digit_1_theta;
+      8'b000010 : begin // ZVS
+         SEG0_reg <= digit_0_delta;
+         SEG1_reg <= digit_1_delta;
       end
-      8'b00000100 : begin // DEADTIME
-         SEG0_reg <= digit_0_phi;
-         SEG1_reg <= digit_1_phi;
-      end
-      8'b00010000 : begin // Vbat HEX
+      // 8'b0000xx00 : begin // DEADTIME
+      //    SEG0_reg <= digit_0_phi;
+      //    SEG1_reg <= digit_1_phi;
+      // end
+      8'b000100 : begin // Vbat HEX
          SEG0_reg <= SEG_Vbat_HEX[ 7:0];
          SEG1_reg <= SEG_Vbat_HEX[15:8];
       end
-      8'b00100000 : begin // Ibat HEX
+      8'b001000 : begin // Ibat HEX
          SEG0_reg <= SEG_Ibat_HEX[ 7:0];
          SEG1_reg <= SEG_Ibat_HEX[15:8];
       end
-      8'b01000000 : begin // Vbat DEC
+      8'b010000 : begin // Vbat DEC
          SEG0_reg <= SEG_Vbat_DEC[ 7:0];
          SEG1_reg <= SEG_Vbat_DEC[15:8];
       end
-      8'b10000000 : begin // Ibat DEC
+      8'b100000 : begin // Ibat DEC
          SEG0_reg <= SEG_Ibat_DEC[ 7:0];
          SEG1_reg <= SEG_Ibat_DEC[15:8];
       end
@@ -534,3 +562,21 @@ endmodule
 //    endcase
    
 // end
+
+
+// control law PHI + THETA
+// hybrid_control_theta_phi #(.mu_z1(32'd86), .mu_z2(32'd90), .mu_Vg(32'd312000)
+// ) hybrid_control_theta_phi_inst (
+//    .o_MOSFET( MOSFET_phi ),  // control signal for the four MOSFETs
+//    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
+//    .o_debug(  ),    // ---
+//    .i_clock( clk_100M ), // 
+//    .i_RESET( CPU_RESET ),    // 
+//    .i_vC( ADC_A ),       // 
+//    .i_iC( ADC_B ),       // 
+//    .i_theta( theta_HC ),    // 32'd314
+//    .i_phi( phi_HC ),        // phi // pi/4 - 32'h0000004E
+//    .i_sigma( ) //{ {31{sigma[1]}} , sigma[0] } )
+// );
+
+

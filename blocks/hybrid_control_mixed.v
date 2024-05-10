@@ -129,16 +129,20 @@ trigonometry_deg trigonometry_ZVS_inst (
    .o_cos(czvs),    // cosine of the input
    .o_sin(szvs),    // sine of the input
    .i_theta(i_ZVS)  // input angle "theta+phi"
-   // .i_theta(i_theta+i_phi)  // input angle "theta+phi"
 );
 
 trigonometry_deg trigonometry_phi_ZVS_inst (
-   .o_cos(cphi),    // cosine of the input
-   .o_sin(sphi),    // sine of the input
-   .i_theta(i_ZVS+i_phi)  // input angle "ZVS+2*phi"
-   // .i_theta(i_ZVS+(i_phi<<1))  // input angle "ZVS+2*phi"
+   .o_cos(cphi),          // cosine of the input
+   .o_sin(sphi),          // sine of the input
+   .i_theta(i_ZVS+(i_phi<<1))  // input angle "ZVS+2*phi"
+   // .i_theta(i_ZVS+i_phi)  // input angle "ZVS+phi"   // The shift was giving problems
 );
 
+// regularize the sign from the switching surface
+// this avoid to consider noise/changes in the signal when we are
+// sure that there are not going to be changes
+// IDEALLY, the sign should change with the frequency of the oscillation
+//     i.e. we do not have spikes/short changes in NORMAL behavior
 regularization #(
    .DEBOUNCE_TIME(2), 
    .DELAY(100),
@@ -173,18 +177,10 @@ end
 
 always @(posedge i_clock) begin
    // compute coordinate transformation
-   // Z1  = ( mu_z1 * (vC_32) + (~sigma+1)*mu_Vg ); // z1
-   // Z1  = $signed(mu_z1) * vC_32 + (~($signed(sigma)*$signed(mu_Vg))+1); // z1
-   // Z2  = $signed(mu_z2) * iC_32;                   // z2
-   // C   = $signed(mu_Vg) *  sphi;                       // Vg*sin(theta-phi)
-
    X1  = $signed(mu_z1) * vC_32;
    X2  = $signed(mu_z2) * iC_32;    
 
-   // S0 = Z1*sphi + Z2*cphi + C;          // change z1*sin(theta-phi)-z2*cos(theta-phi)+Vg*sin(theta-phi)
-   // S1 = Z1*szvs + Z2*czvs;              // change z1*sin(theta+phi)+z2*cos(theta+phi)
-   // S3 = Z1*sphi + Z2*cphi + (~C+1);     // change z1*sin(theta-phi)-z2*cos(theta-phi)-Vg*sin(theta-phi)
-
+   // compute the switching line, we are just interested in the sign afterwards
    S0 = X1*sphi + (~(X2*cphi)+1);
    S1 = X1*szvs + (~(X2*czvs)+1);
    
