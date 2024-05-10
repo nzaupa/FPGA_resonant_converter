@@ -39,6 +39,12 @@ endmodule
 
 ## Data types
 
+<https://www.chipverify.com/verilog/verilog-syntax>
+
+NB: Verilog prefers unsigned arithmetic and will jump at the chance to do it. All operands have to be signed for signed arithmetic.
+
+Detecting overflow and underflow in an elegant way: <https://stackoverflow.com/questions/24586842/signed-multiplication-overflow-detection-in-verilog/24587824#24587824>
+
 ### Variable values
 
 |  |                    |
@@ -140,6 +146,10 @@ Structure for the loop `always`
 | `data = 00101` | $\rightarrow$ | `data << 1 = 01010`  |
 |                |               | `data << 2 = 10100`  |
 |                |               | `data <<< 1 = 01011` |
+
+```{important}
+Algebraic operation have priority over logic operations. Therefore $A+(B+C)>>>3$ is equivalent to $(A+(B+C))>>>3$, which is different from $A+((B+C)>>>3)$.
+```
 
 
 **Conditional operator**: `assign out = <condition> ? <if_true> : <if_false>`

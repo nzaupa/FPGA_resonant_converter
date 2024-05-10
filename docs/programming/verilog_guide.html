@@ -199,7 +199,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../design/RT_resonant_tank_design.html">Resonant Tank</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../design/RT_sensing.html">Sensing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../design/RT_signal_transformer_design.html">Signal Transformers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../design/RT_trafo_calc.html">Transformer calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/RT_trafo_calc.html">Isolation Transformers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../design/RT_pcb.html">PCB design</a></li>
 </ul>
 </li>
@@ -221,6 +221,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Verilog coding</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="modules.html">Modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="statements.html">Statements and Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modelsim.html">ModelSim</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="project_code.html">Project Code</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -233,6 +234,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../diary/2020_diary.html">Diary 2020-2022</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../diary/2023_diary.html">Diary 2023</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diary/2024_diary.html">Diary 2024</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Template</span></p>
 <ul class="nav bd-sidenav">
@@ -461,6 +463,9 @@ document.write(`
 </div>
 <section id="data-types">
 <h2>Data types<a class="headerlink" href="#data-types" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://www.chipverify.com/verilog/verilog-syntax">https://www.chipverify.com/verilog/verilog-syntax</a></p>
+<p>NB: Verilog prefers unsigned arithmetic and will jump at the chance to do it. All operands have to be signed for signed arithmetic.</p>
+<p>Detecting overflow and underflow in an elegant way: <a class="reference external" href="https://stackoverflow.com/questions/24586842/signed-multiplication-overflow-detection-in-verilog/24587824#24587824">https://stackoverflow.com/questions/24586842/signed-multiplication-overflow-detection-in-verilog/24587824#24587824</a></p>
 <section id="variable-values">
 <h3>Variable values<a class="headerlink" href="#variable-values" title="Permalink to this heading">#</a></h3>
 <table class="table">
@@ -657,6 +662,10 @@ useful to separate long numbers.</p>
 </tr>
 </tbody>
 </table>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Algebraic operation have priority over logic operations. Therefore <span class="math notranslate nohighlight">\(A+(B+C)&gt;&gt;&gt;3\)</span> is equivalent to <span class="math notranslate nohighlight">\((A+(B+C))&gt;&gt;&gt;3\)</span>, which is different from <span class="math notranslate nohighlight">\(A+((B+C)&gt;&gt;&gt;3)\)</span>.</p>
+</div>
 <p><strong>Conditional operator</strong>: <code class="docutils literal notranslate"><span class="pre">assign</span> <span class="pre">out</span> <span class="pre">=</span> <span class="pre">&lt;condition&gt;</span> <span class="pre">?</span> <span class="pre">&lt;if_true&gt;</span> <span class="pre">:</span> <span class="pre">&lt;if_false&gt;</span></code></p>
 <p><strong>Concatenation</strong>: use the curly brackets <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">}</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">{a,</span> <span class="pre">b,</span> <span class="pre">c</span> <span class="pre">[1</span> <span class="pre">:</span> <span class="pre">0]</span> <span class="pre">,</span> <span class="pre">2′b00,</span> <span class="pre">{2{a}}}</span></code></p>
 <p><strong>Replication</strong>: <code class="docutils literal notranslate"><span class="pre">{y,</span> <span class="pre">y,</span> <span class="pre">y}</span> <span class="pre">=</span> <span class="pre">{3{y}}</span></code>, it can be nested.</p>

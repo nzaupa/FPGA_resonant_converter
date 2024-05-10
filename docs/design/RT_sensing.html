@@ -199,7 +199,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="RT_resonant_tank_design.html">Resonant Tank</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Sensing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="RT_signal_transformer_design.html">Signal Transformers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="RT_trafo_calc.html">Transformer calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RT_trafo_calc.html">Isolation Transformers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="RT_pcb.html">PCB design</a></li>
 </ul>
 </li>
@@ -221,6 +221,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../programming/verilog_guide.html">Verilog coding</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../programming/modules.html">Modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../programming/statements.html">Statements and Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../programming/modelsim.html">ModelSim</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../programming/project_code.html">Project Code</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -233,6 +234,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../diary/2020_diary.html">Diary 2020-2022</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../diary/2023_diary.html">Diary 2023</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diary/2024_diary.html">Diary 2024</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Template</span></p>
 <ul class="nav bd-sidenav">
@@ -408,6 +410,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-sensing">Current Sensing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#voltage-sensing">Voltage Sensing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interaction-with-the-fpga">Interaction with the FPGA</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extra">EXTRA</a></li>
 </ul>
             </nav>
@@ -430,7 +433,7 @@ document.write(`
 Two sensing circuits are used to measure these quantities. Thanks to the use of signal transformer, the resonant tank is galvanically isolated from the sensing output, i.e. the FPGA<sup>1</sup>.
 The transformer design procedure is described in <a class="reference internal" href="RT_signal_transformer_design.html#sec-signal-transformer"><span class="std std-ref">Signal Transformers</span></a>.</p>
 <p>Every sensing circuit must have the least influence possible on the resonant tank.</p>
-<p>The output of the transformers need to be interfaced with a <a class="reference internal" href="../handbook/FPGA_board.html#sec-balun"><span class="std std-ref">BALUN circuit</span></a> which is embedded in the daughter board of the FPGA. Essentially, we can see it as a <span class="math notranslate nohighlight">\(49.9\;\Omega\)</span> resistor in parallel with the output of the sensing circuit. Remember that, the voltage that is read by the ADC is the double of the output, i.e. apart from filtering behavior, it corresponds to the voltage out of the transformer. (the two <span class="math notranslate nohighlight">\(49.9\;\Omega\)</span> resistors are dividing in half the voltage, which is the doubled by the BALUN circuit thanks to a transformer).
+<p>The output of the transformers need to be interfaced with a <a class="reference internal" href="../handbook/FPGA_board.html#sec-balun"><span class="std std-ref">BALUN circuit</span></a>, which is embedded in the acquisition card. Essentially, we can see it as a <span class="math notranslate nohighlight">\(49.9\;\Omega\)</span> resistor in parallel with the output of the sensing circuit. Remember that, the voltage that is read by the ADC is the double of the output, i.e. apart from filtering behavior, it corresponds to the voltage out of the transformer. (the two <span class="math notranslate nohighlight">\(49.9\;\Omega\)</span> resistors are dividing in half the voltage, which is the doubled by the BALUN circuit thanks to a transformer).
 The limit voltage is <span class="math notranslate nohighlight">\(0.5\;V\)</span>.</p>
 <p>Practically, every sensing stage is connected with a SMA connector via a coaxial cable to the ADC board.</p>
 <section id="current-sensing">
@@ -439,8 +442,11 @@ The limit voltage is <span class="math notranslate nohighlight">\(0.5\;V\)</span
 The primary current is reduced at the secondary according to the transformation ratio <span class="math notranslate nohighlight">\(1:n_i\)</span>, which is then transformed to a voltage thanks to the resistor <span class="math notranslate nohighlight">\(R_i\)</span>. The best choice is to have the least number of windings at the primary, so that the magnetizing inductance is negligible with respect to the resonant inductance <span class="math notranslate nohighlight">\(L_r\)</span>.</p>
 <p>The static equation relating input current <span class="math notranslate nohighlight">\(i_S\)</span> and output voltage <span class="math notranslate nohighlight">\(v_{R_i}\)</span> is</p>
 <div class="math notranslate nohighlight">
-\[ v_{R_i} = \frac{1}{n_i}\frac{100 R_i}{100+R_i}i_S \approx \frac{R_i}{n_i}i_S\]</div>
-<p>where the approximation is valid in the case <span class="math notranslate nohighlight">\(R_i\ll100\Omega\)</span>.</p>
+\[ v_{R_i} = \underbrace{\frac{1}{n_i}\frac{100 R_i}{100+R_i}}_{\gamma_i} i_S \approx \frac{R_i}{n_i}i_S\]</div>
+<p>where the approximation is valid in the case <span class="math notranslate nohighlight">\(R_i\ll100\Omega\)</span>.
+The static relation between the current and the ADC value is the following</p>
+<div class="math notranslate nohighlight">
+\[ \gamma_{i_S\rightarrow \mathrm{ADC}} =  \gamma_i \gamma_{\mathrm{ADC,14}} = \frac{1}{n_i}\frac{100 R_i}{100+R_i} \frac{2^{13}-1}{0.5} \]</div>
 <p>The dissipated (AC) power on <span class="math notranslate nohighlight">\(R_i\)</span> is approximately <span class="math notranslate nohighlight">\(P_{R_i}\approx \frac{R_i}{n_i^2}\frac{I_{S}^2}{2} \)</span>, where <span class="math notranslate nohighlight">\(I_{S}\)</span> is the peak value (<span class="math notranslate nohighlight">\(i_S\)</span> is an AC signal so we should consider the RMS value for the power or the peak divided by <span class="math notranslate nohighlight">\(\sqrt{2}\)</span>).</p>
 <p>The equivalent resistance at the primary side is: <span class="math notranslate nohighlight">\(R_{T1,eq}=\frac{R_i}{n_i^2}\)</span>.</p>
 <figure class="align-default" id="id1">
@@ -451,7 +457,7 @@ The primary current is reduced at the secondary according to the transformation 
 </figure>
 <p>A transfer function can be written between input and output:</p>
 <div class="math notranslate nohighlight">
-\[ TF = \frac{V_{ADC}}{I_S} \]</div>
+\[ TF = \frac{V_{ADC}}{I_S}=\ ... \]</div>
 <p>Where <span class="math notranslate nohighlight">\(V_{ADC}\)</span> indicates the voltage that is than transformed to binary code (double of the voltage on the filter capacitor).</p>
 <p>The output of <span class="math notranslate nohighlight">\(T_1\)</span> is connected to a SMA connector through a low pass filter with cut-off frequency <span class="math notranslate nohighlight">\(f_{rcf}=\frac{1}{\pi\ R_{rcf}C_{rcf}}\)</span>.  <span class="math notranslate nohighlight">\(R_{rcf}=49.9\Omega\)</span> for impedance matching with the input stage of the ADC.</p>
 <figure class="align-default">
@@ -467,7 +473,7 @@ The primary current is reduced at the secondary according to the transformation 
 <p>After have experience some problem with high voltage sensing, we can generalize the acquisition chain as:</p>
 <ul class="simple">
 <li><p>capacitor grid reducing of an integer factor. e.g. <span class="math notranslate nohighlight">\(3\times3\)</span> grid (<span class="math notranslate nohighlight">\(9\)</span> capacitors) reduces of a factor <span class="math notranslate nohighlight">\(3\)</span>. It is suggested to keep it symmetric with an odd number. We might think of some other configurations. The important is that the equivalent capacitance is <span class="math notranslate nohighlight">\(C_r\)</span> (does not waste power);</p></li>
-<li><p>voltage divider with 3 resistor to attenuate the voltage (waste power);</p></li>
+<li><p>voltage divider with 3 resistors to attenuate the voltage (waste power);</p></li>
 <li><p>signal transformer: connected to the central resistor, step down the voltage and ensure galvanic isolation.</p></li>
 </ul>
 <div class="admonition warning">
@@ -476,8 +482,11 @@ The primary current is reduced at the secondary according to the transformation 
 </div>
 <p>The voltage is initially attenuated by a grid of capacitors (the resonant ones) of a factor <span class="math notranslate nohighlight">\(n_c\)</span>, then by a voltage divider by a factor <span class="math notranslate nohighlight">\(\frac{R_{pv2}}{R_{pv1}+R_{pv2}+R_{pv3}}\)</span>, which is then attenuated by a signal transformer with transformation ratio <span class="math notranslate nohighlight">\(n_v:1\)</span>. Therefore, we have that the voltage read by the ADC corresponds to</p>
 <div class="math notranslate nohighlight">
-\[ v_{T2_{sec}}=\frac{1}{n_i n_v}\frac{R_{pv2}}{R_{pv1}+R_{pv2}+R_{pv3}}v_{C_r} \]</div>
-<p>Equivalent resistance at the primary is <span class="math notranslate nohighlight">\(R_{T2,eq}=2R_{rvf}n_v^2\)</span> and we need to have that <span class="math notranslate nohighlight">\(R_{pv2}\ll R_{T2,eq}\)</span>.</p>
+\[ v_{T2_{sec}}=\frac{1}{n_v}\frac{R_{pv2}}{R_{pv1}+R_{pv2}+R_{pv3}}v_{C_r} \]</div>
+<p>Equivalent resistance at the primary is <span class="math notranslate nohighlight">\(R_{T2,eq}=2R_{rvf}n_v^2\)</span>, and we need to have that <span class="math notranslate nohighlight">\(R_{pv2}\ll R_{T2,eq}\)</span>.</p>
+<p>The static relation between the voltage and the ADC value is the following</p>
+<div class="math notranslate nohighlight">
+\[ \gamma_{v_C\rightarrow \mathrm{ADC}} =  \gamma_v \gamma_{\mathrm{ADC,14}} = \frac{1}{n_v}\frac{R_{pv2}}{R_{pv1}+R_{pv2}+R_{pv3}} \frac{2^{13}-1}{0.5} \]</div>
 <figure class="align-default" id="id2">
 <a class="reference internal image-reference" href="../../_images/RT_voltage_sensing.png"><img alt="../../_images/RT_voltage_sensing.png" src="../../_images/RT_voltage_sensing.png" style="width: 500px;" /></a>
 <figcaption>
@@ -486,7 +495,7 @@ The primary current is reduced at the secondary according to the transformation 
 </figure>
 <p>A transfer function can be written between input and output:</p>
 <div class="math notranslate nohighlight">
-\[ TF = \frac{V_{ADC}}{V_{C_r}} \]</div>
+\[ TF = \frac{V_{ADC}}{V_{C_r}} =\ ...\]</div>
 <p>Where <span class="math notranslate nohighlight">\(V_{ADC}\)</span> indicates the voltage that is than transformed to binary code (double of the voltage on the filter capacitor).</p>
 <p>Then, the output of <span class="math notranslate nohighlight">\(T_2\)</span> is connected to a SMA connector through a low pass filter with cut-off frequency <span class="math notranslate nohighlight">\(f_{rvf}=\frac{1}{\pi\ R_{rvf}C_{rvf}}\)</span>.  <span class="math notranslate nohighlight">\(R_{rvf}=49.9\Omega\)</span> for impedance matching with the input stage of the ADC.</p>
 <div class="admonition caution">
@@ -497,9 +506,32 @@ The primary current is reduced at the secondary according to the transformation 
 <a class="reference internal image-reference" href="../../_images/RT_voltage_sensing_table.png"><img alt="../../_images/RT_voltage_sensing_table.png" src="../../_images/RT_voltage_sensing_table.png" style="width: 700px;" /></a>
 </figure>
 </section>
+<section id="interaction-with-the-fpga">
+<h2>Interaction with the FPGA<a class="headerlink" href="#interaction-with-the-fpga" title="Permalink to this heading">#</a></h2>
+<p>The gain of the ADC, considering the voltage before the impedance matching resistor, is equivalent to</p>
+<div class="math notranslate nohighlight">
+\[ \gamma_{\mathrm{ADC,14}} = \frac{2^{13}-1}{0.5} = 2^{14}-2 = 16382\]</div>
+<p>where <span class="math notranslate nohighlight">\(0.5\)</span> is the voltage range of the ADC.</p>
+<p>Once we have the measurements, for the control law we need to scale them in order to have values that allows computing a scaled version of the state of the system <span class="math notranslate nohighlight">\((z_1,z_2)\)</span>.
+First of all, for all states, we consider a common scaling gain <span class="math notranslate nohighlight">\(k_{com}\)</span>. This is useful to increase the precision since the operations are done with integers numbers. It should by high enough to make the gains greater than 1, and not too high in order to avoid overflow. The higher the better the precision.</p>
+<p>For the current related state, we have that <span class="math notranslate nohighlight">\(z_2=\frac{1}{V_g}\sqrt{\frac{L_r}{C_r}}i_S\)</span>.
+For the voltage related state, we have that <span class="math notranslate nohighlight">\(z_1=\frac{v_C}{V_g}-\sigma\)</span>. We scaled both y <span class="math notranslate nohighlight">\(V_g\)</span> and we also need to scale both <span class="math notranslate nohighlight">\(v_C\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>. The resulting gains are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \mu_{i_S} &amp;= \frac{k_{com}}{ \gamma_{i_S\rightarrow \mathrm{ADC}}} \sqrt{\frac{L_r}{C_r}} \\ &amp; \\
+   \mu_{v_C} &amp;= \frac{k_{com}}{ \gamma_{v_C\rightarrow \mathrm{ADC}}}  \\ &amp; \\
+   \mu_{V_g} &amp;= k_{com}V_g \end{split}\]</div>
+<div class="admonition-on-v-g-scaling admonition">
+<p class="admonition-title">On <span class="math notranslate nohighlight">\(V_g\)</span> scaling</p>
+<p>Remark that all the scaling with respect to <span class="math notranslate nohighlight">\(V_g\)</span> have been removed, i.e. they have been incorporated by <span class="math notranslate nohighlight">\(\sigma\)</span>. This is possible since for the control law we can use any scaled version (by the same factor) of the states <span class="math notranslate nohighlight">\((z_1,z_2)\)</span>. Another way to see it is that they have been incorporated by <span class="math notranslate nohighlight">\(k_{com}\)</span>.</p>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p><span class="math notranslate nohighlight">\(k_{com}\)</span> should avoid the overflow situation. Check it analytically is a bit hard. One conservative possibility is to take the worst scenario and use that to limit it. Another way is simulate the behavior, to this end there is a PSIM simulation that implements this behavior and can be used to check limits.</p>
+</div>
+</section>
 <section id="extra">
 <h2>EXTRA<a class="headerlink" href="#extra" title="Permalink to this heading">#</a></h2>
-<p>need to understand where an how to put this</p>
+<p>need to understand where and how to put this</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
@@ -665,6 +697,7 @@ The primary current is reduced at the secondary according to the transformation 
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#current-sensing">Current Sensing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#voltage-sensing">Voltage Sensing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interaction-with-the-fpga">Interaction with the FPGA</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extra">EXTRA</a></li>
 </ul>
   </nav></div>

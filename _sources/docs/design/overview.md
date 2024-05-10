@@ -13,10 +13,6 @@ ADC for the resonant tank are limited to 0.5V (1Vpp)
 
 Bypass capacitors must be used near to all the power supply pins.
 
-FPGA should have enough power to power-up the sensing circuit at battery level: 
-
-$$ 5V @ 12A     \quad\mbox{and}\quad     3.3V @ 8A $$
-
 
 ## add some common knowledge
 i.e. transformer model, how impedance move between primary and secondary

@@ -21,7 +21,7 @@ admonition blocks
    nota
 ```
 
-```{admonition} Amm
+```{admonition} adm
    ammonizione
 ```
 

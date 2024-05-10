@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../_static/logo2.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Some ideas" href="../../markdown-notebooks.html" />
+    <link rel="next" title="Diary 2024" href="2024_diary.html" />
     <link rel="prev" title="Diary 2020-2022" href="2020_diary.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -197,7 +197,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../design/RT_resonant_tank_design.html">Resonant Tank</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../design/RT_sensing.html">Sensing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../design/RT_signal_transformer_design.html">Signal Transformers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../design/RT_trafo_calc.html">Transformer calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/RT_trafo_calc.html">Isolation Transformers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../design/RT_pcb.html">PCB design</a></li>
 </ul>
 </li>
@@ -219,6 +219,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../programming/verilog_guide.html">Verilog coding</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../programming/modules.html">Modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../programming/statements.html">Statements and Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../programming/modelsim.html">ModelSim</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../programming/project_code.html">Project Code</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -231,6 +232,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="2020_diary.html">Diary 2020-2022</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Diary 2023</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2024_diary.html">Diary 2024</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Template</span></p>
 <ul class="nav bd-sidenav">
@@ -438,7 +440,14 @@ document.write(`
 <p>18 September - Get back to the work by creating the online and html-like interface for all the documentation</p>
 <p>19 September - Push online the website and start to organize it</p>
 <p>20 September - Copy content from other platform to merge all together</p>
-</section>
+<!-- ## January 2024
+Went back to work on it after a long period dedicated to the lecture at UPS.
+
+1st week of January - Found a (the) problem in the state machine. Regularization cannot be applied to jumpsets signals since two out of four are only an impulse, therefore it cannot be regularized. We might think to different variable that could be controlled/regularized. To discover this I simulated the controller with ModelSim feeding waveform from a PSIM simulation (directly vC and iC of the ADC).
+
+2nd week of January - Try to set up a simulator for the dynamics of the converter. So far it seems good, I discovered of the priority of arithmetic vs logic operations. This took me several hours of trial and error among ModelSim, PSIM and MATLAB.
+
+9 January - Simulation module for LLC is working, a module to transform the output to an ADC like is missing. --></section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -481,11 +490,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../../markdown-notebooks.html"
+       href="2024_diary.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Some ideas</p>
+        <p class="prev-next-title">Diary 2024</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

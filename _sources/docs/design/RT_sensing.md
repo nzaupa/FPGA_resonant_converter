@@ -10,10 +10,10 @@ The transformer design procedure is described in [](sec:signal_transformer).
 
 Every sensing circuit must have the least influence possible on the resonant tank.
 
-The output of the transformers need to be interfaced with a [](sec:BALUN) which is embedded in the daughter board of the FPGA. Essentially, we can see it as a $49.9\;\Omega$ resistor in parallel with the output of the sensing circuit. Remember that, the voltage that is read by the ADC is the double of the output, i.e. apart from filtering behavior, it corresponds to the voltage out of the transformer. (the two $49.9\;\Omega$ resistors are dividing in half the voltage, which is the doubled by the BALUN circuit thanks to a transformer).
+The output of the transformers need to be interfaced with a [BALUN circuit](sec:BALUN), which is embedded in the acquisition card. Essentially, we can see it as a $49.9\;\Omega$ resistor in parallel with the output of the sensing circuit. Remember that, the voltage that is read by the ADC is the double of the output, i.e. apart from filtering behavior, it corresponds to the voltage out of the transformer. (the two $49.9\;\Omega$ resistors are dividing in half the voltage, which is the doubled by the BALUN circuit thanks to a transformer).
 The limit voltage is $0.5\;V$.
 
-Practically, every sensing stage is connected with a SMA connector via a coaxial cable to the ADC board.
+Practically, every sensing stage is connected with a SMA connector via a coaxial cable to the ADC board. 
 
 
 ## Current Sensing
@@ -23,13 +23,18 @@ The primary current is reduced at the secondary according to the transformation 
 
 The static equation relating input current $i_S$ and output voltage $v_{R_i}$ is
 
-$$ v_{R_i} = \frac{1}{n_i}\frac{100 R_i}{100+R_i}i_S \approx \frac{R_i}{n_i}i_S$$
+$$ v_{R_i} = \underbrace{\frac{1}{n_i}\frac{100 R_i}{100+R_i}}_{\gamma_i} i_S \approx \frac{R_i}{n_i}i_S$$
 
 where the approximation is valid in the case $R_i\ll100\Omega$.
+The static relation between the current and the ADC value is the following
+
+$$ \gamma_{i_S\rightarrow \mathrm{ADC}} =  \gamma_i \gamma_{\mathrm{ADC,14}} = \frac{1}{n_i}\frac{100 R_i}{100+R_i} \frac{2^{13}-1}{0.5} $$
 
 The dissipated (AC) power on $R_i$ is approximately $P_{R_i}\approx \frac{R_i}{n_i^2}\frac{I_{S}^2}{2} $, where $I_{S}$ is the peak value ($i_S$ is an AC signal so we should consider the RMS value for the power or the peak divided by $\sqrt{2}$).
 
 The equivalent resistance at the primary side is: $R_{T1,eq}=\frac{R_i}{n_i^2}$.
+
+
  
 
  
@@ -41,7 +46,7 @@ Current sensing circuit
 ```
 A transfer function can be written between input and output:
 
-$$ TF = \frac{V_{ADC}}{I_S} $$
+$$ TF = \frac{V_{ADC}}{I_S}=\ ... $$
 
 Where $V_{ADC}$ indicates the voltage that is than transformed to binary code (double of the voltage on the filter capacitor).
 
@@ -62,7 +67,7 @@ Small interface to calculate de maximum current from ADC data and values of the 
 
 After have experience some problem with high voltage sensing, we can generalize the acquisition chain as:
 - capacitor grid reducing of an integer factor. e.g. $3\times3$ grid ($9$ capacitors) reduces of a factor $3$. It is suggested to keep it symmetric with an odd number. We might think of some other configurations. The important is that the equivalent capacitance is $C_r$ (does not waste power);
-- voltage divider with 3 resistor to attenuate the voltage (waste power);
+- voltage divider with 3 resistors to attenuate the voltage (waste power);
 - signal transformer: connected to the central resistor, step down the voltage and ensure galvanic isolation.
 
 ```{warning}
@@ -71,9 +76,13 @@ These considerations are important for high voltage and, indeed, they haven't be
 
 The voltage is initially attenuated by a grid of capacitors (the resonant ones) of a factor $n_c$, then by a voltage divider by a factor $\frac{R_{pv2}}{R_{pv1}+R_{pv2}+R_{pv3}}$, which is then attenuated by a signal transformer with transformation ratio $n_v:1$. Therefore, we have that the voltage read by the ADC corresponds to 
 
-$$ v_{T2_{sec}}=\frac{1}{n_i n_v}\frac{R_{pv2}}{R_{pv1}+R_{pv2}+R_{pv3}}v_{C_r} $$
+$$ v_{T2_{sec}}=\frac{1}{n_v}\frac{R_{pv2}}{R_{pv1}+R_{pv2}+R_{pv3}}v_{C_r} $$
 
-Equivalent resistance at the primary is $R_{T2,eq}=2R_{rvf}n_v^2$ and we need to have that $R_{pv2}\ll R_{T2,eq}$.
+Equivalent resistance at the primary is $R_{T2,eq}=2R_{rvf}n_v^2$, and we need to have that $R_{pv2}\ll R_{T2,eq}$.
+
+The static relation between the voltage and the ADC value is the following
+
+$$ \gamma_{v_C\rightarrow \mathrm{ADC}} =  \gamma_v \gamma_{\mathrm{ADC,14}} = \frac{1}{n_v}\frac{R_{pv2}}{R_{pv1}+R_{pv2}+R_{pv3}} \frac{2^{13}-1}{0.5} $$
  
  
 ```{figure} ../images/RT_voltage_sensing.png
@@ -84,7 +93,7 @@ Voltage sensing circuit
 ```
 A transfer function can be written between input and output:
 
-$$ TF = \frac{V_{ADC}}{V_{C_r}} $$
+$$ TF = \frac{V_{ADC}}{V_{C_r}} =\ ...$$
 
 Where $V_{ADC}$ indicates the voltage that is than transformed to binary code (double of the voltage on the filter capacitor).
 
@@ -103,10 +112,37 @@ width: 700px
 ```
 
 
+## Interaction with the FPGA
+
+The gain of the ADC, considering the voltage before the impedance matching resistor, is equivalent to
+
+$$ \gamma_{\mathrm{ADC,14}} = \frac{2^{13}-1}{0.5} = 2^{14}-2 = 16382$$
+
+where $0.5$ is the voltage range of the ADC.
+
+Once we have the measurements, for the control law we need to scale them in order to have values that allows computing a scaled version of the state of the system $(z_1,z_2)$.
+First of all, for all states, we consider a common scaling gain $k_{com}$. This is useful to increase the precision since the operations are done with integers numbers. It should by high enough to make the gains greater than 1, and not too high in order to avoid overflow. The higher the better the precision.
+
+For the current related state, we have that $z_2=\frac{1}{V_g}\sqrt{\frac{L_r}{C_r}}i_S$. 
+For the voltage related state, we have that $z_1=\frac{v_C}{V_g}-\sigma$. We scaled both y $V_g$ and we also need to scale both $v_C$ and $\sigma$. The resulting gains are:
+
+$$ \mu_{i_S} &= \frac{k_{com}}{ \gamma_{i_S\rightarrow \mathrm{ADC}}} \sqrt{\frac{L_r}{C_r}} \\ & \\
+   \mu_{v_C} &= \frac{k_{com}}{ \gamma_{v_C\rightarrow \mathrm{ADC}}}  \\ & \\
+   \mu_{V_g} &= k_{com}V_g $$
+
+```{admonition} On $V_g$ scaling
+Remark that all the scaling with respect to $V_g$ have been removed, i.e. they have been incorporated by $\sigma$. This is possible since for the control law we can use any scaled version (by the same factor) of the states $(z_1,z_2)$. Another way to see it is that they have been incorporated by $k_{com}$.
+```
+
+```{caution}
+$k_{com}$ should avoid the overflow situation. Check it analytically is a bit hard. One conservative possibility is to take the worst scenario and use that to limit it. Another way is simulate the behavior, to this end there is a PSIM simulation that implements this behavior and can be used to check limits.
+```
+
+
 
 ## EXTRA
 
-need to understand where an how to put this
+need to understand where and how to put this
 
 
 

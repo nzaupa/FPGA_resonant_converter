@@ -16,6 +16,10 @@ Overview of the DE4 board.
 
 ## DE4
 
+Power sources available in the board: 
+- 5V @ 12A
+- 3.3V @ 8A
+
 ### Connection sockets
 
 

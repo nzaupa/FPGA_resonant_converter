@@ -63,6 +63,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/programming/blocks';</script>
     <link rel="shortcut icon" href="../../_static/logo2.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -197,7 +199,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../design/RT_resonant_tank_design.html">Resonant Tank</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../design/RT_sensing.html">Sensing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../design/RT_signal_transformer_design.html">Signal Transformers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../design/RT_trafo_calc.html">Transformer calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design/RT_trafo_calc.html">Isolation Transformers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../design/RT_pcb.html">PCB design</a></li>
 </ul>
 </li>
@@ -219,6 +221,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="verilog_guide.html">Verilog coding</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="modules.html">Modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="statements.html">Statements and Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modelsim.html">ModelSim</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="project_code.html">Project Code</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
@@ -231,6 +234,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../diary/2020_diary.html">Diary 2020-2022</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../diary/2023_diary.html">Diary 2023</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diary/2024_diary.html">Diary 2024</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Template</span></p>
 <ul class="nav bd-sidenav">
@@ -381,7 +385,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -397,6 +403,18 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converter-simulator">Converter Simulator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#src-simulator">SRC simulator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llc-simulator">LLC simulator</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -430,6 +448,159 @@ document.write(`
 <span class="w">   </span><span class="p">);</span>
 </pre></div>
 </div>
+<section id="converter-simulator">
+<h2>Converter Simulator<a class="headerlink" href="#converter-simulator" title="Permalink to this heading">#</a></h2>
+<p>The objective is to have some blocks able to simulate, i.e. compute the next value, the current and voltage in a resonant convert. These values are used to test the part in a more realistic scenario.</p>
+<section id="src-simulator">
+<h3>SRC simulator<a class="headerlink" href="#src-simulator" title="Permalink to this heading">#</a></h3>
+<p>The dynamics equations governing the SRC are the following</p>
+</section>
+<section id="llc-simulator">
+<h3>LLC simulator<a class="headerlink" href="#llc-simulator" title="Permalink to this heading">#</a></h3>
+<p>We can model the part before the rectifier considering an equivalent resistor as load. This is reasonable since the input current and voltage of the rectifier are in-phase.
+The three state that we chose to describe the system are <span class="math notranslate nohighlight">\((v_C,i_S,v_o)\)</span>, the dynamical equations are:are</p>
+<div class="math notranslate nohighlight" id="equation-eq-src">
+<span class="eqno">(24)<a class="headerlink" href="#equation-eq-src" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{align}
+   \frac{ {\rm d} v_C}{{\rm d} t} &amp;= \frac{1}{C} i_S \\
+   \frac{ {\rm d} i_S}{{\rm d} t} &amp;= \frac{1}{L} \left( V_g\sigma-v_C-v_o \right) \\
+   \frac{ {\rm d} v_o}{{\rm d} t} &amp;= -\frac{R_{eq}}{L} \left( v_C-V_g\sigma + \left( 1+\frac{L}{L_m} \right) v_o\right)
+\end{align}\end{split}\]</div>
+<p>Now, we want to move toward a digital implementation of a module that can simulate the behavior, i.e. integrate the differential equations. Since it is quite a simple dynamics, we can rely on explicit Euler integration scheme:</p>
+<div class="math notranslate nohighlight" id="equation-eq-euler">
+<span class="eqno">(25)<a class="headerlink" href="#equation-eq-euler" title="Permalink to this equation">#</a></span>\[\begin{equation}
+   \dot x = f(x) \quad\rightarrow\quad x^{k+1}=x^k+\delta_t f(x^k)
+\end{equation}\]</div>
+<p>Moreover, in the FPGA we can only work (in our setting) with integer numbers, therefore we need to ensure sufficient precision to not lose too much information. With this is mind, we apply the following modifications:</p>
+<ul class="simple">
+<li><p>All the parameters are described by integers.</p></li>
+<li><p>The states are described by submultiples.</p></li>
+<li><p>Relative magnitude will be joined together.</p></li>
+<li><p>If a constant appear to be smaller than zero in magnitude, we can adjust by multiply and divide by a power of two (which then correspond to a logic shift).</p></li>
+</ul>
+<p>With this in mind, we can apply the following change of dimensions:</p>
+<div class="math notranslate nohighlight">
+\[ v_C \rightarrow v_{C_{[mV]}}10^{-3} \qquad i_S\rightarrow i_{S_{[\mu A]}}10^{-6} \qquad v_o \rightarrow v_{o_{[mV]}}10^{-3}\]</div>
+<div class="math notranslate nohighlight">
+\[ L\rightarrow L_{[\mu H]} 10^{-6} \qquad   C\rightarrow C_{[nF]} 10^{-9} \qquad L_m\rightarrow L_{m{[\mu H]}} 10^{-6}  \]</div>
+<div class="math notranslate nohighlight">
+\[ R_{eq}\rightarrow R_{eq[m\Omega]} 10^{-3} \qquad V_g \rightarrow V_{g{[mV]}}10^{-3}\qquad  \delta_t\rightarrow \delta_{t{[ns]}} 10^{-9}  \]</div>
+<p>With these transformations, we can write the following equivalent discrete dynamical equations</p>
+<!-- ```{math} -->
+<!-- \begin{align} -->
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   v_{C_{[mV]}}^{k+1}    &amp;= v_{C_{[mV]}}^k    + \frac{\delta_{t[ns]} 10^{-3}}{C_{[nF]}} i_{S_{[\mu A]}} \\
+   i_{S_{[\mu A]}}^{k+1} &amp;= i_{S_{[\mu A]}}^k + \frac{\delta_{t[ns]}}{L_{[\mu H]}} \left( V_{g{[mV]}}\sigma^k-v_{C_{[mV]}}^k-v_{o_{[mV]}}^k \right) \\
+   v_{o_{[mV]}}^{k+1}    &amp;= v_{o_{[mV]}}^k    -\frac{R_{eq[m\Omega]}\delta_{t[ns]}}{L_{[\mu H]}} \left( v_{C_{[mV]}}^k-V_{g{[mV]}}\sigma^k + \left( 1+\frac{L_{[\mu H]}}{L_{m{[\mu H]}}} \right) v_{o_{[mV]}}^k\right) 
+\end{split}\]</div>
+<!-- \end{align} -->
+<!-- ``` -->
+<p>where we can highlight the coefficient multiplying the variables and scale them in order to have only integer operations</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   v_{C_{[mV]}}^{k+1}    &amp;= v_{C_{[mV]}}^k    + \underbrace{\frac{\delta_{t[ns]} 2^{20}}{C_{[nF]}10^{3}}}_{\mu_1} i_{S_{[\mu A]}}^k \frac{1}{2^{20}} \\
+   i_{S_{[\mu A]}}^{k+1} &amp;= i_{S_{[\mu A]}}^k 
+    \underbrace{-\frac{\delta_{t[ns]}}{L_{[\mu H]}}}_{\mu_2} \left(v_{C_{[mV]}}^k+v_{o_{[mV]}}^k \right)
+   +\underbrace{\frac{\delta_{t[ns] }V_{g{[mV]}}}{L_{[\mu H]}}}_{\mu_3} \sigma^k\\
+   v_{o_{[mV]}}^{k+1}    &amp;= v_{o_{[mV]}}^k 
+    \underbrace{-\frac{R_{eq[m\Omega]}\delta_{t[ns]}2^{10}}{L_{[\mu H]}10^6}}_{\mu_4} v_{C_{[mV]}}^k \frac{1}{2^{10}}
+    \underbrace{-\frac{R_{eq[m\Omega]}\delta_{t[ns]}2^{17}}{L_{[\mu H]}10^6} \left( 1+\frac{L_{[\mu H]}}{L_{m{[\mu H]}}} \right)}_{\mu_5} v_{o_{[mV]}}^k \frac{1}{2^{17}}
+   +\underbrace{\frac{R_{eq[m\Omega]}\delta_{t[ns]}V_{g{[mV]}}}{L_{[\mu H]}10^6}}_{\mu_6} \sigma^k 
+\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Indeed, going to an integer representation of the parameters is pretty useless if then we combine them all in a unique constant.</p>
+</div>
+<p>In a compact way, we can write:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   v_{C_{[mV]}}^{k+1}    &amp;= v_{C_{[mV]}}^k    + {\mu_1} \cdot i_{S_{[\mu A]}}^k \cdot  \frac{1}{2^{20}} \\
+   i_{S_{[\mu A]}}^{k+1} &amp;= i_{S_{[\mu A]}}^k + {\mu_2}  \left(v_{C_{[mV]}}^k+v_{o_{[mV]}}^k \right) +{\mu_3} \cdot \sigma^k\\
+   v_{o_{[mV]}}^{k+1}    &amp;= v_{o_{[mV]}}^k    + {\mu_4} \cdot v_{C_{[mV]}}^k \cdot \frac{1}{2^{10}} + {\mu_5} \cdot v_{o_{[mV]}}^k \cdot \frac{1}{2^{17}} + {\mu_6} \cdot \sigma^k 
+\end{split}\]</div>
+<p>In the end, we reach this representation that can be implemented in an FPGA.
+To compute the parameters we have the following Python script</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># parameters</span>
+<span class="n">L</span>   <span class="o">=</span> <span class="mi">10</span>    <span class="c1"># uH</span>
+<span class="n">C</span>   <span class="o">=</span> <span class="mi">850</span>   <span class="c1"># nF</span>
+<span class="n">Lm</span>  <span class="o">=</span> <span class="mi">36</span>    <span class="c1"># uH</span>
+<span class="n">Req</span> <span class="o">=</span> <span class="mi">10000</span> <span class="c1"># mOhm</span>
+<span class="n">Vg</span>  <span class="o">=</span> <span class="mi">48000</span> <span class="c1"># mV</span>
+<span class="n">dt</span>  <span class="o">=</span> <span class="mi">10</span>    <span class="c1"># ns</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Considering integer operations&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  mu_1 = &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span> <span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">20</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">1000</span><span class="o">*</span><span class="n">C</span><span class="p">),</span><span class="mi">2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  mu_2 = &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="o">-</span><span class="n">dt</span><span class="o">/</span><span class="n">L</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  mu_3 = &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span> <span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">Vg</span><span class="p">)</span><span class="o">/</span><span class="n">L</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  mu_4 = &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">Req</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">10</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">L</span><span class="o">*</span><span class="mf">1e6</span><span class="p">),</span><span class="mi">2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  mu_5 = &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">Req</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">17</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">L</span><span class="o">/</span><span class="n">Lm</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">L</span><span class="o">*</span><span class="mf">1e6</span><span class="p">),</span><span class="mi">2</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  mu_6 = &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span> <span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">Req</span><span class="o">*</span><span class="n">Vg</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">L</span><span class="o">*</span><span class="mf">1e6</span><span class="p">),</span><span class="mi">2</span><span class="p">)))</span>
+
+</pre></div>
+</div>
+<p>Computation of the gain without considering the normalization wrt the unit of measure</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span>^<span class="mi">20</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">1000</span><span class="o">*</span><span class="n">Cr</span><span class="p">),</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">mu</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="o">-</span><span class="n">dt</span><span class="o">/</span><span class="n">Lr</span><span class="o">*</span><span class="mf">1e3</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">mu</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">Vg</span><span class="o">*</span><span class="mf">1e6</span><span class="p">)</span><span class="o">/</span><span class="n">Lr</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">mu</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">Req</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span>^<span class="mi">10</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">Lr</span><span class="p">),</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">mu</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">Req</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span>^<span class="mi">17</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">Lr</span><span class="o">/</span><span class="n">Lm</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">Lr</span><span class="p">),</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">mu</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">Req</span><span class="o">*</span><span class="n">Vg</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">Lr</span><span class="o">*</span><span class="mf">1e-3</span><span class="p">),</span><span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Then, the modules code is the following (take care of the priority of the arithmetic operations over logic one):</p>
+<div class="highlight-verilog notranslate"><div class="highlight"><pre><span></span><span class="k">module</span><span class="w"> </span><span class="n">simulator_LLC</span><span class="w"> </span><span class="p">#(</span>
+<span class="w">   </span><span class="k">parameter</span><span class="w"> </span><span class="n">mu_1</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="mh">12</span><span class="p">,</span>
+<span class="w">   </span><span class="k">parameter</span><span class="w"> </span><span class="n">mu_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mh">1</span><span class="p">,</span>
+<span class="w">   </span><span class="k">parameter</span><span class="w"> </span><span class="n">mu_3</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="mh">48000</span><span class="p">,</span>
+<span class="w">   </span><span class="k">parameter</span><span class="w"> </span><span class="n">mu_4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mh">10</span><span class="p">,</span>
+<span class="w">   </span><span class="k">parameter</span><span class="w"> </span><span class="n">mu_5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mh">1675</span><span class="p">,</span>
+<span class="w">   </span><span class="k">parameter</span><span class="w"> </span><span class="n">mu_6</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="mh">480</span>
+<span class="p">)(</span>
+<span class="w">   </span><span class="k">output</span><span class="w"> </span><span class="k">signed</span><span class="w"> </span><span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w">  </span><span class="n">vC_p</span><span class="p">,</span><span class="w"> </span>
+<span class="w">   </span><span class="k">output</span><span class="w"> </span><span class="k">signed</span><span class="w"> </span><span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w">  </span><span class="n">iS_p</span><span class="p">,</span><span class="w"> </span>
+<span class="w">   </span><span class="k">output</span><span class="w"> </span><span class="k">signed</span><span class="w"> </span><span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w">  </span><span class="n">Vo_p</span><span class="p">,</span><span class="w">    </span>
+<span class="w">   </span><span class="k">input</span><span class="w">                 </span><span class="n">CLK</span><span class="p">,</span><span class="w">    </span>
+<span class="w">   </span><span class="k">input</span><span class="w">                 </span><span class="n">RESET</span><span class="p">,</span><span class="w">   </span>
+<span class="w">   </span><span class="k">input</span><span class="w">  </span><span class="k">signed</span><span class="w"> </span><span class="p">[</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w">   </span><span class="n">sigma</span>
+<span class="p">);</span>
+
+<span class="c1">// INTERNAL VARIABLE</span>
+<span class="k">integer</span><span class="w"> </span><span class="n">vC</span><span class="p">;</span><span class="w"> </span><span class="c1">// equivalent to reg signed [31:0] vC;</span>
+<span class="k">integer</span><span class="w"> </span><span class="n">iS</span><span class="p">;</span>
+<span class="k">integer</span><span class="w"> </span><span class="n">Vo</span><span class="p">;</span>
+
+<span class="kt">wire</span><span class="w"> </span><span class="k">signed</span><span class="w"> </span><span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">sigma_32</span><span class="p">;</span>
+
+<span class="c1">// assign output variable</span>
+<span class="k">assign</span><span class="w"> </span><span class="n">vC_p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vC</span><span class="p">;</span>
+<span class="k">assign</span><span class="w"> </span><span class="n">iS_p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iS</span><span class="p">;</span>
+<span class="k">assign</span><span class="w"> </span><span class="n">Vo_p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vo</span><span class="p">;</span><span class="w"> </span>
+<span class="k">assign</span><span class="w"> </span><span class="n">sigma_32</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">{</span><span class="mh">30</span><span class="p">{</span><span class="n">sigma</span><span class="p">[</span><span class="mh">1</span><span class="p">]}}</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="w"> </span><span class="p">};</span>
+
+<span class="c1">// variable initialization</span>
+<span class="k">initial</span><span class="w"> </span><span class="k">begin</span>
+<span class="w">   </span><span class="n">vC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0</span><span class="p">;</span>
+<span class="w">   </span><span class="n">iS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0</span><span class="p">;</span>
+<span class="w">   </span><span class="n">Vo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0</span><span class="p">;</span>
+<span class="k">end</span>
+
+<span class="k">always</span><span class="w"> </span><span class="p">@(</span><span class="k">posedge</span><span class="w"> </span><span class="n">CLK</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">negedge</span><span class="w"> </span><span class="n">RESET</span><span class="p">)</span><span class="w"> </span><span class="k">begin</span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">~</span><span class="n">RESET</span><span class="p">)</span><span class="w"> </span><span class="k">begin</span>
+<span class="w">      </span><span class="n">vC</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">0</span><span class="p">;</span>
+<span class="w">      </span><span class="n">iS</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">0</span><span class="p">;</span>
+<span class="w">      </span><span class="n">Vo</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">0</span><span class="p">;</span>
+<span class="w">   </span><span class="k">end</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">begin</span>
+<span class="w">      </span><span class="n">vC</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">vC</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">((</span><span class="n">mu_1</span><span class="o">*</span><span class="n">iS</span><span class="p">)</span><span class="o">&gt;&gt;&gt;</span><span class="mh">20</span><span class="p">);</span>
+<span class="w">      </span><span class="n">iS</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">iS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mu_2</span><span class="o">*</span><span class="p">(</span><span class="n">vC</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Vo</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mu_3</span><span class="o">*</span><span class="n">sigma_32</span><span class="p">;</span>
+<span class="w">      </span><span class="n">Vo</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">Vo</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">((</span><span class="n">mu_4</span><span class="o">*</span><span class="n">vC</span><span class="p">)</span><span class="o">&gt;&gt;&gt;</span><span class="mh">10</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">((</span><span class="n">mu_5</span><span class="o">*</span><span class="n">Vo</span><span class="p">)</span><span class="o">&gt;&gt;&gt;</span><span class="mh">17</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mu_6</span><span class="o">*</span><span class="n">sigma_32</span><span class="p">;</span>
+<span class="w">   </span><span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">endmodule</span>
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -486,6 +657,24 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converter-simulator">Converter Simulator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#src-simulator">SRC simulator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llc-simulator">LLC simulator</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
