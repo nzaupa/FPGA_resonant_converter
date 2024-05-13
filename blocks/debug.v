@@ -68,4 +68,59 @@ endmodule
 
 
 
+module debug_display_new (
+   output [7:0] SEG0,
+   output [7:0] SEG1,
+   input  [7:0] SEL,
+   input [15:0] SEG_A,
+   input [15:0] SEG_B,
+   input [15:0] SEG_C,
+   input [15:0] SEG_D,
+   input [15:0] SEG_E,
+   input [15:0] SEG_F,   
+   input [15:0] SEG_G,  
+   input [15:0] SEG_H   
+);
+
+reg [15:0] SEG_reg;
+   
+assign SEG0 = SEG_reg[ 7:0];
+assign SEG1 = SEG_reg[15:8];
+
+always  begin
+   case (SEL)
+      8'b00000001 : begin // PHI
+         SEG_reg <= SEG_A;
+      end
+      8'b00000010 : begin // DEADTIME
+         SEG_reg <= SEG_B;
+      end
+      8'b00000100 : begin // Vbat HEX
+         SEG_reg <= SEG_C;
+      end
+      8'b00001000 : begin // Ibat HEX
+         SEG_reg <= SEG_D;
+      end
+      8'b00010000 : begin // Vbat DEC
+         SEG_reg <= SEG_E;
+      end
+      8'b00100000 : begin // Ibat DEC
+         SEG_reg <= SEG_F;
+      end
+      8'b01000000 : begin // Ibat DEC
+         SEG_reg <= SEG_G;
+      end
+      8'b10000000 : begin // Ibat DEC
+         SEG_reg <= SEG_H;
+      end
+      default: begin // shows '--'
+         SEG_reg <= 16'b10111111_10111111;
+      end
+   endcase
+end
+
+endmodule
+
+
+
 

@@ -37,7 +37,8 @@ module value_control #(
    input              dec_btn,
    output [N_BIT-1:0] count,
    output [7:0]       o_seg0,
-   output [7:0]       o_seg1
+   output [7:0]       o_seg1,
+   output [15:0]      o_seg
 );
 
 // Parameters for step size and range
@@ -52,6 +53,7 @@ wire [6:0] segment_0, segment_1;
 assign count  = count_reg;
 assign o_seg0 = { 1'b1 , segment_0 };
 assign o_seg1 = { 1'b1 , segment_1 };
+assign o_seg  = {o_seg1,o_seg0};
 
 dec2hex dec2hex_inst (
    .o_seg(to_seg),

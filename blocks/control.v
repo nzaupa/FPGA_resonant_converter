@@ -24,7 +24,9 @@
 module PI #(
    parameter KP   = 1,       // proportional gain
    parameter TsKI = 0,    // integral gain
-   parameter Kaw  = 0
+   parameter Kaw  = 0,
+   parameter shift_KP = 0,
+   parameter shift_KI = 0
 )
 (
    output signed [31:0]  o_PI,   // output value
@@ -40,7 +42,7 @@ module PI #(
    reg signed [31:0] err_sum_prev;
 
 // assign output variable
-   assign o_PI = err*KP + err_sum*TsKI;
+   assign o_PI = (err*KP >> shift_KP) + (err_sum*TsKI >> shift_KI);
 
 // variable initialization
 initial begin

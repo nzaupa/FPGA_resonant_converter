@@ -116,6 +116,7 @@ reg        [13:0] DAA_copy, DAB_copy;
 reg  [7:0]  ADC_Vbat, ADC_Ibat;
 wire [7:0]  Vbat_DEC, Ibat_DEC;
 wire [15:0] SEG_Vbat_HEX, SEG_Ibat_HEX, SEG_Vbat_DEC, SEG_Ibat_DEC;
+wire [31:0] Ibat_mA;
 
 
 
@@ -137,7 +138,7 @@ wire [31:0] phi_PI, phi_PI_sat, phi_PI_tmp;
 
 wire [1:0] sigma; // internal state
 
-reg  [7:0] SEG0_reg, SEG1_reg;
+wire [7:0] SEG0_reg, SEG1_reg;
 
 wire [7:0] digit_0_theta, digit_1_theta, 
            digit_0_phi,   digit_1_phi,
@@ -195,8 +196,8 @@ assign  DA = debug[20:7];
 
    // assign SEG0 = SEG0_reg;
    // assign SEG1 = SEG1_reg;
-   assign SEG0 = ~sw[3] ? digit_0_phi : SEG0_reg; //SEG0_reg;
-   assign SEG1 = ~sw[3] ? digit_1_phi : SEG1_reg; //SEG1_reg;
+   assign SEG0 = ~sw[3] ? SEG_PHI[ 7:0] : SEG0_reg; //SEG0_reg;
+   assign SEG1 = ~sw[3] ? SEG_PHI[15:8] : SEG1_reg; //SEG1_reg;
 
    // connected to GPIO1 and available on the rectifier board
    // all are available on the 2×6 connector, 6 of them are connected to LEDs
@@ -311,6 +312,12 @@ hybrid_control_mixed #(.mu_z1(32'd86), .mu_z2(32'd90)
    .i_sigma( ) 
 );
 
+num2seg num2seg_PHI (
+   .o_SEG(SEG_PHI),
+   .i_num(phi_HC),
+   .i_DP(2'b11)
+);
+
 //angle control
 // PHI
 value_control  #(
@@ -356,13 +363,13 @@ value_control  #(
 
 // ----- PI CONTROLLER ----- //
 
-assign phi_PI = phi_PI_tmp;//>>>10 + 30;
+assign phi_PI = (phi_PI_tmp>>>10) + 32'd40;
 
-PI #( .KP(-50), .TsKI(-1), .Kaw(0) ) PI_inst(
+PI #( .KP(-1), .TsKI(-5), .Kaw(0), .shift_KP(1), .shift_KI(8) ) PI_inst(
    .o_PI(phi_PI_tmp),   // output value
    .i_CLK(clk_100k),  // for sequential behavior
    .i_RST(CPU_RESET),  // reset signal
-   .err(Ibat_DEC + (~10+1)),     // input error
+   .err(( ((Ibat_mA>>7)>>>7) + (~1500+1) )),  // input error
    .aw(phi_PI_sat + (~phi_PI+1))      // antiwindup
 );
 
@@ -427,6 +434,7 @@ counter_up counter_up_inst    (
 sensing_Ibat sensing_Ibat_inst(
    .Ibat_ADC(ADC_Ibat),    // ADC measure
    .Ibat_DEC(Ibat_DEC),    // converted measure
+   .Ibat_mA(Ibat_mA),    // converted measure
    .SEG_HEX(SEG_Ibat_HEX), // show the acquire HEX number
    .SEG_DEC(SEG_Ibat_DEC)  // show the converted DEC number
 );
@@ -502,18 +510,29 @@ end
 // +++ 7-SEGMENTS DISPLAY +++
 // choose what to show on the display
 
+// debug_display_old debug_display_inst (
+//    .SEG0(SEG0_reg),
+//    .SEG1(SEG1_reg),
+//    .DSW({DSW[7:4],DSW[1:0]}),
+//    .digit_phi(SEG_PHI),
+//    .digit_delta({digit_1_delta,digit_0_delta}),
+//    .SEG_Vbat_HEX(SEG_Vbat_HEX),
+//    .SEG_Ibat_HEX(SEG_Ibat_HEX),
+//    .SEG_Vbat_DEC(SEG_Vbat_DEC),
+//    .SEG_Ibat_DEC(SEG_Ibat_DEC) 
+// );
+
 debug_display debug_display_inst (
    .SEG0(SEG0_reg),
    .SEG1(SEG1_reg),
-   .DSW({DSW[7:4],DSW[1:0]}),
-   .digit_phi({digit_1_phi,digit_0_phi}),
-   .digit_delta({digit_1_delta,digit_0_delta}),
-   .SEG_Vbat_HEX(SEG_Vbat_HEX),
-   .SEG_Ibat_HEX(SEG_Ibat_HEX),
-   .SEG_Vbat_DEC(SEG_Vbat_DEC),
-   .SEG_Ibat_DEC(SEG_Ibat_DEC) 
+   .SEL({DSW[7:4],DSW[1:0]}),
+   .SEG_A(SEG_PHI),
+   .SEG_B({digit_1_delta,digit_0_delta}),
+   .SEG_C(SEG_Vbat_HEX),
+   .SEG_D(SEG_Ibat_HEX),
+   .SEG_E(SEG_Vbat_DEC),
+   .SEG_F(SEG_Ibat_DEC) 
 );
-
 
 // always  begin
 //    case ({DSW[7:4],DSW[1:0]})
