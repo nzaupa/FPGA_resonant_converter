@@ -28,6 +28,8 @@ During April, I mostly focus my self on the writing of the thesis. Trying to har
 
 3 May 2024 - Merge of the note on the design of the prototype on the thesis
 
+**--- Back in TGN and at Campus Sescelades, Planta 4 ---**
+
 5 May - Start of the 4-weeks period in Tarragona to try to ultimate the prototype. I've arrived in Tarragona pretty fast (6h), but with the managing of the trains a bit sketchy.
 
 6 May - Going back to the work and discuss with Carlos. Try to find the state-machine that is working and then implement the control law in x-coordinates, which should be more robust. There are problems with keeping up the signal and at startup. The signal $\sigma\rightarrow v_S$ seems delayed.
@@ -55,8 +57,16 @@ We could tune in a finer way the sensor. Now it is not that bad, we have an erro
 
 10 May - First thing in the morning... wake up late so that I can not go to the swimming pool :|. Apart from the jokes, I've connected back the H-bridge and all is still working. I had the $22.8\;\Omega$ load connected, I've been able to go down until 500mA more or less at the output with $\varphi=50$.
 We can clearly see that also at the resonance the waveform is no more sinusoidal since the quality factor is low.
+The open-loop version is at its final stage. I don't think there is more work to do. All the control laws with $\varphi$ are implemented in the $x$-plane and this enhanced the performance of the phase-shift modulation.
+There is a problem with the mixed control. We can clearly see that the input voltage is asymmetric. This is due to the fact that there is a bias in the current $i_S$ that is read by the ADC. The reason in not clear since the other switch is correct.
+Moreover, check with the oscilloscope, the voltage at the exit of the signal transformer is good and in phase with the measured current. What is shifted, is the current after the $49.9\;\Omega$ resistor.
+I tried to change the position of the resistor in the PCB and to disconnect the capacitor, but this had no effect.
 
+11 May - Working in the morning and "climbing" with Ramon and Julia in the afternoon at La Mussara, sector *Can Pistola*.
 
+12 May - Working a bit and then bike ride in the afternoon. 75km long along the coast until Creixell and after towards the inside until Montserri and back through el Catller.
+
+13 May - Try to set up the modules for the closed-loop.
 
 
 

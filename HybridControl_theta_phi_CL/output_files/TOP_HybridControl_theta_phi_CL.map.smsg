@@ -1,0 +1,5 @@
+Warning (10268): Verilog HDL information at hybrid_control_theta.v(103): always construct contains both blocking and non-blocking assignments File: C:/FPGA/Projects/blocks/hybrid_control_theta.v Line: 103
+Warning (10273): Verilog HDL warning at display_7seg.v(190): extended using "x" or "z" File: C:/FPGA/Projects/blocks/display_7seg.v Line: 190
+Warning (10273): Verilog HDL warning at display_7seg.v(309): extended using "x" or "z" File: C:/FPGA/Projects/blocks/display_7seg.v Line: 309
+Info (10281): Verilog HDL Declaration information at top_hybridcontrol_theta_phi_cl.v(83): object "BUTTON" differs only in case from object "button" in the same scope File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 83
+Info (10281): Verilog HDL Declaration information at top_hybridcontrol_theta_phi_cl.v(82): object "SW" differs only in case from object "sw" in the same scope File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 82

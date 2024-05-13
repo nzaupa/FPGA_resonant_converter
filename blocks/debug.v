@@ -17,7 +17,7 @@
 module debug_display (
    output [7:0] SEG0,
    output [7:0] SEG1,
-   input  [7:0] DSW,
+   input  [7:0] DSW
 
 );
    
