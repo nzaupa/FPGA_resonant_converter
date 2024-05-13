@@ -132,7 +132,7 @@ wire [31:0] phi;
 wire [31:0] delta;
 wire [31:0] theta;
 wire [31:0] phi_HC;
-wire [31:0] theta_HC;
+wire [31:0] phi_PI, phi_PI_sat, phi_PI_tmp;
 
 
 wire [1:0] sigma; // internal state
@@ -225,12 +225,8 @@ assign  DA = debug[20:7];
    assign GPIO0[12] = debug[2]; // D9    S0
    assign GPIO0[14] = debug[3]; // D10   S1
    assign GPIO0[16] = debug[0]; // D11   b0
-   // assign GPIO0[10] = debug[4]; // D8 
-   // assign GPIO0[12] = debug[5]; // D9 
-   // assign GPIO0[14] = debug[6]; // D10
-   // assign GPIO0[16] = debug[7]; // D11
 
-   // ##### assign for DEBUG END #####
+// ##### assign for DEBUG END #####
 
 // --- assign for the H-bridge ---      
 // check if there is a short circuit
@@ -252,11 +248,8 @@ assign VG = cnt_startup > 8'd16; //10us to charge bootstrap capacitor
 
 
 // --- assign for the control of the Resonant Tank ---      
-
-assign   phi_HC   = phi;
-// assign   theta_HC = sw[3] ? (32'd170+(~phi+1)) : theta;
-// assign   theta_HC = 32'd160 + (~phi+1);
-assign   theta_HC = 32'd160;
+// either from outside, either from the PI controller
+assign   phi_HC   = sw[2] ? phi_PI_sat : phi;
 
 
 // -------------------------------------
@@ -314,7 +307,7 @@ hybrid_control_mixed #(.mu_z1(32'd86), .mu_z2(32'd90)
    .i_vC( ADC_A ),      
    .i_iC( ADC_B ),      
    .i_ZVS( delta ),    
-   .i_phi( phi ),      
+   .i_phi( phi_HC ),      
    .i_sigma( ) 
 );
 
@@ -363,19 +356,20 @@ value_control  #(
 
 // ----- PI CONTROLLER ----- //
 
+assign phi_PI = phi_PI_tmp;//>>>10 + 30;
 
-PI #( .KP(1), .TsKI(0), .Kaw(0) ) PI_inst(
-   .o_PI(test[0]),   // output value
+PI #( .KP(-50), .TsKI(-1), .Kaw(0) ) PI_inst(
+   .o_PI(phi_PI_tmp),   // output value
    .i_CLK(clk_100k),  // for sequential behavior
    .i_RST(CPU_RESET),  // reset signal
    .err(Ibat_DEC + (~10+1)),     // input error
-   .aw(32'b0)      // antiwindup
+   .aw(phi_PI_sat + (~phi_PI+1))      // antiwindup
 );
 
 
-saturation sat_test(
-   .u(phi),
-   .u_sat(test[1])
+saturation #(.LOWER_LIMIT(0), .UPPER_LIMIT(90)) sat_test(
+   .u(phi_PI),
+   .u_sat(phi_PI_sat)
 );
 
 
@@ -467,20 +461,21 @@ end
 // +++ CONTROLLER MODE +++
 // choose the type of controller
 always  begin
-   case (sw[2:1])
-      2'b00 : begin // PHI+THETA
-         MOSFET   <= MOSFET_theta_phi;
-      end
-      2'b01 : begin  // THETA
-         MOSFET   <= MOSFET_theta;
-      end
-      2'b10 : begin // PHI
-         MOSFET   <= MOSFET_phi;
-      end
-      default: begin // shows '--'
-         MOSFET   <= 4'b0;
-      end
-   endcase
+   // case (sw[2:1])
+   //    2'b00 : begin // PHI+THETA
+   //       MOSFET   <= MOSFET_theta_phi;
+   //    end
+   //    2'b01 : begin  // THETA
+   //       MOSFET   <= MOSFET_theta;
+   //    end
+   //    2'b10 : begin // PHI
+   //       MOSFET   <= MOSFET_phi;
+   //    end
+   //    default: begin // shows '--'
+   //       MOSFET   <= 4'b0;
+   //    end
+   // endcase
+   MOSFET   <= MOSFET_theta_phi;
 end
 
 // choose the deadtime
@@ -506,94 +501,58 @@ end
 
 // +++ 7-SEGMENTS DISPLAY +++
 // choose what to show on the display
-always  begin
-   case ({DSW[7:4],DSW[1:0]})
-      8'b000001 : begin // PHI
-         SEG0_reg <= digit_0_phi;
-         SEG1_reg <= digit_1_phi;
-      end
-      8'b000010 : begin // ZVS
-         SEG0_reg <= digit_0_delta;
-         SEG1_reg <= digit_1_delta;
-      end
-      // 8'b0000xx00 : begin // DEADTIME
-      //    SEG0_reg <= digit_0_phi;
-      //    SEG1_reg <= digit_1_phi;
-      // end
-      8'b000100 : begin // Vbat HEX
-         SEG0_reg <= SEG_Vbat_HEX[ 7:0];
-         SEG1_reg <= SEG_Vbat_HEX[15:8];
-      end
-      8'b001000 : begin // Ibat HEX
-         SEG0_reg <= SEG_Ibat_HEX[ 7:0];
-         SEG1_reg <= SEG_Ibat_HEX[15:8];
-      end
-      8'b010000 : begin // Vbat DEC
-         SEG0_reg <= SEG_Vbat_DEC[ 7:0];
-         SEG1_reg <= SEG_Vbat_DEC[15:8];
-      end
-      8'b100000 : begin // Ibat DEC
-         SEG0_reg <= SEG_Ibat_DEC[ 7:0];
-         SEG1_reg <= SEG_Ibat_DEC[15:8];
-      end
-      default: begin // shows '--'
-         SEG0_reg <= 8'b10111111;
-         SEG1_reg <= 8'b10111111;
-      end
-   endcase
-end
 
-endmodule
+debug_display debug_display_inst (
+   .SEG0(SEG0_reg),
+   .SEG1(SEG1_reg),
+   .DSW({DSW[7:4],DSW[1:0]}),
+   .digit_phi({digit_1_phi,digit_0_phi}),
+   .digit_delta({digit_1_delta,digit_0_delta}),
+   .SEG_Vbat_HEX(SEG_Vbat_HEX),
+   .SEG_Ibat_HEX(SEG_Ibat_HEX),
+   .SEG_Vbat_DEC(SEG_Vbat_DEC),
+   .SEG_Ibat_DEC(SEG_Ibat_DEC) 
+);
 
 
-
-
-// // choose the mode of the controller
 // always  begin
-//    case (SW[2:1])
-//       2'b00 : begin // PHI+THETA
-//          // if (~SW[3]) begin // phi
-//             // SEG0_reg <= digit_0_phi;
-//             // SEG1_reg <= digit_1_phi;
-//          // end else begin    // theta
-//          //    SEG0_reg <= theta_HC[3:0];
-//          //    SEG1_reg <= theta_HC[7:4];
-//          // end
-//          MOSFET   <= MOSFET_theta_phi;
+//    case ({DSW[7:4],DSW[1:0]})
+//       8'b000001 : begin // PHI
+//          SEG0_reg <= digit_0_phi;
+//          SEG1_reg <= digit_1_phi;
 //       end
-//       2'b01 : begin  // THETA
-//          // SEG0_reg <= digit_0_theta;
-//          // SEG1_reg <= digit_1_theta;
-//          MOSFET   <= MOSFET_theta;
+//       8'b000010 : begin // ZVS
+//          SEG0_reg <= digit_0_delta;
+//          SEG1_reg <= digit_1_delta;
 //       end
-//       2'b10 : begin // PHI
-//          // SEG0_reg <= digit_0_phi;
-//          // SEG1_reg <= digit_1_phi;
-//          MOSFET   <= MOSFET_phi;
+//       // 8'b0000xx00 : begin // DEADTIME
+//       //    SEG0_reg <= digit_0_phi;
+//       //    SEG1_reg <= digit_1_phi;
+//       // end
+//       8'b000100 : begin // Vbat HEX
+//          SEG0_reg <= SEG_Vbat_HEX[ 7:0];
+//          SEG1_reg <= SEG_Vbat_HEX[15:8];
+//       end
+//       8'b001000 : begin // Ibat HEX
+//          SEG0_reg <= SEG_Ibat_HEX[ 7:0];
+//          SEG1_reg <= SEG_Ibat_HEX[15:8];
+//       end
+//       8'b010000 : begin // Vbat DEC
+//          SEG0_reg <= SEG_Vbat_DEC[ 7:0];
+//          SEG1_reg <= SEG_Vbat_DEC[15:8];
+//       end
+//       8'b100000 : begin // Ibat DEC
+//          SEG0_reg <= SEG_Ibat_DEC[ 7:0];
+//          SEG1_reg <= SEG_Ibat_DEC[15:8];
 //       end
 //       default: begin // shows '--'
 //          SEG0_reg <= 8'b10111111;
 //          SEG1_reg <= 8'b10111111;
-//          MOSFET   <= 4'b0;
 //       end
 //    endcase
-   
 // end
 
+endmodule
 
-// control law PHI + THETA
-// hybrid_control_theta_phi #(.mu_z1(32'd86), .mu_z2(32'd90), .mu_Vg(32'd312000)
-// ) hybrid_control_theta_phi_inst (
-//    .o_MOSFET( MOSFET_phi ),  // control signal for the four MOSFETs
-//    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
-//    .o_debug(  ),    // ---
-//    .i_clock( clk_100M ), // 
-//    .i_RESET( CPU_RESET ),    // 
-//    .i_vC( ADC_A ),       // 
-//    .i_iC( ADC_B ),       // 
-//    .i_theta( theta_HC ),    // 32'd314
-//    .i_phi( phi_HC ),        // phi // pi/4 - 32'h0000004E
-//    .i_sigma( ) //{ {31{sigma[1]}} , sigma[0] } )
-// );
 
 
