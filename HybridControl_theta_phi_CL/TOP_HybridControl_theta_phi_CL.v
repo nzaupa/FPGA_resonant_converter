@@ -336,208 +336,192 @@ value_control  #(
    .N_BIT       (8) 
 ) delta_control (
    .i_CLK(clk_100M),
-   .i_RST(CPU_RESET),
-   .inc_btn(button[3]),
-   .dec_btn(1'b0),
+   .i_RST(sw[0]),
+   .inc_btn(button[3] & (~sw[1])),
+   .dec_btn(button[3] &   sw[1] ),
    .count(delta),
    .o_seg(SEG_DELTA)
 );
 
 // Iref (ZVS)
 value_control  #(
-   .INTEGER_STEP(2),
+   .INTEGER_STEP(5),
    .INTEGER_MIN (6),
    .INTEGER_MAX (100),
    .N_BIT       (8) 
 ) Iref_control (
    .i_CLK(clk_100M),
-   .i_RST(CPU_RESET),
-   .inc_btn(button[2]),
-   .dec_btn(1'b0),
+   .i_RST(sw[0]),
+   .inc_btn(button[2] & (~sw[1])),
+   .dec_btn(button[2] &   sw[1] ),
    .count(Iref_dA),
    .o_seg(SEG_IREF)
 );
 
-// theta_control theta_control_inst(
-//    .o_seg0(digit_0_theta), //digit_0
-//    .o_seg1(digit_1_theta), // digit_1
-//    .o_theta32(theta),
-//    .i_reset(button[0]),
-//    .i_increase(1'b1),
-//    .i_decrease(button[2])
-// );
+
 
 
 // ----- PI CONTROLLER ----- //
 
-assign phi_PI = (phi_PI_tmp>>>10) + 32'd50;
-// mA because it has a higher precision
-assign error  = ((Ibat_mA>>7)<<7) + (~(Iref_dA*100)+1);
-// assign error  = ((Ibat_dA + (~(Iref_dA)+1))<<<10;
-
-assign error_dA = {24'b0,Ibat_DEC} + (~(Iref_dA)+1);
+   assign phi_PI = (phi_PI_tmp>>>10) + 32'd50;
+   // mA because it has a higher precision
+   assign error  = ((Ibat_mA>>7)<<7) + (~(Iref_dA*100)+1);
+   assign error_dA = {24'b0,Ibat_DEC} + (~(Iref_dA)+1);
 
 
-PI #( 
-   .Kp  (3), .shift_Kp (3),
-   .TsKi(4), .shift_Ki (8),
-   .Kaw (0), .shift_Kaw(0) 
-) PI_inst(
-   .o_PI(phi_PI_tmp),   // output value
-   .i_CLK(clk_100k),    // for sequential behavior
-   .i_RST(CPU_RESET & ENABLE_RST & sw[0]),  // reset signal
-   .err(error),  // input error
-   .aw(phi_PI_sat + (~phi_PI+1))      // antiwindup
-);
+   PI #( 
+      .Kp  (3), .shift_Kp (3),
+      .TsKi(4), .shift_Ki (8),
+      .Kaw (0), .shift_Kaw(0) 
+   ) PI_inst(
+      .o_PI(phi_PI_tmp),   // output value
+      .i_CLK(clk_100k),    // for sequential behavior
+      .i_RST(CPU_RESET & ENABLE_RST & sw[0]),  // reset signal
+      .err(error),  // input error
+      .aw(phi_PI_sat + (~phi_PI+1))      // antiwindup
+   );
 
 
-// WITH THE NEXT LINE IT IS WORKING
-//    hard limit to 63 max for PHI
-// assign phi_PI_sat = phi_PI[5:0];
+   saturation #(
+      .LOWER_LIMIT(8'd0), 
+      .UPPER_LIMIT(8'd70), 
+      .N_BIT(8)
+   ) sat_PHI(
+      .u({phi_PI[31],phi_PI[6:0]}),
+      .u_sat(phi_PI_sat),
+      .u_dz()
+   );
 
-
-saturation #(
-   .LOWER_LIMIT(8'd0), 
-   .UPPER_LIMIT(8'd70), 
-   .N_BIT(8)
-) sat_PHI(
-   .u({phi_PI[31],phi_PI[6:0]}),
-   .u_sat(phi_PI_sat),
-   .u_dz()
-);
+   // WITH THE NEXT LINE IT IS WORKING
+   //    hard limit to 63 max for PHI
+   // assign phi_PI_sat = phi_PI[5:0];
 
 
 
-// ----- DEAD TIME ----- //
 
-dead_time #(.DEADTIME(80), .N(4)) dead_time_inst_1(
-   .o_signal( Q100 ),          // output switching variable
-   .i_clock(  clk_100M ),            // for sequential behavior
-   .i_signal( MOSFET )
-);
-dead_time #(.DEADTIME(20), .N(4)) dead_time_inst_2(
-   .o_signal( Q200 ),          // output switching variable
-   .i_clock(  clk_100M ),            // for sequential behavior
-   .i_signal( MOSFET )
-);
-dead_time #(.DEADTIME(40), .N(4)) dead_time_inst_4(
-   .o_signal( Q400 ),          // output switching variable
-   .i_clock(  clk_100M ),            // for sequential behavior
-   .i_signal( MOSFET )
-);
-dead_time #(.DEADTIME(60), .N(4)) dead_time_inst_6(
-   .o_signal( Q600 ),          // output switching variable
-   .i_clock(  clk_100M ),            // for sequential behavior
-   .i_signal( MOSFET )
-);
+// +++ DEAD TIME +++ 
 
-// ----- DEBOUNCE ----- //
+   dead_time #(.DEADTIME(80), .N(4)) dead_time_inst_1(
+      .o_signal( Q100 ),          // output switching variable
+      .i_clock(  clk_100M ),            // for sequential behavior
+      .i_signal( MOSFET )
+   );
+   dead_time #(.DEADTIME(20), .N(4)) dead_time_inst_2(
+      .o_signal( Q200 ),          // output switching variable
+      .i_clock(  clk_100M ),            // for sequential behavior
+      .i_signal( MOSFET )
+   );
+   dead_time #(.DEADTIME(40), .N(4)) dead_time_inst_4(
+      .o_signal( Q400 ),          // output switching variable
+      .i_clock(  clk_100M ),            // for sequential behavior
+      .i_signal( MOSFET )
+   );
+   dead_time #(.DEADTIME(60), .N(4)) dead_time_inst_6(
+      .o_signal( Q600 ),          // output switching variable
+      .i_clock(  clk_100M ),            // for sequential behavior
+      .i_signal( MOSFET )
+   );
 
-debounce #(.DEBOUNCE_TIME(5000), .N(4)) debounce_4bit_inst( // 5ms
-   .o_switch(button[3:0]),
-   .i_clk(clk_1M),
-   .i_reset(CPU_RESET),
-   .i_switch(BUTTON[3:0])
-);
+// +++ DEBOUNCE +++ 
 
-debounce #(.DEBOUNCE_TIME(5000), .N(4)) debounce_SWITCH_inst( // 5ms
-   .o_switch(sw),
-   .i_clk(clk_1M),
-   .i_reset(CPU_RESET),
-   .i_switch(SW)
-);
+   debounce #(.DEBOUNCE_TIME(5000), .N(4)) debounce_4bit_inst( // 5ms
+      .o_switch(button[3:0]),
+      .i_clk(clk_1M),
+      .i_reset(CPU_RESET),
+      .i_switch(BUTTON[3:0])
+   );
 
+   debounce #(.DEBOUNCE_TIME(5000), .N(4)) debounce_SWITCH_inst( // 5ms
+      .o_switch(sw),
+      .i_clk(clk_1M),
+      .i_reset(CPU_RESET),
+      .i_switch(SW)
+   );
 
 // +++ START UP counters +++
-// -- counter for the bootstrap and charge the tank
-counter_up counter_up_inst    (
-   .o_counter(cnt_startup), // Output of the counter
-   .enable( ~VG & ENABLE),  // it start with ENABLE and it stops with VG
-   .clk(clk_1M),            // clock Input
-   .reset(ENABLE)           // reset Input
-);
+   // -- counter for the bootstrap and charge the tank
+   counter_up counter_up_inst    (
+      .o_counter(cnt_startup), // Output of the counter
+      .enable( ~VG & ENABLE),  // it start with ENABLE and it stops with VG
+      .clk(clk_1M),            // clock Input
+      .reset(ENABLE)           // reset Input
+   );
 
+// +++ RECTIFIER READING +++
+   sensing_Ibat sensing_Ibat_inst(
+      .Ibat_ADC(ADC_Ibat),    // ADC measure
+      .Ibat_DEC(Ibat_DEC),    // converted measure
+      .Ibat_mA(Ibat_mA),      // converted measure
+      .SEG_HEX(SEG_Ibat_HEX), // show the acquire HEX number
+      .SEG_DEC(SEG_Ibat_DEC)  // show the converted DEC number
+   );
 
-// +++ RECTIFIER DEBUG +++
-sensing_Ibat sensing_Ibat_inst(
-   .Ibat_ADC(ADC_Ibat),    // ADC measure
-   .Ibat_DEC(Ibat_DEC),    // converted measure
-   .Ibat_mA(Ibat_mA),      // converted measure
-   .SEG_HEX(SEG_Ibat_HEX), // show the acquire HEX number
-   .SEG_DEC(SEG_Ibat_DEC)  // show the converted DEC number
-);
-
-sensing_Vbat sensing_Vbat_inst(
-   .Vbat_ADC(ADC_Vbat),    // ADC measure
-   .Vbat_DEC(Vbat_DEC),    // converted measure
-   .SEG_HEX(SEG_Vbat_HEX), // show the acquire HEX number
-   .SEG_DEC(SEG_Vbat_DEC)  // show the comverted DEC number
-);
+   sensing_Vbat sensing_Vbat_inst(
+      .Vbat_ADC(ADC_Vbat),    // ADC measure
+      .Vbat_DEC(Vbat_DEC),    // converted measure
+      .SEG_HEX(SEG_Vbat_HEX), // show the acquire HEX number
+      .SEG_DEC(SEG_Vbat_DEC)  // show the comverted DEC number
+   );
 
 // +++ ADC +++
-// acquire data from ADC when available
-always @(posedge ADA_DCO) begin
-   ADC_A    = ~ADA_DATA+14'b1;
-   DAA_copy = ~ADA_DATA+14'b1 + 14'd8191;
-end
+   // acquire data from ADC when available
+   always @(posedge ADA_DCO) begin
+      ADC_A    = ~ADA_DATA+14'b1;
+      DAA_copy = ~ADA_DATA+14'b1 + 14'd8191;
+   end
 
-always @(posedge ADB_DCO) begin
-   ADC_B    = ~ADB_DATA+14'b1;
-   DAB_copy = ~ADB_DATA+14'b1 + 14'd8191;
-end
+   always @(posedge ADB_DCO) begin
+      ADC_B    = ~ADB_DATA+14'b1;
+      DAB_copy = ~ADB_DATA+14'b1 + 14'd8191;
+   end
 
-always @(negedge ADC_BAT_V_EOC) begin
-   ADC_Vbat    = ADC_BAT_V;
-end
+   always @(negedge ADC_BAT_V_EOC) begin
+      ADC_Vbat    = ADC_BAT_V;
+   end
 
-always @(negedge ADC_BAT_I_EOC) begin
-   ADC_Ibat    = ADC_BAT_I;
-end
-
-always @(posedge clk_100M) begin
-   VG_PREV <= VG;
-end
+   always @(negedge ADC_BAT_I_EOC) begin
+      ADC_Ibat    = ADC_BAT_I;
+   end
 
 // +++ CONTROLLER MODE +++
-// choose the type of controller
-always  begin
-   MOSFET   <= MOSFET_theta_phi;
-end
+   // choose the type of controller
+   always  begin
+      MOSFET   <= MOSFET_theta_phi;
+   end
 
-// choose the deadtime
-always  begin
-   case (DSW[3:2])
-      2'b00 : begin 
-         Qout <= Q100;
-      end
-      2'b10 : begin
-         Qout <= Q200;
-      end
-      2'b01 : begin 
-         Qout <= Q400;
-      end
-      2'b11 : begin 
-         Qout <= Q600;
-      end
-      default: begin 
-         Qout <= 4'b0;
-      end
-   endcase
-end
+   always @(posedge clk_100M) begin
+      VG_PREV <= VG;
+   end
+
+   // choose the deadtime
+   always  begin
+      case (DSW[3:2])
+         2'b00 :  
+            Qout <= Q100;
+         2'b10 : 
+            Qout <= Q200;
+         2'b01 :  
+            Qout <= Q400;
+         2'b11 :  
+            Qout <= Q600;
+         default:  
+            Qout <= 4'b0;
+      endcase
+   end
 
 // +++ 7-SEGMENTS DISPLAY +++
-// choose what to show on the display
-debug_display debug_display_inst (
-   .SEG0(SEG0_reg),
-   .SEG1(SEG1_reg),
-   .SEL({DSW[7:4],DSW[1:0]}),
-   .SEG_A(SEG_IREF),
-   .SEG_B(SEG_DELTA),
-   .SEG_C(SEG_Vbat_HEX),
-   .SEG_D(SEG_Ibat_HEX),
-   .SEG_E(SEG_Vbat_DEC),
-   .SEG_F(SEG_Ibat_DEC) 
-);
+   // choose what to show on the display
+   debug_display debug_display_inst (
+      .SEG0(SEG0_reg),
+      .SEG1(SEG1_reg),
+      .SEL({DSW[7:4],DSW[1:0]}),
+      .SEG_A(SEG_IREF),
+      .SEG_B(SEG_DELTA),
+      .SEG_C(SEG_Vbat_HEX),
+      .SEG_D(SEG_Ibat_HEX),
+      .SEG_E(SEG_Vbat_DEC),
+      .SEG_F(SEG_Ibat_DEC) 
+   );
 
 
 endmodule
