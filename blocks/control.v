@@ -70,8 +70,49 @@ endmodule
 // This modules implements a saturation element.
 // If the input value exceed the limits, 
 // it is clamped to the extreme
-//------------------------------------------------------------
+//
+// signed or unsigned, this is the real question
+// it depends on where are the saturation limits
+// we can limit to the case where we know that UPPER and LOWER
+// are positive values
+// ------------------------------------------------------------
 module saturation #(
+   parameter UPPER_LIMIT = 100,
+   parameter LOWER_LIMIT = 0,
+   parameter N_BIT = 32
+) (
+   input  signed [N_BIT-1:0] u,
+   output signed [N_BIT-1:0] u_sat
+);
+
+reg signed [N_BIT-1:0] u_sat_reg;
+
+assign u_sat = u_sat_reg;
+   
+always @(u) begin
+   if (~u[N_BIT-1]) begin
+      // if the number is positive
+      if (u>UPPER_LIMIT) begin
+         u_sat_reg <= UPPER_LIMIT;
+      end
+      else if (u<LOWER_LIMIT) begin
+         u_sat_reg <= LOWER_LIMIT;
+      end
+      else begin
+         u_sat_reg <= u;
+      end
+   end else begin
+      // the number is negative
+      u_sat_reg <= LOWER_LIMIT;
+   end
+   
+end
+endmodule
+
+
+
+
+module saturation_old #(
    parameter UPPER_LIMIT = 100,
    parameter LOWER_LIMIT = 0,
    parameter N_BIT = 32

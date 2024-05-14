@@ -66,7 +66,15 @@ I tried to change the position of the resistor in the PCB and to disconnect the 
 
 12 May - Working a bit and then bike ride in the afternoon. 75km long along the coast until Creixell and after towards the inside until Montserri and back through el Catller.
 
-13 May - Try to set up the modules for the closed-loop.
+13 May - Try to set up the modules for the closed-loop. I spent much of the morning looking on ways to code a PI with fixed point numbers (i.e. integers).
+Carlos suggested a nice book from Luca Corradini et al. *"Digital Control of High-Frequency Switched-Mode Power Converters"*, which contains useful tips for the implementation.
+The biggest problem is the scaling having to use only integers numbers. 
+Moreover, it is not yet clear how to design formally the closed-loop.
+Apart from this, I've cleaned the TOP file and incorporate the debug on the 7 display into a module (the RTL view is cleaner).
+The objective is to regulate the current up to 0.1A, but the PI is running with mA resolution to have a margin with the operations and avoid the numbers to be clamped to zero. We work with 32bit integers (probably this could be reduced).
+In the end, the converter starts oscillating but it will stop since the control becomes $\varphi=\pi/2$. The objective will be to try to understand why it is going to saturate in that direction. We can see the value of $\varphi$ through the digital probe.
+
+14 May - Starting by cleaning up a bit the TOP and debugging the PI. A problem stands in the saturation which is clamping positive values to the maximum and not the minimum.
 
 
 

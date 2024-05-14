@@ -124,8 +124,11 @@ wire [7:0]  Vbat_DEC, Ibat_DEC;
 wire [15:0] SEG_Vbat_HEX, SEG_Ibat_HEX, SEG_Vbat_DEC, SEG_Ibat_DEC;
 wire [31:0] Ibat_mA;
 
+// PI controller
+wire [31:0] error, Iref_dA;
 
 
+// H-bridge control and startup
 reg  [7:0] deadtime = 8'd5;
 wire [7:0] cnt_startup;
 wire [7:0] cnt_Vg;
@@ -136,19 +139,16 @@ wire  [31:0] debug;
 wire  [1:0]  test;
 
 wire [31:0] phi;
-wire [31:0] delta, Iref_dA;
+wire [31:0] delta;
 wire [31:0] phi_HC;
 wire [31:0] phi_PI, phi_PI_sat, phi_PI_tmp;
 
 
 wire [1:0] sigma; // internal state
 
-wire [7:0] SEG0_reg, SEG1_reg;
+wire  [7:0] SEG0_reg, SEG1_reg;
 wire [15:0] SEG_DELTA, SEG_PHI, SEG_IREF;
 
-// wire [7:0] digit_0_theta, digit_1_theta, 
-//            digit_0_phi,   digit_1_phi,
-//            digit_0_delta, digit_1_delta;
 wire [3:0] button, sw;   // debounce buttons and switch
 // wire [1:0] sw2;
 // assign GPIO0[4:3] = sw2;
@@ -214,10 +214,11 @@ assign  DA = debug[20:7];
    // assign EX[2]  = ENABLE;      // H-bridge ENABLE
    // assign EX[3]  = debug[2];    // Pin 4 D0
    // assign EX[4]  = debug[3];    // Pin 5 D1
-   // assign EX[5]  = debug[8]; //VG;          // Pin 6 D2  M1_delayed
-   // assign EX[6]  = debug[9]; //ON;          // Pin 7 D3  M1
+   // assign EX[5]  = debug[8];    // Pin 6 D2  M1_delayed
+   // assign EX[6]  = debug[9];    // Pin 7 D3  M1
    // assign EX[7]  = test[0];     // Pin 8 D4  b0
-   assign EX[6:0]= phi_HC[6:0];
+   assign EX[6:0]= sw[1] ? phi_PI[6:0] : phi_HC[6:0];
+   assign EX[7]  = phi_PI[31];     
    assign EX[8]  = test[1];     // Pin 9 D5  b1
    assign EX[9]  = debug[14];   // Pin 10 ?
    assign EX[10] = debug[15];   // Pin 11 D6
@@ -257,13 +258,12 @@ assign VG = cnt_startup > 8'd16; //10us to charge bootstrap capacitor
 
 // create a RESET signal every time the ENABLE button is turned ON
 // and the initialization sequence is terminated
-assign ENABLE_RST = ~(VG^VG_PREV);
+assign ENABLE_RST = ~( VG^VG_PREV );
 
 
 // --- assign for the control of the Resonant Tank ---      
 // either from outside, either from the PI controller
-assign   phi_HC   = sw[2] ? phi_PI_sat : phi;
-
+assign   phi_HC   = sw[2] ? phi: phi_PI_sat;
 
 // -------------------------------------
 //         modules instantiation
@@ -315,10 +315,10 @@ value_control  #(
    .i_CLK(clk_100M),
    .i_RST(button[0]),
    .inc_btn(button[1]),
-   .dec_btn(button[2]),
+   .dec_btn(1'b0),
    .count(phi),
-   .o_seg0(digit_0_phi),
-   .o_seg1(digit_1_phi)
+   .o_seg0(SEG0_PHI),
+   .o_seg1(SEG1_PHI)
 );
 
 // DELTA (ZVS)
@@ -336,7 +336,7 @@ value_control  #(
    .o_seg(SEG_DELTA)
 );
 
-// DELTA (ZVS)
+// Iref (ZVS)
 value_control  #(
    .INTEGER_STEP(2),
    .INTEGER_MIN (6),
@@ -364,13 +364,16 @@ value_control  #(
 // ----- PI CONTROLLER ----- //
 
 assign phi_PI = (phi_PI_tmp>>>10) + 32'd20;
+// mA because it has a higher precision
+assign error  = ((Ibat_mA>>7)<<7) + (~(Iref_dA*100)+1);
+// assign error  = ((Ibat_dA + (~(Iref_dA)+1))<<<10;
 
-PI #( .KP(-1), .TsKI(-5), .Kaw(0), .shift_KP(1), .shift_KI(8) ) PI_inst(
+
+PI #( .KP(1), .TsKI(5), .Kaw(1), .shift_KP(1), .shift_KI(8) ) PI_inst(
    .o_PI(phi_PI_tmp),   // output value
    .i_CLK(clk_100k),    // for sequential behavior
    .i_RST(CPU_RESET & ENABLE_RST),  // reset signal
-   //   remove decimal pos.     transform to mA
-   .err(( ((Ibat_mA>>7)<<7) + (~(Iref_dA*100)+1) )),  // input error
+   .err(error),  // input error
    .aw(phi_PI_sat + (~phi_PI+1))      // antiwindup
 );
 
@@ -425,7 +428,7 @@ debounce #(.DEBOUNCE_TIME(5000), .N(4)) debounce_SWITCH_inst( // 5ms
 // -- counter for the bootstrap and charge the tank
 counter_up counter_up_inst    (
    .o_counter(cnt_startup), // Output of the counter
-   .enable( ~VG & ENABLE),  // enable for counter, it stops when VG is active
+   .enable( ~VG & ENABLE),  // it start with ENABLE and it stops with VG
    .clk(clk_1M),            // clock Input
    .reset(ENABLE)           // reset Input
 );
@@ -435,7 +438,7 @@ counter_up counter_up_inst    (
 sensing_Ibat sensing_Ibat_inst(
    .Ibat_ADC(ADC_Ibat),    // ADC measure
    .Ibat_DEC(Ibat_DEC),    // converted measure
-   .Ibat_mA(Ibat_mA),    // converted measure
+   .Ibat_mA(Ibat_mA),      // converted measure
    .SEG_HEX(SEG_Ibat_HEX), // show the acquire HEX number
    .SEG_DEC(SEG_Ibat_DEC)  // show the converted DEC number
 );
@@ -480,19 +483,19 @@ end
 // choose the deadtime
 always  begin
    case (DSW[3:2])
-      2'b00 : begin // PHI+THETA
+      2'b00 : begin 
          Qout <= Q100;
       end
-      2'b10 : begin  // THETA
+      2'b10 : begin
          Qout <= Q200;
       end
-      2'b01 : begin // PHI
+      2'b01 : begin 
          Qout <= Q400;
       end
-      2'b11 : begin // PHI
+      2'b11 : begin 
          Qout <= Q600;
       end
-      default: begin // shows '--'
+      default: begin 
          Qout <= 4'b0;
       end
    endcase
@@ -500,8 +503,6 @@ end
 
 // +++ 7-SEGMENTS DISPLAY +++
 // choose what to show on the display
-
-
 debug_display debug_display_inst (
    .SEG0(SEG0_reg),
    .SEG1(SEG1_reg),
@@ -517,78 +518,3 @@ debug_display debug_display_inst (
 
 endmodule
 
-
-
-// debug_display_old debug_display_inst (
-//    .SEG0(SEG0_reg),
-//    .SEG1(SEG1_reg),
-//    .DSW({DSW[7:4],DSW[1:0]}),
-//    .digit_phi(SEG_PHI),
-//    .digit_delta({digit_1_delta,digit_0_delta}),
-//    .SEG_Vbat_HEX(SEG_Vbat_HEX),
-//    .SEG_Ibat_HEX(SEG_Ibat_HEX),
-//    .SEG_Vbat_DEC(SEG_Vbat_DEC),
-//    .SEG_Ibat_DEC(SEG_Ibat_DEC) 
-// );
-
-// always  begin
-//    case ({DSW[7:4],DSW[1:0]})
-//       8'b000001 : begin // PHI
-//          SEG0_reg <= digit_0_phi;
-//          SEG1_reg <= digit_1_phi;
-//       end
-//       8'b000010 : begin // ZVS
-//          SEG0_reg <= digit_0_delta;
-//          SEG1_reg <= digit_1_delta;
-//       end
-//       // 8'b0000xx00 : begin // DEADTIME
-//       //    SEG0_reg <= digit_0_phi;
-//       //    SEG1_reg <= digit_1_phi;
-//       // end
-//       8'b000100 : begin // Vbat HEX
-//          SEG0_reg <= SEG_Vbat_HEX[ 7:0];
-//          SEG1_reg <= SEG_Vbat_HEX[15:8];
-//       end
-//       8'b001000 : begin // Ibat HEX
-//          SEG0_reg <= SEG_Ibat_HEX[ 7:0];
-//          SEG1_reg <= SEG_Ibat_HEX[15:8];
-//       end
-//       8'b010000 : begin // Vbat DEC
-//          SEG0_reg <= SEG_Vbat_DEC[ 7:0];
-//          SEG1_reg <= SEG_Vbat_DEC[15:8];
-//       end
-//       8'b100000 : begin // Ibat DEC
-//          SEG0_reg <= SEG_Ibat_DEC[ 7:0];
-//          SEG1_reg <= SEG_Ibat_DEC[15:8];
-//       end
-//       default: begin // shows '--'
-//          SEG0_reg <= 8'b10111111;
-//          SEG1_reg <= 8'b10111111;
-//       end
-//    endcase
-// end
-
-
-// // control law THETA
-// hybrid_control_theta hybrid_control_theta_inst (
-//    .o_MOSFET( MOSFET_theta ),   // control signal for the four MOSFETs
-//    .o_sigma(  ),          // output switching variable
-//    .o_debug(  ),          // [16bit]
-//    .i_clock( clk_100M ),  // for sequential behavior
-//    .i_RESET( CPU_RESET ), // reset signal
-//    .i_vC( ADC_A ),        // [14bit-signed] input related to z1
-//    .i_iC( ADC_B ),        // [14bit-signed] input related to z2
-//    .i_theta( theta )     // [32bit-signed] angle of the switching surface
-// );
-
-// // control law PHI
-// hybrid_control_phi_x hybrid_control_inst (
-//    .o_MOSFET( MOSFET_phi ),  // control signal for the four MOSFETs
-//    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
-//    .o_debug( ),    // ? random currently
-//    .i_clock( clk_100M ), // ADA_DCO
-//    .i_RESET( CPU_RESET ),    //
-//    .i_vC( ADC_A ),       //
-//    .i_iC( ADC_B ),       //
-//    .i_phi( phi )     // phi // pi/4 - 32'h0000004E
-// );
