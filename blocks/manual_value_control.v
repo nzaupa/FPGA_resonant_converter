@@ -51,24 +51,35 @@ wire [6:0] segment_0, segment_1;
 
 // Output register
 assign count  = count_reg;
-assign o_seg0 = { 1'b1 , segment_0 };
-assign o_seg1 = { 1'b1 , segment_1 };
-assign o_seg  = {o_seg1,o_seg0};
+assign o_seg0 = o_seg[ 7:0]; //{ 1'b1 , segment_0 };
+assign o_seg1 = o_seg[15:8]; //{ 1'b1 , segment_1 };
+// assign o_seg  = {o_seg1,o_seg0};
 
-dec2hex dec2hex_inst (
-   .o_seg(to_seg),
-   .i_dec(count_reg)
+num2seg num2seg_Ibat (
+   .o_SEG(o_seg),
+   .i_num(count_reg),
+   .i_DP(2'b11)
 );
 
-hex2seg seven_segment_0_inst(
-   .o_seg(segment_0),
-   .i_num(to_seg[3:0])
-);
+// the next 3 moduls are here for legancy
+// dec2hex dec2hex_inst (
+//    .o_seg(to_seg),
+//    .i_dec(count_reg)
+// );
 
-hex2seg seven_segment_1_inst(
-   .o_seg(segment_1),
-   .i_num(to_seg[7:4])
-);
+// hex2seg seven_segment_0_inst(
+//    .o_seg(segment_0),
+//    .i_num(to_seg[3:0])
+// );
+
+// hex2seg seven_segment_1_inst(
+//    .o_seg(segment_1),
+//    .i_num(to_seg[7:4])
+// );
+
+initial begin
+   count_reg = INTEGER_MIN;
+end
 
 
 // Counter logic

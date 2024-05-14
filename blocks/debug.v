@@ -14,7 +14,7 @@
 
 
 
-module debug_display (
+module debug_display_old (
    output [7:0] SEG0,
    output [7:0] SEG1,
    input  [7:0] DSW,
@@ -68,7 +68,7 @@ endmodule
 
 
 
-module debug_display_new (
+module debug_display (
    output [7:0] SEG0,
    output [7:0] SEG1,
    input  [7:0] SEL,

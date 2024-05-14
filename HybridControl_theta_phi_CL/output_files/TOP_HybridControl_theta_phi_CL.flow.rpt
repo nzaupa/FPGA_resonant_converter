@@ -1,5 +1,5 @@
 Flow report for TOP_HybridControl_theta_phi_CL
-Mon May 13 16:48:38 2024
+Mon May 13 18:50:22 2024
 Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
 
 
@@ -41,7 +41,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------------+
 ; Flow Summary                                                                        ;
 +-----------------------------------+-------------------------------------------------+
-; Flow Status                       ; Successful - Mon May 13 16:48:38 2024           ;
+; Flow Status                       ; Successful - Mon May 13 18:50:22 2024           ;
 ; Quartus Prime Version             ; 21.1.0 Build 842 10/21/2021 SJ Standard Edition ;
 ; Revision Name                     ; TOP_HybridControl_theta_phi_CL                  ;
 ; Top-level Entity Name             ; TOP_HybridControl_theta_phi_CL                  ;
@@ -49,7 +49,7 @@ https://fpgasoftware.intel.com/eula.
 ; Device                            ; EP4SGX230KF40C2                                 ;
 ; Timing Models                     ; Final                                           ;
 ; Logic utilization                 ; 2 %                                             ;
-;     Combinational ALUTs           ; 2,625 / 182,400 ( 1 % )                         ;
+;     Combinational ALUTs           ; 2,914 / 182,400 ( 2 % )                         ;
 ;     Memory ALUTs                  ; 0 / 91,200 ( 0 % )                              ;
 ;     Dedicated logic registers     ; 695 / 182,400 ( < 1 % )                         ;
 ; Total registers                   ; 695                                             ;
@@ -71,7 +71,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+--------------------------------+
 ; Option            ; Setting                        ;
 +-------------------+--------------------------------+
-; Start date & time ; 05/13/2024 16:45:40            ;
+; Start date & time ; 05/13/2024 18:48:51            ;
 ; Main task         ; Compilation                    ;
 ; Revision Name     ; TOP_HybridControl_theta_phi_CL ;
 +-------------------+--------------------------------+
@@ -82,7 +82,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id                        ;
 +-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID               ; 1098408413627.171561153931548          ; --            ; --          ; --                                ;
+; COMPILER_SIGNATURE_ID               ; 1098408413627.171561893116712          ; --            ; --          ; --                                ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_timing           ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_boundary_scan    ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_signal_integrity ;
@@ -106,12 +106,12 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:01:22     ; 1.0                     ; 4937 MB             ; 00:01:39                           ;
-; Fitter               ; 00:01:10     ; 1.1                     ; 6436 MB             ; 00:02:00                           ;
-; Assembler            ; 00:00:08     ; 1.0                     ; 4987 MB             ; 00:00:08                           ;
-; Timing Analyzer      ; 00:00:05     ; 1.1                     ; 5103 MB             ; 00:00:05                           ;
+; Analysis & Synthesis ; 00:00:24     ; 1.0                     ; 4939 MB             ; 00:00:37                           ;
+; Fitter               ; 00:00:50     ; 1.1                     ; 6444 MB             ; 00:01:32                           ;
+; Assembler            ; 00:00:06     ; 1.0                     ; 4989 MB             ; 00:00:06                           ;
+; Timing Analyzer      ; 00:00:03     ; 1.2                     ; 5104 MB             ; 00:00:04                           ;
 ; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4757 MB             ; 00:00:01                           ;
-; Total                ; 00:02:46     ; --                      ; --                  ; 00:03:53                           ;
+; Total                ; 00:01:24     ; --                      ; --                  ; 00:02:20                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

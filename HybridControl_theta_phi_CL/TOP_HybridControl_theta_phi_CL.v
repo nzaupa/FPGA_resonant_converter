@@ -31,6 +31,12 @@
 //        BUTTON[2] --> decrease theta    5deg
 //        BUTTON[3] --> increase deadtime 50ms
 
+// GIVE AN EXPLANATION HERE
+// 
+// 
+// 
+// 
+// 
 
 
 `timescale 1 ns / 1 ps
@@ -130,8 +136,7 @@ wire  [31:0] debug;
 wire  [1:0]  test;
 
 wire [31:0] phi;
-wire [31:0] delta;
-wire [31:0] theta;
+wire [31:0] delta, Iref_dA;
 wire [31:0] phi_HC;
 wire [31:0] phi_PI, phi_PI_sat, phi_PI_tmp;
 
@@ -139,15 +144,17 @@ wire [31:0] phi_PI, phi_PI_sat, phi_PI_tmp;
 wire [1:0] sigma; // internal state
 
 wire [7:0] SEG0_reg, SEG1_reg;
+wire [15:0] SEG_DELTA, SEG_PHI, SEG_IREF;
 
-wire [7:0] digit_0_theta, digit_1_theta, 
-           digit_0_phi,   digit_1_phi,
-           digit_0_delta, digit_1_delta;
+// wire [7:0] digit_0_theta, digit_1_theta, 
+//            digit_0_phi,   digit_1_phi,
+//            digit_0_delta, digit_1_delta;
 wire [3:0] button, sw;   // debounce buttons and switch
 // wire [1:0] sw2;
 // assign GPIO0[4:3] = sw2;
 
-wire ON;
+wire ON, VG, ENABLE_RST;
+reg  VG_PREV;
 
 //=======================================================
 //  Structural coding
@@ -202,14 +209,15 @@ assign  DA = debug[20:7];
    // connected to GPIO1 and available on the rectifier board
    // all are available on the 2×6 connector, 6 of them are connected to LEDs
    //CO: 22/12/23 update ex bits
-   assign EX[0]  =  SW[3];      // over voltage
-   assign EX[1]  = ~SW[3];      // over current
-   assign EX[2]  = ENABLE;      // H-bridge ENABLE
-   assign EX[3]  = debug[2];    // Pin 4 D0
-   assign EX[4]  = debug[3];    // Pin 5 D1
-   assign EX[5]  = debug[8]; //VG;          // Pin 6 D2  M1_delayed
-   assign EX[6]  = debug[9]; //ON;          // Pin 7 D3  M1
-   assign EX[7]  = test[0];     // Pin 8 D4  b0
+   // assign EX[0]  =  SW[3];      // over voltage
+   // assign EX[1]  = ~SW[3];      // over current
+   // assign EX[2]  = ENABLE;      // H-bridge ENABLE
+   // assign EX[3]  = debug[2];    // Pin 4 D0
+   // assign EX[4]  = debug[3];    // Pin 5 D1
+   // assign EX[5]  = debug[8]; //VG;          // Pin 6 D2  M1_delayed
+   // assign EX[6]  = debug[9]; //ON;          // Pin 7 D3  M1
+   // assign EX[7]  = test[0];     // Pin 8 D4  b0
+   assign EX[6:0]= phi_HC[6:0];
    assign EX[8]  = test[1];     // Pin 9 D5  b1
    assign EX[9]  = debug[14];   // Pin 10 ?
    assign EX[10] = debug[15];   // Pin 11 D6
@@ -223,9 +231,9 @@ assign  DA = debug[20:7];
    // connected to GPIO0
    // debug for Ci signals
    assign GPIO0[10] = ADC_B[13]; // D8   iC sign
-   assign GPIO0[12] = debug[2]; // D9    S0
-   assign GPIO0[14] = debug[3]; // D10   S1
-   assign GPIO0[16] = debug[0]; // D11   b0
+   assign GPIO0[12] = ENABLE_RST; // D9    S0
+   assign GPIO0[14] = ENABLE; // D10   S1
+   assign GPIO0[16] = VG; // D11   b0
 
 // ##### assign for DEBUG END #####
 
@@ -246,6 +254,10 @@ assign Q[3] = ( (Q4 & ON & VG) | (1'b1 & ~ON) | (1'b1 & ON & (~VG)) ) & ENABLE &
 // start-up counter - charge the bootstrap capacitor by activating Q3 and Q4 (low side)
 assign ON = cnt_startup > 8'd10; //10us to charge bootstrap capacitor
 assign VG = cnt_startup > 8'd16; //10us to charge bootstrap capacitor
+
+// create a RESET signal every time the ENABLE button is turned ON
+// and the initialization sequence is terminated
+assign ENABLE_RST = ~(VG^VG_PREV);
 
 
 // --- assign for the control of the Resonant Tank ---      
@@ -272,44 +284,18 @@ PLL_theta_phi_OL PLL_inst (
 //    2. only phi   --> amplitude modulation
 //    3. delta+phi  --> mixte modulation ensuring ZVS
 
-// // control law THETA
-// hybrid_control_theta hybrid_control_theta_inst (
-//    .o_MOSFET( MOSFET_theta ),   // control signal for the four MOSFETs
-//    .o_sigma(  ),          // output switching variable
-//    .o_debug(  ),          // [16bit]
-//    .i_clock( clk_100M ),  // for sequential behavior
-//    .i_RESET( CPU_RESET ), // reset signal
-//    .i_vC( ADC_A ),        // [14bit-signed] input related to z1
-//    .i_iC( ADC_B ),        // [14bit-signed] input related to z2
-//    .i_theta( theta )     // [32bit-signed] angle of the switching surface
-// );
-
-// // control law PHI
-// hybrid_control_phi_x hybrid_control_inst (
-//    .o_MOSFET( MOSFET_phi ),  // control signal for the four MOSFETs
-//    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
-//    .o_debug( ),    // ? random currently
-//    .i_clock( clk_100M ), // ADA_DCO
-//    .i_RESET( CPU_RESET ),    //
-//    .i_vC( ADC_A ),       //
-//    .i_iC( ADC_B ),       //
-//    .i_phi( phi )     // phi // pi/4 - 32'h0000004E
-// );
-
-
 // control law PHI + DELTA
 hybrid_control_mixed #(.mu_z1(32'd86), .mu_z2(32'd90)
 ) hybrid_control_mixed_inst (
-   .o_MOSFET( MOSFET_theta_phi ),  // control signal for the four MOSFETs
-   .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
-   .o_debug( debug ),   
+   .o_MOSFET( MOSFET_theta_phi ),
+   .o_sigma(  ),
+   .o_debug( debug ),
    .i_clock( clk_100M ),
-   .i_RESET( CPU_RESET  ),   
-   .i_vC( ADC_A ),      
-   .i_iC( ADC_B ),      
-   .i_ZVS( delta ),    
-   .i_phi( phi_HC ),      
-   .i_sigma( ) 
+   .i_RESET( CPU_RESET & ENABLE_RST ),
+   .i_vC( ADC_A ),
+   .i_iC( ADC_B ),
+   .i_ZVS( delta ),
+   .i_phi( phi_HC )
 );
 
 num2seg num2seg_PHI (
@@ -347,8 +333,22 @@ value_control  #(
    .inc_btn(button[3]),
    .dec_btn(1'b0),
    .count(delta),
-   .o_seg0(digit_0_delta),
-   .o_seg1(digit_1_delta)
+   .o_seg(SEG_DELTA)
+);
+
+// DELTA (ZVS)
+value_control  #(
+   .INTEGER_STEP(2),
+   .INTEGER_MIN (6),
+   .INTEGER_MAX (100),
+   .N_BIT       (8) 
+) Iref_control (
+   .i_CLK(clk_100M),
+   .i_RST(CPU_RESET),
+   .inc_btn(button[2]),
+   .dec_btn(1'b0),
+   .count(Iref_dA),
+   .o_seg(SEG_IREF)
 );
 
 // theta_control theta_control_inst(
@@ -363,13 +363,14 @@ value_control  #(
 
 // ----- PI CONTROLLER ----- //
 
-assign phi_PI = (phi_PI_tmp>>>10) + 32'd40;
+assign phi_PI = (phi_PI_tmp>>>10) + 32'd20;
 
 PI #( .KP(-1), .TsKI(-5), .Kaw(0), .shift_KP(1), .shift_KI(8) ) PI_inst(
    .o_PI(phi_PI_tmp),   // output value
-   .i_CLK(clk_100k),  // for sequential behavior
-   .i_RST(CPU_RESET),  // reset signal
-   .err(( ((Ibat_mA>>7)>>>7) + (~1500+1) )),  // input error
+   .i_CLK(clk_100k),    // for sequential behavior
+   .i_RST(CPU_RESET & ENABLE_RST),  // reset signal
+   //   remove decimal pos.     transform to mA
+   .err(( ((Ibat_mA>>7)<<7) + (~(Iref_dA*100)+1) )),  // input error
    .aw(phi_PI_sat + (~phi_PI+1))      // antiwindup
 );
 
@@ -466,23 +467,13 @@ always @(negedge ADC_BAT_I_EOC) begin
    ADC_Ibat    = ADC_BAT_I;
 end
 
+always @(posedge clk_100M) begin
+   VG_PREV <= VG;
+end
+
 // +++ CONTROLLER MODE +++
 // choose the type of controller
 always  begin
-   // case (sw[2:1])
-   //    2'b00 : begin // PHI+THETA
-   //       MOSFET   <= MOSFET_theta_phi;
-   //    end
-   //    2'b01 : begin  // THETA
-   //       MOSFET   <= MOSFET_theta;
-   //    end
-   //    2'b10 : begin // PHI
-   //       MOSFET   <= MOSFET_phi;
-   //    end
-   //    default: begin // shows '--'
-   //       MOSFET   <= 4'b0;
-   //    end
-   // endcase
    MOSFET   <= MOSFET_theta_phi;
 end
 
@@ -510,6 +501,24 @@ end
 // +++ 7-SEGMENTS DISPLAY +++
 // choose what to show on the display
 
+
+debug_display debug_display_inst (
+   .SEG0(SEG0_reg),
+   .SEG1(SEG1_reg),
+   .SEL({DSW[7:4],DSW[1:0]}),
+   .SEG_A(SEG_IREF),
+   .SEG_B(SEG_DELTA),
+   .SEG_C(SEG_Vbat_HEX),
+   .SEG_D(SEG_Ibat_HEX),
+   .SEG_E(SEG_Vbat_DEC),
+   .SEG_F(SEG_Ibat_DEC) 
+);
+
+
+endmodule
+
+
+
 // debug_display_old debug_display_inst (
 //    .SEG0(SEG0_reg),
 //    .SEG1(SEG1_reg),
@@ -521,18 +530,6 @@ end
 //    .SEG_Vbat_DEC(SEG_Vbat_DEC),
 //    .SEG_Ibat_DEC(SEG_Ibat_DEC) 
 // );
-
-debug_display debug_display_inst (
-   .SEG0(SEG0_reg),
-   .SEG1(SEG1_reg),
-   .SEL({DSW[7:4],DSW[1:0]}),
-   .SEG_A(SEG_PHI),
-   .SEG_B({digit_1_delta,digit_0_delta}),
-   .SEG_C(SEG_Vbat_HEX),
-   .SEG_D(SEG_Ibat_HEX),
-   .SEG_E(SEG_Vbat_DEC),
-   .SEG_F(SEG_Ibat_DEC) 
-);
 
 // always  begin
 //    case ({DSW[7:4],DSW[1:0]})
@@ -571,7 +568,27 @@ debug_display debug_display_inst (
 //    endcase
 // end
 
-endmodule
 
+// // control law THETA
+// hybrid_control_theta hybrid_control_theta_inst (
+//    .o_MOSFET( MOSFET_theta ),   // control signal for the four MOSFETs
+//    .o_sigma(  ),          // output switching variable
+//    .o_debug(  ),          // [16bit]
+//    .i_clock( clk_100M ),  // for sequential behavior
+//    .i_RESET( CPU_RESET ), // reset signal
+//    .i_vC( ADC_A ),        // [14bit-signed] input related to z1
+//    .i_iC( ADC_B ),        // [14bit-signed] input related to z2
+//    .i_theta( theta )     // [32bit-signed] angle of the switching surface
+// );
 
-
+// // control law PHI
+// hybrid_control_phi_x hybrid_control_inst (
+//    .o_MOSFET( MOSFET_phi ),  // control signal for the four MOSFETs
+//    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
+//    .o_debug( ),    // ? random currently
+//    .i_clock( clk_100M ), // ADA_DCO
+//    .i_RESET( CPU_RESET ),    //
+//    .i_vC( ADC_A ),       //
+//    .i_iC( ADC_B ),       //
+//    .i_phi( phi )     // phi // pi/4 - 32'h0000004E
+// );
