@@ -378,7 +378,11 @@ assign error  = ((Ibat_mA>>7)<<7) + (~(Iref_dA*100)+1);
 assign error_dA = {24'b0,Ibat_DEC} + (~(Iref_dA)+1);
 
 
-PI #( .KP(3), .TsKI(4), .Kaw(0), .shift_KP(3), .shift_KI(8) ) PI_inst(
+PI #( 
+   .Kp  (3), .shift_Kp (3),
+   .TsKi(4), .shift_Ki (8),
+   .Kaw (0), .shift_Kaw(0) 
+) PI_inst(
    .o_PI(phi_PI_tmp),   // output value
    .i_CLK(clk_100k),    // for sequential behavior
    .i_RST(CPU_RESET & ENABLE_RST & sw[0]),  // reset signal

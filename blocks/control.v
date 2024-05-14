@@ -9,24 +9,25 @@
 //------------------------------------------------------------
 
 // PI controller with anti-windup possibility
-// a classical PI expression is err*KP+int*KI
+// a classical PI expression is err*Kp+int*Ki
 //    where int is the integral of the error
 //       int = sum{err}*Ts    [Ts -> sampling time]
 // the euler scheme is considered for the integration
 // 
 // for a digital implementation we do as follow:
-//    err*KP+err_sum*Ts*KI
-// in this way we can collect the gains in two variables: KP and TsKI
+//    err*Kp+err_sum*Ts*Ki
+// in this way we can collect the gains in two variables: Kp and TsKi
 // since we are working we only integers numbers.aw
 // 
 // Ts is the inverse of the sampling frequency: Ts=1/f(i_CLK)
 
 module PI #(
-   parameter KP   = 1,       // proportional gain
-   parameter TsKI = 0,    // integral gain
-   parameter Kaw  = 0,
-   parameter shift_KP = 0,
-   parameter shift_KI = 0
+   parameter Kp   = 1,       // proportional gain
+   parameter TsKi = 0,       // integral gain
+   parameter Kaw  = 0,       // antiwindup integral
+   parameter shift_Kp = 0,   // shifting for Kp  (division)
+   parameter shift_Ki = 0,   // shifting for Ki  (division) 
+   parameter shiftKaw = 0    // shifting for Kaw (division)
 )
 (
    output signed [31:0]  o_PI,   // output value
@@ -42,7 +43,7 @@ module PI #(
    reg signed [31:0] err_sum_prev;
 
 // assign output variable
-   assign o_PI = (err*KP >> shift_KP) + (err_sum*TsKI >> shift_KI);
+   assign o_PI = (err*Kp >>> shift_Kp) + (err_sum*TsKi >>> shift_Ki);
 
 // variable initialization
 initial begin
@@ -56,7 +57,7 @@ always @(posedge i_CLK or negedge i_RST) begin
       err_sum      <= 32'b0;
    end else begin
       err_sum_prev <= err_sum;
-      err_sum      <= err_sum_prev + err + aw*Kaw; // compute the cumulated sum without considering the integration step
+      err_sum      <= err_sum_prev + err + (aw*Kaw >>> shiftKaw); // compute the cumulated sum without considering the integration step
       // err_sum  <= (err + err_prev)>>1;
    end
 end
