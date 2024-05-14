@@ -78,11 +78,41 @@ endmodule
 // ------------------------------------------------------------
 module saturation #(
    parameter UPPER_LIMIT = 100,
+   parameter LOWER_LIMIT = 0
+   // parameter N_BIT = 32
+) (
+   input  [31:0] u,
+   output [31:0] u_sat
+);
+
+reg [31:0] u_sat_reg;
+
+assign u_sat = u_sat_reg[31:0];
+   
+always @(u) begin
+   if (~u[31]) begin
+      // if the number is positive
+      if (u>UPPER_LIMIT) begin
+         u_sat_reg <= UPPER_LIMIT;
+      end else begin
+         u_sat_reg <= u;
+      end
+   end else begin
+      // the number is negative
+      u_sat_reg <= LOWER_LIMIT;
+   end
+   
+end
+endmodule
+
+
+module saturation_complex #(
+   parameter UPPER_LIMIT = 100,
    parameter LOWER_LIMIT = 0,
    parameter N_BIT = 32
 ) (
-   input  signed [N_BIT-1:0] u,
-   output signed [N_BIT-1:0] u_sat
+   input  [N_BIT-1:0] u,
+   output [N_BIT-1:0] u_sat
 );
 
 reg signed [N_BIT-1:0] u_sat_reg;

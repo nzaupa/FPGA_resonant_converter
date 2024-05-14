@@ -126,6 +126,7 @@ wire [31:0] Ibat_mA;
 
 // PI controller
 wire [31:0] error, Iref_dA;
+wire [31:0] error_dA;
 
 
 // H-bridge control and startup
@@ -217,24 +218,37 @@ assign  DA = debug[20:7];
    // assign EX[5]  = debug[8];    // Pin 6 D2  M1_delayed
    // assign EX[6]  = debug[9];    // Pin 7 D3  M1
    // assign EX[7]  = test[0];     // Pin 8 D4  b0
-   assign EX[6:0]= sw[1] ? phi_PI[6:0] : phi_HC[6:0];
-   assign EX[7]  = phi_PI[31];     
+   assign EX[6:0]= sw[1] ? phi_PI[6:0] : error_dA[6:0];
+   assign EX[7]  = sw[1] ? phi_PI[31]  : error_dA[31];     
    assign EX[8]  = test[1];     // Pin 9 D5  b1
    assign EX[9]  = debug[14];   // Pin 10 ?
    assign EX[10] = debug[15];   // Pin 11 D6
    assign EX[11] = ENABLE;      // Pin 12 D7  (and LED 1)
 
-   assign GPIO0[18] = Q[0]; //Q1;   // D12
-   assign GPIO0[20] = Q[1]; //Q2;   // D13
-   assign GPIO0[22] = Q[2]; //Q3;   // D14
-   assign GPIO0[24] = Q[3]; //Q4;   // D15
+   // assign GPIO0[18] = Q[0]; //Q1;   // D12
+   // assign GPIO0[20] = Q[1]; //Q2;   // D13
+   // assign GPIO0[22] = Q[2]; //Q3;   // D14
+   // assign GPIO0[24] = Q[3]; //Q4;   // D15
+
+   // // connected to GPIO0
+   // // debug for Ci signals
+   // assign GPIO0[10] = ADC_B[13]; // D8   iC sign
+   // assign GPIO0[12] = ENABLE_RST; // D9    S0
+   // assign GPIO0[14] = ENABLE; // D10   S1
+   // assign GPIO0[16] = VG; // D11   b0
+
+
 
    // connected to GPIO0
    // debug for Ci signals
-   assign GPIO0[10] = ADC_B[13]; // D8   iC sign
-   assign GPIO0[12] = ENABLE_RST; // D9    S0
-   assign GPIO0[14] = ENABLE; // D10   S1
-   assign GPIO0[16] = VG; // D11   b0
+   assign GPIO0[10] = phi_HC[0];// D8
+   assign GPIO0[12] = phi_HC[1];// D9
+   assign GPIO0[14] = phi_HC[2];// D10
+   assign GPIO0[16] = phi_HC[3];// D11
+   assign GPIO0[18] = phi_HC[4];// D12
+   assign GPIO0[20] = phi_HC[5];// D13
+   assign GPIO0[22] = phi_HC[6];// D14
+   assign GPIO0[24] = VG;// D15
 
 // ##### assign for DEBUG END #####
 
@@ -368,8 +382,10 @@ assign phi_PI = (phi_PI_tmp>>>10) + 32'd20;
 assign error  = ((Ibat_mA>>7)<<7) + (~(Iref_dA*100)+1);
 // assign error  = ((Ibat_dA + (~(Iref_dA)+1))<<<10;
 
+assign error_dA = {24'b0,Ibat_DEC} + (~(Iref_dA)+1);
 
-PI #( .KP(1), .TsKI(5), .Kaw(1), .shift_KP(1), .shift_KI(8) ) PI_inst(
+
+PI #( .KP(1), .TsKI(1), .Kaw(0), .shift_KP(1), .shift_KI(8) ) PI_inst(
    .o_PI(phi_PI_tmp),   // output value
    .i_CLK(clk_100k),    // for sequential behavior
    .i_RST(CPU_RESET & ENABLE_RST),  // reset signal
@@ -378,10 +394,13 @@ PI #( .KP(1), .TsKI(5), .Kaw(1), .shift_KP(1), .shift_KI(8) ) PI_inst(
 );
 
 
-saturation #(.LOWER_LIMIT(0), .UPPER_LIMIT(90)) sat_test(
-   .u(phi_PI),
-   .u_sat(phi_PI_sat)
-);
+// assign phi_PI_sat = (phi_PI>=32'd90) ? 32'd90 : phi_PI;
+assign phi_PI_sat = phi_PI[5:0];
+
+// saturation #(.LOWER_LIMIT(32'd0), .UPPER_LIMIT(32'd90)) sat_PHI(
+//    .u(phi_PI),
+//    .u_sat(phi_PI_sat)
+// );
 
 
 // ----- DEAD TIME ----- //

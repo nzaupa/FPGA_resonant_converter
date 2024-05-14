@@ -75,7 +75,9 @@ The objective is to regulate the current up to 0.1A, but the PI is running with 
 In the end, the converter starts oscillating but it will stop since the control becomes $\varphi=\pi/2$. The objective will be to try to understand why it is going to saturate in that direction. We can see the value of $\varphi$ through the digital probe.
 
 14 May - Starting by cleaning up a bit the TOP and debugging the PI. A problem stands in the saturation which is clamping positive values to the maximum and not the minimum.
-
+Nice tutorial on operators <https://documentation-rp-test.readthedocs.io/en/latest/tutorfpga04.html>.
+I'm spending a lot of time in debugging the saturation...
+In the end, it is working by restraining the value of phi to 7-bit (64 max), which is a kind of brute force saturation.
 
 
 
