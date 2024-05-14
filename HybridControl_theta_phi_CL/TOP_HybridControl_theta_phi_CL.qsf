@@ -59,24 +59,6 @@ set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_RO
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name VERILOG_FILE ../blocks/debug.v
-set_global_assignment -name VERILOG_FILE ../blocks/control.v
-set_global_assignment -name VERILOG_FILE ../blocks/trigonometry.v
-set_global_assignment -name VERILOG_FILE ../blocks/regularization.v
-set_global_assignment -name VERILOG_FILE ../blocks/rectifier_sensing.v
-set_global_assignment -name VERILOG_FILE ../blocks/PLL.v
-set_global_assignment -name VERILOG_FILE ../blocks/manual_value_control.v
-set_global_assignment -name VERILOG_FILE ../blocks/hybrid_control_theta_phi.v
-set_global_assignment -name VERILOG_FILE ../blocks/hybrid_control_theta.v
-set_global_assignment -name VERILOG_FILE ../blocks/hybrid_control_phi.v
-set_global_assignment -name VERILOG_FILE ../blocks/hybrid_control_mixed.v
-set_global_assignment -name VERILOG_FILE ../blocks/frequency_control.v
-set_global_assignment -name VERILOG_FILE ../blocks/display_7seg.v
-set_global_assignment -name VERILOG_FILE ../blocks/debounce.v
-set_global_assignment -name VERILOG_FILE ../blocks/dead_time.v
-set_global_assignment -name VERILOG_FILE ../blocks/counter.v
-set_global_assignment -name VERILOG_FILE ../blocks/ABS.v
-set_global_assignment -name VERILOG_FILE ../HybridControl_theta_phi_OL/PLL_theta_phi_OL.v
 set_location_assignment PIN_AB6 -to OSC
 set_location_assignment PIN_V34 -to CPU_RESET
 set_location_assignment PIN_AP20 -to FAN_CTRL
@@ -264,4 +246,23 @@ set_location_assignment PIN_V9 -to DA[0]
 set_location_assignment PIN_P6 -to DB[0]
 set_global_assignment -name FLOW_ENABLE_RTL_VIEWER ON
 set_global_assignment -name TIMING_ANALYZER_MULTICORNER_ANALYSIS ON
+set_global_assignment -name VERILOG_FILE ../blocks/saturation.v
+set_global_assignment -name VERILOG_FILE ../blocks/debug.v
+set_global_assignment -name VERILOG_FILE ../blocks/control.v
+set_global_assignment -name VERILOG_FILE ../blocks/trigonometry.v
+set_global_assignment -name VERILOG_FILE ../blocks/regularization.v
+set_global_assignment -name VERILOG_FILE ../blocks/rectifier_sensing.v
+set_global_assignment -name VERILOG_FILE ../blocks/PLL.v
+set_global_assignment -name VERILOG_FILE ../blocks/manual_value_control.v
+set_global_assignment -name VERILOG_FILE ../blocks/hybrid_control_theta_phi.v
+set_global_assignment -name VERILOG_FILE ../blocks/hybrid_control_theta.v
+set_global_assignment -name VERILOG_FILE ../blocks/hybrid_control_phi.v
+set_global_assignment -name VERILOG_FILE ../blocks/hybrid_control_mixed.v
+set_global_assignment -name VERILOG_FILE ../blocks/frequency_control.v
+set_global_assignment -name VERILOG_FILE ../blocks/display_7seg.v
+set_global_assignment -name VERILOG_FILE ../blocks/debounce.v
+set_global_assignment -name VERILOG_FILE ../blocks/dead_time.v
+set_global_assignment -name VERILOG_FILE ../blocks/counter.v
+set_global_assignment -name VERILOG_FILE ../blocks/ABS.v
+set_global_assignment -name VERILOG_FILE ../HybridControl_theta_phi_OL/PLL_theta_phi_OL.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -1,5 +1,5 @@
 Timing Analyzer report for TOP_HybridControl_theta_phi_CL
-Tue May 14 13:04:52 2024
+Tue May 14 17:02:24 2024
 Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
 
 
@@ -95,15 +95,15 @@ https://fpgasoftware.intel.com/eula.
 ; Number detected on machine ; 16          ;
 ; Maximum allowed            ; 8           ;
 ;                            ;             ;
-; Average used               ; 1.17        ;
+; Average used               ; 1.21        ;
 ; Maximum used               ; 8           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   3.2%      ;
-;     Processor 3            ;   2.7%      ;
-;     Processor 4            ;   2.4%      ;
-;     Processors 5-8         ;   2.2%      ;
+;     Processor 2            ;   5.4%      ;
+;     Processor 3            ;   2.8%      ;
+;     Processor 4            ;   2.6%      ;
+;     Processors 5-8         ;   2.5%      ;
 +----------------------------+-------------+
 
 
@@ -130,9 +130,9 @@ https://fpgasoftware.intel.com/eula.
 +------------+-----------------+------------------------------------------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name                                           ; Note ;
 +------------+-----------------+------------------------------------------------------+------+
-; 60.5 MHz   ; 60.5 MHz        ; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ;      ;
-; 234.96 MHz ; 234.96 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ;      ;
-; 480.77 MHz ; 480.77 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[3] ;      ;
+; 59.29 MHz  ; 59.29 MHz       ; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ;      ;
+; 164.12 MHz ; 164.12 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ;      ;
+; 457.88 MHz ; 457.88 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[3] ;      ;
 +------------+-----------------+------------------------------------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -148,10 +148,10 @@ HTML report is unavailable in plain text report export.
 +--------------------------------------------------------------+---------+---------------+
 ; Clock                                                        ; Slack   ; End Point TNS ;
 +--------------------------------------------------------------+---------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; -18.948 ; -1023.191     ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; -6.983  ; -119.138      ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -4.893  ; -9.754        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 995.744 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; -20.052 ; -1056.888     ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -7.157  ; -14.298       ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; -6.820  ; -104.476      ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 993.907 ; 0.000         ;
 +--------------------------------------------------------------+---------+---------------+
 
 
@@ -160,10 +160,10 @@ HTML report is unavailable in plain text report export.
 +--------------------------------------------------------------+-------+---------------+
 ; Clock                                                        ; Slack ; End Point TNS ;
 +--------------------------------------------------------------+-------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 0.265 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0.238 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 0.264 ; 0.000         ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 0.296 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0.304 ; 0.000         ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.572 ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.464 ; 0.000         ;
 +--------------------------------------------------------------+-------+---------------+
 
 
@@ -172,10 +172,10 @@ HTML report is unavailable in plain text report export.
 +--------------------------------------------------------------+---------+---------------+
 ; Clock                                                        ; Slack   ; End Point TNS ;
 +--------------------------------------------------------------+---------+---------------+
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -1.247  ; -2.494        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 4.151   ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 5.196   ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 997.513 ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -1.101  ; -2.202        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 5.142   ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 7.933   ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 998.634 ; 0.000         ;
 +--------------------------------------------------------------+---------+---------------+
 
 
@@ -184,10 +184,10 @@ HTML report is unavailable in plain text report export.
 +--------------------------------------------------------------+-------+---------------+
 ; Clock                                                        ; Slack ; End Point TNS ;
 +--------------------------------------------------------------+-------+---------------+
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.724 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 1.913 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 1.934 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 3.516 ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.527 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0.922 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 0.975 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 1.601 ; 0.000         ;
 +--------------------------------------------------------------+-------+---------------+
 
 
@@ -196,14 +196,14 @@ HTML report is unavailable in plain text report export.
 +--------------------------------------------------------------+----------+---------------+
 ; Clock                                                        ; Slack    ; End Point TNS ;
 +--------------------------------------------------------------+----------+---------------+
-; ADB_DCO                                                      ; -0.250   ; -8.854        ;
-; ADA_DCO                                                      ; -0.250   ; -3.813        ;
+; ADB_DCO                                                      ; -0.250   ; -8.851        ;
+; ADA_DCO                                                      ; -0.250   ; -3.812        ;
+; ADC_BAT_I_EOC                                                ; -0.250   ; -2.600        ;
 ; ADC_BAT_V_EOC                                                ; -0.250   ; -2.568        ;
-; ADC_BAT_I_EOC                                                ; -0.250   ; -2.328        ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.250   ; -0.646        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 4.452    ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.250   ; -0.690        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 4.453    ; 0.000         ;
 ; OSC                                                          ; 9.959    ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 499.451  ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 499.452  ; 0.000         ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 4999.451 ; 0.000         ;
 +--------------------------------------------------------------+----------+---------------+
 
@@ -211,13 +211,7 @@ HTML report is unavailable in plain text report export.
 ----------------------------------------------
 ; Slow 900mV 85C Model Metastability Summary ;
 ----------------------------------------------
-The design MTBF is not calculated because there are no specified synchronizers in the design.
-Number of Synchronizer Chains Found: 3
-Shortest Synchronizer Chain: 2 Registers
-Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-Worst Case Available Settling Time: 19997.300 ns
-
-
+No synchronizer chains to report.
 
 
 +--------------------------------------------------------------------------------------------+
@@ -225,9 +219,9 @@ Worst Case Available Settling Time: 19997.300 ns
 +------------+-----------------+------------------------------------------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name                                           ; Note ;
 +------------+-----------------+------------------------------------------------------+------+
-; 63.2 MHz   ; 63.2 MHz        ; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ;      ;
-; 244.92 MHz ; 244.92 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ;      ;
-; 497.02 MHz ; 497.02 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[3] ;      ;
+; 61.64 MHz  ; 61.64 MHz       ; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ;      ;
+; 178.35 MHz ; 178.35 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ;      ;
+; 473.71 MHz ; 473.71 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[3] ;      ;
 +------------+-----------------+------------------------------------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -237,10 +231,10 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +--------------------------------------------------------------+---------+---------------+
 ; Clock                                                        ; Slack   ; End Point TNS ;
 +--------------------------------------------------------------+---------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; -18.110 ; -980.972      ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; -6.688  ; -114.046      ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -4.653  ; -9.297        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 995.917 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; -19.264 ; -1015.696     ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -6.815  ; -13.612       ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; -6.574  ; -100.471      ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 994.393 ; 0.000         ;
 +--------------------------------------------------------------+---------+---------------+
 
 
@@ -249,10 +243,10 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +--------------------------------------------------------------+-------+---------------+
 ; Clock                                                        ; Slack ; End Point TNS ;
 +--------------------------------------------------------------+-------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 0.263 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0.234 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 0.264 ; 0.000         ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 0.290 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0.290 ; 0.000         ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.528 ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.427 ; 0.000         ;
 +--------------------------------------------------------------+-------+---------------+
 
 
@@ -261,10 +255,10 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +--------------------------------------------------------------+---------+---------------+
 ; Clock                                                        ; Slack   ; End Point TNS ;
 +--------------------------------------------------------------+---------+---------------+
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -1.096  ; -2.192        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 4.459   ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 5.523   ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 997.612 ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.863  ; -1.726        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 5.428   ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 8.077   ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 998.696 ; 0.000         ;
 +--------------------------------------------------------------+---------+---------------+
 
 
@@ -273,10 +267,10 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +--------------------------------------------------------------+-------+---------------+
 ; Clock                                                        ; Slack ; End Point TNS ;
 +--------------------------------------------------------------+-------+---------------+
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.599 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 1.780 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 1.819 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 3.257 ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.376 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0.811 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 0.916 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 1.463 ; 0.000         ;
 +--------------------------------------------------------------+-------+---------------+
 
 
@@ -285,14 +279,14 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +--------------------------------------------------------------+----------+---------------+
 ; Clock                                                        ; Slack    ; End Point TNS ;
 +--------------------------------------------------------------+----------+---------------+
-; ADB_DCO                                                      ; -0.250   ; -8.843        ;
-; ADA_DCO                                                      ; -0.250   ; -4.041        ;
-; ADC_BAT_I_EOC                                                ; -0.250   ; -2.808        ;
+; ADB_DCO                                                      ; -0.250   ; -8.859        ;
+; ADA_DCO                                                      ; -0.250   ; -4.088        ;
+; ADC_BAT_I_EOC                                                ; -0.250   ; -3.040        ;
 ; ADC_BAT_V_EOC                                                ; -0.250   ; -2.720        ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.250   ; -0.602        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 4.432    ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.250   ; -0.642        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 4.434    ; 0.000         ;
 ; OSC                                                          ; 9.979    ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 499.433  ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 499.434  ; 0.000         ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 4999.433 ; 0.000         ;
 +--------------------------------------------------------------+----------+---------------+
 
@@ -300,13 +294,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 ---------------------------------------------
 ; Slow 900mV 0C Model Metastability Summary ;
 ---------------------------------------------
-The design MTBF is not calculated because there are no specified synchronizers in the design.
-Number of Synchronizer Chains Found: 3
-Shortest Synchronizer Chain: 2 Registers
-Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-Worst Case Available Settling Time: 19997.381 ns
-
-
+No synchronizer chains to report.
 
 
 +----------------------------------------------------------------------------------------+
@@ -314,10 +302,10 @@ Worst Case Available Settling Time: 19997.381 ns
 +--------------------------------------------------------------+---------+---------------+
 ; Clock                                                        ; Slack   ; End Point TNS ;
 +--------------------------------------------------------------+---------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; -11.547 ; -598.907      ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; -4.027  ; -68.624       ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -2.765  ; -5.509        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 997.287 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; -12.154 ; -616.102      ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -4.226  ; -8.443        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; -3.950  ; -60.523       ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 996.025 ; 0.000         ;
 +--------------------------------------------------------------+---------+---------------+
 
 
@@ -326,10 +314,10 @@ Worst Case Available Settling Time: 19997.381 ns
 +--------------------------------------------------------------+-------+---------------+
 ; Clock                                                        ; Slack ; End Point TNS ;
 +--------------------------------------------------------------+-------+---------------+
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0.136 ; 0.000         ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 0.153 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0.169 ; 0.000         ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 0.173 ; 0.000         ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.756 ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.733 ; 0.000         ;
 +--------------------------------------------------------------+-------+---------------+
 
 
@@ -338,10 +326,10 @@ Worst Case Available Settling Time: 19997.381 ns
 +--------------------------------------------------------------+---------+---------------+
 ; Clock                                                        ; Slack   ; End Point TNS ;
 +--------------------------------------------------------------+---------+---------------+
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.799  ; -1.598        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 6.188   ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 7.075   ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 998.461 ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.654  ; -1.308        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 6.902   ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 8.931   ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 999.212 ; 0.000         ;
 +--------------------------------------------------------------+---------+---------------+
 
 
@@ -350,10 +338,10 @@ Worst Case Available Settling Time: 19997.381 ns
 +--------------------------------------------------------------+-------+---------------+
 ; Clock                                                        ; Slack ; End Point TNS ;
 +--------------------------------------------------------------+-------+---------------+
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.669 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 1.196 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 1.219 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 2.005 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0.319 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 0.571 ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.628 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 1.002 ; 0.000         ;
 +--------------------------------------------------------------+-------+---------------+
 
 
@@ -362,11 +350,11 @@ Worst Case Available Settling Time: 19997.381 ns
 +--------------------------------------------------------------+----------+---------------+
 ; Clock                                                        ; Slack    ; End Point TNS ;
 +--------------------------------------------------------------+----------+---------------+
-; ADA_DCO                                                      ; -0.159   ; -2.141        ;
-; ADB_DCO                                                      ; -0.142   ; -3.938        ;
-; ADC_BAT_I_EOC                                                ; -0.124   ; -0.992        ;
+; ADA_DCO                                                      ; -0.159   ; -2.176        ;
+; ADB_DCO                                                      ; -0.141   ; -3.938        ;
+; ADC_BAT_I_EOC                                                ; -0.109   ; -0.872        ;
 ; ADC_BAT_V_EOC                                                ; -0.084   ; -0.672        ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.087    ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.078    ; 0.000         ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 4.648    ; 0.000         ;
 ; OSC                                                          ; 9.698    ; 0.000         ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 499.649  ; 0.000         ;
@@ -377,13 +365,7 @@ Worst Case Available Settling Time: 19997.381 ns
 ---------------------------------------------
 ; Fast 900mV 0C Model Metastability Summary ;
 ---------------------------------------------
-The design MTBF is not calculated because there are no specified synchronizers in the design.
-Number of Synchronizer Chains Found: 3
-Shortest Synchronizer Chain: 2 Registers
-Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-Worst Case Available Settling Time: 19998.424 ns
-
-
+No synchronizer chains to report.
 
 
 +------------------------------------------------------------------------------------------------------------------------------+
@@ -391,26 +373,26 @@ Worst Case Available Settling Time: 19998.424 ns
 +---------------------------------------------------------------+-----------+-------+----------+---------+---------------------+
 ; Clock                                                         ; Setup     ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
 +---------------------------------------------------------------+-----------+-------+----------+---------+---------------------+
-; Worst-case Slack                                              ; -18.948   ; 0.153 ; -1.247   ; 0.599   ; -0.250              ;
+; Worst-case Slack                                              ; -20.052   ; 0.136 ; -1.101   ; 0.319   ; -0.250              ;
 ;  ADA_DCO                                                      ; N/A       ; N/A   ; N/A      ; N/A     ; -0.250              ;
 ;  ADB_DCO                                                      ; N/A       ; N/A   ; N/A      ; N/A     ; -0.250              ;
 ;  ADC_BAT_I_EOC                                                ; N/A       ; N/A   ; N/A      ; N/A     ; -0.250              ;
 ;  ADC_BAT_V_EOC                                                ; N/A       ; N/A   ; N/A      ; N/A     ; -0.250              ;
 ;  OSC                                                          ; N/A       ; N/A   ; N/A      ; N/A     ; 9.698               ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; -18.948   ; 0.153 ; 4.151    ; 1.196   ; 4.432               ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 995.744   ; 0.173 ; 997.513  ; 1.219   ; 499.433             ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; -6.983    ; 0.169 ; 5.196    ; 2.005   ; 4999.433            ;
-;  hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -4.893    ; 0.528 ; -1.247   ; 0.599   ; -0.250              ;
-; Design-wide TNS                                               ; -1152.083 ; 0.0   ; -2.494   ; 0.0     ; -19.014             ;
-;  ADA_DCO                                                      ; N/A       ; N/A   ; N/A      ; N/A     ; -4.041              ;
-;  ADB_DCO                                                      ; N/A       ; N/A   ; N/A      ; N/A     ; -8.854              ;
-;  ADC_BAT_I_EOC                                                ; N/A       ; N/A   ; N/A      ; N/A     ; -2.808              ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; -20.052   ; 0.153 ; 5.142    ; 1.002   ; 4.434               ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 993.907   ; 0.173 ; 998.634  ; 0.571   ; 499.434             ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; -6.820    ; 0.136 ; 7.933    ; 0.319   ; 4999.433            ;
+;  hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -7.157    ; 0.427 ; -1.101   ; 0.376   ; -0.250              ;
+; Design-wide TNS                                               ; -1175.662 ; 0.0   ; -2.202   ; 0.0     ; -19.349             ;
+;  ADA_DCO                                                      ; N/A       ; N/A   ; N/A      ; N/A     ; -4.088              ;
+;  ADB_DCO                                                      ; N/A       ; N/A   ; N/A      ; N/A     ; -8.859              ;
+;  ADC_BAT_I_EOC                                                ; N/A       ; N/A   ; N/A      ; N/A     ; -3.040              ;
 ;  ADC_BAT_V_EOC                                                ; N/A       ; N/A   ; N/A      ; N/A     ; -2.720              ;
 ;  OSC                                                          ; N/A       ; N/A   ; N/A      ; N/A     ; 0.000               ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; -1023.191 ; 0.000 ; 0.000    ; 0.000   ; 0.000               ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; -1056.888 ; 0.000 ; 0.000    ; 0.000   ; 0.000               ;
 ;  PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 0.000     ; 0.000 ; 0.000    ; 0.000   ; 0.000               ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; -119.138  ; 0.000 ; 0.000    ; 0.000   ; 0.000               ;
-;  hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -9.754    ; 0.000 ; -2.494   ; 0.000   ; -0.646              ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; -104.476  ; 0.000 ; 0.000    ; 0.000   ; 0.000               ;
+;  hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -14.298   ; 0.000 ; -2.202   ; 0.000   ; -0.690              ;
 +---------------------------------------------------------------+-----------+-------+----------+---------+---------------------+
 
 
@@ -579,12 +561,12 @@ Worst Case Available Settling Time: 19998.424 ns
 ; ADB_DATA[13]   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; SW[0]          ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; SW[1]          ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
-; ADC_BAT_I[5]   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ADC_BAT_I[7]   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ADC_BAT_I_EOC  ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ADC_BAT_I[6]   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; ADC_BAT_I[5]   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ADC_BAT_I[4]   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ADC_BAT_I[3]   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
-; ADC_BAT_I[7]   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
-; ADC_BAT_I[6]   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ADC_BAT_I[2]   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ADC_BAT_I[1]   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ADC_BAT_I[0]   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
@@ -1002,21 +984,21 @@ Worst Case Available Settling Time: 19998.424 ns
 +--------------------------------------------------------------+--------------------------------------------------------------+--------------+--------------+----------+----------+
 ; From Clock                                                   ; To Clock                                                     ; RR Paths     ; FR Paths     ; RF Paths ; FF Paths ;
 +--------------------------------------------------------------+--------------------------------------------------------------+--------------+--------------+----------+----------+
-; ADC_BAT_I_EOC                                                ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0            ; 0            ; 0        ; 36026    ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0            ; 0            ; 18173    ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0            ; 0            ; 8        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0            ; 0            ; 252      ; 0        ;
+; ADC_BAT_I_EOC                                                ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0            ; 0            ; 0        ; 3273068  ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0            ; 0            ; 1641277  ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0            ; 0            ; 10       ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0            ; 0            ; 2300     ; 0        ;
 ; ADA_DCO                                                      ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 77590548     ; 0            ; 0        ; 0        ;
 ; ADB_DCO                                                      ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 73868472     ; 0            ; 0        ; 0        ;
 ; ADC_BAT_I_EOC                                                ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 0            ; > 2147483647 ; 0        ; 0        ;
 ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 1            ; 680          ; 0        ; 0        ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; > 2147483647 ; 0            ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 2124826411   ; 0            ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 2121423400   ; 0            ; 0        ; 0        ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; > 2147483647 ; 0            ; 0        ; 0        ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 12356        ; 0            ; 0        ; 0        ;
-; ADC_BAT_I_EOC                                                ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0            ; 51671        ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 27367        ; 0            ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 275          ; 0            ; 0        ; 0        ;
+; ADC_BAT_I_EOC                                                ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0            ; 38543        ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 20302        ; 0            ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 230          ; 0            ; 0        ; 0        ;
 +--------------------------------------------------------------+--------------------------------------------------------------+--------------+--------------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -1026,21 +1008,21 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 +--------------------------------------------------------------+--------------------------------------------------------------+--------------+--------------+----------+----------+
 ; From Clock                                                   ; To Clock                                                     ; RR Paths     ; FR Paths     ; RF Paths ; FF Paths ;
 +--------------------------------------------------------------+--------------------------------------------------------------+--------------+--------------+----------+----------+
-; ADC_BAT_I_EOC                                                ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0            ; 0            ; 0        ; 36026    ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0            ; 0            ; 18173    ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0            ; 0            ; 8        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0            ; 0            ; 252      ; 0        ;
+; ADC_BAT_I_EOC                                                ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0            ; 0            ; 0        ; 3273068  ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0            ; 0            ; 1641277  ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0            ; 0            ; 10       ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0            ; 0            ; 2300     ; 0        ;
 ; ADA_DCO                                                      ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 77590548     ; 0            ; 0        ; 0        ;
 ; ADB_DCO                                                      ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 73868472     ; 0            ; 0        ; 0        ;
 ; ADC_BAT_I_EOC                                                ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 0            ; > 2147483647 ; 0        ; 0        ;
 ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 1            ; 680          ; 0        ; 0        ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; > 2147483647 ; 0            ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 2124826411   ; 0            ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 2121423400   ; 0            ; 0        ; 0        ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; > 2147483647 ; 0            ; 0        ; 0        ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 12356        ; 0            ; 0        ; 0        ;
-; ADC_BAT_I_EOC                                                ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0            ; 51671        ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 27367        ; 0            ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 275          ; 0            ; 0        ; 0        ;
+; ADC_BAT_I_EOC                                                ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0            ; 38543        ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 20302        ; 0            ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 230          ; 0            ; 0        ; 0        ;
 +--------------------------------------------------------------+--------------------------------------------------------------+--------------+--------------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -1055,8 +1037,8 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 64       ; 0        ; 0        ; 0        ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 520      ; 0        ; 0        ; 0        ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 8        ; 0        ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 44       ; 0        ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 352      ; 0        ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 40       ; 0        ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 360      ; 0        ; 0        ; 0        ;
 +------------------------------------------------------+--------------------------------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -1071,8 +1053,8 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 64       ; 0        ; 0        ; 0        ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 520      ; 0        ; 0        ; 0        ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 8        ; 0        ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 44       ; 0        ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 352      ; 0        ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 40       ; 0        ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 360      ; 0        ; 0        ; 0        ;
 +------------------------------------------------------+--------------------------------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -1097,9 +1079,9 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
 ; Unconstrained Input Ports       ; 61    ; 61   ;
-; Unconstrained Input Port Paths  ; 992   ; 992  ;
+; Unconstrained Input Port Paths  ; 988   ; 988  ;
 ; Unconstrained Output Ports      ; 63    ; 63   ;
-; Unconstrained Output Port Paths ; 1327  ; 1327 ;
+; Unconstrained Output Port Paths ; 1433  ; 1433 ;
 +---------------------------------+-------+------+
 
 
@@ -1407,7 +1389,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
-    Info: Processing started: Tue May 14 13:04:49 2024
+    Info: Processing started: Tue May 14 17:02:21 2024
 Info: Command: quartus_sta HybridControl_theta_phi_CL -c TOP_HybridControl_theta_phi_CL
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -1437,53 +1419,46 @@ Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 900mV 85C Model
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -18.948
+Info (332146): Worst-case setup slack is -20.052
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):   -18.948           -1023.191 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):    -6.983            -119.138 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
-    Info (332119):    -4.893              -9.754 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):   995.744               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case hold slack is 0.265
+    Info (332119):   -20.052           -1056.888 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):    -7.157             -14.298 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):    -6.820            -104.476 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):   993.907               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case hold slack is 0.238
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.265               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     0.238               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):     0.264               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     0.296               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):     0.304               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
-    Info (332119):     0.572               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-Info (332146): Worst-case recovery slack is -1.247
+    Info (332119):     0.464               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+Info (332146): Worst-case recovery slack is -1.101
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.247              -2.494 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     4.151               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     5.196               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
-    Info (332119):   997.513               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case removal slack is 0.724
+    Info (332119):    -1.101              -2.202 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     5.142               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     7.933               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):   998.634               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case removal slack is 0.527
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.724               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     1.913               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     1.934               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):     3.516               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):     0.527               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     0.922               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):     0.975               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):     1.601               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
 Info (332146): Worst-case minimum pulse width slack is -0.250
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.250              -8.854 ADB_DCO 
-    Info (332119):    -0.250              -3.813 ADA_DCO 
+    Info (332119):    -0.250              -8.851 ADB_DCO 
+    Info (332119):    -0.250              -3.812 ADA_DCO 
+    Info (332119):    -0.250              -2.600 ADC_BAT_I_EOC 
     Info (332119):    -0.250              -2.568 ADC_BAT_V_EOC 
-    Info (332119):    -0.250              -2.328 ADC_BAT_I_EOC 
-    Info (332119):    -0.250              -0.646 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     4.452               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):    -0.250              -0.690 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     4.453               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     9.959               0.000 OSC 
-    Info (332119):   499.451               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):   499.452               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
     Info (332119):  4999.451               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
-Info (332114): Report Metastability: Found 3 synchronizer chains.
-    Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
-    Info (332114): Number of Synchronizer Chains Found: 3
-    Info (332114): Shortest Synchronizer Chain: 2 Registers
-    Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-    Info (332114): Worst Case Available Settling Time: 19997.300 ns
-    Info (332114): 
 Info: Analyzing Slow 900mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
@@ -1492,111 +1467,97 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -18.110
+Info (332146): Worst-case setup slack is -19.264
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):   -18.110            -980.972 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):    -6.688            -114.046 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
-    Info (332119):    -4.653              -9.297 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):   995.917               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case hold slack is 0.263
+    Info (332119):   -19.264           -1015.696 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):    -6.815             -13.612 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):    -6.574            -100.471 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):   994.393               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case hold slack is 0.234
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.263               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     0.234               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):     0.264               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     0.290               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):     0.290               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
-    Info (332119):     0.528               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-Info (332146): Worst-case recovery slack is -1.096
+    Info (332119):     0.427               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+Info (332146): Worst-case recovery slack is -0.863
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.096              -2.192 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     4.459               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     5.523               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
-    Info (332119):   997.612               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case removal slack is 0.599
+    Info (332119):    -0.863              -1.726 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     5.428               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     8.077               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):   998.696               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case removal slack is 0.376
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.599               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     1.780               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     1.819               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):     3.257               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):     0.376               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     0.811               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):     0.916               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):     1.463               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
 Info (332146): Worst-case minimum pulse width slack is -0.250
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.250              -8.843 ADB_DCO 
-    Info (332119):    -0.250              -4.041 ADA_DCO 
-    Info (332119):    -0.250              -2.808 ADC_BAT_I_EOC 
+    Info (332119):    -0.250              -8.859 ADB_DCO 
+    Info (332119):    -0.250              -4.088 ADA_DCO 
+    Info (332119):    -0.250              -3.040 ADC_BAT_I_EOC 
     Info (332119):    -0.250              -2.720 ADC_BAT_V_EOC 
-    Info (332119):    -0.250              -0.602 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     4.432               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):    -0.250              -0.642 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     4.434               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     9.979               0.000 OSC 
-    Info (332119):   499.433               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):   499.434               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
     Info (332119):  4999.433               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
-Info (332114): Report Metastability: Found 3 synchronizer chains.
-    Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
-    Info (332114): Number of Synchronizer Chains Found: 3
-    Info (332114): Shortest Synchronizer Chain: 2 Registers
-    Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-    Info (332114): Worst Case Available Settling Time: 19997.381 ns
-    Info (332114): 
 Info: Analyzing Fast 900mV 0C Model
 Info (332097): The following timing edges are non-unate.  The Timing Analyzer will assume pos-unate behavior for these edges in the clock network.
     Info (332098): Cell: PLL_inst|altpll_component|auto_generated|pll1  from: inclk[0]  to: observablevcoout
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -11.547
+Info (332146): Worst-case setup slack is -12.154
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):   -11.547            -598.907 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):    -4.027             -68.624 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
-    Info (332119):    -2.765              -5.509 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):   997.287               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case hold slack is 0.153
+    Info (332119):   -12.154            -616.102 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):    -4.226              -8.443 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):    -3.950             -60.523 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):   996.025               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case hold slack is 0.136
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
+    Info (332119):     0.136               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
     Info (332119):     0.153               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     0.169               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
     Info (332119):     0.173               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):     0.756               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-Info (332146): Worst-case recovery slack is -0.799
+    Info (332119):     0.733               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+Info (332146): Worst-case recovery slack is -0.654
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.799              -1.598 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     6.188               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     7.075               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
-    Info (332119):   998.461               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case removal slack is 0.669
+    Info (332119):    -0.654              -1.308 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     6.902               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     8.931               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):   999.212               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case removal slack is 0.319
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.669               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     1.196               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     1.219               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):     2.005               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):     0.319               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):     0.571               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):     0.628               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     1.002               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
 Info (332146): Worst-case minimum pulse width slack is -0.159
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.159              -2.141 ADA_DCO 
-    Info (332119):    -0.142              -3.938 ADB_DCO 
-    Info (332119):    -0.124              -0.992 ADC_BAT_I_EOC 
+    Info (332119):    -0.159              -2.176 ADA_DCO 
+    Info (332119):    -0.141              -3.938 ADB_DCO 
+    Info (332119):    -0.109              -0.872 ADC_BAT_I_EOC 
     Info (332119):    -0.084              -0.672 ADC_BAT_V_EOC 
-    Info (332119):     0.087               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     0.078               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
     Info (332119):     4.648               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     9.698               0.000 OSC 
     Info (332119):   499.649               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
     Info (332119):  4999.649               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
-Info (332114): Report Metastability: Found 3 synchronizer chains.
-    Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
-    Info (332114): Number of Synchronizer Chains Found: 3
-    Info (332114): Shortest Synchronizer Chain: 2 Registers
-    Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-    Info (332114): Worst Case Available Settling Time: 19998.424 ns
-    Info (332114): 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 5106 megabytes
-    Info: Processing ended: Tue May 14 13:04:52 2024
+    Info: Peak virtual memory: 5109 megabytes
+    Info: Processing ended: Tue May 14 17:02:24 2024
     Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:03
 

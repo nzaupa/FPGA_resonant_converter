@@ -202,10 +202,8 @@ assign  DA = debug[20:7];
    // RECTIFIER: show the values on 7seg display and LEDs
    // assign LED = SW[3] ? ~ADC_Vbat : ~ADC_Ibat;
 
-   // assign SEG0 = SEG0_reg;
-   // assign SEG1 = SEG1_reg;
-   assign SEG0 = ~sw[3] ? SEG_PHI[ 7:0] : SEG0_reg; //SEG0_reg;
-   assign SEG1 = ~sw[3] ? SEG_PHI[15:8] : SEG1_reg; //SEG1_reg;
+   assign SEG0 = ~sw[3] ? SEG_PHI[ 7:0] : SEG0_reg; 
+   assign SEG1 = ~sw[3] ? SEG_PHI[15:8] : SEG1_reg; 
 
    // connected to GPIO1 and available on the rectifier board
    // all are available on the 2×6 connector, 6 of them are connected to LEDs
@@ -241,13 +239,13 @@ assign  DA = debug[20:7];
 
    // connected to GPIO0
    // debug for Ci signals
-   assign GPIO0[10] = phi_HC[0];// D8
-   assign GPIO0[12] = phi_HC[1];// D9
-   assign GPIO0[14] = phi_HC[2];// D10
-   assign GPIO0[16] = phi_HC[3];// D11
-   assign GPIO0[18] = phi_HC[4];// D12
-   assign GPIO0[20] = phi_HC[5];// D13
-   assign GPIO0[22] = phi_HC[6];// D14
+   assign GPIO0[10] = phi_PI_sat[0];// D8
+   assign GPIO0[12] = phi_PI_sat[1];// D9
+   assign GPIO0[14] = phi_PI_sat[2];// D10
+   assign GPIO0[16] = phi_PI_sat[3];// D11
+   assign GPIO0[18] = phi_PI_sat[4];// D12
+   assign GPIO0[20] = phi_PI_sat[5];// D13
+   assign GPIO0[22] = phi_PI_sat[6];// D14
    assign GPIO0[24] = VG;// D15
 
 // ##### assign for DEBUG END #####
@@ -268,12 +266,11 @@ assign Q[3] = ( (Q4 & ON & VG) | (1'b1 & ~ON) | (1'b1 & ON & (~VG)) ) & ENABLE &
 
 // start-up counter - charge the bootstrap capacitor by activating Q3 and Q4 (low side)
 assign ON = cnt_startup > 8'd10; //10us to charge bootstrap capacitor
-assign VG = cnt_startup > 8'd16; //10us to charge bootstrap capacitor
+assign VG = cnt_startup > 8'd14; //10us to charge bootstrap capacitor
 
 // create a RESET signal every time the ENABLE button is turned ON
 // and the initialization sequence is terminated
 assign ENABLE_RST = ~( VG^VG_PREV );
-
 
 // --- assign for the control of the Resonant Tank ---      
 // either from outside, either from the PI controller
@@ -293,12 +290,8 @@ PLL_theta_phi_OL PLL_inst (
    .c4 ( FAN_CTRL )
 );
 
-// DIFFERENT WAY TO CONTROL THE RESONANT TANK
-//    1. only theta --> frequency modulation
-//    2. only phi   --> amplitude modulation
-//    3. delta+phi  --> mixte modulation ensuring ZVS
+// CONTROL PHI + DELTA OF THE RESONANT TANK
 
-// control law PHI + DELTA
 hybrid_control_mixed #(.mu_z1(32'd86), .mu_z2(32'd90)
 ) hybrid_control_mixed_inst (
    .o_MOSFET( MOSFET_theta_phi ),
@@ -377,7 +370,7 @@ value_control  #(
 
 // ----- PI CONTROLLER ----- //
 
-assign phi_PI = (phi_PI_tmp>>>10) + 32'd20;
+assign phi_PI = (phi_PI_tmp>>>10) + 32'd50;
 // mA because it has a higher precision
 assign error  = ((Ibat_mA>>7)<<7) + (~(Iref_dA*100)+1);
 // assign error  = ((Ibat_dA + (~(Iref_dA)+1))<<<10;
@@ -385,22 +378,30 @@ assign error  = ((Ibat_mA>>7)<<7) + (~(Iref_dA*100)+1);
 assign error_dA = {24'b0,Ibat_DEC} + (~(Iref_dA)+1);
 
 
-PI #( .KP(1), .TsKI(1), .Kaw(0), .shift_KP(1), .shift_KI(8) ) PI_inst(
+PI #( .KP(3), .TsKI(4), .Kaw(0), .shift_KP(3), .shift_KI(8) ) PI_inst(
    .o_PI(phi_PI_tmp),   // output value
    .i_CLK(clk_100k),    // for sequential behavior
-   .i_RST(CPU_RESET & ENABLE_RST),  // reset signal
+   .i_RST(CPU_RESET & ENABLE_RST & sw[0]),  // reset signal
    .err(error),  // input error
    .aw(phi_PI_sat + (~phi_PI+1))      // antiwindup
 );
 
 
-// assign phi_PI_sat = (phi_PI>=32'd90) ? 32'd90 : phi_PI;
-assign phi_PI_sat = phi_PI[5:0];
+// WITH THE NEXT LINE IT IS WORKING
+//    hard limit to 63 max for PHI
+// assign phi_PI_sat = phi_PI[5:0];
 
-// saturation #(.LOWER_LIMIT(32'd0), .UPPER_LIMIT(32'd90)) sat_PHI(
-//    .u(phi_PI),
-//    .u_sat(phi_PI_sat)
-// );
+
+saturation #(
+   .LOWER_LIMIT(8'd0), 
+   .UPPER_LIMIT(8'd70), 
+   .N_BIT(8)
+) sat_PHI(
+   .u({phi_PI[31],phi_PI[6:0]}),
+   .u_sat(phi_PI_sat),
+   .u_dz()
+);
+
 
 
 // ----- DEAD TIME ----- //
