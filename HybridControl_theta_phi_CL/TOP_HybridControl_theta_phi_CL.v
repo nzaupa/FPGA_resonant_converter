@@ -317,12 +317,13 @@ value_control  #(
    .INTEGER_STEP(5),
    .INTEGER_MIN (0),
    .INTEGER_MAX (90),
+   .INTEGER_RST (0),
    .N_BIT       (8) 
 ) phi_control (
    .i_CLK(clk_100M),
    .i_RST(button[0]),
-   .inc_btn(button[1]),
-   .dec_btn(1'b0),
+   .inc_btn(button[1] & (~sw[1])),
+   .dec_btn(button[1] &   sw[1] ),
    .count(phi),
    .o_seg0(SEG0_PHI),
    .o_seg1(SEG1_PHI)
@@ -333,6 +334,7 @@ value_control  #(
    .INTEGER_STEP(1),
    .INTEGER_MIN (0),
    .INTEGER_MAX (40),
+   .INTEGER_RST (10),
    .N_BIT       (8) 
 ) delta_control (
    .i_CLK(clk_100M),
@@ -348,7 +350,8 @@ value_control  #(
    .INTEGER_STEP(5),
    .INTEGER_MIN (6),
    .INTEGER_MAX (100),
-   .N_BIT       (8) 
+   .N_BIT       (8),
+   .DP          (2'b01) 
 ) Iref_control (
    .i_CLK(clk_100M),
    .i_RST(sw[0]),

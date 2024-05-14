@@ -13,7 +13,8 @@ module value_control #(
    parameter INTEGER_MIN  = 0,   // Minimum count value
    parameter INTEGER_MAX  = 255, // Maximum count value
    parameter INTEGER_RST  = 0,   // Initial count value
-   parameter N_BIT        = 8    // Number of bits of the counter
+   parameter N_BIT        = 8,   // Number of bits of the counter
+   parameter DP           = 3
 )(
    input              i_CLK,
    input              i_RST,
@@ -41,7 +42,7 @@ assign o_seg1 = o_seg[15:8]; //{ 1'b1 , segment_1 };
 num2seg num2seg_cnt (
    .o_SEG(o_seg),
    .i_num(count_reg),
-   .i_DP(2'b11)
+   .i_DP(DP)
 );
 
 initial begin

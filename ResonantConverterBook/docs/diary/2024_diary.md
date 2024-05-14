@@ -79,7 +79,7 @@ Nice tutorial on operators <https://documentation-rp-test.readthedocs.io/en/late
 I'm spending a lot of time in debugging the saturation...
 In the end, it is working by restraining the value of phi to 7-bit (64 max), which is a kind of brute force saturation.
 I've tested the saturation block alone and they are working fine.
-In the end, I make it work by cutting down the computed valued of $phi$ to `8bit=sign+7bit`. In my opinion it should work also with the 32 bit, but for some reasons it was always limiting to the maximum value. Probably there where some bit that were given problem, so that the phi after the PI was larger than 90, but due to some other reason, and the most useful information was standing in the first bits.
+In the end, I make it work by cutting down the computed valued of $phi$ to `8bit=sign+7bit`. In my opinion it should work also with the 32 bit, but for some reasons it was always limiting to the maximum value. Probably there were some bit that were given problem, so that the phi after the PI was larger than 90, but due to some other reason, and the most useful information was standing in the first bits.
 Final consideration: it is WORKING. Strange but true, now I need to show how to compute the gains based on some design specification.
 
 
