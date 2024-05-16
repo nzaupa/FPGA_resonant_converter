@@ -1,5 +1,5 @@
 |TOP_HybridControl_theta_phi_CL
-CPU_RESET => CPU_RESET.IN4
+CPU_RESET => CPU_RESET.IN3
 OSC => OSC.IN1
 FAN_CTRL <= PLL_theta_phi_OL:PLL_inst.c4
 ADB_DATA[0] => Add8.IN28
@@ -157,10 +157,10 @@ EX[3] <= EX.DB_MAX_OUTPUT_PORT_TYPE
 EX[4] <= EX.DB_MAX_OUTPUT_PORT_TYPE
 EX[5] <= EX.DB_MAX_OUTPUT_PORT_TYPE
 EX[6] <= EX.DB_MAX_OUTPUT_PORT_TYPE
-EX[7] <= EX.DB_MAX_OUTPUT_PORT_TYPE
-EX[8] <= <GND>
+EX[7] <= phi_PI[31].DB_MAX_OUTPUT_PORT_TYPE
+EX[8] <= error[31].DB_MAX_OUTPUT_PORT_TYPE
 EX[9] <= hybrid_control_mixed:hybrid_control_mixed_inst.o_debug
-EX[10] <= hybrid_control_mixed:hybrid_control_mixed_inst.o_debug
+EX[10] <= OV.DB_MAX_OUTPUT_PORT_TYPE
 EX[11] <= ENABLE.DB_MAX_OUTPUT_PORT_TYPE
 SW[0] => SW[0].IN1
 SW[1] => SW[1].IN1
@@ -232,7 +232,7 @@ GPIO0[20] <= saturation:sat_PHI.u_sat
 GPIO0[21] <= <GND>
 GPIO0[22] <= saturation:sat_PHI.u_sat
 GPIO0[23] <= <GND>
-GPIO0[24] <= LessThan1.DB_MAX_OUTPUT_PORT_TYPE
+GPIO0[24] <= LessThan2.DB_MAX_OUTPUT_PORT_TYPE
 GPIO0[25] <= <GND>
 GPIO0[26] <= <GND>
 GPIO0[27] <= <GND>
@@ -35682,41 +35682,41 @@ count[4] <= count_reg[4].DB_MAX_OUTPUT_PORT_TYPE
 count[5] <= count_reg[5].DB_MAX_OUTPUT_PORT_TYPE
 count[6] <= count_reg[6].DB_MAX_OUTPUT_PORT_TYPE
 count[7] <= count_reg[7].DB_MAX_OUTPUT_PORT_TYPE
-o_seg0[0] <= num2seg:num2seg_Ibat.o_SEG
-o_seg0[1] <= num2seg:num2seg_Ibat.o_SEG
-o_seg0[2] <= num2seg:num2seg_Ibat.o_SEG
-o_seg0[3] <= num2seg:num2seg_Ibat.o_SEG
-o_seg0[4] <= num2seg:num2seg_Ibat.o_SEG
-o_seg0[5] <= num2seg:num2seg_Ibat.o_SEG
-o_seg0[6] <= num2seg:num2seg_Ibat.o_SEG
-o_seg0[7] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[0] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[1] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[2] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[3] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[4] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[5] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[6] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[7] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[0] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[1] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[2] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[3] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[4] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[5] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[6] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[7] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[8] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[9] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[10] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[11] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[12] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[13] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[14] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[15] <= num2seg:num2seg_Ibat.o_SEG
+o_seg0[0] <= num2seg:num2seg_cnt.o_SEG
+o_seg0[1] <= num2seg:num2seg_cnt.o_SEG
+o_seg0[2] <= num2seg:num2seg_cnt.o_SEG
+o_seg0[3] <= num2seg:num2seg_cnt.o_SEG
+o_seg0[4] <= num2seg:num2seg_cnt.o_SEG
+o_seg0[5] <= num2seg:num2seg_cnt.o_SEG
+o_seg0[6] <= num2seg:num2seg_cnt.o_SEG
+o_seg0[7] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[0] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[1] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[2] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[3] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[4] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[5] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[6] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[7] <= num2seg:num2seg_cnt.o_SEG
+o_seg[0] <= num2seg:num2seg_cnt.o_SEG
+o_seg[1] <= num2seg:num2seg_cnt.o_SEG
+o_seg[2] <= num2seg:num2seg_cnt.o_SEG
+o_seg[3] <= num2seg:num2seg_cnt.o_SEG
+o_seg[4] <= num2seg:num2seg_cnt.o_SEG
+o_seg[5] <= num2seg:num2seg_cnt.o_SEG
+o_seg[6] <= num2seg:num2seg_cnt.o_SEG
+o_seg[7] <= num2seg:num2seg_cnt.o_SEG
+o_seg[8] <= num2seg:num2seg_cnt.o_SEG
+o_seg[9] <= num2seg:num2seg_cnt.o_SEG
+o_seg[10] <= num2seg:num2seg_cnt.o_SEG
+o_seg[11] <= num2seg:num2seg_cnt.o_SEG
+o_seg[12] <= num2seg:num2seg_cnt.o_SEG
+o_seg[13] <= num2seg:num2seg_cnt.o_SEG
+o_seg[14] <= num2seg:num2seg_cnt.o_SEG
+o_seg[15] <= num2seg:num2seg_cnt.o_SEG
 
 
-|TOP_HybridControl_theta_phi_CL|value_control:phi_control|num2seg:num2seg_Ibat
+|TOP_HybridControl_theta_phi_CL|value_control:phi_control|num2seg:num2seg_cnt
 o_SEG[0] <= hex2seg:hex2seg_0.o_seg
 o_SEG[1] <= hex2seg:hex2seg_0.o_seg
 o_SEG[2] <= hex2seg:hex2seg_0.o_seg
@@ -35745,7 +35745,7 @@ i_DP[0] => o_SEG[7].DATAIN
 i_DP[1] => o_SEG[15].DATAIN
 
 
-|TOP_HybridControl_theta_phi_CL|value_control:phi_control|num2seg:num2seg_Ibat|dec2hex:dec2hex_inst
+|TOP_HybridControl_theta_phi_CL|value_control:phi_control|num2seg:num2seg_cnt|dec2hex:dec2hex_inst
 o_seg[0] <= str[0].DB_MAX_OUTPUT_PORT_TYPE
 o_seg[1] <= str[1].DB_MAX_OUTPUT_PORT_TYPE
 o_seg[2] <= str[2].DB_MAX_OUTPUT_PORT_TYPE
@@ -35829,7 +35829,7 @@ i_dec[7] => Mux9.IN64
 i_dec[7] => Mux10.IN64
 
 
-|TOP_HybridControl_theta_phi_CL|value_control:phi_control|num2seg:num2seg_Ibat|hex2seg:hex2seg_0
+|TOP_HybridControl_theta_phi_CL|value_control:phi_control|num2seg:num2seg_cnt|hex2seg:hex2seg_0
 o_seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
@@ -35843,7 +35843,7 @@ i_num[2] => Decoder0.IN1
 i_num[3] => Decoder0.IN0
 
 
-|TOP_HybridControl_theta_phi_CL|value_control:phi_control|num2seg:num2seg_Ibat|hex2seg:hex2seg_1
+|TOP_HybridControl_theta_phi_CL|value_control:phi_control|num2seg:num2seg_cnt|hex2seg:hex2seg_1
 o_seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
@@ -35871,9 +35871,9 @@ i_CLK => count_reg[7].CLK
 i_RST => dec_btn_prev.ACLR
 i_RST => inc_btn_prev.ACLR
 i_RST => count_reg[0].ACLR
-i_RST => count_reg[1].ACLR
+i_RST => count_reg[1].PRESET
 i_RST => count_reg[2].ACLR
-i_RST => count_reg[3].ACLR
+i_RST => count_reg[3].PRESET
 i_RST => count_reg[4].ACLR
 i_RST => count_reg[5].ACLR
 i_RST => count_reg[6].ACLR
@@ -35890,41 +35890,41 @@ count[4] <= count_reg[4].DB_MAX_OUTPUT_PORT_TYPE
 count[5] <= count_reg[5].DB_MAX_OUTPUT_PORT_TYPE
 count[6] <= count_reg[6].DB_MAX_OUTPUT_PORT_TYPE
 count[7] <= count_reg[7].DB_MAX_OUTPUT_PORT_TYPE
-o_seg0[0] <= num2seg:num2seg_Ibat.o_SEG
-o_seg0[1] <= num2seg:num2seg_Ibat.o_SEG
-o_seg0[2] <= num2seg:num2seg_Ibat.o_SEG
-o_seg0[3] <= num2seg:num2seg_Ibat.o_SEG
-o_seg0[4] <= num2seg:num2seg_Ibat.o_SEG
-o_seg0[5] <= num2seg:num2seg_Ibat.o_SEG
-o_seg0[6] <= num2seg:num2seg_Ibat.o_SEG
-o_seg0[7] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[0] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[1] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[2] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[3] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[4] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[5] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[6] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[7] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[0] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[1] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[2] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[3] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[4] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[5] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[6] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[7] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[8] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[9] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[10] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[11] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[12] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[13] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[14] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[15] <= num2seg:num2seg_Ibat.o_SEG
+o_seg0[0] <= num2seg:num2seg_cnt.o_SEG
+o_seg0[1] <= num2seg:num2seg_cnt.o_SEG
+o_seg0[2] <= num2seg:num2seg_cnt.o_SEG
+o_seg0[3] <= num2seg:num2seg_cnt.o_SEG
+o_seg0[4] <= num2seg:num2seg_cnt.o_SEG
+o_seg0[5] <= num2seg:num2seg_cnt.o_SEG
+o_seg0[6] <= num2seg:num2seg_cnt.o_SEG
+o_seg0[7] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[0] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[1] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[2] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[3] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[4] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[5] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[6] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[7] <= num2seg:num2seg_cnt.o_SEG
+o_seg[0] <= num2seg:num2seg_cnt.o_SEG
+o_seg[1] <= num2seg:num2seg_cnt.o_SEG
+o_seg[2] <= num2seg:num2seg_cnt.o_SEG
+o_seg[3] <= num2seg:num2seg_cnt.o_SEG
+o_seg[4] <= num2seg:num2seg_cnt.o_SEG
+o_seg[5] <= num2seg:num2seg_cnt.o_SEG
+o_seg[6] <= num2seg:num2seg_cnt.o_SEG
+o_seg[7] <= num2seg:num2seg_cnt.o_SEG
+o_seg[8] <= num2seg:num2seg_cnt.o_SEG
+o_seg[9] <= num2seg:num2seg_cnt.o_SEG
+o_seg[10] <= num2seg:num2seg_cnt.o_SEG
+o_seg[11] <= num2seg:num2seg_cnt.o_SEG
+o_seg[12] <= num2seg:num2seg_cnt.o_SEG
+o_seg[13] <= num2seg:num2seg_cnt.o_SEG
+o_seg[14] <= num2seg:num2seg_cnt.o_SEG
+o_seg[15] <= num2seg:num2seg_cnt.o_SEG
 
 
-|TOP_HybridControl_theta_phi_CL|value_control:delta_control|num2seg:num2seg_Ibat
+|TOP_HybridControl_theta_phi_CL|value_control:delta_control|num2seg:num2seg_cnt
 o_SEG[0] <= hex2seg:hex2seg_0.o_seg
 o_SEG[1] <= hex2seg:hex2seg_0.o_seg
 o_SEG[2] <= hex2seg:hex2seg_0.o_seg
@@ -35953,7 +35953,7 @@ i_DP[0] => o_SEG[7].DATAIN
 i_DP[1] => o_SEG[15].DATAIN
 
 
-|TOP_HybridControl_theta_phi_CL|value_control:delta_control|num2seg:num2seg_Ibat|dec2hex:dec2hex_inst
+|TOP_HybridControl_theta_phi_CL|value_control:delta_control|num2seg:num2seg_cnt|dec2hex:dec2hex_inst
 o_seg[0] <= str[0].DB_MAX_OUTPUT_PORT_TYPE
 o_seg[1] <= str[1].DB_MAX_OUTPUT_PORT_TYPE
 o_seg[2] <= str[2].DB_MAX_OUTPUT_PORT_TYPE
@@ -36037,7 +36037,7 @@ i_dec[7] => Mux9.IN64
 i_dec[7] => Mux10.IN64
 
 
-|TOP_HybridControl_theta_phi_CL|value_control:delta_control|num2seg:num2seg_Ibat|hex2seg:hex2seg_0
+|TOP_HybridControl_theta_phi_CL|value_control:delta_control|num2seg:num2seg_cnt|hex2seg:hex2seg_0
 o_seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
@@ -36051,7 +36051,7 @@ i_num[2] => Decoder0.IN1
 i_num[3] => Decoder0.IN0
 
 
-|TOP_HybridControl_theta_phi_CL|value_control:delta_control|num2seg:num2seg_Ibat|hex2seg:hex2seg_1
+|TOP_HybridControl_theta_phi_CL|value_control:delta_control|num2seg:num2seg_cnt|hex2seg:hex2seg_1
 o_seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
@@ -36078,8 +36078,8 @@ i_CLK => count_reg[6].CLK
 i_CLK => count_reg[7].CLK
 i_RST => dec_btn_prev.ACLR
 i_RST => inc_btn_prev.ACLR
-i_RST => count_reg[0].ACLR
-i_RST => count_reg[1].PRESET
+i_RST => count_reg[0].PRESET
+i_RST => count_reg[1].ACLR
 i_RST => count_reg[2].PRESET
 i_RST => count_reg[3].ACLR
 i_RST => count_reg[4].ACLR
@@ -36098,41 +36098,41 @@ count[4] <= count_reg[4].DB_MAX_OUTPUT_PORT_TYPE
 count[5] <= count_reg[5].DB_MAX_OUTPUT_PORT_TYPE
 count[6] <= count_reg[6].DB_MAX_OUTPUT_PORT_TYPE
 count[7] <= count_reg[7].DB_MAX_OUTPUT_PORT_TYPE
-o_seg0[0] <= num2seg:num2seg_Ibat.o_SEG
-o_seg0[1] <= num2seg:num2seg_Ibat.o_SEG
-o_seg0[2] <= num2seg:num2seg_Ibat.o_SEG
-o_seg0[3] <= num2seg:num2seg_Ibat.o_SEG
-o_seg0[4] <= num2seg:num2seg_Ibat.o_SEG
-o_seg0[5] <= num2seg:num2seg_Ibat.o_SEG
-o_seg0[6] <= num2seg:num2seg_Ibat.o_SEG
-o_seg0[7] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[0] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[1] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[2] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[3] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[4] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[5] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[6] <= num2seg:num2seg_Ibat.o_SEG
-o_seg1[7] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[0] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[1] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[2] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[3] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[4] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[5] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[6] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[7] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[8] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[9] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[10] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[11] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[12] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[13] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[14] <= num2seg:num2seg_Ibat.o_SEG
-o_seg[15] <= num2seg:num2seg_Ibat.o_SEG
+o_seg0[0] <= num2seg:num2seg_cnt.o_SEG
+o_seg0[1] <= num2seg:num2seg_cnt.o_SEG
+o_seg0[2] <= num2seg:num2seg_cnt.o_SEG
+o_seg0[3] <= num2seg:num2seg_cnt.o_SEG
+o_seg0[4] <= num2seg:num2seg_cnt.o_SEG
+o_seg0[5] <= num2seg:num2seg_cnt.o_SEG
+o_seg0[6] <= num2seg:num2seg_cnt.o_SEG
+o_seg0[7] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[0] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[1] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[2] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[3] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[4] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[5] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[6] <= num2seg:num2seg_cnt.o_SEG
+o_seg1[7] <= num2seg:num2seg_cnt.o_SEG
+o_seg[0] <= num2seg:num2seg_cnt.o_SEG
+o_seg[1] <= num2seg:num2seg_cnt.o_SEG
+o_seg[2] <= num2seg:num2seg_cnt.o_SEG
+o_seg[3] <= num2seg:num2seg_cnt.o_SEG
+o_seg[4] <= num2seg:num2seg_cnt.o_SEG
+o_seg[5] <= num2seg:num2seg_cnt.o_SEG
+o_seg[6] <= num2seg:num2seg_cnt.o_SEG
+o_seg[7] <= num2seg:num2seg_cnt.o_SEG
+o_seg[8] <= num2seg:num2seg_cnt.o_SEG
+o_seg[9] <= num2seg:num2seg_cnt.o_SEG
+o_seg[10] <= num2seg:num2seg_cnt.o_SEG
+o_seg[11] <= num2seg:num2seg_cnt.o_SEG
+o_seg[12] <= num2seg:num2seg_cnt.o_SEG
+o_seg[13] <= num2seg:num2seg_cnt.o_SEG
+o_seg[14] <= num2seg:num2seg_cnt.o_SEG
+o_seg[15] <= num2seg:num2seg_cnt.o_SEG
 
 
-|TOP_HybridControl_theta_phi_CL|value_control:Iref_control|num2seg:num2seg_Ibat
+|TOP_HybridControl_theta_phi_CL|value_control:Iref_control|num2seg:num2seg_cnt
 o_SEG[0] <= hex2seg:hex2seg_0.o_seg
 o_SEG[1] <= hex2seg:hex2seg_0.o_seg
 o_SEG[2] <= hex2seg:hex2seg_0.o_seg
@@ -36161,7 +36161,7 @@ i_DP[0] => o_SEG[7].DATAIN
 i_DP[1] => o_SEG[15].DATAIN
 
 
-|TOP_HybridControl_theta_phi_CL|value_control:Iref_control|num2seg:num2seg_Ibat|dec2hex:dec2hex_inst
+|TOP_HybridControl_theta_phi_CL|value_control:Iref_control|num2seg:num2seg_cnt|dec2hex:dec2hex_inst
 o_seg[0] <= str[0].DB_MAX_OUTPUT_PORT_TYPE
 o_seg[1] <= str[1].DB_MAX_OUTPUT_PORT_TYPE
 o_seg[2] <= str[2].DB_MAX_OUTPUT_PORT_TYPE
@@ -36245,7 +36245,7 @@ i_dec[7] => Mux9.IN64
 i_dec[7] => Mux10.IN64
 
 
-|TOP_HybridControl_theta_phi_CL|value_control:Iref_control|num2seg:num2seg_Ibat|hex2seg:hex2seg_0
+|TOP_HybridControl_theta_phi_CL|value_control:Iref_control|num2seg:num2seg_cnt|hex2seg:hex2seg_0
 o_seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
@@ -36259,7 +36259,7 @@ i_num[2] => Decoder0.IN1
 i_num[3] => Decoder0.IN0
 
 
-|TOP_HybridControl_theta_phi_CL|value_control:Iref_control|num2seg:num2seg_Ibat|hex2seg:hex2seg_1
+|TOP_HybridControl_theta_phi_CL|value_control:Iref_control|num2seg:num2seg_cnt|hex2seg:hex2seg_1
 o_seg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
 o_seg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
@@ -36304,8 +36304,8 @@ o_PI[26] <= Add1.DB_MAX_OUTPUT_PORT_TYPE
 o_PI[27] <= Add1.DB_MAX_OUTPUT_PORT_TYPE
 o_PI[28] <= Add1.DB_MAX_OUTPUT_PORT_TYPE
 o_PI[29] <= Add1.DB_MAX_OUTPUT_PORT_TYPE
-o_PI[30] <= <GND>
-o_PI[31] <= <GND>
+o_PI[30] <= Add1.DB_MAX_OUTPUT_PORT_TYPE
+o_PI[31] <= Add1.DB_MAX_OUTPUT_PORT_TYPE
 i_CLK => err_sum[0].CLK
 i_CLK => err_sum[1].CLK
 i_CLK => err_sum[2].CLK

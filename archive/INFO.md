@@ -19,3 +19,20 @@ This folder contains the `*.sof` files that can be directly uploaded to the FPGA
      - $\delta$ button
      - dead-time with dip-switch
      - show ADC values on 7-segment display
+ - `TOP_HybridControl_theta_phi_CL-20240514-working.sof`: this has a version of the closed loop working. The gains haven't been tuned and it is without anti-windup.
+   - $\varphi$ is modified by the PI module. It is limited by the saturation but the 32bit value had to been reduced before.
+   - sw[0] is the ENABLE
+   - sw[1] is used to choose the debug digital signal
+   - sw[2] there is the possibility to pass to open-loop with $\varphi$ on button[1]
+   - sw[3] show either PHI or what is on the dip-switch in the 7-seg display.
+   - In closed loop there is the possibility to change:
+     - $I_{ref}$ at step of 0.5A with button[1] to increase and button[3] to decrease; reset with CPU_RESET (button[4]).
+     - $\delta$ with button[3] and reset with button[0].
+   - dip-switch
+     - [0] $I_{ref}$
+     - [1] $\delta$
+     - [2-3] dead time selection 
+     - [4] $V_{bat}$ in HEX
+     - [5] $I_{bat}$ in HEX
+     - [6] $V_{bat}$ in DEC
+     - [7] $I_{bat}$ in DEC

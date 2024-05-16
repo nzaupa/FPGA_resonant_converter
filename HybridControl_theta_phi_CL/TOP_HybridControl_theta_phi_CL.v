@@ -154,8 +154,8 @@ wire [3:0] button, sw;   // debounce buttons and switch
 // wire [1:0] sw2;
 // assign GPIO0[4:3] = sw2;
 
-wire ON, VG, ENABLE_RST;
-reg  VG_PREV;
+wire ON, VG, ENABLE_RST, OV, OFF, RESTART;
+reg  VG_PREV, OV_PREV, OFF_PREV;
 
 //=======================================================
 //  Structural coding
@@ -217,10 +217,10 @@ assign  DA = debug[20:7];
    // assign EX[6]  = debug[9];    // Pin 7 D3  M1
    // assign EX[7]  = test[0];     // Pin 8 D4  b0
    assign EX[6:0]= sw[1] ? phi_PI[6:0] : error_dA[6:0];
-   assign EX[7]  = sw[1] ? phi_PI[31]  : error_dA[31];     
-   assign EX[8]  = test[1];     // Pin 9 D5  b1
+   assign EX[7]  = phi_PI[31]; //sw[1] ? phi_PI[31]  : error_dA[31];     
+   assign EX[8]  = error[31];     // Pin 9 D5  b1
    assign EX[9]  = debug[14];   // Pin 10 ?
-   assign EX[10] = debug[15];   // Pin 11 D6
+   assign EX[10] = OV;   // Pin 11 D6
    assign EX[11] = ENABLE;      // Pin 12 D7  (and LED 1)
 
    // assign GPIO0[18] = Q[0]; //Q1;   // D12
@@ -257,12 +257,22 @@ assign ALERT   = ~((Q1 & Q3) | (Q2 & Q4));
 assign {Q4, Q3, Q2, Q1} = Qout;
 
 //                  normal        boot-strap      force sigma=1
-assign Q[0] = ( (Q1 & ON & VG) | (1'b0 & ~ON) | (1'b1 & ON & (~VG)) ) & ENABLE & ALERT;
-assign Q[1] = ( (Q2 & ON & VG) | (1'b0 & ~ON) | (1'b0 & ON & (~VG)) ) & ENABLE & ALERT;
-assign Q[2] = ( (Q3 & ON & VG) | (1'b1 & ~ON) | (1'b0 & ON & (~VG)) ) & ENABLE & ALERT;
-assign Q[3] = ( (Q4 & ON & VG) | (1'b1 & ~ON) | (1'b1 & ON & (~VG)) ) & ENABLE & ALERT;
+assign Q[0] = ( (Q1 & ON & VG) | (1'b0 & ~ON) | (1'b1 & ON & (~VG)) ) & ENABLE & ALERT & OV;
+assign Q[1] = ( (Q2 & ON & VG) | (1'b0 & ~ON) | (1'b0 & ON & (~VG)) ) & ENABLE & ALERT & OV;
+assign Q[2] = ( (Q3 & ON & VG) | (1'b1 & ~ON) | (1'b0 & ON & (~VG)) ) & ENABLE & ALERT & OV;
+assign Q[3] = ( (Q4 & ON & VG) | (1'b1 & ~ON) | (1'b1 & ON & (~VG)) ) & ENABLE & ALERT & OV;
 
 // assign MOSFET = MOSFET_theta_phi;
+
+// Over-voltage protection: 
+//  shut-down the H-bridge if the measured voltage is higher than 50V
+assign OV = ( (Vbat_DEC <= 8'd50) && OV_PREV );
+
+// if the converter is OFF but ENABLE=1 try to turn it ON
+//    this IS NOT going to work with a battery load
+assign OFF = VG & (Vbat_DEC>=8'd5);
+assign RESTART = ~( OFF^OFF_PREV );
+
 
 // start-up counter - charge the bootstrap capacitor by activating Q3 and Q4 (low side)
 assign ON = cnt_startup > 8'd10; //10us to charge bootstrap capacitor
@@ -298,7 +308,7 @@ hybrid_control_mixed #(.mu_z1(32'd86), .mu_z2(32'd90)
    .o_sigma(  ),
    .o_debug( debug ),
    .i_clock( clk_100M ),
-   .i_RESET( CPU_RESET & ENABLE_RST ),
+   .i_RESET( CPU_RESET & ENABLE_RST ), // & RESTART
    .i_vC( ADC_A ),
    .i_iC( ADC_B ),
    .i_ZVS( delta ),
@@ -322,8 +332,8 @@ value_control  #(
 ) phi_control (
    .i_CLK(clk_100M),
    .i_RST(button[0]),
-   .inc_btn(button[1] & (~sw[1])),
-   .dec_btn(button[1] &   sw[1] ),
+   .inc_btn(button[1]),
+   .dec_btn(1'b0),
    .count(phi),
    .o_seg0(SEG0_PHI),
    .o_seg1(SEG1_PHI)
@@ -338,25 +348,26 @@ value_control  #(
    .N_BIT       (8) 
 ) delta_control (
    .i_CLK(clk_100M),
-   .i_RST(sw[0]),
-   .inc_btn(button[3] & (~sw[1])),
-   .dec_btn(button[3] &   sw[1] ),
+   .i_RST(button[0]),
+   .inc_btn(button[3]),
+   .dec_btn(1'b0 ),
    .count(delta),
    .o_seg(SEG_DELTA)
 );
 
-// Iref (ZVS)
+// Iref 
 value_control  #(
    .INTEGER_STEP(5),
-   .INTEGER_MIN (6),
+   .INTEGER_MIN (5),
    .INTEGER_MAX (100),
+   .INTEGER_RST (5),
    .N_BIT       (8),
    .DP          (2'b01) 
 ) Iref_control (
    .i_CLK(clk_100M),
-   .i_RST(sw[0]),
-   .inc_btn(button[2] & (~sw[1])),
-   .dec_btn(button[2] &   sw[1] ),
+   .i_RST(CPU_RESET),
+   .inc_btn(button[1]),
+   .dec_btn(button[2]),
    .count(Iref_dA),
    .o_seg(SEG_IREF)
 );
@@ -399,8 +410,16 @@ value_control  #(
    //    hard limit to 63 max for PHI
    // assign phi_PI_sat = phi_PI[5:0];
 
+// +++ SEQUENTIAL BEHAVIOR +++
+   always @(posedge clk_100M) begin
+      VG_PREV <= VG;
+      OV_PREV <= OV || (~ENABLE);
+      OFF_PREV <= OFF;
+   end
 
-
+   // always @(posedge clk_100k) begin
+   //    OFF <= VG & (Vbat_DEC>=8'd5);
+   // end
 
 // +++ DEAD TIME +++ 
 
@@ -490,10 +509,6 @@ value_control  #(
    // choose the type of controller
    always  begin
       MOSFET   <= MOSFET_theta_phi;
-   end
-
-   always @(posedge clk_100M) begin
-      VG_PREV <= VG;
    end
 
    // choose the deadtime

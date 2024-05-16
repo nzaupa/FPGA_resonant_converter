@@ -82,6 +82,24 @@ I've tested the saturation block alone and they are working fine.
 In the end, I make it work by cutting down the computed valued of $phi$ to `8bit=sign+7bit`. In my opinion it should work also with the 32 bit, but for some reasons it was always limiting to the maximum value. Probably there were some bit that were given problem, so that the phi after the PI was larger than 90, but due to some other reason, and the most useful information was standing in the first bits.
 Final consideration: it is WORKING. Strange but true, now I need to show how to compute the gains based on some design specification.
 
+15 May - An archive copy of the code has been created. The converter starts to work badly over some level of input voltage, essentially there is noise entering the tank sensing. Also, working with high currents, heat up a lot the converter (resonant capacitor and inductor, load, and cables).
+It seems that the sensing range for the tank is respected, anyway it starts doing nap-nap (n'importe quoi ×2).
+I'm trying to understand the behavior of the tank+filter in open loop in order to have a bare model of the system. Yet, I'm not able to remember why the behavior is asymmetric with a resistive load. Ok, the damping in the resonant tank changes ($R_{eq}$), but not the one in the filter.
+Probably we can see them as two separated blocks:
+ - the tank with its second order response (LLC is 3rd, answer to sinusoidal should be 2nd...)
+ - the filter with its second order LPF characteristic.
+Essentially, the tank is modulating the current envelope, while the filter is smoothing this envelope.
+> When increasing the input voltage, the resonant tank start glitching (switching $\sigma$ when not expected). I tried to extend the regularization time in the control: no difference.
+For the asymmetry for low $\varphi$ the problem is coming from the current sensing that is introducing an asymmetric scaling.
+Trying to solve this by connecting two resistors directly to the output of the signal transformer: this hasn't solved the problem, even, it seems to amplify more the noise. Just some extra work since the layout was more complicated than expected.
+
+In the night I fixed the problem with the simulation analysis. There was a wrong consideration in the `DSP_analysis.m` (loc is empty if there is no peak); then there was an error in the implementation of $\theta$-control law in the $x$-plane (it can actually re-cross the line if there is no shift, so the jump set definition must be different). Fixed the integration step to 10ns, 5ns for $\theta$ in the $z$-plane since needs more precision. Moreover, having a variable integration step was giving problem with the FFT.
+Finally, I don't see the advantage of the control law in the $z$-plane, the one in the $x$ plane from Ricardo seems better (lower frequency peak and nicer input-output relation).
+
+16 May - Start to stare at the electronic load. The behavior with a battery as a load is pretty different, a higher output current can be reached with higher values of $\varphi$.
+I'm trying to make the code more robust by adding an over-voltage protection and a restart when it turn OFF when not desired.
+
+
 
 
 

@@ -22,12 +22,12 @@
 // Ts is the inverse of the sampling frequency: Ts=1/f(i_CLK)
 
 module PI #(
-   parameter Kp   = 1,       // proportional gain
-   parameter TsKi = 0,       // integral gain
-   parameter Kaw  = 0,       // antiwindup integral
-   parameter shift_Kp = 0,   // shifting for Kp  (division)
-   parameter shift_Ki = 0,   // shifting for Ki  (division) 
-   parameter shiftKaw = 0    // shifting for Kaw (division)
+   parameter Kp   = 1,        // proportional gain
+   parameter TsKi = 0,        // integral gain
+   parameter Kaw  = 0,        // antiwindup integral
+   parameter shift_Kp  = 0,   // shifting for Kp  (division)
+   parameter shift_Ki  = 0,   // shifting for Ki  (division) 
+   parameter shift_Kaw = 0    // shifting for Kaw (division)
 )
 (
    output signed [31:0]  o_PI,   // output value
@@ -57,7 +57,7 @@ always @(posedge i_CLK or negedge i_RST) begin
       err_sum      <= 32'b0;
    end else begin
       err_sum_prev <= err_sum;
-      err_sum      <= err_sum_prev + err + (aw*Kaw >>> shiftKaw); // compute the cumulated sum without considering the integration step
+      err_sum      <= err_sum_prev + err + (~(aw*Kaw >>> shift_Kaw)+1); // compute the cumulated sum without considering the integration step
       // err_sum  <= (err + err_prev)>>1;
    end
 end
