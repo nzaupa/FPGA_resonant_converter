@@ -382,11 +382,11 @@ value_control  #(
    assign error  = ((Ibat_mA>>7)<<7) + (~(Iref_dA*100)+1);
    assign error_dA = {24'b0,Ibat_DEC} + (~(Iref_dA)+1);
 
-
+// WITH ANTIWINDUP
    PI #( 
       .Kp  (3),    .shift_Kp (13),
       .TsKi(1),    .shift_Ki (13),
-      .Kaw (2048), .shift_Kaw(0) 
+      .Kaw (0), .shift_Kaw(0) 
    ) PI_inst(
       .o_PI(phi_PI_tmp),   // output value
       .i_CLK(clk_100k),    // for sequential behavior
@@ -394,6 +394,26 @@ value_control  #(
       .err(error),  // input error
       .aw(phi_PI_sat + (~phi_PI+1))      // antiwindup
    );
+
+  
+// OLD CONTROLLER
+   // assign phi_PI = phi_PI_tmp>>>10 + 32'd50;
+   // // mA because it has a higher precision
+   // assign error  = ((Ibat_mA>>7)<<7) + (~(Iref_dA*100)+1);
+   // assign error_dA = {24'b0,Ibat_DEC} + (~(Iref_dA)+1);
+
+
+   // PI #( 
+   //    .Kp  (3),    .shift_Kp (3),
+   //    .TsKi(4),    .shift_Ki (8),
+   //    .Kaw (0), .shift_Kaw(0) 
+   // ) PI_inst(
+   //    .o_PI(phi_PI_tmp),   // output value
+   //    .i_CLK(clk_100k),    // for sequential behavior
+   //    .i_RST(CPU_RESET & ENABLE_RST & sw[0]),  // reset signal
+   //    .err(error),  // input error
+   //    .aw(phi_PI_sat + (~phi_PI+1))      // antiwindup
+   // );
 
 
    saturation #(

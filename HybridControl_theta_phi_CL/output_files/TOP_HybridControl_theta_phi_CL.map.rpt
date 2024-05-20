@@ -1,5 +1,5 @@
 Analysis & Synthesis report for TOP_HybridControl_theta_phi_CL
-Mon May 20 09:23:35 2024
+Mon May 20 11:14:14 2024
 Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
 
 
@@ -121,13 +121,13 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                        ;
 +-----------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status       ; Successful - Mon May 20 09:23:35 2024           ;
+; Analysis & Synthesis Status       ; Successful - Mon May 20 11:14:14 2024           ;
 ; Quartus Prime Version             ; 21.1.0 Build 842 10/21/2021 SJ Standard Edition ;
 ; Revision Name                     ; TOP_HybridControl_theta_phi_CL                  ;
 ; Top-level Entity Name             ; TOP_HybridControl_theta_phi_CL                  ;
 ; Family                            ; Stratix IV                                      ;
 ; Logic utilization                 ; N/A                                             ;
-;     Combinational ALUTs           ; 2,463                                           ;
+;     Combinational ALUTs           ; 2,441                                           ;
 ;     Memory ALUTs                  ; 0                                               ;
 ;     Dedicated logic registers     ; 734                                             ;
 ; Total registers                   ; 734                                             ;
@@ -244,7 +244,7 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
+;     Processor 2            ;   0.1%      ;
 ;     Processor 3            ;   0.0%      ;
 ;     Processor 4            ;   0.0%      ;
 ;     Processor 5            ;   0.0%      ;
@@ -314,31 +314,31 @@ https://fpgasoftware.intel.com/eula.
 +-----------------------------------------------+----------------------------------------------------------------------------------------------+
 ; Resource                                      ; Usage                                                                                        ;
 +-----------------------------------------------+----------------------------------------------------------------------------------------------+
-; Estimated ALUTs Used                          ; 2463                                                                                         ;
-;     -- Combinational ALUTs                    ; 2463                                                                                         ;
+; Estimated ALUTs Used                          ; 2441                                                                                         ;
+;     -- Combinational ALUTs                    ; 2441                                                                                         ;
 ;     -- Memory ALUTs                           ; 0                                                                                            ;
 ;     -- LUT_REGs                               ; 0                                                                                            ;
 ; Dedicated logic registers                     ; 734                                                                                          ;
 ;                                               ;                                                                                              ;
-; Estimated ALUTs Unavailable                   ; 600                                                                                          ;
-;     -- Due to unpartnered combinational logic ; 600                                                                                          ;
+; Estimated ALUTs Unavailable                   ; 596                                                                                          ;
+;     -- Due to unpartnered combinational logic ; 596                                                                                          ;
 ;     -- Due to Memory ALUTs                    ; 0                                                                                            ;
 ;                                               ;                                                                                              ;
-; Total combinational functions                 ; 2463                                                                                         ;
+; Total combinational functions                 ; 2441                                                                                         ;
 ; Combinational ALUT usage by number of inputs  ;                                                                                              ;
 ;     -- 7 input functions                      ; 4                                                                                            ;
-;     -- 6 input functions                      ; 632                                                                                          ;
-;     -- 5 input functions                      ; 316                                                                                          ;
+;     -- 6 input functions                      ; 628                                                                                          ;
+;     -- 5 input functions                      ; 318                                                                                          ;
 ;     -- 4 input functions                      ; 318                                                                                          ;
-;     -- <=3 input functions                    ; 1193                                                                                         ;
+;     -- <=3 input functions                    ; 1173                                                                                         ;
 ;                                               ;                                                                                              ;
 ; Combinational ALUTs by mode                   ;                                                                                              ;
 ;     -- normal mode                            ; 1472                                                                                         ;
 ;     -- extended LUT mode                      ; 4                                                                                            ;
 ;     -- arithmetic mode                        ; 906                                                                                          ;
-;     -- shared arithmetic mode                 ; 81                                                                                           ;
+;     -- shared arithmetic mode                 ; 59                                                                                           ;
 ;                                               ;                                                                                              ;
-; Estimated ALUT/register pairs used            ; 3105                                                                                         ;
+; Estimated ALUT/register pairs used            ; 3079                                                                                         ;
 ;                                               ;                                                                                              ;
 ; Total registers                               ; 734                                                                                          ;
 ;     -- Dedicated logic registers              ; 734                                                                                          ;
@@ -355,7 +355,7 @@ https://fpgasoftware.intel.com/eula.
 ;                                               ;                                                                                              ;
 ; Maximum fan-out node                          ; PLL_theta_phi_OL:PLL_inst|altpll:altpll_component|PLL_altpll:auto_generated|wire_pll1_clk[0] ;
 ; Maximum fan-out                               ; 682                                                                                          ;
-; Total fan-out                                 ; 12592                                                                                        ;
+; Total fan-out                                 ; 12513                                                                                        ;
 ; Average fan-out                               ; 3.50                                                                                         ;
 +-----------------------------------------------+----------------------------------------------------------------------------------------------+
 
@@ -365,8 +365,8 @@ https://fpgasoftware.intel.com/eula.
 +-----------------------------------------------------+---------------------+---------------------------+-------------------+---------------------+---------+-----------+-----------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------+--------------+
 ; Compilation Hierarchy Node                          ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP 18-bit Elements ; DSP 9x9 ; DSP 12x12 ; DSP 18x18 ; DSP 36x36 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                                           ; Entity Name                    ; Library Name ;
 +-----------------------------------------------------+---------------------+---------------------------+-------------------+---------------------+---------+-----------+-----------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------+--------------+
-; |TOP_HybridControl_theta_phi_CL                     ; 2463 (208)          ; 734 (60)                  ; 0                 ; 16                  ; 0       ; 0         ; 0         ; 4         ; 185  ; 0            ; |TOP_HybridControl_theta_phi_CL                                                                                                                                                                               ; TOP_HybridControl_theta_phi_CL ; work         ;
-;    |PI:PI_inst|                                     ; 81 (81)             ; 60 (60)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|PI:PI_inst                                                                                                                                                                    ; PI                             ; work         ;
+; |TOP_HybridControl_theta_phi_CL                     ; 2441 (208)          ; 734 (60)                  ; 0                 ; 16                  ; 0       ; 0         ; 0         ; 4         ; 185  ; 0            ; |TOP_HybridControl_theta_phi_CL                                                                                                                                                                               ; TOP_HybridControl_theta_phi_CL ; work         ;
+;    |PI:PI_inst|                                     ; 59 (59)             ; 60 (60)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|PI:PI_inst                                                                                                                                                                    ; PI                             ; work         ;
 ;    |PLL_theta_phi_OL:PLL_inst|                      ; 0 (0)               ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|PLL_theta_phi_OL:PLL_inst                                                                                                                                                     ; PLL_theta_phi_OL               ; work         ;
 ;       |altpll:altpll_component|                     ; 0 (0)               ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|PLL_theta_phi_OL:PLL_inst|altpll:altpll_component                                                                                                                             ; altpll                         ; work         ;
 ;          |PLL_altpll:auto_generated|                ; 0 (0)               ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|PLL_theta_phi_OL:PLL_inst|altpll:altpll_component|PLL_altpll:auto_generated                                                                                                   ; PLL_altpll                     ; work         ;
@@ -391,8 +391,8 @@ https://fpgasoftware.intel.com/eula.
 ;       |dead_time_core:DT[1].dt_core|                ; 13 (13)             ; 11 (11)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_6|dead_time_core:DT[1].dt_core                                                                                                                       ; dead_time_core                 ; work         ;
 ;       |dead_time_core:DT[2].dt_core|                ; 13 (13)             ; 11 (11)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_6|dead_time_core:DT[2].dt_core                                                                                                                       ; dead_time_core                 ; work         ;
 ;       |dead_time_core:DT[3].dt_core|                ; 13 (13)             ; 11 (11)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_6|dead_time_core:DT[3].dt_core                                                                                                                       ; dead_time_core                 ; work         ;
-;    |debounce:debounce_4bit_inst|                    ; 172 (0)             ; 132 (0)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|debounce:debounce_4bit_inst                                                                                                                                                   ; debounce                       ; work         ;
-;       |debounce_core:DB[0].db_core|                 ; 43 (43)             ; 33 (33)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|debounce:debounce_4bit_inst|debounce_core:DB[0].db_core                                                                                                                       ; debounce_core                  ; work         ;
+;    |debounce:debounce_4bit_inst|                    ; 173 (0)             ; 132 (0)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|debounce:debounce_4bit_inst                                                                                                                                                   ; debounce                       ; work         ;
+;       |debounce_core:DB[0].db_core|                 ; 44 (44)             ; 33 (33)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|debounce:debounce_4bit_inst|debounce_core:DB[0].db_core                                                                                                                       ; debounce_core                  ; work         ;
 ;       |debounce_core:DB[1].db_core|                 ; 43 (43)             ; 33 (33)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|debounce:debounce_4bit_inst|debounce_core:DB[1].db_core                                                                                                                       ; debounce_core                  ; work         ;
 ;       |debounce_core:DB[2].db_core|                 ; 43 (43)             ; 33 (33)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|debounce:debounce_4bit_inst|debounce_core:DB[2].db_core                                                                                                                       ; debounce_core                  ; work         ;
 ;       |debounce_core:DB[3].db_core|                 ; 43 (43)             ; 33 (33)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|debounce:debounce_4bit_inst|debounce_core:DB[3].db_core                                                                                                                       ; debounce_core                  ; work         ;
@@ -449,7 +449,7 @@ https://fpgasoftware.intel.com/eula.
 ;       |dec2hex:dec2hex_inst|                        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|num2seg:num2seg_PHI|dec2hex:dec2hex_inst                                                                                                                                      ; dec2hex                        ; work         ;
 ;       |hex2seg:hex2seg_0|                           ; 7 (7)               ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|num2seg:num2seg_PHI|hex2seg:hex2seg_0                                                                                                                                         ; hex2seg                        ; work         ;
 ;       |hex2seg:hex2seg_1|                           ; 7 (7)               ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|num2seg:num2seg_PHI|hex2seg:hex2seg_1                                                                                                                                         ; hex2seg                        ; work         ;
-;    |saturation:sat_PHI|                             ; 16 (16)             ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|saturation:sat_PHI                                                                                                                                                            ; saturation                     ; work         ;
+;    |saturation:sat_PHI|                             ; 15 (15)             ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|saturation:sat_PHI                                                                                                                                                            ; saturation                     ; work         ;
 ;    |sensing_Ibat:sensing_Ibat_inst|                 ; 62 (8)              ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|sensing_Ibat:sensing_Ibat_inst                                                                                                                                                ; sensing_Ibat                   ; work         ;
 ;       |hex2seg_couple:IbatHEX2display|              ; 14 (0)              ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|sensing_Ibat:sensing_Ibat_inst|hex2seg_couple:IbatHEX2display                                                                                                                 ; hex2seg_couple                 ; work         ;
 ;          |hex2seg:hex2seg_0|                        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|sensing_Ibat:sensing_Ibat_inst|hex2seg_couple:IbatHEX2display|hex2seg:hex2seg_0                                                                                               ; hex2seg                        ; work         ;
@@ -580,7 +580,7 @@ Note: number of DSP Blocks used is only available after a successful fit.
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                                                            ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_1|dead_time_core:DT[2].dt_core|delay[5]                                                                      ;
-; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_2|dead_time_core:DT[2].dt_core|delay[5]                                                                      ;
+; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_2|dead_time_core:DT[2].dt_core|delay[0]                                                                      ;
 ; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_4|dead_time_core:DT[2].dt_core|delay[2]                                                                      ;
 ; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_6|dead_time_core:DT[2].dt_core|delay[1]                                                                      ;
 ; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_1|dead_time_core:DT[0].dt_core|delay[3]                                                                      ;
@@ -590,17 +590,17 @@ Note: number of DSP Blocks used is only available after a successful fit.
 ; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_1|dead_time_core:DT[3].dt_core|delay[3]                                                                      ;
 ; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_2|dead_time_core:DT[3].dt_core|delay[7]                                                                      ;
 ; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_4|dead_time_core:DT[3].dt_core|delay[8]                                                                      ;
-; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_6|dead_time_core:DT[3].dt_core|delay[1]                                                                      ;
+; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_6|dead_time_core:DT[3].dt_core|delay[0]                                                                      ;
 ; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_1|dead_time_core:DT[1].dt_core|delay[3]                                                                      ;
 ; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_2|dead_time_core:DT[1].dt_core|delay[9]                                                                      ;
-; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_4|dead_time_core:DT[1].dt_core|delay[8]                                                                      ;
-; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_6|dead_time_core:DT[1].dt_core|delay[9]                                                                      ;
-; 4:1                ; 32 bits   ; 64 ALUTs      ; 32 ALUTs             ; 32 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_CL|hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst|regularization_core:REG[0].reg_core|counter[3] ;
-; 4:1                ; 32 bits   ; 64 ALUTs      ; 32 ALUTs             ; 32 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_CL|hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst|regularization_core:REG[1].reg_core|counter[5] ;
-; 4:1                ; 8 bits    ; 16 ALUTs      ; 16 ALUTs             ; 0 ALUTs                ; Yes        ; |TOP_HybridControl_theta_phi_CL|value_control:phi_control|count_reg[7]                                                                                                ;
+; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_4|dead_time_core:DT[1].dt_core|delay[7]                                                                      ;
+; 3:1                ; 10 bits   ; 20 ALUTs      ; 0 ALUTs              ; 20 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_6|dead_time_core:DT[1].dt_core|delay[4]                                                                      ;
+; 4:1                ; 32 bits   ; 64 ALUTs      ; 32 ALUTs             ; 32 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_CL|hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst|regularization_core:REG[0].reg_core|counter[4] ;
+; 4:1                ; 32 bits   ; 64 ALUTs      ; 32 ALUTs             ; 32 ALUTs               ; Yes        ; |TOP_HybridControl_theta_phi_CL|hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst|regularization_core:REG[1].reg_core|counter[4] ;
+; 4:1                ; 8 bits    ; 16 ALUTs      ; 16 ALUTs             ; 0 ALUTs                ; Yes        ; |TOP_HybridControl_theta_phi_CL|value_control:phi_control|count_reg[1]                                                                                                ;
 ; 5:1                ; 8 bits    ; 24 ALUTs      ; 16 ALUTs             ; 8 ALUTs                ; Yes        ; |TOP_HybridControl_theta_phi_CL|value_control:Iref_control|count_reg[0]                                                                                               ;
-; 4:1                ; 4 bits    ; 8 ALUTs       ; 8 ALUTs              ; 0 ALUTs                ; No         ; |TOP_HybridControl_theta_phi_CL|Mux1                                                                                                                                  ;
-; 4:1                ; 8 bits    ; 16 ALUTs      ; 16 ALUTs             ; 0 ALUTs                ; No         ; |TOP_HybridControl_theta_phi_CL|saturation:sat_PHI|u_sat_reg[4]                                                                                                       ;
+; 4:1                ; 4 bits    ; 8 ALUTs       ; 8 ALUTs              ; 0 ALUTs                ; No         ; |TOP_HybridControl_theta_phi_CL|Mux3                                                                                                                                  ;
+; 4:1                ; 7 bits    ; 14 ALUTs      ; 14 ALUTs             ; 0 ALUTs                ; No         ; |TOP_HybridControl_theta_phi_CL|saturation:sat_PHI|u_sat_reg[0]                                                                                                       ;
 ; 65:1               ; 14 bits   ; 602 ALUTs     ; 210 ALUTs            ; 392 ALUTs              ; No         ; |TOP_HybridControl_theta_phi_CL|SEG0                                                                                                                                  ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
@@ -1118,7 +1118,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+-------+--------------------------------+
 ; Kp             ; 3     ; Signed Integer                 ;
 ; TsKi           ; 1     ; Signed Integer                 ;
-; Kaw            ; 2048  ; Signed Integer                 ;
+; Kaw            ; 0     ; Signed Integer                 ;
 ; shift_Kp       ; 13    ; Signed Integer                 ;
 ; shift_Ki       ; 13    ; Signed Integer                 ;
 ; shift_Kaw      ; 0     ; Signed Integer                 ;
@@ -2074,7 +2074,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     ENA SCLR          ; 224                         ;
 ;     plain             ; 93                          ;
 ; stratixiv_io_obuf     ; 6                           ;
-; stratixiv_lcell_comb  ; 2468                        ;
+; stratixiv_lcell_comb  ; 2446                        ;
 ;     arith             ; 906                         ;
 ;         0 data inputs ; 7                           ;
 ;         1 data inputs ; 694                         ;
@@ -2087,23 +2087,21 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     normal            ; 1477                        ;
 ;         0 data inputs ; 2                           ;
 ;         1 data inputs ; 19                          ;
-;         2 data inputs ; 52                          ;
-;         3 data inputs ; 147                         ;
-;         4 data inputs ; 312                         ;
-;         5 data inputs ; 313                         ;
-;         6 data inputs ; 632                         ;
-;     shared            ; 81                          ;
-;         0 data inputs ; 19                          ;
+;         2 data inputs ; 53                          ;
+;         3 data inputs ; 146                         ;
+;         4 data inputs ; 314                         ;
+;         5 data inputs ; 315                         ;
+;         6 data inputs ; 628                         ;
+;     shared            ; 59                          ;
+;         0 data inputs ; 18                          ;
 ;         1 data inputs ; 5                           ;
-;         2 data inputs ; 50                          ;
-;         3 data inputs ; 5                           ;
-;         4 data inputs ; 2                           ;
+;         2 data inputs ; 36                          ;
 ; stratixiv_mac_mult    ; 16                          ;
 ; stratixiv_mac_out     ; 4                           ;
 ; stratixiv_pll         ; 1                           ;
 ;                       ;                             ;
 ; Max LUT depth         ; 15.80                       ;
-; Average LUT depth     ; 5.92                        ;
+; Average LUT depth     ; 5.83                        ;
 +-----------------------+-----------------------------+
 
 
@@ -2112,7 +2110,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:14     ;
+; Top            ; 00:00:15     ;
 +----------------+--------------+
 
 
@@ -2122,7 +2120,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
-    Info: Processing started: Mon May 20 09:23:12 2024
+    Info: Processing started: Mon May 20 11:13:50 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off HybridControl_theta_phi_CL -c TOP_HybridControl_theta_phi_CL
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20032): Parallel compilation is enabled and will use up to 8 processors
@@ -2310,25 +2308,25 @@ Warning (10230): Verilog HDL assignment warning at manual_value_control.v(65): t
 Warning (10230): Verilog HDL assignment warning at manual_value_control.v(69): truncated value with size 32 to match size of target (8) File: C:/FPGA/Projects/blocks/manual_value_control.v Line: 69
 Warning (10230): Verilog HDL assignment warning at manual_value_control.v(71): truncated value with size 32 to match size of target (8) File: C:/FPGA/Projects/blocks/manual_value_control.v Line: 71
 Info (12128): Elaborating entity "PI" for hierarchy "PI:PI_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 396
-Info (12128): Elaborating entity "saturation" for hierarchy "saturation:sat_PHI" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 407
+Info (12128): Elaborating entity "saturation" for hierarchy "saturation:sat_PHI" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 427
 Warning (10230): Verilog HDL assignment warning at saturation.v(81): truncated value with size 32 to match size of target (8) File: C:/FPGA/Projects/blocks/saturation.v Line: 81
-Info (12128): Elaborating entity "dead_time" for hierarchy "dead_time:dead_time_inst_1" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 430
+Info (12128): Elaborating entity "dead_time" for hierarchy "dead_time:dead_time_inst_1" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 450
 Info (12128): Elaborating entity "dead_time_core" for hierarchy "dead_time:dead_time_inst_1|dead_time_core:DT[0].dt_core" File: C:/FPGA/Projects/blocks/dead_time.v Line: 73
-Info (12128): Elaborating entity "dead_time" for hierarchy "dead_time:dead_time_inst_2" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 435
+Info (12128): Elaborating entity "dead_time" for hierarchy "dead_time:dead_time_inst_2" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 455
 Info (12128): Elaborating entity "dead_time_core" for hierarchy "dead_time:dead_time_inst_2|dead_time_core:DT[0].dt_core" File: C:/FPGA/Projects/blocks/dead_time.v Line: 73
-Info (12128): Elaborating entity "dead_time" for hierarchy "dead_time:dead_time_inst_4" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 440
+Info (12128): Elaborating entity "dead_time" for hierarchy "dead_time:dead_time_inst_4" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 460
 Info (12128): Elaborating entity "dead_time_core" for hierarchy "dead_time:dead_time_inst_4|dead_time_core:DT[0].dt_core" File: C:/FPGA/Projects/blocks/dead_time.v Line: 73
-Info (12128): Elaborating entity "dead_time" for hierarchy "dead_time:dead_time_inst_6" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 445
+Info (12128): Elaborating entity "dead_time" for hierarchy "dead_time:dead_time_inst_6" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 465
 Info (12128): Elaborating entity "dead_time_core" for hierarchy "dead_time:dead_time_inst_6|dead_time_core:DT[0].dt_core" File: C:/FPGA/Projects/blocks/dead_time.v Line: 73
-Info (12128): Elaborating entity "debounce" for hierarchy "debounce:debounce_4bit_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 454
+Info (12128): Elaborating entity "debounce" for hierarchy "debounce:debounce_4bit_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 474
 Info (12128): Elaborating entity "debounce_core" for hierarchy "debounce:debounce_4bit_inst|debounce_core:DB[0].db_core" File: C:/FPGA/Projects/blocks/debounce.v Line: 78
-Info (12128): Elaborating entity "counter_up" for hierarchy "counter_up:counter_up_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 470
-Info (12128): Elaborating entity "sensing_Ibat" for hierarchy "sensing_Ibat:sensing_Ibat_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 479
+Info (12128): Elaborating entity "counter_up" for hierarchy "counter_up:counter_up_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 490
+Info (12128): Elaborating entity "sensing_Ibat" for hierarchy "sensing_Ibat:sensing_Ibat_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 499
 Warning (10230): Verilog HDL assignment warning at rectifier_sensing.v(40): truncated value with size 32 to match size of target (8) File: C:/FPGA/Projects/blocks/rectifier_sensing.v Line: 40
 Info (12128): Elaborating entity "hex2seg_couple" for hierarchy "sensing_Ibat:sensing_Ibat_inst|hex2seg_couple:IbatHEX2display" File: C:/FPGA/Projects/blocks/rectifier_sensing.v Line: 51
-Info (12128): Elaborating entity "sensing_Vbat" for hierarchy "sensing_Vbat:sensing_Vbat_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 486
+Info (12128): Elaborating entity "sensing_Vbat" for hierarchy "sensing_Vbat:sensing_Vbat_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 506
 Warning (10230): Verilog HDL assignment warning at rectifier_sensing.v(96): truncated value with size 32 to match size of target (8) File: C:/FPGA/Projects/blocks/rectifier_sensing.v Line: 96
-Info (12128): Elaborating entity "debug_display" for hierarchy "debug_display:debug_display_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 542
+Info (12128): Elaborating entity "debug_display" for hierarchy "debug_display:debug_display_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 562
 Info (10264): Verilog HDL Case Statement information at debug.v(91): all case item expressions in this case statement are onehot File: C:/FPGA/Projects/blocks/debug.v Line: 91
 Warning (12011): Net is missing source, defaulting to GND
     Warning (12110): Net "delta[31]" is missing source, defaulting to GND File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 143
@@ -2624,17 +2622,17 @@ Warning (15899): PLL "PLL_theta_phi_OL:PLL_inst|altpll:altpll_component|PLL_altp
 Warning (21074): Design contains 2 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "ADA_OR" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 58
     Warning (15610): No output dependent on input pin "ADB_OR" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 59
-Info (21057): Implemented 2738 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 2716 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 68 input pins
     Info (21059): Implemented 111 output pins
     Info (21060): Implemented 6 bidirectional pins
-    Info (21061): Implemented 2536 logic cells
+    Info (21061): Implemented 2514 logic cells
     Info (21065): Implemented 1 PLLs
     Info (21062): Implemented 16 DSP elements
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 213 warnings
-    Info: Peak virtual memory: 4935 megabytes
-    Info: Processing ended: Mon May 20 09:23:35 2024
-    Info: Elapsed time: 00:00:23
+    Info: Peak virtual memory: 4939 megabytes
+    Info: Processing ended: Mon May 20 11:14:14 2024
+    Info: Elapsed time: 00:00:24
     Info: Total CPU time (on all processors): 00:00:34
 
 
