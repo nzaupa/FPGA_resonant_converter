@@ -256,11 +256,11 @@ assign ALERT   = ~((Q1 & Q3) | (Q2 & Q4));
 
 assign {Q4, Q3, Q2, Q1} = Qout;
 
-//                  normal        boot-strap      force sigma=1
-assign Q[0] = ( (Q1 & ON & VG) | (1'b0 & ~ON) | (1'b1 & ON & (~VG)) ) & ENABLE & ALERT & OV;
-assign Q[1] = ( (Q2 & ON & VG) | (1'b0 & ~ON) | (1'b0 & ON & (~VG)) ) & ENABLE & ALERT & OV;
-assign Q[2] = ( (Q3 & ON & VG) | (1'b1 & ~ON) | (1'b0 & ON & (~VG)) ) & ENABLE & ALERT & OV;
-assign Q[3] = ( (Q4 & ON & VG) | (1'b1 & ~ON) | (1'b1 & ON & (~VG)) ) & ENABLE & ALERT & OV;
+//                  normal        boot-strap      force sigma=1                          overvoltage once ON
+assign Q[0] = ( (Q1 & ON & VG) | (1'b0 & ~ON) | (1'b1 & ON & (~VG)) ) & ENABLE & ALERT; // & (OV | (~VG));
+assign Q[1] = ( (Q2 & ON & VG) | (1'b0 & ~ON) | (1'b0 & ON & (~VG)) ) & ENABLE & ALERT; // & (OV | (~VG));
+assign Q[2] = ( (Q3 & ON & VG) | (1'b1 & ~ON) | (1'b0 & ON & (~VG)) ) & ENABLE & ALERT; // & (OV | (~VG));
+assign Q[3] = ( (Q4 & ON & VG) | (1'b1 & ~ON) | (1'b1 & ON & (~VG)) ) & ENABLE & ALERT; // & (OV | (~VG));
 
 // assign MOSFET = MOSFET_theta_phi;
 
@@ -333,7 +333,7 @@ value_control  #(
    .i_CLK(clk_100M),
    .i_RST(button[0]),
    .inc_btn(button[1]),
-   .dec_btn(1'b0),
+   .dec_btn(button[2]),
    .count(phi),
    .o_seg0(SEG0_PHI),
    .o_seg1(SEG1_PHI)
@@ -344,7 +344,7 @@ value_control  #(
    .INTEGER_STEP(1),
    .INTEGER_MIN (0),
    .INTEGER_MAX (40),
-   .INTEGER_RST (10),
+   .INTEGER_RST (0),
    .N_BIT       (8) 
 ) delta_control (
    .i_CLK(clk_100M),
@@ -357,7 +357,7 @@ value_control  #(
 
 // Iref 
 value_control  #(
-   .INTEGER_STEP(5),
+   .INTEGER_STEP(1),
    .INTEGER_MIN (5),
    .INTEGER_MAX (100),
    .INTEGER_RST (5),
@@ -377,16 +377,16 @@ value_control  #(
 
 // ----- PI CONTROLLER ----- //
 
-   assign phi_PI = (phi_PI_tmp>>>10) + 32'd50;
+   assign phi_PI = phi_PI_tmp + 32'd50;
    // mA because it has a higher precision
    assign error  = ((Ibat_mA>>7)<<7) + (~(Iref_dA*100)+1);
    assign error_dA = {24'b0,Ibat_DEC} + (~(Iref_dA)+1);
 
 
    PI #( 
-      .Kp  (3), .shift_Kp (3),
-      .TsKi(4), .shift_Ki (8),
-      .Kaw (0), .shift_Kaw(0) 
+      .Kp  (3),    .shift_Kp (13),
+      .TsKi(1),    .shift_Ki (13),
+      .Kaw (2048), .shift_Kaw(0) 
    ) PI_inst(
       .o_PI(phi_PI_tmp),   // output value
       .i_CLK(clk_100k),    // for sequential behavior
