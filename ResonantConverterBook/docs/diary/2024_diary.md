@@ -148,9 +148,38 @@ Point measure with the oscilloscope.
 
 18 May - Work from home and groceries. Clean up the section on the resonant tank sensing.
 
-19 May - Flea market and working from home. I've created a PSIM simulation that should work as reference for theoretical behavior of the prototype. The antiwind-up behavior has been added and there was a problem with the scaling, i.e., Kaw is much higher then Ki Kp since the error scale is higher than the phi scale.
+19 May - Flea market and working from home. I've created a PSIM simulation that should work as reference for theoretical behavior of the prototype. The antiwind-up behavior has been added and there was a problem with the scaling, i.e., Kaw is much higher than Ki Kp since the error scale is higher than the phi scale.
 
 
+20 May - The converter decided that it is not the day to work. It starts with low amplitude and then we can move it to a working point with higher amplitude (lower phi); but if we start it directly with low phi it starts glitching and making noise (music).
+A reason might be that it experienced high voltage since I turn it ON with the electronic load in standby. The output was saying 100 something Volts.
+But, if I run it in open-loop it is working without problem, even reaching phi equal to 80deg.
+Ok, I'm going out crazy. Simulations in PSIM result with a higher frequency than expected, around 100kHz (the block to compute the frequency had an error, it was not necessary to divide by 2).
+While, the prototype is working at the expected frequency.
+The reasons are so far unknown.
+
+Then, why is the converter turning OFF when I use the CL but not when it is in open loop? I'm testing at 24V. For some reasons, in OL the voltage $v_C$ is within the forecast bound. In CL, it is overflowing it, causing the ADC to go in overflow. One way it to clip the value in the FPGA by managing the overflow bits, another way is to change the sensing circuit. In the end I change the resistor Rpv1, the one that steps-down the voltage on the tank side, from 4.8kOhm to 8.2kOhm. I've also added a piece of code that should manage values out of the range, I think the problem was meanly related to the fact that we are inverting the number, and the negative overflow 100000 corresponds to the same, which then was read as a number with inverse polarity.
+
+Then, the open-loop works smoothly. The closed-loop also considering a resistor as load. It seems that the antiwind-up in this case is not working since when we are near to phi=0 it stops instead of keeping phi=0.
+
+With the electronic load is more problematic. First, there is a transient behavior at the beginning that is creating high current and voltage in the resonant tank with low-frequency (around 20kHz). 
+Then, the converter may stabilize to a point but it can also turn OFF.
+
+I'm so stupid or so fucked up, right now idk, that I copied the PSIM simulation from the old folder without remembering that I was working on another version in the folder `2024_OBC`. So there was still the error on the diodes' capacitance.
+
+- Simulation in now working in `THESIS_ALL`
+- PI with AW is working in simulation
+- The range for $v_C$ could still be too small for a full rated power
 
 
+21 May - Heures au telephone avec les services françaises qui te mis en attent. In the end is herpes and I have to rest. So, I'm working from the apartment on the thesis and I've started using `circuitikz`, easier than expected once you know how to use the coordinates.
+
+
+22 May - Another day working from home
+
+Went to check if the controller it is working. Still, it has problems and I haven't solved much. I feel that the time start to be limited and this might be stressing.
+
+
+23 May - Back in the lab with the same problems.The controller in CL is not able to stay ON for small references, while for larger one it fails when phi is near zero.
+The converter is glitching and this is due to the rapid changes in phi, I try to solve this by filtering the estimated current.
 

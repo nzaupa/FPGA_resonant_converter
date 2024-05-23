@@ -5,13 +5,6 @@
 // File: saturation.v
 //------------------------------------------------------------
 // Description:
-// ...
-//------------------------------------------------------------
-
-
-
-//------------------------------------------------------------
-// Description:
 // This modules implements a saturation element.
 // If the input value exceed the limits, 
 // it is clamped to the extreme
@@ -32,7 +25,7 @@ module saturation_positive #(
 ) (
    input  [N_BIT-1:0] u,     // input      - u
    output [N_BIT-1:0] u_sat, // saturation - sat(u)
-   output [N_BIT  :0] u_dz   // dead-zone  - dz(u) = u - sat(u)
+   output [N_BIT-1:0] u_dz   // dead-zone  - dz(u) = u - sat(u)
 );
 
 // in general the dead-zone can be negative, that is why we 
@@ -97,6 +90,43 @@ always @(u) begin
       u_sat_reg <= LOWER_LIMIT;
    end
    
+end
+
+endmodule
+
+// -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+// this module is considering that the saturation is
+// between 0 and a generic positive value
+
+module saturation_zero #(
+   parameter UPPER_LIMIT = 100,
+   parameter N_BIT = 32
+) (
+   input  [N_BIT-1:0] u,     // input      - u
+   output [N_BIT-1:0] u_sat, // saturation - sat(u)
+   output [N_BIT-1:0] u_dz   // dead-zone  - dz(u) = u - sat(u)
+);
+
+// in general the dead-zone can be negative, that is why we 
+// consider one bit more with respect the other numbers there 
+// are considered positive on their full scale
+
+reg [N_BIT-1:0] u_sat_reg;
+
+assign u_sat = u_sat_reg;
+assign u_dz  = u + (~u_sat+1);
+
+always @(u) begin
+   if (u[N_BIT-1]) begin
+      // the number is negative
+      u_sat_reg <= 0;
+   end
+   else if (u>UPPER_LIMIT) begin
+      u_sat_reg <= UPPER_LIMIT;
+   end
+   else begin
+      u_sat_reg <= u;
+   end
 end
 
 endmodule

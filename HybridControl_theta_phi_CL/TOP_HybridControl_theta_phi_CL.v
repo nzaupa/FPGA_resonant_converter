@@ -115,18 +115,23 @@ wire [3:0] MOSFET_theta_phi;
 reg  [3:0] MOSFET;
 
 // ADCs and DACs
-reg signed [13:0] ADC_A, ADC_B;
-reg        [13:0] DAA_copy, DAB_copy;
+reg  [13:0] ADC_A, ADC_B;
+reg  [13:0] DAA_copy, DAB_copy;
 
 // rectifier
 reg  [7:0]  ADC_Vbat, ADC_Ibat;
 wire [7:0]  Vbat_DEC, Ibat_DEC;
 wire [15:0] SEG_Vbat_HEX, SEG_Ibat_HEX, SEG_Vbat_DEC, SEG_Ibat_DEC;
-wire [31:0] Ibat_mA;
+wire [31:0] Ibat_mA, Ibat_mA_filt;
 
 // PI controller
 wire [31:0] error, Iref_dA;
-wire [31:0] error_dA;
+// wire [31:0] error_dA;
+wire [31:0] phi;
+wire [31:0] delta;
+wire [31:0] phi_HC;
+wire [31:0] phi_PI_tmp, phi_PI_test;
+wire [31:0] phi_PI, phi_PI_sat, phi_PI_dz; 
 
 
 // H-bridge control and startup
@@ -136,18 +141,12 @@ wire [7:0] cnt_Vg;
 // reg  [7:0] cnt_startup_reg;
 
 
-wire  [31:0] debug;
-wire  [1:0]  test;
-
-wire [31:0] phi;
-wire [31:0] delta;
-wire [31:0] phi_HC;
-wire [31:0] phi_PI, phi_PI_sat, phi_PI_tmp;
-
 
 wire [1:0] sigma; // internal state
 
-wire  [7:0] SEG0_reg, SEG1_reg;
+wire [ 1:0]  test;
+wire [31:0] debug;
+wire [ 7:0] SEG0_reg, SEG1_reg;
 wire [15:0] SEG_DELTA, SEG_PHI, SEG_IREF;
 
 wire [3:0] button, sw;   // debounce buttons and switch
@@ -208,19 +207,19 @@ assign  DA = debug[20:7];
    // connected to GPIO1 and available on the rectifier board
    // all are available on the 2×6 connector, 6 of them are connected to LEDs
    //CO: 22/12/23 update ex bits
-   // assign EX[0]  =  SW[3];      // over voltage
-   // assign EX[1]  = ~SW[3];      // over current
-   // assign EX[2]  = ENABLE;      // H-bridge ENABLE
-   // assign EX[3]  = debug[2];    // Pin 4 D0
-   // assign EX[4]  = debug[3];    // Pin 5 D1
-   // assign EX[5]  = debug[8];    // Pin 6 D2  M1_delayed
-   // assign EX[6]  = debug[9];    // Pin 7 D3  M1
+   assign EX[0]  = phi_PI_sat[31];      // over voltage
+   assign EX[1]  = phi_PI[31];          // over current
+   assign EX[2]  = phi_PI_test[31];     // H-bridge ENABLE
+   assign EX[3]  = debug[2];    // Pin 4 D0
+   assign EX[4]  = debug[3];    // Pin 5 D1
+   assign EX[5]  = ADC_A[13];    // Pin 6 D2  M1_delayed
+   assign EX[6]  = ADC_B[13];    // Pin 7 D3  M1
    // assign EX[7]  = test[0];     // Pin 8 D4  b0
-   assign EX[6:0]= sw[1] ? phi_PI[6:0] : error_dA[6:0];
-   assign EX[7]  = phi_PI[31]; //sw[1] ? phi_PI[31]  : error_dA[31];     
-   assign EX[8]  = error[31];     // Pin 9 D5  b1
+   // assign EX[6:0]= sw[1] ? phi_PI[6:0] : error_dA[6:0];
+   assign EX[7]  = debug[3]; //sw[1] ? phi_PI[31]  : error_dA[31];     
+   assign EX[8]  = ADC_A[13];     // Pin 9 D5  b1
    assign EX[9]  = debug[14];   // Pin 10 ?
-   assign EX[10] = OV;   // Pin 11 D6
+   assign EX[10] = debug[2];   // Pin 11 D6
    assign EX[11] = ENABLE;      // Pin 12 D7  (and LED 1)
 
    // assign GPIO0[18] = Q[0]; //Q1;   // D12
@@ -239,14 +238,14 @@ assign  DA = debug[20:7];
 
    // connected to GPIO0
    // debug for Ci signals
-   assign GPIO0[10] = phi_PI_sat[0];// D8
-   assign GPIO0[12] = phi_PI_sat[1];// D9
-   assign GPIO0[14] = phi_PI_sat[2];// D10
-   assign GPIO0[16] = phi_PI_sat[3];// D11
-   assign GPIO0[18] = phi_PI_sat[4];// D12
-   assign GPIO0[20] = phi_PI_sat[5];// D13
-   assign GPIO0[22] = phi_PI_sat[6];// D14
-   assign GPIO0[24] = VG;// D15
+   assign GPIO0[10] = sw[1] ? phi_PI_dz[0] : phi_PI_sat[0]; // D8
+   assign GPIO0[12] = sw[1] ? phi_PI_dz[1] : phi_PI_sat[1]; // D9
+   assign GPIO0[14] = sw[1] ? phi_PI_dz[2] : phi_PI_sat[2]; // D10
+   assign GPIO0[16] = sw[1] ? phi_PI_dz[3] : phi_PI_sat[3]; // D11
+   assign GPIO0[18] = sw[1] ? phi_PI_dz[4] : phi_PI_sat[4]; // D12
+   assign GPIO0[20] = sw[1] ? phi_PI_dz[5] : phi_PI_sat[5]; // D13
+   assign GPIO0[22] = sw[1] ? phi_PI_dz[6] : phi_PI_sat[6]; // D14
+   assign GPIO0[24] = sw[1] ? phi_PI_dz[7] : phi_PI_sat[7]; // D15
 
 // ##### assign for DEBUG END #####
 
@@ -302,7 +301,7 @@ PLL_theta_phi_OL PLL_inst (
 
 // CONTROL PHI + DELTA OF THE RESONANT TANK
 
-hybrid_control_mixed #(.mu_z1(32'd86), .mu_z2(32'd90)
+hybrid_control_mixed #(.mu_z1(32'd154), .mu_z2(32'd90)
 ) hybrid_control_mixed_inst (
    .o_MOSFET( MOSFET_theta_phi ),
    .o_sigma(  ),
@@ -348,7 +347,7 @@ value_control  #(
    .N_BIT       (8) 
 ) delta_control (
    .i_CLK(clk_100M),
-   .i_RST(button[0]),
+   .i_RST(CPU_RESET),
    .inc_btn(button[3]),
    .dec_btn(1'b0 ),
    .count(delta),
@@ -365,7 +364,7 @@ value_control  #(
    .DP          (2'b01) 
 ) Iref_control (
    .i_CLK(clk_100M),
-   .i_RST(CPU_RESET),
+   .i_RST(button[0]),
    .inc_btn(button[1]),
    .dec_btn(button[2]),
    .count(Iref_dA),
@@ -377,53 +376,50 @@ value_control  #(
 
 // ----- PI CONTROLLER ----- //
 
+   // crop the value to 8 bit since 
+   // the saturation is working with this precision
+   // assign phi_PI = {phi_PI_tmp[31],phi_PI_tmp[6:0]} + 8'd50;
    assign phi_PI = phi_PI_tmp + 32'd50;
    // mA because it has a higher precision
-   assign error  = ((Ibat_mA>>7)<<7) + (~(Iref_dA*100)+1);
-   assign error_dA = {24'b0,Ibat_DEC} + (~(Iref_dA)+1);
+   // -> round to dA precision
+   // -> the error is in mA
+   assign error  = ((Ibat_mA_filt>>7)<<7) + (~(Iref_dA*100)+1);
+   // assign error_dA = {24'b0,Ibat_DEC} + (~(Iref_dA)+1);
 
-// WITH ANTIWINDUP
+// PI WITH ANTIWINDUP
    PI #( 
-      .Kp  (3),    .shift_Kp (13),
-      .TsKi(1),    .shift_Ki (13),
-      .Kaw (0), .shift_Kaw(0) 
+      .Kp  (3),   .shift_Kp (14),
+      .TsKi(1),   .shift_Ki (12),
+      .Kaw (128), .shift_Kaw(0) //512
    ) PI_inst(
       .o_PI(phi_PI_tmp),   // output value
       .i_CLK(clk_100k),    // for sequential behavior
       .i_RST(CPU_RESET & ENABLE_RST & sw[0]),  // reset signal
       .err(error),  // input error
-      .aw(phi_PI_sat + (~phi_PI+1))      // antiwindup
+      .aw(phi_PI_dz)      // antiwindup
+      // .aw(phi_PI_sat + (~phi_PI+1))      // antiwindup
    );
 
-  
-// OLD CONTROLLER
-   // assign phi_PI = phi_PI_tmp>>>10 + 32'd50;
-   // // mA because it has a higher precision
-   // assign error  = ((Ibat_mA>>7)<<7) + (~(Iref_dA*100)+1);
-   // assign error_dA = {24'b0,Ibat_DEC} + (~(Iref_dA)+1);
-
-
-   // PI #( 
-   //    .Kp  (3),    .shift_Kp (3),
-   //    .TsKi(4),    .shift_Ki (8),
-   //    .Kaw (0), .shift_Kaw(0) 
-   // ) PI_inst(
-   //    .o_PI(phi_PI_tmp),   // output value
-   //    .i_CLK(clk_100k),    // for sequential behavior
-   //    .i_RST(CPU_RESET & ENABLE_RST & sw[0]),  // reset signal
-   //    .err(error),  // input error
-   //    .aw(phi_PI_sat + (~phi_PI+1))      // antiwindup
-   // );
 
 
    saturation #(
-      .LOWER_LIMIT(8'd0), 
-      .UPPER_LIMIT(8'd70), 
-      .N_BIT(8)
+      .LOWER_LIMIT(32'd0), 
+      .UPPER_LIMIT(32'd70), 
+      .N_BIT(32)
    ) sat_PHI(
-      .u({phi_PI[31],phi_PI[6:0]}),
-      .u_sat(phi_PI_sat),
+      .u(phi_PI),
+      .u_sat(phi_PI_test),
       .u_dz()
+   );
+
+   saturation_zero #(
+      .UPPER_LIMIT(32'd70), 
+      .N_BIT(32)
+   ) sat_PHI_zero(
+      .u(phi_PI),
+      // .u({phi_PI[31],phi_PI[6:0]}),
+      .u_sat(phi_PI_sat),
+      .u_dz(phi_PI_dz)
    );
 
    // WITH THE NEXT LINE IT IS WORKING
@@ -498,6 +494,16 @@ value_control  #(
       .SEG_DEC(SEG_Ibat_DEC)  // show the converted DEC number
    );
 
+   // filter the mA value: average on a 4 samples time window
+   LPF LPF_Ibat(
+      .o_mean(Ibat_mA_filt),
+      .i_clock(clk_100k),
+      .i_RESET(CPU_RESET),
+      .i_data(Ibat_mA)
+   );
+
+
+
    sensing_Vbat sensing_Vbat_inst(
       .Vbat_ADC(ADC_Vbat),    // ADC measure
       .Vbat_DEC(Vbat_DEC),    // converted measure
@@ -508,7 +514,18 @@ value_control  #(
 // +++ ADC +++
    // acquire data from ADC when available
    always @(posedge ADA_DCO) begin
-      ADC_A    = ~ADA_DATA+14'b1;
+      if (ADA_OR) begin
+         // we are in over-range
+         if (ADA_DATA==14'h2000) begin
+            ADC_A <= 14'h1FFF;
+         end else begin
+            ADC_A <= 14'h2000;
+         end
+      end else begin
+         // inverse the polarity since it is inverted in the {CB}
+         ADC_A <= ~ADA_DATA+14'b1;
+      end
+      
       DAA_copy = ~ADA_DATA+14'b1 + 14'd8191;
    end
 

@@ -1,2 +1,2 @@
 v1
-PORT_SWAPPING,PORT_SWAPPING_FINISHED,hybrid_control_mixed:hybrid_control_mixed_inst|lpm_mult:Mult2|mult_q2t:auto_generated|mac_mult2,
+PORT_SWAPPING,PORT_SWAPPING_FINISHED,hybrid_control_mixed:hybrid_control_mixed_inst|lpm_mult:Mult2|mult_s2t:auto_generated|mac_mult2,

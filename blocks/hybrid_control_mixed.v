@@ -62,7 +62,7 @@ wire signed [31:0]  sphi;  // sin( theta-phi )
    wire C1, C2, C3, C4; // condition for the jump set, when 1 we are in a jump set 
    // wire C1_db, C2_db, C3_db, C4_db; 
    wire CLK_jump;       // rising edge when is time to go to the next jump set
-   reg  CLK_jump_prev;   // previous value of the clock
+   reg  CLK_jump_prev,CLK_jump_tmp;   // previous value of the clock
    wire CLK_jump_OR;    // output of the conditions (need to be filtered to avoid constant value 1)
    wire b1, b0;
    wire [1:0] S;     // regularized version of the switching surface
@@ -115,7 +115,8 @@ wire signed [31:0]  sphi;  // sin( theta-phi )
 
    assign o_sigma = sigma[1:0];
 
-   assign inc = (i_phi == 0) ? 2'b10 : 2'b01;
+   // assign inc = (i_phi == 0) ? 2'b10 : 2'b01;
+   assign inc = 2'b01;
 
 
 // function instantiation
@@ -137,8 +138,8 @@ trigonometry_deg trigonometry_phi_ZVS_inst (
 // IDEALLY, the sign should change with the frequency of the oscillation
 //     i.e. we do not have spikes/short changes in NORMAL behavior
 regularization #(
-   .DEBOUNCE_TIME(2), 
-   .DELAY(500), // 5us
+   .DEBOUNCE_TIME(2), // 20ns
+   .DELAY(200), // 2us
    .N(2)
 ) regularization_4bit_inst (
    .o_signal( S ),
@@ -150,13 +151,19 @@ regularization #(
 
 // variable initialization
 initial begin
-   counter_prev = 2'b00;
-   counter      = 2'b00;
+   counter_prev  = 2'b00;
+   counter       = 2'b00;
+   CLK_jump_tmp  = 1'b0;
+   CLK_jump_prev = 1'b0;
 end
 
 // latch for the signal feedback
+// it looks two samples back
+// this was improving the simulation where 
+// two edges where detected one after the other
 always @(posedge i_clock ) begin
-   CLK_jump_prev <= CLK_jump;
+   CLK_jump_tmp  <= CLK_jump;
+   CLK_jump_prev <= CLK_jump_tmp;
    counter_prev  <= counter;
 end
 

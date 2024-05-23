@@ -43,7 +43,7 @@ module PI #(
    reg signed [31:0] err_sum_prev;
 
 // assign output variable
-   assign o_PI = (err*Kp >>> shift_Kp) + (err_sum*TsKi >>> shift_Ki);
+   assign o_PI = ((err*Kp) >>> shift_Kp) + ((err_sum*TsKi) >>> shift_Ki);
 
 // variable initialization
 initial begin
@@ -57,7 +57,7 @@ always @(posedge i_CLK or negedge i_RST) begin
       err_sum      <= 32'b0;
    end else begin
       err_sum_prev <= err_sum;
-      err_sum      <= err_sum_prev + err + (~(aw*Kaw >>> shift_Kaw)+1); // compute the cumulated sum without considering the integration step
+      err_sum      <= err_sum_prev + err + ( (~((aw*Kaw) >>> shift_Kaw))+1); // compute the cumulated sum without considering the integration step
       // err_sum  <= (err + err_prev)>>1;
    end
 end

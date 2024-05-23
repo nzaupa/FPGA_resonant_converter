@@ -29,6 +29,7 @@ module sensing_Ibat(
    input   [7:0] Ibat_ADC,
    output  [7:0] Ibat_DEC,
    output [31:0] Ibat_mA,
+   // output [31:0] Ibat_mA_filt,
    output [15:0] SEG_HEX,
    output [15:0] SEG_DEC
 );
@@ -41,6 +42,8 @@ assign Ibat_DEC = (Ibat_ADC*32'd10) >>4;
 // assign Ibat_DEC = Ibat_conversion;
 
 assign Ibat_mA = (Ibat_ADC*32'd131) >>1;
+
+
 
 // display the hexadecimal encoding
 // BIN -> SEG
