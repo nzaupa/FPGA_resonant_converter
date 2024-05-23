@@ -1,5 +1,5 @@
 Timing Analyzer report for TOP_HybridControl_theta_phi_CL
-Thu May 23 17:50:48 2024
+Thu May 23 18:13:01 2024
 Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
 
 
@@ -95,15 +95,15 @@ https://fpgasoftware.intel.com/eula.
 ; Number detected on machine ; 16          ;
 ; Maximum allowed            ; 8           ;
 ;                            ;             ;
-; Average used               ; 1.31        ;
+; Average used               ; 1.28        ;
 ; Maximum used               ; 8           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   6.9%      ;
-;     Processor 3            ;   5.9%      ;
-;     Processor 4            ;   3.8%      ;
-;     Processors 5-8         ;   3.7%      ;
+;     Processor 2            ;   6.5%      ;
+;     Processor 3            ;   3.7%      ;
+;     Processor 4            ;   3.5%      ;
+;     Processors 5-8         ;   3.5%      ;
 +----------------------------+-------------+
 
 
@@ -130,9 +130,9 @@ https://fpgasoftware.intel.com/eula.
 +------------+-----------------+------------------------------------------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name                                           ; Note ;
 +------------+-----------------+------------------------------------------------------+------+
-; 48.8 MHz   ; 48.8 MHz        ; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ;      ;
-; 109.09 MHz ; 109.09 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[3] ;      ;
-; 194.25 MHz ; 194.25 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ;      ;
+; 51.71 MHz  ; 51.71 MHz       ; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ;      ;
+; 97.01 MHz  ; 97.01 MHz       ; PLL_inst|altpll_component|auto_generated|pll1|clk[3] ;      ;
+; 202.31 MHz ; 202.31 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ;      ;
 +------------+-----------------+------------------------------------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -148,10 +148,10 @@ HTML report is unavailable in plain text report export.
 +--------------------------------------------------------------+---------+---------------+
 ; Clock                                                        ; Slack   ; End Point TNS ;
 +--------------------------------------------------------------+---------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; -12.565 ; -1107.414     ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; -4.309  ; -58.991       ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.956  ; -1.815        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 994.852 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; -11.752 ; -1147.967     ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; -4.212  ; -58.764       ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.810  ; -1.620        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 995.057 ; 0.000         ;
 +--------------------------------------------------------------+---------+---------------+
 
 
@@ -160,10 +160,10 @@ HTML report is unavailable in plain text report export.
 +--------------------------------------------------------------+-------+---------------+
 ; Clock                                                        ; Slack ; End Point TNS ;
 +--------------------------------------------------------------+-------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 0.238 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0.256 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0.270 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 0.285 ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.293 ; 0.000         ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 0.296 ; 0.000         ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.499 ; 0.000         ;
 +--------------------------------------------------------------+-------+---------------+
 
 
@@ -172,10 +172,10 @@ HTML report is unavailable in plain text report export.
 +--------------------------------------------------------------+---------+---------------+
 ; Clock                                                        ; Slack   ; End Point TNS ;
 +--------------------------------------------------------------+---------+---------------+
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -1.231  ; -2.462        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 4.936   ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 7.360   ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 995.989 ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -1.089  ; -2.178        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 3.558   ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 7.677   ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 995.213 ; 0.000         ;
 +--------------------------------------------------------------+---------+---------------+
 
 
@@ -184,10 +184,10 @@ HTML report is unavailable in plain text report export.
 +--------------------------------------------------------------+-------+---------------+
 ; Clock                                                        ; Slack ; End Point TNS ;
 +--------------------------------------------------------------+-------+---------------+
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.525 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 1.150 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 1.690 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 3.224 ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.359 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 1.071 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 1.769 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 4.005 ; 0.000         ;
 +--------------------------------------------------------------+-------+---------------+
 
 
@@ -196,15 +196,15 @@ HTML report is unavailable in plain text report export.
 +--------------------------------------------------------------+----------+---------------+
 ; Clock                                                        ; Slack    ; End Point TNS ;
 +--------------------------------------------------------------+----------+---------------+
-; ADB_DCO                                                      ; -0.250   ; -8.857        ;
-; ADA_DCO                                                      ; -0.250   ; -4.102        ;
-; ADC_BAT_I_EOC                                                ; -0.250   ; -2.592        ;
-; ADC_BAT_V_EOC                                                ; -0.250   ; -2.462        ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.250   ; -0.668        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 4.451    ; 0.000         ;
+; ADB_DCO                                                      ; -0.250   ; -8.838        ;
+; ADA_DCO                                                      ; -0.250   ; -4.051        ;
+; ADC_BAT_I_EOC                                                ; -0.250   ; -2.691        ;
+; ADC_BAT_V_EOC                                                ; -0.250   ; -2.568        ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.250   ; -0.686        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 4.452    ; 0.000         ;
 ; OSC                                                          ; 9.959    ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 499.452  ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 4999.450 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 499.453  ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 4999.452 ; 0.000         ;
 +--------------------------------------------------------------+----------+---------------+
 
 
@@ -219,9 +219,9 @@ No synchronizer chains to report.
 +------------+-----------------+------------------------------------------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name                                           ; Note ;
 +------------+-----------------+------------------------------------------------------+------+
-; 50.68 MHz  ; 50.68 MHz       ; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ;      ;
-; 112.68 MHz ; 112.68 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[3] ;      ;
-; 205.42 MHz ; 205.42 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ;      ;
+; 53.87 MHz  ; 53.87 MHz       ; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ;      ;
+; 99.69 MHz  ; 99.69 MHz       ; PLL_inst|altpll_component|auto_generated|pll1|clk[3] ;      ;
+; 215.94 MHz ; 215.94 MHz      ; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ;      ;
 +------------+-----------------+------------------------------------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -231,10 +231,10 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +--------------------------------------------------------------+---------+---------------+
 ; Clock                                                        ; Slack   ; End Point TNS ;
 +--------------------------------------------------------------+---------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; -11.758 ; -1061.760     ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; -4.109  ; -56.253       ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.663  ; -1.284        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 995.132 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; -11.316 ; -1098.397     ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; -4.026  ; -56.018       ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.603  ; -1.116        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 995.369 ; 0.000         ;
 +--------------------------------------------------------------+---------+---------------+
 
 
@@ -243,10 +243,10 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +--------------------------------------------------------------+-------+---------------+
 ; Clock                                                        ; Slack ; End Point TNS ;
 +--------------------------------------------------------------+-------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 0.234 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0.245 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 0.291 ; 0.000         ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.316 ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.211 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0.262 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 0.280 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 0.290 ; 0.000         ;
 +--------------------------------------------------------------+-------+---------------+
 
 
@@ -255,10 +255,10 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +--------------------------------------------------------------+---------+---------------+
 ; Clock                                                        ; Slack   ; End Point TNS ;
 +--------------------------------------------------------------+---------+---------------+
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.958  ; -1.916        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 5.253   ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 7.502   ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 996.161 ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.864  ; -1.728        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 3.961   ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 7.811   ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 995.521 ; 0.000         ;
 +--------------------------------------------------------------+---------+---------------+
 
 
@@ -267,10 +267,10 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +--------------------------------------------------------------+-------+---------------+
 ; Clock                                                        ; Slack ; End Point TNS ;
 +--------------------------------------------------------------+-------+---------------+
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.388 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 1.047 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 1.588 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 3.033 ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.220 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0.983 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 1.668 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 3.681 ; 0.000         ;
 +--------------------------------------------------------------+-------+---------------+
 
 
@@ -279,15 +279,15 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +--------------------------------------------------------------+----------+---------------+
 ; Clock                                                        ; Slack    ; End Point TNS ;
 +--------------------------------------------------------------+----------+---------------+
-; ADB_DCO                                                      ; -0.250   ; -8.847        ;
-; ADA_DCO                                                      ; -0.250   ; -3.724        ;
-; ADC_BAT_I_EOC                                                ; -0.250   ; -3.064        ;
-; ADC_BAT_V_EOC                                                ; -0.250   ; -2.647        ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.250   ; -0.630        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 4.432    ; 0.000         ;
+; ADB_DCO                                                      ; -0.250   ; -8.821        ;
+; ADA_DCO                                                      ; -0.250   ; -3.636        ;
+; ADC_BAT_I_EOC                                                ; -0.250   ; -3.126        ;
+; ADC_BAT_V_EOC                                                ; -0.250   ; -2.720        ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.250   ; -0.616        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 4.431    ; 0.000         ;
 ; OSC                                                          ; 9.979    ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 499.434  ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 4999.433 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 499.435  ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 4999.434 ; 0.000         ;
 +--------------------------------------------------------------+----------+---------------+
 
 
@@ -302,10 +302,10 @@ No synchronizer chains to report.
 +--------------------------------------------------------------+---------+---------------+
 ; Clock                                                        ; Slack   ; End Point TNS ;
 +--------------------------------------------------------------+---------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; -6.549  ; -654.474      ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; -2.456  ; -33.598       ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.629  ; -1.138        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 996.804 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; -6.639  ; -682.910      ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; -2.407  ; -33.625       ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.519  ; -0.993        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 996.941 ; 0.000         ;
 +--------------------------------------------------------------+---------+---------------+
 
 
@@ -314,10 +314,10 @@ No synchronizer chains to report.
 +--------------------------------------------------------------+-------+---------------+
 ; Clock                                                        ; Slack ; End Point TNS ;
 +--------------------------------------------------------------+-------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 0.136 ; 0.000         ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0.149 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 0.163 ; 0.000         ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 0.173 ; 0.000         ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.623 ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.493 ; 0.000         ;
 +--------------------------------------------------------------+-------+---------------+
 
 
@@ -326,10 +326,10 @@ No synchronizer chains to report.
 +--------------------------------------------------------------+---------+---------------+
 ; Clock                                                        ; Slack   ; End Point TNS ;
 +--------------------------------------------------------------+---------+---------------+
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.765  ; -1.530        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 6.707   ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 8.593   ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 997.525 ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.617  ; -1.234        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 5.850   ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 8.813   ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 996.980 ; 0.000         ;
 +--------------------------------------------------------------+---------+---------------+
 
 
@@ -338,10 +338,10 @@ No synchronizer chains to report.
 +--------------------------------------------------------------+-------+---------------+
 ; Clock                                                        ; Slack ; End Point TNS ;
 +--------------------------------------------------------------+-------+---------------+
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0.507 ; 0.000         ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.664 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 1.030 ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 2.046 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0.426 ; 0.000         ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.439 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 1.087 ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 2.564 ; 0.000         ;
 +--------------------------------------------------------------+-------+---------------+
 
 
@@ -350,14 +350,14 @@ No synchronizer chains to report.
 +--------------------------------------------------------------+----------+---------------+
 ; Clock                                                        ; Slack    ; End Point TNS ;
 +--------------------------------------------------------------+----------+---------------+
-; ADA_DCO                                                      ; -0.169   ; -2.366        ;
+; ADA_DCO                                                      ; -0.160   ; -2.198        ;
 ; ADB_DCO                                                      ; -0.142   ; -3.943        ;
-; ADC_BAT_I_EOC                                                ; -0.109   ; -0.872        ;
-; ADC_BAT_V_EOC                                                ; -0.100   ; -0.735        ;
-; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.074    ; 0.000         ;
+; ADC_BAT_I_EOC                                                ; -0.104   ; -0.825        ;
+; ADC_BAT_V_EOC                                                ; -0.084   ; -0.672        ;
+; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0.059    ; 0.000         ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 4.648    ; 0.000         ;
 ; OSC                                                          ; 9.698    ; 0.000         ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 499.650  ; 0.000         ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 499.651  ; 0.000         ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 4999.649 ; 0.000         ;
 +--------------------------------------------------------------+----------+---------------+
 
@@ -373,26 +373,26 @@ No synchronizer chains to report.
 +---------------------------------------------------------------+-----------+-------+----------+---------+---------------------+
 ; Clock                                                         ; Setup     ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
 +---------------------------------------------------------------+-----------+-------+----------+---------+---------------------+
-; Worst-case Slack                                              ; -12.565   ; 0.136 ; -1.231   ; 0.388   ; -0.250              ;
+; Worst-case Slack                                              ; -11.752   ; 0.149 ; -1.089   ; 0.220   ; -0.250              ;
 ;  ADA_DCO                                                      ; N/A       ; N/A   ; N/A      ; N/A     ; -0.250              ;
 ;  ADB_DCO                                                      ; N/A       ; N/A   ; N/A      ; N/A     ; -0.250              ;
 ;  ADC_BAT_I_EOC                                                ; N/A       ; N/A   ; N/A      ; N/A     ; -0.250              ;
 ;  ADC_BAT_V_EOC                                                ; N/A       ; N/A   ; N/A      ; N/A     ; -0.250              ;
 ;  OSC                                                          ; N/A       ; N/A   ; N/A      ; N/A     ; 9.698               ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; -12.565   ; 0.136 ; 4.936    ; 1.030   ; 4.432               ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 994.852   ; 0.173 ; 995.989  ; 2.046   ; 499.434             ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; -4.309    ; 0.149 ; 7.360    ; 0.507   ; 4999.433            ;
-;  hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.956    ; 0.316 ; -1.231   ; 0.388   ; -0.250              ;
-; Design-wide TNS                                               ; -1168.22  ; 0.0   ; -2.462   ; 0.0     ; -18.912             ;
-;  ADA_DCO                                                      ; N/A       ; N/A   ; N/A      ; N/A     ; -4.102              ;
-;  ADB_DCO                                                      ; N/A       ; N/A   ; N/A      ; N/A     ; -8.857              ;
-;  ADC_BAT_I_EOC                                                ; N/A       ; N/A   ; N/A      ; N/A     ; -3.064              ;
-;  ADC_BAT_V_EOC                                                ; N/A       ; N/A   ; N/A      ; N/A     ; -2.647              ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; -11.752   ; 0.163 ; 3.558    ; 1.087   ; 4.431               ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 995.057   ; 0.173 ; 995.213  ; 2.564   ; 499.435             ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; -4.212    ; 0.149 ; 7.677    ; 0.426   ; 4999.434            ;
+;  hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -0.810    ; 0.211 ; -1.089   ; 0.220   ; -0.250              ;
+; Design-wide TNS                                               ; -1208.351 ; 0.0   ; -2.178   ; 0.0     ; -18.919             ;
+;  ADA_DCO                                                      ; N/A       ; N/A   ; N/A      ; N/A     ; -4.051              ;
+;  ADB_DCO                                                      ; N/A       ; N/A   ; N/A      ; N/A     ; -8.838              ;
+;  ADC_BAT_I_EOC                                                ; N/A       ; N/A   ; N/A      ; N/A     ; -3.126              ;
+;  ADC_BAT_V_EOC                                                ; N/A       ; N/A   ; N/A      ; N/A     ; -2.720              ;
 ;  OSC                                                          ; N/A       ; N/A   ; N/A      ; N/A     ; 0.000               ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; -1107.414 ; 0.000 ; 0.000    ; 0.000   ; 0.000               ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; -1147.967 ; 0.000 ; 0.000    ; 0.000   ; 0.000               ;
 ;  PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 0.000     ; 0.000 ; 0.000    ; 0.000   ; 0.000               ;
-;  PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; -58.991   ; 0.000 ; 0.000    ; 0.000   ; 0.000               ;
-;  hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -1.815    ; 0.000 ; -2.462   ; 0.000   ; -0.668              ;
+;  PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; -58.764   ; 0.000 ; 0.000    ; 0.000   ; 0.000               ;
+;  hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; -1.620    ; 0.000 ; -2.178   ; 0.000   ; -0.686              ;
 +---------------------------------------------------------------+-----------+-------+----------+---------+---------------------+
 
 
@@ -993,8 +993,8 @@ No synchronizer chains to report.
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; > 2147483647 ; 0        ; 0        ; 0        ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 12356        ; 0        ; 0        ; 0        ;
 ; ADC_BAT_I_EOC                                                ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0            ; 305      ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 31410164     ; 0        ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 607704510    ; 0        ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; > 2147483647 ; 0        ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; > 2147483647 ; 0        ; 0        ; 0        ;
 +--------------------------------------------------------------+--------------------------------------------------------------+--------------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -1013,8 +1013,8 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; > 2147483647 ; 0        ; 0        ; 0        ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 12356        ; 0        ; 0        ; 0        ;
 ; ADC_BAT_I_EOC                                                ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 0            ; 305      ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 31410164     ; 0        ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 607704510    ; 0        ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; > 2147483647 ; 0        ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; > 2147483647 ; 0        ; 0        ; 0        ;
 +--------------------------------------------------------------+--------------------------------------------------------------+--------------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -1027,10 +1027,10 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0        ; 0        ; 2        ; 0        ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0        ; 0        ; 16       ; 0        ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 64       ; 0        ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 533      ; 0        ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 532      ; 0        ; 0        ; 0        ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 8        ; 0        ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 30       ; 0        ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 270      ; 0        ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 64       ; 0        ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 576      ; 0        ; 0        ; 0        ;
 +------------------------------------------------------+--------------------------------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -1043,10 +1043,10 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0        ; 0        ; 2        ; 0        ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ; hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev ; 0        ; 0        ; 16       ; 0        ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 64       ; 0        ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 533      ; 0        ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ; PLL_inst|altpll_component|auto_generated|pll1|clk[1]         ; 532      ; 0        ; 0        ; 0        ;
 ; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ; PLL_inst|altpll_component|auto_generated|pll1|clk[2]         ; 8        ; 0        ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 30       ; 0        ; 0        ; 0        ;
-; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 270      ; 0        ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[1] ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 64       ; 0        ; 0        ; 0        ;
+; PLL_inst|altpll_component|auto_generated|pll1|clk[2] ; PLL_inst|altpll_component|auto_generated|pll1|clk[3]         ; 576      ; 0        ; 0        ; 0        ;
 +------------------------------------------------------+--------------------------------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -1071,9 +1071,9 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
 ; Unconstrained Input Ports       ; 62    ; 62   ;
-; Unconstrained Input Port Paths  ; 1137  ; 1137 ;
+; Unconstrained Input Port Paths  ; 1170  ; 1170 ;
 ; Unconstrained Output Ports      ; 63    ; 63   ;
-; Unconstrained Output Port Paths ; 3151  ; 3151 ;
+; Unconstrained Output Port Paths ; 2898  ; 2898 ;
 +---------------------------------+-------+------+
 
 
@@ -1383,7 +1383,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
-    Info: Processing started: Thu May 23 17:50:44 2024
+    Info: Processing started: Thu May 23 18:12:58 2024
 Info: Command: quartus_sta HybridControl_theta_phi_CL -c TOP_HybridControl_theta_phi_CL
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -1405,530 +1405,6 @@ Info (332105): Deriving Clocks
     Info (332105): create_clock -period 1.000 -name ADA_DCO ADA_DCO
     Info (332105): create_clock -period 1.000 -name ADC_BAT_V_EOC ADC_BAT_V_EOC
     Info (332105): create_clock -period 1.000 -name hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev
-Warning (332125): Found combinational loop of 522 nodes File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 382
-    Warning (332126): Node "Add0~85|sumout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[0]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[0]|sumout"
-    Warning (332126): Node "PI_inst|Add3~1|datac"
-    Warning (332126): Node "PI_inst|Add3~1|shareout"
-    Warning (332126): Node "PI_inst|Add3~5|sharein"
-    Warning (332126): Node "PI_inst|Add3~5|cout"
-    Warning (332126): Node "PI_inst|Add3~9|cin"
-    Warning (332126): Node "PI_inst|Add3~9|cout"
-    Warning (332126): Node "PI_inst|Add3~13|cin"
-    Warning (332126): Node "PI_inst|Add3~13|cout"
-    Warning (332126): Node "PI_inst|Add3~17|cin"
-    Warning (332126): Node "PI_inst|Add3~17|cout"
-    Warning (332126): Node "PI_inst|Add3~21|cin"
-    Warning (332126): Node "PI_inst|Add3~21|sumout"
-    Warning (332126): Node "Add0~1|datac"
-    Warning (332126): Node "Add0~1|shareout"
-    Warning (332126): Node "Add0~5|sharein"
-    Warning (332126): Node "Add0~5|cout"
-    Warning (332126): Node "Add0~9|cin"
-    Warning (332126): Node "Add0~9|sumout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~0|datac"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~0|combout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~5|datad"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~5|combout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[0]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[24]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[24]|sumout"
-    Warning (332126): Node "PI_inst|Add3~97|datac"
-    Warning (332126): Node "PI_inst|Add3~97|sumout"
-    Warning (332126): Node "Add0~85|datac"
-    Warning (332126): Node "Add0~77|datac"
-    Warning (332126): Node "Add0~77|sumout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[19]|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[19]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[20]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[20]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[21]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[21]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[22]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[22]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[23]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[23]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[24]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[23]|sumout"
-    Warning (332126): Node "PI_inst|Add3~93|datac"
-    Warning (332126): Node "PI_inst|Add3~93|cout"
-    Warning (332126): Node "PI_inst|Add3~97|cin"
-    Warning (332126): Node "PI_inst|Add3~93|shareout"
-    Warning (332126): Node "PI_inst|Add3~97|sharein"
-    Warning (332126): Node "PI_inst|Add3~93|sumout"
-    Warning (332126): Node "Add0~73|datac"
-    Warning (332126): Node "Add0~73|cout"
-    Warning (332126): Node "Add0~77|cin"
-    Warning (332126): Node "Add0~77|cout"
-    Warning (332126): Node "Add0~81|cin"
-    Warning (332126): Node "Add0~81|cout"
-    Warning (332126): Node "Add0~85|cin"
-    Warning (332126): Node "Add0~81|sumout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~4|dataa"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~4|combout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~5|dataf"
-    Warning (332126): Node "sat_PHI_zero|u_dz[20]|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[20]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[21]|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[21]|sumout"
-    Warning (332126): Node "PI_inst|Add3~85|datac"
-    Warning (332126): Node "PI_inst|Add3~85|cout"
-    Warning (332126): Node "PI_inst|Add3~89|cin"
-    Warning (332126): Node "PI_inst|Add3~89|cout"
-    Warning (332126): Node "PI_inst|Add3~93|cin"
-    Warning (332126): Node "PI_inst|Add3~89|sumout"
-    Warning (332126): Node "Add0~69|datac"
-    Warning (332126): Node "Add0~69|cout"
-    Warning (332126): Node "Add0~73|cin"
-    Warning (332126): Node "Add0~73|sumout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~4|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[18]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[18]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[19]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[19]|sumout"
-    Warning (332126): Node "PI_inst|Add3~77|datac"
-    Warning (332126): Node "PI_inst|Add3~77|cout"
-    Warning (332126): Node "PI_inst|Add3~81|cin"
-    Warning (332126): Node "PI_inst|Add3~81|cout"
-    Warning (332126): Node "PI_inst|Add3~85|cin"
-    Warning (332126): Node "PI_inst|Add3~85|sumout"
-    Warning (332126): Node "Add0~65|datac"
-    Warning (332126): Node "Add0~65|cout"
-    Warning (332126): Node "Add0~69|cin"
-    Warning (332126): Node "Add0~69|sumout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~2|dataa"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~2|combout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~5|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[17]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[17]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[18]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[18]|sumout"
-    Warning (332126): Node "PI_inst|Add3~73|datac"
-    Warning (332126): Node "PI_inst|Add3~73|cout"
-    Warning (332126): Node "PI_inst|Add3~77|cin"
-    Warning (332126): Node "PI_inst|Add3~77|sumout"
-    Warning (332126): Node "Add0~57|datad"
-    Warning (332126): Node "Add0~57|cout"
-    Warning (332126): Node "Add0~61|cin"
-    Warning (332126): Node "Add0~61|cout"
-    Warning (332126): Node "Add0~65|cin"
-    Warning (332126): Node "Add0~65|sumout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~2|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[16]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[16]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[17]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[17]|sumout"
-    Warning (332126): Node "PI_inst|Add3~69|datac"
-    Warning (332126): Node "PI_inst|Add3~69|cout"
-    Warning (332126): Node "PI_inst|Add3~73|cin"
-    Warning (332126): Node "PI_inst|Add3~73|sumout"
-    Warning (332126): Node "Add0~53|dataa"
-    Warning (332126): Node "Add0~53|cout"
-    Warning (332126): Node "Add0~57|cin"
-    Warning (332126): Node "Add0~57|sumout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~2|datae"
-    Warning (332126): Node "sat_PHI_zero|u_dz[14]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[14]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[15]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[15]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[16]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[16]|sumout"
-    Warning (332126): Node "PI_inst|Add3~65|datac"
-    Warning (332126): Node "PI_inst|Add3~65|cout"
-    Warning (332126): Node "PI_inst|Add3~69|cin"
-    Warning (332126): Node "PI_inst|Add3~69|sumout"
-    Warning (332126): Node "Add0~49|datad"
-    Warning (332126): Node "Add0~49|cout"
-    Warning (332126): Node "Add0~53|cin"
-    Warning (332126): Node "Add0~53|sumout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~2|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[13]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[13]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[14]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[14]|sumout"
-    Warning (332126): Node "PI_inst|Add3~57|datab"
-    Warning (332126): Node "PI_inst|Add3~57|cout"
-    Warning (332126): Node "PI_inst|Add3~61|cin"
-    Warning (332126): Node "PI_inst|Add3~61|cout"
-    Warning (332126): Node "PI_inst|Add3~65|cin"
-    Warning (332126): Node "PI_inst|Add3~65|sumout"
-    Warning (332126): Node "Add0~45|datac"
-    Warning (332126): Node "Add0~45|cout"
-    Warning (332126): Node "Add0~49|cin"
-    Warning (332126): Node "Add0~49|sumout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~2|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[12]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[12]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[13]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[13]|sumout"
-    Warning (332126): Node "PI_inst|Add3~53|datad"
-    Warning (332126): Node "PI_inst|Add3~53|cout"
-    Warning (332126): Node "PI_inst|Add3~57|cin"
-    Warning (332126): Node "PI_inst|Add3~57|sumout"
-    Warning (332126): Node "Add0~37|datac"
-    Warning (332126): Node "Add0~37|cout"
-    Warning (332126): Node "Add0~41|cin"
-    Warning (332126): Node "Add0~41|sumout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~1|dataf"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~1|combout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~5|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[10]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[10]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[11]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[11]|sumout"
-    Warning (332126): Node "PI_inst|Add3~45|dataa"
-    Warning (332126): Node "PI_inst|Add3~45|cout"
-    Warning (332126): Node "PI_inst|Add3~49|cin"
-    Warning (332126): Node "PI_inst|Add3~49|cout"
-    Warning (332126): Node "PI_inst|Add3~53|cin"
-    Warning (332126): Node "PI_inst|Add3~53|sumout"
-    Warning (332126): Node "Add0~33|datac"
-    Warning (332126): Node "Add0~33|cout"
-    Warning (332126): Node "Add0~37|cin"
-    Warning (332126): Node "Add0~37|sumout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~1|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[9]|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[9]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[10]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[10]|sumout"
-    Warning (332126): Node "PI_inst|Add3~41|datab"
-    Warning (332126): Node "PI_inst|Add3~41|cout"
-    Warning (332126): Node "PI_inst|Add3~45|cin"
-    Warning (332126): Node "PI_inst|Add3~45|sumout"
-    Warning (332126): Node "Add0~25|datad"
-    Warning (332126): Node "Add0~25|sumout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~5|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[6]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[6]|sumout"
-    Warning (332126): Node "PI_inst|Add3~25|datac"
-    Warning (332126): Node "PI_inst|Add3~25|sumout"
-    Warning (332126): Node "Add0~5|datac"
-    Warning (332126): Node "Add0~5|shareout"
-    Warning (332126): Node "Add0~9|sharein"
-    Warning (332126): Node "Add0~9|cout"
-    Warning (332126): Node "Add0~13|cin"
-    Warning (332126): Node "Add0~13|sumout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~0|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[3]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[3]|sumout"
-    Warning (332126): Node "PI_inst|Add3~13|datac"
-    Warning (332126): Node "PI_inst|Add3~13|shareout"
-    Warning (332126): Node "PI_inst|Add3~17|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[3]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[4]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[4]|sumout"
-    Warning (332126): Node "PI_inst|Add3~17|datab"
-    Warning (332126): Node "PI_inst|Add3~17|shareout"
-    Warning (332126): Node "PI_inst|Add3~21|sharein"
-    Warning (332126): Node "PI_inst|Add3~21|cout"
-    Warning (332126): Node "PI_inst|Add3~25|cin"
-    Warning (332126): Node "PI_inst|Add3~25|cout"
-    Warning (332126): Node "PI_inst|Add3~29|cin"
-    Warning (332126): Node "PI_inst|Add3~29|sumout"
-    Warning (332126): Node "Add0~9|datac"
-    Warning (332126): Node "Add0~9|shareout"
-    Warning (332126): Node "Add0~13|sharein"
-    Warning (332126): Node "Add0~13|cout"
-    Warning (332126): Node "Add0~17|cin"
-    Warning (332126): Node "Add0~17|sumout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~0|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[4]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[4]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[5]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[5]|sumout"
-    Warning (332126): Node "PI_inst|Add3~21|datac"
-    Warning (332126): Node "PI_inst|Add3~21|shareout"
-    Warning (332126): Node "PI_inst|Add3~25|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[5]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[6]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[6]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[7]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[7]|sumout"
-    Warning (332126): Node "PI_inst|Add3~29|datac"
-    Warning (332126): Node "PI_inst|Add3~29|shareout"
-    Warning (332126): Node "PI_inst|Add3~33|sharein"
-    Warning (332126): Node "PI_inst|Add3~33|cout"
-    Warning (332126): Node "PI_inst|Add3~37|cin"
-    Warning (332126): Node "PI_inst|Add3~37|sumout"
-    Warning (332126): Node "Add0~17|datad"
-    Warning (332126): Node "Add0~17|cout"
-    Warning (332126): Node "Add0~21|cin"
-    Warning (332126): Node "Add0~21|sumout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~0|dataf"
-    Warning (332126): Node "sat_PHI_zero|u_dz[5]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[5]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[6]|sharein"
-    Warning (332126): Node "Add0~21|cout"
-    Warning (332126): Node "Add0~25|cin"
-    Warning (332126): Node "Add0~25|cout"
-    Warning (332126): Node "Add0~29|cin"
-    Warning (332126): Node "Add0~29|sumout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~1|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[7]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[7]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[8]|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[8]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[9]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[9]|sumout"
-    Warning (332126): Node "PI_inst|Add3~37|datac"
-    Warning (332126): Node "PI_inst|Add3~37|cout"
-    Warning (332126): Node "PI_inst|Add3~41|cin"
-    Warning (332126): Node "PI_inst|Add3~41|sumout"
-    Warning (332126): Node "Add0~21|datac"
-    Warning (332126): Node "Add0~21|shareout"
-    Warning (332126): Node "Add0~25|sharein"
-    Warning (332126): Node "PI_inst|Add3~37|shareout"
-    Warning (332126): Node "PI_inst|Add3~41|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[8]|sumout"
-    Warning (332126): Node "PI_inst|Add3~33|datab"
-    Warning (332126): Node "PI_inst|Add3~33|sumout"
-    Warning (332126): Node "Add0~13|datac"
-    Warning (332126): Node "Add0~13|shareout"
-    Warning (332126): Node "Add0~17|sharein"
-    Warning (332126): Node "PI_inst|Add3~33|shareout"
-    Warning (332126): Node "PI_inst|Add3~37|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[7]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[8]|cin"
-    Warning (332126): Node "Add0~29|cout"
-    Warning (332126): Node "Add0~33|cin"
-    Warning (332126): Node "Add0~33|sumout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~1|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[8]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[8]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[9]|sharein"
-    Warning (332126): Node "Add0~17|shareout"
-    Warning (332126): Node "Add0~21|sharein"
-    Warning (332126): Node "PI_inst|Add3~29|cout"
-    Warning (332126): Node "PI_inst|Add3~33|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[4]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[5]|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[3]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[4]|sharein"
-    Warning (332126): Node "Add0~5|sumout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~0|datae"
-    Warning (332126): Node "sat_PHI_zero|u_sat_reg[1]~1|dataf"
-    Warning (332126): Node "sat_PHI_zero|u_sat_reg[1]~1|combout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[1]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[1]|sumout"
-    Warning (332126): Node "PI_inst|Add3~5|datac"
-    Warning (332126): Node "PI_inst|Add3~5|shareout"
-    Warning (332126): Node "PI_inst|Add3~9|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[1]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[2]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[2]|sumout"
-    Warning (332126): Node "PI_inst|Add3~9|datac"
-    Warning (332126): Node "PI_inst|Add3~9|shareout"
-    Warning (332126): Node "PI_inst|Add3~13|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[2]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[3]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[1]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[2]|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[1]|datad"
-    Warning (332126): Node "PI_inst|Add3~25|shareout"
-    Warning (332126): Node "PI_inst|Add3~29|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[6]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[7]|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_sat_reg[6]~3|datad"
-    Warning (332126): Node "sat_PHI_zero|u_sat_reg[6]~3|combout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[6]|datad"
-    Warning (332126): Node "Add0~25|shareout"
-    Warning (332126): Node "Add0~29|sharein"
-    Warning (332126): Node "PI_inst|Add3~41|shareout"
-    Warning (332126): Node "PI_inst|Add3~45|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[9]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[10]|sharein"
-    Warning (332126): Node "Add0~33|shareout"
-    Warning (332126): Node "Add0~37|sharein"
-    Warning (332126): Node "PI_inst|Add3~49|sumout"
-    Warning (332126): Node "Add0~29|datad"
-    Warning (332126): Node "Add0~29|shareout"
-    Warning (332126): Node "Add0~33|sharein"
-    Warning (332126): Node "PI_inst|Add3~45|shareout"
-    Warning (332126): Node "PI_inst|Add3~49|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[11]|cout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[12]|cin"
-    Warning (332126): Node "sat_PHI_zero|u_dz[12]|sumout"
-    Warning (332126): Node "PI_inst|Add3~49|datad"
-    Warning (332126): Node "PI_inst|Add3~49|shareout"
-    Warning (332126): Node "PI_inst|Add3~53|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[10]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[11]|sharein"
-    Warning (332126): Node "Add0~41|cout"
-    Warning (332126): Node "Add0~45|cin"
-    Warning (332126): Node "Add0~45|sumout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~1|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[11]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[11]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[12]|sharein"
-    Warning (332126): Node "Add0~37|shareout"
-    Warning (332126): Node "Add0~41|sharein"
-    Warning (332126): Node "PI_inst|Add3~53|shareout"
-    Warning (332126): Node "PI_inst|Add3~57|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[12]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[13]|sharein"
-    Warning (332126): Node "Add0~45|shareout"
-    Warning (332126): Node "Add0~49|sharein"
-    Warning (332126): Node "PI_inst|Add3~61|sumout"
-    Warning (332126): Node "Add0~41|datac"
-    Warning (332126): Node "Add0~41|shareout"
-    Warning (332126): Node "Add0~45|sharein"
-    Warning (332126): Node "PI_inst|Add3~57|shareout"
-    Warning (332126): Node "PI_inst|Add3~61|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[13]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[14]|sharein"
-    Warning (332126): Node "Add0~49|shareout"
-    Warning (332126): Node "Add0~53|sharein"
-    Warning (332126): Node "PI_inst|Add3~65|shareout"
-    Warning (332126): Node "PI_inst|Add3~69|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[15]|sumout"
-    Warning (332126): Node "PI_inst|Add3~61|datac"
-    Warning (332126): Node "PI_inst|Add3~61|shareout"
-    Warning (332126): Node "PI_inst|Add3~65|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[14]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[15]|sharein"
-    Warning (332126): Node "Add0~53|shareout"
-    Warning (332126): Node "Add0~57|sharein"
-    Warning (332126): Node "PI_inst|Add3~69|shareout"
-    Warning (332126): Node "PI_inst|Add3~73|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[16]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[17]|sharein"
-    Warning (332126): Node "Add0~61|sumout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~2|dataf"
-    Warning (332126): Node "sat_PHI_zero|u_dz[15]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[15]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[16]|sharein"
-    Warning (332126): Node "Add0~57|shareout"
-    Warning (332126): Node "Add0~61|sharein"
-    Warning (332126): Node "PI_inst|Add3~73|shareout"
-    Warning (332126): Node "PI_inst|Add3~77|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[17]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[18]|sharein"
-    Warning (332126): Node "Add0~65|shareout"
-    Warning (332126): Node "Add0~69|sharein"
-    Warning (332126): Node "PI_inst|Add3~81|sumout"
-    Warning (332126): Node "Add0~61|dataa"
-    Warning (332126): Node "Add0~61|shareout"
-    Warning (332126): Node "Add0~65|sharein"
-    Warning (332126): Node "PI_inst|Add3~77|shareout"
-    Warning (332126): Node "PI_inst|Add3~81|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[18]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[19]|sharein"
-    Warning (332126): Node "Add0~69|shareout"
-    Warning (332126): Node "Add0~73|sharein"
-    Warning (332126): Node "PI_inst|Add3~85|shareout"
-    Warning (332126): Node "PI_inst|Add3~89|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[20]|sumout"
-    Warning (332126): Node "PI_inst|Add3~81|datac"
-    Warning (332126): Node "PI_inst|Add3~81|shareout"
-    Warning (332126): Node "PI_inst|Add3~85|sharein"
-    Warning (332126): Node "Add0~73|shareout"
-    Warning (332126): Node "Add0~77|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[22]|sumout"
-    Warning (332126): Node "PI_inst|Add3~89|datac"
-    Warning (332126): Node "PI_inst|Add3~89|shareout"
-    Warning (332126): Node "PI_inst|Add3~93|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[19]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[20]|sharein"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~4|dataf"
-    Warning (332126): Node "Add0~77|shareout"
-    Warning (332126): Node "Add0~81|sharein"
-    Warning (332126): Node "Add0~81|datac"
-    Warning (332126): Node "Add0~81|shareout"
-    Warning (332126): Node "Add0~85|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[23]|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[23]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[24]|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[22]|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[22]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[23]|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[21]|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[21]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[22]|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[20]|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[19]|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[18]|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[17]|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[16]|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[15]|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[14]|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[13]|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[12]|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[9]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[5]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[4]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_sat_reg[1]~1|datad"
-    Warning (332126): Node "sat_PHI_zero|u_sat_reg[2]~2|datab"
-    Warning (332126): Node "sat_PHI_zero|u_sat_reg[2]~2|combout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[2]|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[2]|shareout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[3]|sharein"
-    Warning (332126): Node "sat_PHI_zero|u_dz[3]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_sat_reg[6]~3|dataf"
-    Warning (332126): Node "sat_PHI_zero|u_dz[8]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[10]|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[11]|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[7]|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[2]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_sat_reg[2]~2|datac"
-    Warning (332126): Node "Add0~1|sumout"
-    Warning (332126): Node "sat_PHI_zero|u_dz[0]|dataa"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~0|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[24]|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[24]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[24]|datad"
-    Warning (332126): Node "Add0~85_wirecell|dataf"
-    Warning (332126): Node "Add0~85_wirecell|combout"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~5|datae"
-    Warning (332126): Node "sat_PHI_zero|LessThan0~4|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[23]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[23]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[23]|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[22]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[22]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[22]|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[21]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[21]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[21]|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[20]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[20]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[19]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[19]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[18]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[18]|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[17]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[17]|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[16]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[16]|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[15]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[15]|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[14]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[14]|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[13]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[13]|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[12]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[9]|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[9]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[7]|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[7]|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[5]|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[4]|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_sat_reg[1]~1|datac"
-    Warning (332126): Node "sat_PHI_zero|u_sat_reg[2]~2|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[3]|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[3]|datad"
-    Warning (332126): Node "sat_PHI_zero|u_sat_reg[6]~3|datac"
-    Warning (332126): Node "sat_PHI_zero|u_dz[8]|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[8]|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[10]|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[10]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[11]|dataa"
-    Warning (332126): Node "sat_PHI_zero|u_dz[11]|datab"
-    Warning (332126): Node "sat_PHI_zero|u_dz[12]|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[5]|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[4]|datad"
-    Warning (332126): Node "sat_PHI_zero|u_dz[0]|datad"
-Critical Warning (332081): Design contains combinational loop of 522 nodes. Estimating the delays through the loop.
 Info (332097): The following timing edges are non-unate.  The Timing Analyzer will assume pos-unate behavior for these edges in the clock network.
     Info (332098): Cell: PLL_inst|altpll_component|auto_generated|pll1  from: inclk[0]  to: observablevcoout
 Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
@@ -1937,46 +1413,46 @@ Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 900mV 85C Model
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -12.565
+Info (332146): Worst-case setup slack is -11.752
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):   -12.565           -1107.414 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):    -4.309             -58.991 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
-    Info (332119):    -0.956              -1.815 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):   994.852               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case hold slack is 0.238
+    Info (332119):   -11.752           -1147.967 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):    -4.212             -58.764 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):    -0.810              -1.620 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):   995.057               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case hold slack is 0.270
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.238               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     0.256               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):     0.270               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):     0.285               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     0.293               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
     Info (332119):     0.296               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):     0.499               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-Info (332146): Worst-case recovery slack is -1.231
+Info (332146): Worst-case recovery slack is -1.089
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.231              -2.462 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     4.936               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     7.360               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
-    Info (332119):   995.989               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case removal slack is 0.525
+    Info (332119):    -1.089              -2.178 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     3.558               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     7.677               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):   995.213               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case removal slack is 0.359
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.525               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     1.150               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
-    Info (332119):     1.690               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     3.224               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):     0.359               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     1.071               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):     1.769               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     4.005               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
 Info (332146): Worst-case minimum pulse width slack is -0.250
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.250              -8.857 ADB_DCO 
-    Info (332119):    -0.250              -4.102 ADA_DCO 
-    Info (332119):    -0.250              -2.592 ADC_BAT_I_EOC 
-    Info (332119):    -0.250              -2.462 ADC_BAT_V_EOC 
-    Info (332119):    -0.250              -0.668 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     4.451               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):    -0.250              -8.838 ADB_DCO 
+    Info (332119):    -0.250              -4.051 ADA_DCO 
+    Info (332119):    -0.250              -2.691 ADC_BAT_I_EOC 
+    Info (332119):    -0.250              -2.568 ADC_BAT_V_EOC 
+    Info (332119):    -0.250              -0.686 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     4.452               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     9.959               0.000 OSC 
-    Info (332119):   499.452               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):  4999.450               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):   499.453               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):  4999.452               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
 Info: Analyzing Slow 900mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
@@ -1985,98 +1461,98 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -11.758
+Info (332146): Worst-case setup slack is -11.316
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):   -11.758           -1061.760 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):    -4.109             -56.253 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
-    Info (332119):    -0.663              -1.284 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):   995.132               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case hold slack is 0.234
+    Info (332119):   -11.316           -1098.397 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):    -4.026             -56.018 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):    -0.603              -1.116 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):   995.369               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case hold slack is 0.211
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.234               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     0.245               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
-    Info (332119):     0.291               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):     0.316               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-Info (332146): Worst-case recovery slack is -0.958
+    Info (332119):     0.211               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     0.262               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):     0.280               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     0.290               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case recovery slack is -0.864
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.958              -1.916 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     5.253               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     7.502               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
-    Info (332119):   996.161               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case removal slack is 0.388
+    Info (332119):    -0.864              -1.728 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     3.961               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     7.811               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):   995.521               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case removal slack is 0.220
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.388               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     1.047               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
-    Info (332119):     1.588               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     3.033               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):     0.220               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     0.983               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):     1.668               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     3.681               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
 Info (332146): Worst-case minimum pulse width slack is -0.250
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.250              -8.847 ADB_DCO 
-    Info (332119):    -0.250              -3.724 ADA_DCO 
-    Info (332119):    -0.250              -3.064 ADC_BAT_I_EOC 
-    Info (332119):    -0.250              -2.647 ADC_BAT_V_EOC 
-    Info (332119):    -0.250              -0.630 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     4.432               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):    -0.250              -8.821 ADB_DCO 
+    Info (332119):    -0.250              -3.636 ADA_DCO 
+    Info (332119):    -0.250              -3.126 ADC_BAT_I_EOC 
+    Info (332119):    -0.250              -2.720 ADC_BAT_V_EOC 
+    Info (332119):    -0.250              -0.616 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     4.431               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     9.979               0.000 OSC 
-    Info (332119):   499.434               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):  4999.433               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):   499.435               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):  4999.434               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
 Info: Analyzing Fast 900mV 0C Model
 Info (332097): The following timing edges are non-unate.  The Timing Analyzer will assume pos-unate behavior for these edges in the clock network.
     Info (332098): Cell: PLL_inst|altpll_component|auto_generated|pll1  from: inclk[0]  to: observablevcoout
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -6.549
+Info (332146): Worst-case setup slack is -6.639
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -6.549            -654.474 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):    -2.456             -33.598 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
-    Info (332119):    -0.629              -1.138 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):   996.804               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case hold slack is 0.136
+    Info (332119):    -6.639            -682.910 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):    -2.407             -33.625 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):    -0.519              -0.993 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):   996.941               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case hold slack is 0.149
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.136               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     0.149               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):     0.163               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     0.173               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-    Info (332119):     0.623               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-Info (332146): Worst-case recovery slack is -0.765
+    Info (332119):     0.493               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+Info (332146): Worst-case recovery slack is -0.617
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.765              -1.530 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     6.707               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     8.593               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
-    Info (332119):   997.525               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case removal slack is 0.507
+    Info (332119):    -0.617              -1.234 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     5.850               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     8.813               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):   996.980               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case removal slack is 0.426
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.507               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
-    Info (332119):     0.664               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
-    Info (332119):     1.030               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
-    Info (332119):     2.046               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
-Info (332146): Worst-case minimum pulse width slack is -0.169
+    Info (332119):     0.426               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
+    Info (332119):     0.439               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):     1.087               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
+    Info (332119):     2.564               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+Info (332146): Worst-case minimum pulse width slack is -0.160
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.169              -2.366 ADA_DCO 
+    Info (332119):    -0.160              -2.198 ADA_DCO 
     Info (332119):    -0.142              -3.943 ADB_DCO 
-    Info (332119):    -0.109              -0.872 ADC_BAT_I_EOC 
-    Info (332119):    -0.100              -0.735 ADC_BAT_V_EOC 
-    Info (332119):     0.074               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
+    Info (332119):    -0.104              -0.825 ADC_BAT_I_EOC 
+    Info (332119):    -0.084              -0.672 ADC_BAT_V_EOC 
+    Info (332119):     0.059               0.000 hybrid_control_mixed:hybrid_control_mixed_inst|CLK_jump_prev 
     Info (332119):     4.648               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[1] 
     Info (332119):     9.698               0.000 OSC 
-    Info (332119):   499.650               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
+    Info (332119):   499.651               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[2] 
     Info (332119):  4999.649               0.000 PLL_inst|altpll_component|auto_generated|pll1|clk[3] 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
-Info: Quartus Prime Timing Analyzer was successful. 0 errors, 529 warnings
-    Info: Peak virtual memory: 5118 megabytes
-    Info: Processing ended: Thu May 23 17:50:48 2024
-    Info: Elapsed time: 00:00:04
-    Info: Total CPU time (on all processors): 00:00:04
+Info: Quartus Prime Timing Analyzer was successful. 0 errors, 5 warnings
+    Info: Peak virtual memory: 5105 megabytes
+    Info: Processing ended: Thu May 23 18:13:01 2024
+    Info: Elapsed time: 00:00:03
+    Info: Total CPU time (on all processors): 00:00:03
 
 

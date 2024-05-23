@@ -390,7 +390,7 @@ value_control  #(
    PI #( 
       .Kp  (3),   .shift_Kp (14),
       .TsKi(1),   .shift_Ki (12),
-      .Kaw (128), .shift_Kaw(0) //512
+      .Kaw (1), .shift_Kaw(0) //512
    ) PI_inst(
       .o_PI(phi_PI_tmp),   // output value
       .i_CLK(clk_100k),    // for sequential behavior

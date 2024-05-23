@@ -68,10 +68,10 @@ module regularization #(
       parameter DELAY = 20,
       parameter N = 1
    )(
-      output [N:0] o_signal,
+      output [N-1:0] o_signal,
       input  i_clk,
       input  i_reset,
-      input  [N:0] i_signal
+      input  [N-1:0] i_signal
    );
 
    genvar i;
