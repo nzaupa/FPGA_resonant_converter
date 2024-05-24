@@ -1,2 +1,0 @@
-Info (10281): Verilog HDL Declaration information at TOP_ResonantConverter_control_loop.v(103): object "BUTTON" differs only in case from object "button" in the same scope File: C:/FPGA/Projects/HybridControl_loop/TOP_ResonantConverter_control_loop.v Line: 103
-Warning (10268): Verilog HDL information at hybrid_control.v(113): always construct contains both blocking and non-blocking assignments File: C:/FPGA/Projects/HybridControl_loop/hybrid_control.v Line: 113
