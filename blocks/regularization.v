@@ -51,12 +51,16 @@ module regularization_core #(
       counter = DELAY;
    end
 
-   always @(posedge i_clk ) begin
-      if( counter < DELAY )
-         counter <= counter+1'b1;
-      else begin
-         if (signal_prev != o_signal) begin
-            counter <= 0;
+   always @(posedge i_clk or negedge i_reset) begin
+      if (~i_reset) begin
+         counter <= DELAY;
+      end else begin
+         if( counter < DELAY )
+            counter <= counter+1'b1;
+         else begin
+            if (signal_prev != o_signal) begin
+               counter <= 0;
+            end
          end
       end
    end
