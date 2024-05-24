@@ -30,17 +30,61 @@ module PI #(
    parameter shift_Kaw = 0    // shifting for Kaw (division)
 )
 (
-   output [31:0]  o_PI,   // output value
-   input          i_CLK,  // for sequential behavior
-   input          i_RST,  // reset signal
-   input  [31:0]  err,    // input error
-   input  [31:0]  aw      // antiwindup
+   output signed [31:0]  o_PI,   // output value
+   input                 i_CLK,  // for sequential behavior
+   input                 i_RST,  // reset signal
+   input  signed [31:0]  err,    // input error
+   input  signed [31:0]  aw      // antiwindup
 );
 
 
 // INTERNAL VARIABLE
-   reg [31:0] err_sum;
-   reg [31:0] err_sum_prev;
+   reg signed [31:0] err_sum;
+   reg signed [31:0] err_sum_prev;
+
+// assign output variable
+   assign o_PI = ((err*Kp) >>> shift_Kp) + ((err_sum*TsKi) >>> shift_Ki);
+
+// variable initialization
+initial begin
+   err_sum_prev = 32'b0;
+   err_sum      = 32'b0;
+end
+
+always @(posedge i_CLK or negedge i_RST) begin
+    if (~i_RST) begin
+      err_sum_prev <= 32'b0;
+      err_sum      <= 32'b0;
+   end else begin
+      err_sum_prev <= err_sum;
+      err_sum      <= err_sum_prev + err + ( (~((aw*Kaw) >>> shift_Kaw))+1); // compute the cumulated sum without considering the integration step
+      // integration step is integrated in Ki
+   end
+end
+
+endmodule
+
+
+module PI_old #(
+   parameter Kp   = 1,        // proportional gain
+   parameter TsKi = 0,        // integral gain
+   parameter Kaw  = 0,        // antiwindup integral
+   parameter shift_Kp  = 0,   // shifting for Kp  (division)
+   parameter shift_Ki  = 0,   // shifting for Ki  (division) 
+   parameter shift_Kaw = 0    // shifting for Kaw (division)
+)
+(
+   output signed [31:0]  o_PI,   // output value
+   input                 i_CLK,  // for sequential behavior
+   input                 i_RST,  // reset signal
+   input  signed [31:0]  err,    // input error
+   input  signed [31:0]  aw      // antiwindup
+);
+
+
+// INTERNAL VARIABLE
+   reg signed [31:0] err_sum;
+   reg signed [31:0] err_sum_prev;
 
 // assign output variable
    assign o_PI = ((err*Kp) >>> shift_Kp) + ((err_sum*TsKi) >>> shift_Ki);
@@ -63,5 +107,3 @@ always @(posedge i_CLK or negedge i_RST) begin
 end
 
 endmodule
-
-

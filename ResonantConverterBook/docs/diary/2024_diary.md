@@ -196,3 +196,5 @@ I'm trying in simulation to see how it will behave a controller just working in 
 The input/output characteristic is a bit strange and in a certain range it has a really big ripple.
 
 
+24 May - Debugging and debugging again as style of life. The regularization seems to work.
+Then, after several trial, the PI block need to have signed number. The reason: operation `>>>` (arithmetic shift) adds trailing 1 or 0. But it adds 0 iff the MSB is 1 and the register (maybe also wire) is declared `signed`.
