@@ -30,17 +30,17 @@ module PI #(
    parameter shift_Kaw = 0    // shifting for Kaw (division)
 )
 (
-   output signed [31:0]  o_PI,   // output value
-   input                 i_CLK,  // for sequential behavior
-   input                 i_RST,  // reset signal
-   input  signed [31:0]  err,    // input error
-   input  signed [31:0]  aw      // antiwindup
+   output [31:0]  o_PI,   // output value
+   input          i_CLK,  // for sequential behavior
+   input          i_RST,  // reset signal
+   input  [31:0]  err,    // input error
+   input  [31:0]  aw      // antiwindup
 );
 
 
 // INTERNAL VARIABLE
-   reg signed [31:0] err_sum;
-   reg signed [31:0] err_sum_prev;
+   reg [31:0] err_sum;
+   reg [31:0] err_sum_prev;
 
 // assign output variable
    assign o_PI = ((err*Kp) >>> shift_Kp) + ((err_sum*TsKi) >>> shift_Ki);

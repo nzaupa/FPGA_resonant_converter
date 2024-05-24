@@ -139,7 +139,7 @@ trigonometry_deg trigonometry_phi_ZVS_inst (
 //     i.e. we do not have spikes/short changes in NORMAL behavior
 regularization #(
    .DEBOUNCE_TIME(5), // 20ns
-   .DELAY(200), // 2us
+   .DELAY(500), // 2us
    .N(2)
 ) regularization_4bit_inst (
    .o_signal( S ),

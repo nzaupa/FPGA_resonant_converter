@@ -388,9 +388,9 @@ value_control  #(
 
 // PI WITH ANTIWINDUP
    PI #( 
-      .Kp  (3),   .shift_Kp (14),
+      .Kp  (3),   .shift_Kp (13),
       .TsKi(1),   .shift_Ki (12),
-      .Kaw (1), .shift_Kaw(0) //512
+      .Kaw (512), .shift_Kaw(0) //512
    ) PI_inst(
       .o_PI(phi_PI_tmp),   // output value
       .i_CLK(clk_100k),    // for sequential behavior
@@ -401,6 +401,16 @@ value_control  #(
    );
 
 
+   saturation_zero #(
+      .UPPER_LIMIT(32'd70), 
+      .N_BIT(32)
+   ) sat_PHI_zero(
+      .u(phi_PI),
+      // .u({phi_PI[31],phi_PI[6:0]}),
+      .u_sat(phi_PI_sat),
+      .u_dz(phi_PI_dz)
+   );
+
 
    saturation #(
       .LOWER_LIMIT(32'd0), 
@@ -410,16 +420,6 @@ value_control  #(
       .u(phi_PI),
       .u_sat(phi_PI_test),
       .u_dz()
-   );
-
-   saturation_zero #(
-      .UPPER_LIMIT(32'd70), 
-      .N_BIT(32)
-   ) sat_PHI_zero(
-      .u(phi_PI),
-      // .u({phi_PI[31],phi_PI[6:0]}),
-      .u_sat(phi_PI_sat),
-      .u_dz(phi_PI_dz)
    );
 
    // WITH THE NEXT LINE IT IS WORKING
