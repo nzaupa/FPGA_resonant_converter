@@ -55,11 +55,13 @@ module regularization_core #(
       if (~i_reset) begin
          counter <= DELAY;
       end else begin
-         if( counter < DELAY )
+         if( counter < DELAY ) begin
             counter <= counter+1'b1;
-         else begin
+         end else begin
             if (signal_prev != o_signal) begin
                counter <= 0;
+            end else begin
+               counter <= counter;
             end
          end
       end
