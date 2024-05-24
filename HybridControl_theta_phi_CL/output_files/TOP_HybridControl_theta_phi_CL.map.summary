@@ -1,10 +1,10 @@
-Analysis & Synthesis Status : Successful - Fri May 24 15:39:31 2024
+Analysis & Synthesis Status : Successful - Fri May 24 17:12:08 2024
 Quartus Prime Version : 21.1.0 Build 842 10/21/2021 SJ Standard Edition
 Revision Name : TOP_HybridControl_theta_phi_CL
 Top-level Entity Name : TOP_HybridControl_theta_phi_CL
 Family : Stratix IV
 Logic utilization : N/A
-    Combinational ALUTs : 2,858
+    Combinational ALUTs : 2,772
     Memory ALUTs : 0
     Dedicated logic registers : 792
 Total registers : 792

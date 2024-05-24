@@ -57,8 +57,9 @@ always @(posedge i_CLK or negedge i_RST) begin
       err_sum      <= 32'b0;
    end else begin
       err_sum_prev <= err_sum;
-      err_sum      <= err_sum_prev + err + ( (~((aw*Kaw) >>> shift_Kaw))+1); // compute the cumulated sum without considering the integration step
+      // compute the cumulated sum without considering the integration step
       // integration step is integrated in Ki
+      err_sum      <= err_sum_prev + err + ( (~((aw*Kaw) >>> shift_Kaw))+1); 
    end
 end
 
