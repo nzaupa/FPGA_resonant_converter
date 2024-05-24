@@ -182,8 +182,8 @@ EX[1] <= phi_PI[31].DB_MAX_OUTPUT_PORT_TYPE
 EX[2] <= saturation:sat_PHI.u_sat
 EX[3] <= hybrid_control_mixed:hybrid_control_mixed_inst.o_debug
 EX[4] <= hybrid_control_mixed:hybrid_control_mixed_inst.o_debug
-EX[5] <= ADC_A[13].DB_MAX_OUTPUT_PORT_TYPE
-EX[6] <= ADC_B[13].DB_MAX_OUTPUT_PORT_TYPE
+EX[5] <= hybrid_control_mixed:hybrid_control_mixed_inst.o_debug
+EX[6] <= hybrid_control_mixed:hybrid_control_mixed_inst.o_debug
 EX[7] <= hybrid_control_mixed:hybrid_control_mixed_inst.o_debug
 EX[8] <= ADC_A[13].DB_MAX_OUTPUT_PORT_TYPE
 EX[9] <= hybrid_control_mixed:hybrid_control_mixed_inst.o_debug
@@ -35324,12 +35324,10 @@ i_theta[31] => Equal540.IN32
 |TOP_HybridControl_theta_phi_CL|hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst
 o_signal[0] <= regularization_core:REG[0].reg_core.o_signal
 o_signal[1] <= regularization_core:REG[1].reg_core.o_signal
-o_signal[2] <= <GND>
 i_clk => i_clk.IN2
 i_reset => i_reset.IN2
 i_signal[0] => i_signal[0].IN1
 i_signal[1] => i_signal[1].IN1
-i_signal[2] => ~NO_FANOUT~
 
 
 |TOP_HybridControl_theta_phi_CL|hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst|regularization_core:REG[0].reg_core

@@ -182,4 +182,17 @@ Went to check if the controller it is working. Still, it has problems and I have
 
 23 May - Back in the lab with the same problems.The controller in CL is not able to stay ON for small references, while for larger one it fails when phi is near zero.
 The converter is glitching and this is due to the rapid changes in phi, I try to solve this by filtering the estimated current.
+Today I've done few changes that, I think, have a major impact:
+ - Remove the inc=2 if $\varphi=0$, so that, it always goes through $\sigma=0$. This solved the problem that was arising in the case $\varphi$ was going to zero while $\sigma=0$, this implied that $\sigma$ stayed at zero for the whole time.
+ - In the generation of the clock signal for the state machine, look two steps back to reset the clock down to zero (¡I don't know if it might be dangerous!).
+ - Introduce a saturation module that by construction has the lower limit at zero. This might be not necessary, but it is safer since the behavior is more predictable to me.
+ - Add a low-pass filter on 4 sample on Ibat expressed in mA. This improved the behavior with small amplitudes by making it more robust. The oscillations in $\varphi$ were causing the converter to shut-down.
+ - Try to fix the regularization block. I think that is was not working properly. It need more testing.
+The converter without the AW is working super fine, the problem is that it is going in overflow after some time. The AW is making the behavior at the limit worst, as if $\varphi$ is oscillating.
+
+For the AW I've done several test with different gains but it is not working. PSIM simulation is fine but FPGA does not agree on this.
+
+I'm trying in simulation to see how it will behave a controller just working in the frequency modulation scenario (change only $\delta$).
+The input/output characteristic is a bit strange and in a certain range it has a really big ripple.
+
 

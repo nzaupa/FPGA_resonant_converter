@@ -138,7 +138,7 @@ trigonometry_deg trigonometry_phi_ZVS_inst (
 // IDEALLY, the sign should change with the frequency of the oscillation
 //     i.e. we do not have spikes/short changes in NORMAL behavior
 regularization #(
-   .DEBOUNCE_TIME(2), // 20ns
+   .DEBOUNCE_TIME(5), // 20ns
    .DELAY(200), // 2us
    .N(2)
 ) regularization_4bit_inst (
