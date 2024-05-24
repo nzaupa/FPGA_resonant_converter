@@ -1,5 +1,5 @@
 Analysis & Synthesis report for TOP_HybridControl_theta_phi_CL
-Fri May 24 17:12:08 2024
+Fri May 24 17:38:16 2024
 Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
 
 
@@ -19,7 +19,7 @@ Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
  11. General Register Statistics
  12. Inverted Register Statistics
  13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Parameter Settings for User Entity Instance: PLL_theta_phi_OL:PLL_inst|altpll:altpll_component
+ 14. Parameter Settings for User Entity Instance: PLL_theta_phi_CL:PLL_inst|altpll:altpll_component
  15. Parameter Settings for User Entity Instance: hybrid_control_mixed:hybrid_control_mixed_inst
  16. Parameter Settings for User Entity Instance: hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst
  17. Parameter Settings for User Entity Instance: hybrid_control_mixed:hybrid_control_mixed_inst|regularization:regularization_4bit_inst|regularization_core:REG[0].reg_core
@@ -92,7 +92,7 @@ Quartus Prime Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
  84. Port Connectivity Checks: "value_control:phi_control"
  85. Port Connectivity Checks: "num2seg:num2seg_PHI"
  86. Port Connectivity Checks: "hybrid_control_mixed:hybrid_control_mixed_inst"
- 87. Port Connectivity Checks: "PLL_theta_phi_OL:PLL_inst"
+ 87. Port Connectivity Checks: "PLL_theta_phi_CL:PLL_inst"
  88. Post-Synthesis Netlist Statistics for Top Partition
  89. Elapsed Time Per Partition
  90. Analysis & Synthesis Messages
@@ -123,7 +123,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                        ;
 +-----------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status       ; Successful - Fri May 24 17:12:08 2024           ;
+; Analysis & Synthesis Status       ; Successful - Fri May 24 17:38:16 2024           ;
 ; Quartus Prime Version             ; 21.1.0 Build 842 10/21/2021 SJ Standard Edition ;
 ; Revision Name                     ; TOP_HybridControl_theta_phi_CL                  ;
 ; Top-level Entity Name             ; TOP_HybridControl_theta_phi_CL                  ;
@@ -256,64 +256,64 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                     ;
-+--------------------------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path                 ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                 ; Library ;
-+--------------------------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------+---------+
-; ../blocks/LPF.v                                  ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/LPF.v                                                ;         ;
-; ../blocks/saturation.v                           ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/saturation.v                                         ;         ;
-; ../blocks/debug.v                                ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/debug.v                                              ;         ;
-; ../blocks/control.v                              ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/control.v                                            ;         ;
-; ../blocks/trigonometry.v                         ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/trigonometry.v                                       ;         ;
-; ../blocks/regularization.v                       ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/regularization.v                                     ;         ;
-; ../blocks/rectifier_sensing.v                    ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/rectifier_sensing.v                                  ;         ;
-; ../blocks/manual_value_control.v                 ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/manual_value_control.v                               ;         ;
-; ../blocks/hybrid_control_mixed.v                 ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/hybrid_control_mixed.v                               ;         ;
-; ../blocks/display_7seg.v                         ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/display_7seg.v                                       ;         ;
-; ../blocks/debounce.v                             ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/debounce.v                                           ;         ;
-; ../blocks/dead_time.v                            ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/dead_time.v                                          ;         ;
-; ../blocks/counter.v                              ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/counter.v                                            ;         ;
-; ../HybridControl_theta_phi_OL/PLL_theta_phi_OL.v ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/HybridControl_theta_phi_OL/PLL_theta_phi_OL.v               ;         ;
-; top_hybridcontrol_theta_phi_cl.v                 ; yes             ; Auto-Found Verilog HDL File  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v ;         ;
-; altpll.tdf                                       ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/altpll.tdf                      ;         ;
-; aglobal211.inc                                   ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/aglobal211.inc                  ;         ;
-; stratix_pll.inc                                  ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/stratix_pll.inc                 ;         ;
-; stratixii_pll.inc                                ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/stratixii_pll.inc               ;         ;
-; cycloneii_pll.inc                                ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/cycloneii_pll.inc               ;         ;
-; db/pll_altpll.v                                  ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/pll_altpll.v                  ;         ;
-; lpm_mult.tdf                                     ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/lpm_mult.tdf                    ;         ;
-; lpm_add_sub.inc                                  ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/lpm_add_sub.inc                 ;         ;
-; multcore.inc                                     ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/multcore.inc                    ;         ;
-; bypassff.inc                                     ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/bypassff.inc                    ;         ;
-; altshift.inc                                     ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/altshift.inc                    ;         ;
-; multcore.tdf                                     ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/multcore.tdf                    ;         ;
-; csa_add.inc                                      ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/csa_add.inc                     ;         ;
-; mpar_add.inc                                     ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/mpar_add.inc                    ;         ;
-; muleabz.inc                                      ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/muleabz.inc                     ;         ;
-; mul_lfrg.inc                                     ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/mul_lfrg.inc                    ;         ;
-; mul_boothc.inc                                   ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/mul_boothc.inc                  ;         ;
-; alt_ded_mult.inc                                 ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/alt_ded_mult.inc                ;         ;
-; alt_ded_mult_y.inc                               ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/alt_ded_mult_y.inc              ;         ;
-; dffpipe.inc                                      ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/dffpipe.inc                     ;         ;
-; mpar_add.tdf                                     ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/mpar_add.tdf                    ;         ;
-; lpm_add_sub.tdf                                  ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/lpm_add_sub.tdf                 ;         ;
-; addcore.inc                                      ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/addcore.inc                     ;         ;
-; look_add.inc                                     ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/look_add.inc                    ;         ;
-; alt_stratix_add_sub.inc                          ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/alt_stratix_add_sub.inc         ;         ;
-; db/add_sub_hdh.tdf                               ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/add_sub_hdh.tdf               ;         ;
-; altshift.tdf                                     ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/altshift.tdf                    ;         ;
-; db/add_sub_7ch.tdf                               ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/add_sub_7ch.tdf               ;         ;
-; db/add_sub_ahh.tdf                               ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/add_sub_ahh.tdf               ;         ;
-; db/add_sub_g6h.tdf                               ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/add_sub_g6h.tdf               ;         ;
-; db/add_sub_ehh.tdf                               ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/add_sub_ehh.tdf               ;         ;
-; db/mult_s2t.tdf                                  ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/mult_s2t.tdf                  ;         ;
-; db/add_sub_9hh.tdf                               ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/add_sub_9hh.tdf               ;         ;
-; db/add_sub_f6h.tdf                               ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/add_sub_f6h.tdf               ;         ;
-; db/add_sub_dhh.tdf                               ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/add_sub_dhh.tdf               ;         ;
-; db/mult_q2t.tdf                                  ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/mult_q2t.tdf                  ;         ;
-; db/add_sub_idh.tdf                               ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/add_sub_idh.tdf               ;         ;
-+--------------------------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------+---------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                     ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                 ; Library ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------+---------+
+; PLL_theta_phi_CL.v               ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/HybridControl_theta_phi_CL/PLL_theta_phi_CL.v               ;         ;
+; ../blocks/LPF.v                  ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/LPF.v                                                ;         ;
+; ../blocks/saturation.v           ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/saturation.v                                         ;         ;
+; ../blocks/debug.v                ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/debug.v                                              ;         ;
+; ../blocks/control.v              ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/control.v                                            ;         ;
+; ../blocks/trigonometry.v         ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/trigonometry.v                                       ;         ;
+; ../blocks/regularization.v       ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/regularization.v                                     ;         ;
+; ../blocks/rectifier_sensing.v    ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/rectifier_sensing.v                                  ;         ;
+; ../blocks/manual_value_control.v ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/manual_value_control.v                               ;         ;
+; ../blocks/hybrid_control_mixed.v ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/hybrid_control_mixed.v                               ;         ;
+; ../blocks/display_7seg.v         ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/display_7seg.v                                       ;         ;
+; ../blocks/debounce.v             ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/debounce.v                                           ;         ;
+; ../blocks/dead_time.v            ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/dead_time.v                                          ;         ;
+; ../blocks/counter.v              ; yes             ; User Verilog HDL File        ; C:/FPGA/Projects/blocks/counter.v                                            ;         ;
+; top_hybridcontrol_theta_phi_cl.v ; yes             ; Auto-Found Verilog HDL File  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v ;         ;
+; altpll.tdf                       ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/altpll.tdf                      ;         ;
+; aglobal211.inc                   ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/aglobal211.inc                  ;         ;
+; stratix_pll.inc                  ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/stratix_pll.inc                 ;         ;
+; stratixii_pll.inc                ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/stratixii_pll.inc               ;         ;
+; cycloneii_pll.inc                ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/cycloneii_pll.inc               ;         ;
+; db/pll_altpll.v                  ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/pll_altpll.v                  ;         ;
+; lpm_mult.tdf                     ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/lpm_mult.tdf                    ;         ;
+; lpm_add_sub.inc                  ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/lpm_add_sub.inc                 ;         ;
+; multcore.inc                     ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/multcore.inc                    ;         ;
+; bypassff.inc                     ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/bypassff.inc                    ;         ;
+; altshift.inc                     ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/altshift.inc                    ;         ;
+; multcore.tdf                     ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/multcore.tdf                    ;         ;
+; csa_add.inc                      ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/csa_add.inc                     ;         ;
+; mpar_add.inc                     ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/mpar_add.inc                    ;         ;
+; muleabz.inc                      ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/muleabz.inc                     ;         ;
+; mul_lfrg.inc                     ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/mul_lfrg.inc                    ;         ;
+; mul_boothc.inc                   ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/mul_boothc.inc                  ;         ;
+; alt_ded_mult.inc                 ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/alt_ded_mult.inc                ;         ;
+; alt_ded_mult_y.inc               ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/alt_ded_mult_y.inc              ;         ;
+; dffpipe.inc                      ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/dffpipe.inc                     ;         ;
+; mpar_add.tdf                     ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/mpar_add.tdf                    ;         ;
+; lpm_add_sub.tdf                  ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/lpm_add_sub.tdf                 ;         ;
+; addcore.inc                      ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/addcore.inc                     ;         ;
+; look_add.inc                     ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/look_add.inc                    ;         ;
+; alt_stratix_add_sub.inc          ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/alt_stratix_add_sub.inc         ;         ;
+; db/add_sub_hdh.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/add_sub_hdh.tdf               ;         ;
+; altshift.tdf                     ; yes             ; Megafunction                 ; c:/fpga/21.1/quartus/libraries/megafunctions/altshift.tdf                    ;         ;
+; db/add_sub_7ch.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/add_sub_7ch.tdf               ;         ;
+; db/add_sub_ahh.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/add_sub_ahh.tdf               ;         ;
+; db/add_sub_g6h.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/add_sub_g6h.tdf               ;         ;
+; db/add_sub_ehh.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/add_sub_ehh.tdf               ;         ;
+; db/mult_s2t.tdf                  ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/mult_s2t.tdf                  ;         ;
+; db/add_sub_9hh.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/add_sub_9hh.tdf               ;         ;
+; db/add_sub_f6h.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/add_sub_f6h.tdf               ;         ;
+; db/add_sub_dhh.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/add_sub_dhh.tdf               ;         ;
+; db/mult_q2t.tdf                  ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/mult_q2t.tdf                  ;         ;
+; db/add_sub_idh.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/FPGA/Projects/HybridControl_theta_phi_CL/db/add_sub_idh.tdf               ;         ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------+---------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------+
@@ -360,7 +360,7 @@ https://fpgasoftware.intel.com/eula.
 ; Total PLLs                                    ; 1                                                                                            ;
 ;     -- PLLs                                   ; 1                                                                                            ;
 ;                                               ;                                                                                              ;
-; Maximum fan-out node                          ; PLL_theta_phi_OL:PLL_inst|altpll:altpll_component|PLL_altpll:auto_generated|wire_pll1_clk[0] ;
+; Maximum fan-out node                          ; PLL_theta_phi_CL:PLL_inst|altpll:altpll_component|PLL_altpll:auto_generated|wire_pll1_clk[0] ;
 ; Maximum fan-out                               ; 740                                                                                          ;
 ; Total fan-out                                 ; 15078                                                                                        ;
 ; Average fan-out                               ; 3.81                                                                                         ;
@@ -375,9 +375,9 @@ https://fpgasoftware.intel.com/eula.
 ; |TOP_HybridControl_theta_phi_CL                     ; 2772 (210)          ; 792 (59)                  ; 0                 ; 16                  ; 0       ; 0         ; 0         ; 4         ; 185  ; 0            ; |TOP_HybridControl_theta_phi_CL                                                                                                                                                                               ; TOP_HybridControl_theta_phi_CL ; work         ;
 ;    |LPF:LPF_Ibat|                                   ; 34 (34)             ; 60 (60)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|LPF:LPF_Ibat                                                                                                                                                                  ; LPF                            ; work         ;
 ;    |PI:PI_inst|                                     ; 59 (59)             ; 60 (60)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|PI:PI_inst                                                                                                                                                                    ; PI                             ; work         ;
-;    |PLL_theta_phi_OL:PLL_inst|                      ; 0 (0)               ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|PLL_theta_phi_OL:PLL_inst                                                                                                                                                     ; PLL_theta_phi_OL               ; work         ;
-;       |altpll:altpll_component|                     ; 0 (0)               ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|PLL_theta_phi_OL:PLL_inst|altpll:altpll_component                                                                                                                             ; altpll                         ; work         ;
-;          |PLL_altpll:auto_generated|                ; 0 (0)               ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|PLL_theta_phi_OL:PLL_inst|altpll:altpll_component|PLL_altpll:auto_generated                                                                                                   ; PLL_altpll                     ; work         ;
+;    |PLL_theta_phi_CL:PLL_inst|                      ; 0 (0)               ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|PLL_theta_phi_CL:PLL_inst                                                                                                                                                     ; PLL_theta_phi_CL               ; work         ;
+;       |altpll:altpll_component|                     ; 0 (0)               ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|PLL_theta_phi_CL:PLL_inst|altpll:altpll_component                                                                                                                             ; altpll                         ; work         ;
+;          |PLL_altpll:auto_generated|                ; 0 (0)               ; 0 (0)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|PLL_theta_phi_CL:PLL_inst|altpll:altpll_component|PLL_altpll:auto_generated                                                                                                   ; PLL_altpll                     ; work         ;
 ;    |counter_up:counter_up_inst|                     ; 8 (8)               ; 8 (8)                     ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|counter_up:counter_up_inst                                                                                                                                                    ; counter_up                     ; work         ;
 ;    |dead_time:dead_time_inst_1|                     ; 48 (0)              ; 44 (0)                    ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_1                                                                                                                                                    ; dead_time                      ; work         ;
 ;       |dead_time_core:DT[0].dt_core|                ; 12 (12)             ; 11 (11)                   ; 0                 ; 0                   ; 0       ; 0         ; 0         ; 0         ; 0    ; 0            ; |TOP_HybridControl_theta_phi_CL|dead_time:dead_time_inst_1|dead_time_core:DT[0].dt_core                                                                                                                       ; dead_time_core                 ; work         ;
@@ -669,7 +669,7 @@ Note: number of DSP Blocks used is only available after a successful fit.
 
 
 +------------------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: PLL_theta_phi_OL:PLL_inst|altpll:altpll_component ;
+; Parameter Settings for User Entity Instance: PLL_theta_phi_CL:PLL_inst|altpll:altpll_component ;
 +-------------------------------+-----------------------+----------------------------------------+
 ; Parameter Name                ; Value                 ; Type                                   ;
 +-------------------------------+-----------------------+----------------------------------------+
@@ -1839,7 +1839,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Name                          ; Value                                             ;
 +-------------------------------+---------------------------------------------------+
 ; Number of entity instances    ; 1                                                 ;
-; Entity Instance               ; PLL_theta_phi_OL:PLL_inst|altpll:altpll_component ;
+; Entity Instance               ; PLL_theta_phi_CL:PLL_inst|altpll:altpll_component ;
 ;     -- OPERATION_MODE         ; NORMAL                                            ;
 ;     -- PLL_TYPE               ; AUTO                                              ;
 ;     -- PRIMARY_CLOCK          ; INCLK0                                            ;
@@ -2136,7 +2136,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "PLL_theta_phi_OL:PLL_inst"                                                          ;
+; Port Connectivity Checks: "PLL_theta_phi_CL:PLL_inst"                                                          ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port ; Type   ; Severity ; Details                                                                             ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
@@ -2197,7 +2197,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:18     ;
+; Top            ; 00:00:19     ;
 +----------------+--------------+
 
 
@@ -2207,10 +2207,12 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 21.1.0 Build 842 10/21/2021 SJ Standard Edition
-    Info: Processing started: Fri May 24 17:11:40 2024
+    Info: Processing started: Fri May 24 17:37:46 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off HybridControl_theta_phi_CL -c TOP_HybridControl_theta_phi_CL
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20032): Parallel compilation is enabled and will use up to 8 processors
+Info (12021): Found 1 design units, including 1 entities, in source file pll_theta_phi_cl.v
+    Info (12023): Found entity 1: PLL_theta_phi_CL File: C:/FPGA/Projects/HybridControl_theta_phi_CL/PLL_theta_phi_CL.v Line: 50
 Info (12021): Found 2 design units, including 2 entities, in source file /fpga/projects/blocks/lpf.v
     Info (12023): Found entity 1: LPF File: C:/FPGA/Projects/blocks/LPF.v Line: 16
     Info (12023): Found entity 2: LPF_32 File: C:/FPGA/Projects/blocks/LPF.v Line: 74
@@ -2285,10 +2287,10 @@ Warning (10034): Output port "GPIO0[15]" at top_hybridcontrol_theta_phi_cl.v(95)
 Warning (10034): Output port "GPIO0[13]" at top_hybridcontrol_theta_phi_cl.v(95) has no driver File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 95
 Warning (10034): Output port "GPIO0[11]" at top_hybridcontrol_theta_phi_cl.v(95) has no driver File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 95
 Warning (10034): Output port "GPIO0[9..0]" at top_hybridcontrol_theta_phi_cl.v(95) has no driver File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 95
-Info (12128): Elaborating entity "PLL_theta_phi_OL" for hierarchy "PLL_theta_phi_OL:PLL_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 300
-Info (12128): Elaborating entity "altpll" for hierarchy "PLL_theta_phi_OL:PLL_inst|altpll:altpll_component" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/PLL_theta_phi_OL.v Line: 117
-Info (12130): Elaborated megafunction instantiation "PLL_theta_phi_OL:PLL_inst|altpll:altpll_component" File: C:/FPGA/Projects/HybridControl_theta_phi_OL/PLL_theta_phi_OL.v Line: 117
-Info (12133): Instantiated megafunction "PLL_theta_phi_OL:PLL_inst|altpll:altpll_component" with the following parameter: File: C:/FPGA/Projects/HybridControl_theta_phi_OL/PLL_theta_phi_OL.v Line: 117
+Info (12128): Elaborating entity "PLL_theta_phi_CL" for hierarchy "PLL_theta_phi_CL:PLL_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 300
+Info (12128): Elaborating entity "altpll" for hierarchy "PLL_theta_phi_CL:PLL_inst|altpll:altpll_component" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/PLL_theta_phi_CL.v Line: 117
+Info (12130): Elaborated megafunction instantiation "PLL_theta_phi_CL:PLL_inst|altpll:altpll_component" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/PLL_theta_phi_CL.v Line: 117
+Info (12133): Instantiated megafunction "PLL_theta_phi_CL:PLL_inst|altpll:altpll_component" with the following parameter: File: C:/FPGA/Projects/HybridControl_theta_phi_CL/PLL_theta_phi_CL.v Line: 117
     Info (12134): Parameter "bandwidth_type" = "AUTO"
     Info (12134): Parameter "clk0_divide_by" = "1"
     Info (12134): Parameter "clk0_duty_cycle" = "50"
@@ -2363,7 +2365,7 @@ Info (12133): Instantiated megafunction "PLL_theta_phi_OL:PLL_inst|altpll:altpll
     Info (12134): Parameter "width_clock" = "10"
 Info (12021): Found 1 design units, including 1 entities, in source file db/pll_altpll.v
     Info (12023): Found entity 1: PLL_altpll File: C:/FPGA/Projects/HybridControl_theta_phi_CL/db/pll_altpll.v Line: 30
-Info (12128): Elaborating entity "PLL_altpll" for hierarchy "PLL_theta_phi_OL:PLL_inst|altpll:altpll_component|PLL_altpll:auto_generated" File: c:/fpga/21.1/quartus/libraries/megafunctions/altpll.tdf Line: 898
+Info (12128): Elaborating entity "PLL_altpll" for hierarchy "PLL_theta_phi_CL:PLL_inst|altpll:altpll_component|PLL_altpll:auto_generated" File: c:/fpga/21.1/quartus/libraries/megafunctions/altpll.tdf Line: 898
 Info (12128): Elaborating entity "hybrid_control_mixed" for hierarchy "hybrid_control_mixed:hybrid_control_mixed_inst" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 315
 Warning (10858): Verilog HDL warning at hybrid_control_mixed.v(58): object S3 used but never assigned File: C:/FPGA/Projects/blocks/hybrid_control_mixed.v Line: 58
 Warning (10230): Verilog HDL assignment warning at hybrid_control_mixed.v(110): truncated value with size 31 to match size of target (30) File: C:/FPGA/Projects/blocks/hybrid_control_mixed.v Line: 110
@@ -2749,8 +2751,8 @@ Info (17049): 1 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file C:/FPGA/Projects/HybridControl_theta_phi_CL/output_files/TOP_HybridControl_theta_phi_CL.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
-Warning (15897): PLL "PLL_theta_phi_OL:PLL_inst|altpll:altpll_component|PLL_altpll:auto_generated|pll1" has parameter compensate_clock set to clock0 but port CLK[0] is not connected File: C:/FPGA/Projects/HybridControl_theta_phi_CL/db/pll_altpll.v Line: 44
-Warning (15899): PLL "PLL_theta_phi_OL:PLL_inst|altpll:altpll_component|PLL_altpll:auto_generated|pll1" has parameters clk0_multiply_by and clk0_divide_by specified but port CLK[0] is not connected File: C:/FPGA/Projects/HybridControl_theta_phi_CL/db/pll_altpll.v Line: 44
+Warning (15897): PLL "PLL_theta_phi_CL:PLL_inst|altpll:altpll_component|PLL_altpll:auto_generated|pll1" has parameter compensate_clock set to clock0 but port CLK[0] is not connected File: C:/FPGA/Projects/HybridControl_theta_phi_CL/db/pll_altpll.v Line: 44
+Warning (15899): PLL "PLL_theta_phi_CL:PLL_inst|altpll:altpll_component|PLL_altpll:auto_generated|pll1" has parameters clk0_multiply_by and clk0_divide_by specified but port CLK[0] is not connected File: C:/FPGA/Projects/HybridControl_theta_phi_CL/db/pll_altpll.v Line: 44
 Warning (21074): Design contains 1 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "ADB_OR" File: C:/FPGA/Projects/HybridControl_theta_phi_CL/top_hybridcontrol_theta_phi_cl.v Line: 59
 Info (21057): Implemented 3091 device resources after synthesis - the final resource count might be different
@@ -2761,10 +2763,10 @@ Info (21057): Implemented 3091 device resources after synthesis - the final reso
     Info (21065): Implemented 1 PLLs
     Info (21062): Implemented 16 DSP elements
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 212 warnings
-    Info: Peak virtual memory: 4939 megabytes
-    Info: Processing ended: Fri May 24 17:12:08 2024
-    Info: Elapsed time: 00:00:28
-    Info: Total CPU time (on all processors): 00:00:38
+    Info: Peak virtual memory: 4935 megabytes
+    Info: Processing ended: Fri May 24 17:38:16 2024
+    Info: Elapsed time: 00:00:30
+    Info: Total CPU time (on all processors): 00:00:40
 
 
 +------------------------------------------+

@@ -36,3 +36,26 @@ This folder contains the `*.sof` files that can be directly uploaded to the FPGA
      - [5] $I_{bat}$ in HEX
      - [6] $V_{bat}$ in DEC
      - [7] $I_{bat}$ in DEC
+ - `TOP_HybridControl_theta_phi_CL-20240524-working.sof`: this has the closed-loop working with some features improved. Namely, it can work down to small amplitudes (phi up to 70/75)
+   - there is still the possibility to go in open-loop mode with sw[2] and change phi with: button[1] (++), button[2] (--), and button[0] (reset).
+   - sw[0] is the ENABLE
+   - sw[1] is used to choose the debug digital signal: 0 is PHI, 1 is the 1st 8bit of dead-zone.
+   - sw[2] there is the possibility to pass to open-loop with $\varphi$ on button[1]
+   - sw[3] show either PHI or what is on the dip-switch in the 7-seg display.
+   - In closed-loop the gain are: Kp=3, shift_Kp=13, TsKi=1, shift_Ki=12, Kaw=0, shift_Kaw=0.
+     - $I_{ref}$ at step of 0.5A with button[1] to increase and button[3] to decrease; reset with button[0].
+     - $\delta$ with button[3] and reset with `CPU_RESET` (button[4]).
+   - dip-switch
+     - [0] $I_{ref}$
+     - [1] $\delta$
+     - [2-3] dead time selection 
+     - [4] $V_{bat}$ in HEX
+     - [5] $I_{bat}$ in HEX
+     - [6] $V_{bat}$ in DEC
+     - [7] $I_{bat}$ in DEC
+   - Improvements:
+     - regularization is improved;
+     - there is a 4 sample filter on Ibat, sampled at 100kHz;
+     - state machine is always passing through 0 even with phi=0;
+     - saturation at 0 is hardcoded;
+     - change in CLK for state-machine, now it is looking two time step back for the reset.

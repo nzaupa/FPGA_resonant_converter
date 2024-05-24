@@ -47,7 +47,7 @@
 // synopsys translate_off
 `timescale 1 ps / 1 ps
 // synopsys translate_on
-module PLL_theta_phi_OL (
+module PLL_theta_phi_CL (
 	inclk0,
 	c0,
 	c1,

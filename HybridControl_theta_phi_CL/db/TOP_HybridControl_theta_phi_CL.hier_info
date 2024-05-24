@@ -1,7 +1,7 @@
 |TOP_HybridControl_theta_phi_CL
 CPU_RESET => CPU_RESET.IN4
 OSC => OSC.IN1
-FAN_CTRL <= PLL_theta_phi_OL:PLL_inst.c4
+FAN_CTRL <= PLL_theta_phi_CL:PLL_inst.c4
 ADB_DATA[0] => Add4.IN28
 ADB_DATA[1] => Add4.IN27
 ADB_DATA[2] => Add4.IN26
@@ -273,7 +273,7 @@ GPIO0[34] <= <GND>
 GPIO0[35] <= <GND>
 
 
-|TOP_HybridControl_theta_phi_CL|PLL_theta_phi_OL:PLL_inst
+|TOP_HybridControl_theta_phi_CL|PLL_theta_phi_CL:PLL_inst
 inclk0 => sub_wire1[0].IN1
 c0 <= altpll:altpll_component.clk
 c1 <= altpll:altpll_component.clk
@@ -282,7 +282,7 @@ c3 <= altpll:altpll_component.clk
 c4 <= altpll:altpll_component.clk
 
 
-|TOP_HybridControl_theta_phi_CL|PLL_theta_phi_OL:PLL_inst|altpll:altpll_component
+|TOP_HybridControl_theta_phi_CL|PLL_theta_phi_CL:PLL_inst|altpll:altpll_component
 inclk[0] => PLL_altpll:auto_generated.inclk[0]
 inclk[1] => PLL_altpll:auto_generated.inclk[1]
 fbin => ~NO_FANOUT~
@@ -347,7 +347,7 @@ fref <= <GND>
 icdrclk <= <GND>
 
 
-|TOP_HybridControl_theta_phi_CL|PLL_theta_phi_OL:PLL_inst|altpll:altpll_component|PLL_altpll:auto_generated
+|TOP_HybridControl_theta_phi_CL|PLL_theta_phi_CL:PLL_inst|altpll:altpll_component|PLL_altpll:auto_generated
 clk[0] <= pll1.CLK
 clk[1] <= pll1.CLK1
 clk[2] <= pll1.CLK2

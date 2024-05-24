@@ -1,4 +1,5 @@
 vendor_name = ModelSim
+source_file = 1, C:/FPGA/Projects/HybridControl_theta_phi_CL/PLL_theta_phi_CL.v
 source_file = 1, C:/FPGA/Projects/blocks/LPF.v
 source_file = 1, C:/FPGA/Projects/blocks/saturation.v
 source_file = 1, C:/FPGA/Projects/blocks/debug.v

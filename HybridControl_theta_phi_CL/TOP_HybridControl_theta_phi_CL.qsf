@@ -246,6 +246,7 @@ set_location_assignment PIN_V9 -to DA[0]
 set_location_assignment PIN_P6 -to DB[0]
 set_global_assignment -name FLOW_ENABLE_RTL_VIEWER ON
 set_global_assignment -name TIMING_ANALYZER_MULTICORNER_ANALYSIS ON
+set_global_assignment -name VERILOG_FILE PLL_theta_phi_CL.v
 set_global_assignment -name VERILOG_FILE ../blocks/LPF.v
 set_global_assignment -name VERILOG_FILE ../blocks/saturation.v
 set_global_assignment -name VERILOG_FILE ../blocks/debug.v

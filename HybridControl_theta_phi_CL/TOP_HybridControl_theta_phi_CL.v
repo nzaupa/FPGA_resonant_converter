@@ -290,7 +290,7 @@ assign   phi_HC   = sw[2] ? phi: phi_PI_sat;
 // -------------------------------------
 
 // PLL - manage the clock generation
-PLL_theta_phi_OL PLL_inst (
+PLL_theta_phi_CL PLL_inst (
    .inclk0 ( OSC ),
    .c0 ( clk_main ),
    .c1 ( clk_100M ),

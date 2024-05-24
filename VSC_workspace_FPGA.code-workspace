@@ -7,7 +7,7 @@
    "settings": {
       "files.autoSave": "off",
       "files.exclude": {
-         "{**/*.cdf,**/*.qws,**/*.qsf,**/*.rpt,**/*.map*,**/*.done,**/*.fit.*,**/*.jdi,**/*.qsf.bak,*/db/,*/incremental_db/,*/simulation,*/output_files/}": true
+         "{**/*.cdf,**/*.qws,**/*.qsf,**/*.rpt,**/*.map*,**/*.done,**/*.fit.*,**/*.jdi,**/*.qsf.bak,*/db/,*/incremental_db/,*/simulation}": true
       }
    }
 }
