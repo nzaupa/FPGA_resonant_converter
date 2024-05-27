@@ -293,7 +293,7 @@ hybrid_control_theta_z #(.mu_z1(32'd154), .mu_z2(32'd90), .mu_Vg(32'd31200)
 );
 
 // control law THETA in x
-hybrid_control_mixed #(.mu_z1(32'd154), .mu_z2(32'd90)
+hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
 ) HC_delta (
    .o_MOSFET( MOSFET_theta_x ),  // control signal for the four MOSFETs
    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
@@ -308,7 +308,8 @@ hybrid_control_mixed #(.mu_z1(32'd154), .mu_z2(32'd90)
 );
 
 // control law PHI
-hybrid_control_phi_x HC_phi (
+hybrid_control_phi_x #(.mu_x1(32'd154), .mu_x2(32'd90)
+) HC_phi (
    .o_MOSFET( MOSFET_phi ),  // control signal for the four MOSFETs
    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
    .o_debug( ),    // ? random currently
@@ -321,7 +322,7 @@ hybrid_control_phi_x HC_phi (
 
 
 // control law PHI + DELTA
-hybrid_control_mixed #(.mu_z1(32'd154), .mu_z2(32'd90)
+hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
 ) HC_delta (
    .o_MOSFET( MOSFET_delta ),  // control signal for the four MOSFETs
    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
@@ -635,7 +636,7 @@ endmodule
 
 
 // control law PHI + THETA
-// hybrid_control_theta_phi #(.mu_z1(32'd86), .mu_z2(32'd90), .mu_Vg(32'd312000)
+// hybrid_control_theta_phi #(.mu_x1(32'd86), .mu_x2(32'd90), .mu_Vg(32'd312000)
 // ) hybrid_control_theta_phi_inst (
 //    .o_MOSFET( MOSFET_phi ),  // control signal for the four MOSFETs
 //    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}

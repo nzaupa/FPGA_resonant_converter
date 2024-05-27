@@ -28,7 +28,7 @@
 // PHI control law in the x-plane
 // TO BE COMPLETED
 module hybrid_control_phi_x #(
-   parameter mu_z1 = 32'd86,
+   parameter mu_x1 = 32'd86,
    parameter mu_z2 = 32'd90
 )(
    output        [3:0] o_MOSFET,    // command signal for the MOSFETs
@@ -149,8 +149,8 @@ end
 
 always @(posedge i_clock) begin
    // compute coordinate transformation
-   A  = mu_z1*(vC_32) * sphi;  // z1*sin(phi)
-   B  = mu_z2*(iC_32) * cphi;  // z2*cos(phi) 
+   A  = mu_x1*(vC_32) * sphi;  // z1*sin(phi)
+   B  = mu_x2*(iC_32) * cphi;  // z2*cos(phi) 
 
    S1 = A + (~B+1);     // z1*cos(phi)-z2*cos(phi)
    S2 = A + B;          // z1*cos(phi)+z2*cos(phi)
@@ -164,7 +164,7 @@ endmodule
 // ++++++++++++++++++++++++++
 // PHI control law in the z-plane
 
-module hybrid_control_phi #(
+module hybrid_control_phi_z #(
    parameter mu_z1 = 32'd86,
    parameter mu_z2 = 32'd90,
    parameter mu_Vg = 312000

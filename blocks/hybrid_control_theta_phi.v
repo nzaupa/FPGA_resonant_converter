@@ -24,8 +24,8 @@
 `timescale 1 ns / 1 ps
 
 module hybrid_control_theta_phi #(
-   parameter mu_z1 = 32'd86,
-   parameter mu_z2 = 32'd90,
+   parameter mu_x1 = 32'd86,
+   parameter mu_x2 = 32'd90,
    parameter mu_Vg = 32'd312000
 )(
    output         [3:0]  o_MOSFET,    // command signal for the MOSFETs
@@ -156,9 +156,9 @@ end
 
 always @(posedge i_clock) begin
    // compute coordinate transformation
-   // Z1  = ( mu_z1 * (vC_32) + (~sigma+1)*mu_Vg ); // z1
-   Z1  = $signed(mu_z1) * vC_32 + (~($signed(sigma)*$signed(mu_Vg))+1); // z1
-   Z2  = $signed(mu_z2) * iC_32;                   // z2
+   // Z1  = ( mu_x1 * (vC_32) + (~sigma+1)*mu_Vg ); // z1
+   Z1  = $signed(mu_x1) * vC_32 + (~($signed(sigma)*$signed(mu_Vg))+1); // z1
+   Z2  = $signed(mu_x2) * iC_32;                   // z2
    C   = $signed(mu_Vg) *  stmf;                       // Vg*sin(theta-phi)
 
    // !!!!! stmf ... and so might be signed

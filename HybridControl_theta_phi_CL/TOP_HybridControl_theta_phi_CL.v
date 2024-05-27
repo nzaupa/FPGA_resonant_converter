@@ -301,7 +301,7 @@ PLL_theta_phi_CL PLL_inst (
 
 // CONTROL PHI + DELTA OF THE RESONANT TANK
 
-hybrid_control_mixed #(.mu_z1(32'd154), .mu_z2(32'd90)
+hybrid_control_mixed #(.mu_x1(32'd154), .mu_z2(32'd90)
 ) hybrid_control_mixed_inst (
    .o_MOSFET( MOSFET_theta_phi ),
    .o_sigma(  ),
