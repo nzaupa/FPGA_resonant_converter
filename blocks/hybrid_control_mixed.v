@@ -26,8 +26,8 @@
 `timescale 1 ns / 1 ps
 
 module hybrid_control_mixed #(
-   parameter mu_z1 = 32'd86,
-   parameter mu_z2 = 32'd90
+   parameter mu_x1 = 32'd86,
+   parameter mu_x2 = 32'd90
 )(
    output         [3:0]  o_MOSFET,    // command signal for the MOSFETs
    output         [1:0]  o_sigma,     // output switching variable
@@ -177,8 +177,8 @@ end
 
 always @(posedge i_clock) begin
    // compute coordinate transformation
-   X1  = $signed(mu_z1) * vC_32;
-   X2  = $signed(mu_z2) * iC_32;    
+   X1  = $signed(mu_x1) * vC_32;
+   X2  = $signed(mu_x2) * iC_32;    
 
    // compute the switching line, we are just interested in the sign afterwards
    S0 = X1*sphi + (~(X2*cphi)+1);

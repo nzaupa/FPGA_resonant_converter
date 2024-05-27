@@ -281,7 +281,7 @@ PLL_theta_phi_OL PLL_inst (
 
 // control law THETA
 hybrid_control_theta_z #(.mu_z1(32'd154), .mu_z2(32'd90), .mu_Vg(32'd31200)
-)HC_theta (
+)HC_theta_z (
    .o_MOSFET( MOSFET_theta_z ),   // control signal for the four MOSFETs
    .o_sigma(  ),          // output switching variable
    .o_debug(  ),          // [16bit]
@@ -294,7 +294,7 @@ hybrid_control_theta_z #(.mu_z1(32'd154), .mu_z2(32'd90), .mu_Vg(32'd31200)
 
 // control law THETA in x
 hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
-) HC_delta (
+) HC_theta_x (
    .o_MOSFET( MOSFET_theta_x ),  // control signal for the four MOSFETs
    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
    .o_debug(  ),   

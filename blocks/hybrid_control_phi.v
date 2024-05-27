@@ -29,7 +29,7 @@
 // TO BE COMPLETED
 module hybrid_control_phi_x #(
    parameter mu_x1 = 32'd86,
-   parameter mu_z2 = 32'd90
+   parameter mu_x2 = 32'd90
 )(
    output        [3:0] o_MOSFET,    // command signal for the MOSFETs
    output        [1:0] o_sigma,     // output switching variable
