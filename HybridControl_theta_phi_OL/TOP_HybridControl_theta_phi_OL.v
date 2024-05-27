@@ -350,8 +350,7 @@ hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
       .inc_btn(button[1]),
       .dec_btn(button[2]),
       .count(phi),
-      .o_seg0(digit_0_phi),
-      .o_seg1(digit_1_phi)
+      .o_seg(SEG_PHI)
    );
 
    // DELTA (ZVS)
@@ -388,7 +387,7 @@ hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
    // THETA in x-plane
    value_control  #(
       .INTEGER_STEP(5),
-      .INTEGER_MIN (10),
+      .INTEGER_MIN (90),
       .INTEGER_MAX (180),
       .INTEGER_RST (180),
       .N_BIT       (8) 
@@ -401,7 +400,7 @@ hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
       .o_seg(SEG_THETA_x)
    );
 
-// ----- DEAD TIME ----- //
+// +++ DEAD-TIME +++ //
 
 
    dead_time #(.DEADTIME(10), .N(4)) dead_time_inst_1(
@@ -425,7 +424,7 @@ hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
       .i_signal( MOSFET )
    );
 
-// ----- DEBOUNCE ----- //
+// +++ DEBOUNCE +++ //
 
    debounce #(.DEBOUNCE_TIME(5000), .N(4)) debounce_4bit_inst( // 5ms
       .o_switch(button[3:0]),
@@ -441,8 +440,7 @@ hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
       .i_switch(SW)
    );
 
-
-// +++ START UP counter +++
+// +++ START-UP counter +++
    // -- counter for the bootstrap and charge the tank
    counter_up counter_up_inst    (
       .o_counter(cnt_startup), // Output of the counter
@@ -450,7 +448,6 @@ hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
       .clk(clk_1M),            // clock Input
       .reset(ENABLE)           // reset Input
    );
-
 
 // +++ RECTIFIER DEBUG +++
    sensing_Ibat sensing_Ibat_inst(
@@ -468,80 +465,80 @@ hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
    );
 
 // +++ ADC +++
-// acquire data from ADC when available
-always @(posedge ADA_DCO) begin
-   // ADC_A    = ~ADA_DATA+14'b1;
-   // DAA_copy = ~ADA_DATA+14'b1 + 14'd8191;
-   if (ADA_OR) begin
-      // we are in over-range
-      if (ADA_DATA==14'h2000) begin
-         ADC_A <= 14'h1FFF;
+   // acquire data from ADC when available
+   always @(posedge ADA_DCO) begin
+      // ADC_A    = ~ADA_DATA+14'b1;
+      // DAA_copy = ~ADA_DATA+14'b1 + 14'd8191;
+      if (ADA_OR) begin
+         // we are in over-range
+         if (ADA_DATA==14'h2000) begin
+            ADC_A <= 14'h1FFF;
+         end else begin
+            ADC_A <= 14'h2000;
+         end
       end else begin
-         ADC_A <= 14'h2000;
+         // inverse the polarity since it is inverted in the {CB}
+         ADC_A <= ~ADA_DATA+14'b1;
       end
-   end else begin
-      // inverse the polarity since it is inverted in the {CB}
-      ADC_A <= ~ADA_DATA+14'b1;
+
+      DAA_copy = ~ADA_DATA+14'b1 + 14'd8191;
    end
 
-   DAA_copy = ~ADA_DATA+14'b1 + 14'd8191;
-end
+   always @(posedge ADB_DCO) begin
+      ADC_B    = ~ADB_DATA+14'b1;
+      DAB_copy = ~ADB_DATA+14'b1 + 14'd8191;
+   end
 
-always @(posedge ADB_DCO) begin
-   ADC_B    = ~ADB_DATA+14'b1;
-   DAB_copy = ~ADB_DATA+14'b1 + 14'd8191;
-end
+   always @(negedge ADC_BAT_V_EOC) begin
+      ADC_Vbat    = ADC_BAT_V;
+   end
 
-always @(negedge ADC_BAT_V_EOC) begin
-   ADC_Vbat    = ADC_BAT_V;
-end
-
-always @(negedge ADC_BAT_I_EOC) begin
-   ADC_Ibat    = ADC_BAT_I;
-end
+   always @(negedge ADC_BAT_I_EOC) begin
+      ADC_Ibat    = ADC_BAT_I;
+   end
 
 // +++ CONTROLLER MODE +++
-// choose the type of controller
-always  begin
-   case (sw[2:1])
-      2'b00 : begin // PHI+THETA
-         MOSFET   <= MOSFET_delta;
-      end
-      2'b01 : begin  // THETA in z
-         MOSFET   <= MOSFET_theta_z;
-      end
-      2'b10 : begin // THETA in x
-         MOSFET   <= MOSFET_theta_x;
-      end
-      2'b11 : begin // PHI
-         MOSFET   <= MOSFET_phi;
-      end
-      default: begin // shows '--'
-         MOSFET   <= 4'b0;
-      end
-   endcase
-end
+   // choose the type of controller
+   always  begin
+      case (sw[2:1])
+         2'b00 : begin // PHI+THETA
+            MOSFET   <= MOSFET_delta;
+         end
+         2'b01 : begin  // THETA in z
+            MOSFET   <= MOSFET_theta_z;
+         end
+         2'b10 : begin // THETA in x
+            MOSFET   <= MOSFET_theta_x;
+         end
+         2'b11 : begin // PHI
+            MOSFET   <= MOSFET_phi;
+         end
+         default: begin // shows '--'
+            MOSFET   <= 4'b0;
+         end
+      endcase
+   end
 
 // choose the deadtime
-always  begin
-   case (DSW[3:2])
-      2'b00 : begin // PHI+THETA
-         Qout <= Q100;
-      end
-      2'b10 : begin  // THETA
-         Qout <= Q200;
-      end
-      2'b01 : begin // PHI
-         Qout <= Q400;
-      end
-      2'b11 : begin // PHI
-         Qout <= Q600;
-      end
-      default: begin // shows '--'
-         Qout <= 4'b0;
-      end
-   endcase
-end
+   always  begin
+      case (DSW[3:2])
+         2'b00 : begin // PHI+THETA
+            Qout <= Q100;
+         end
+         2'b10 : begin  // THETA
+            Qout <= Q200;
+         end
+         2'b01 : begin // PHI
+            Qout <= Q400;
+         end
+         2'b11 : begin // PHI
+            Qout <= Q600;
+         end
+         default: begin // shows '--'
+            Qout <= 4'b0;
+         end
+      endcase
+   end
 
 // +++ 7-SEGMENTS DISPLAY +++
    // choose what to show on the display
@@ -557,44 +554,6 @@ end
       .SEG_F(SEG_Ibat_DEC) 
    );
 
-// // +++ 7-SEGMENTS DISPLAY +++
-// // choose what to show on the display
-// always  begin
-//    case ({DSW[7:4],DSW[1:0]})
-//       8'b000001 : begin // PHI
-//          SEG0_reg <= digit_0_phi;
-//          SEG1_reg <= digit_1_phi;
-//       end
-//       8'b000010 : begin // ZVS
-//          SEG0_reg <= digit_0_delta;
-//          SEG1_reg <= digit_1_delta;
-//       end
-//       // 8'b0000xx00 : begin // DEADTIME
-//       //    SEG0_reg <= digit_0_phi;
-//       //    SEG1_reg <= digit_1_phi;
-//       // end
-//       8'b000100 : begin // Vbat HEX
-//          SEG0_reg <= SEG_Vbat_HEX[ 7:0];
-//          SEG1_reg <= SEG_Vbat_HEX[15:8];
-//       end
-//       8'b001000 : begin // Ibat HEX
-//          SEG0_reg <= SEG_Ibat_HEX[ 7:0];
-//          SEG1_reg <= SEG_Ibat_HEX[15:8];
-//       end
-//       8'b010000 : begin // Vbat DEC
-//          SEG0_reg <= SEG_Vbat_DEC[ 7:0];
-//          SEG1_reg <= SEG_Vbat_DEC[15:8];
-//       end
-//       8'b100000 : begin // Ibat DEC
-//          SEG0_reg <= SEG_Ibat_DEC[ 7:0];
-//          SEG1_reg <= SEG_Ibat_DEC[15:8];
-//       end
-//       default: begin // shows '--'
-//          SEG0_reg <= 8'b10111111;
-//          SEG1_reg <= 8'b10111111;
-//       end
-//    endcase
-// end
 
 endmodule
 
