@@ -138,7 +138,7 @@ wire [1:0] sigma; // internal state
 wire  [7:0] SEG0_dsw, SEG1_dsw;
 reg  [15:0] SEG_ctrl;
 
-wire [7:0] SEG_DELTA, SEG_PHI, SEG_THETA_z, SEG_THETA_x, SEG_IREF;
+wire [15:0] SEG_DELTA, SEG_PHI, SEG_THETA_z, SEG_THETA_x;
 wire [3:0] button, sw;   // debounce buttons and switch
 // wire [1:0] sw2;
 // assign GPIO0[4:3] = sw2;
@@ -302,7 +302,7 @@ hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
    .i_RESET( CPU_RESET  ),   
    .i_vC( ADC_A ),      
    .i_iC( ADC_B ),      
-   .i_ZVS( 8'd180 + (~theta_x) + 1 ),    
+   .i_delta( 8'd180 + (~theta_x) + 1 ),    
    .i_phi( 0 ),      
    .i_sigma( ) 
 );
@@ -331,7 +331,7 @@ hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
    .i_RESET( CPU_RESET  ),   
    .i_vC( ADC_A ),      
    .i_iC( ADC_B ),      
-   .i_ZVS( delta ),    
+   .i_delta( delta ),    
    .i_phi( phi ),      
    .i_sigma( ) 
 );
@@ -340,68 +340,70 @@ hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
 // ----- control of the angles -----
 // ---------------------------------
    // PHI
-   value_control  #(
-      .INTEGER_STEP(5),
-      .INTEGER_MIN (0),
-      .INTEGER_MAX (90),
-      .N_BIT       (8) 
-   ) phi_control (
-      .i_CLK(clk_100M),
-      .i_RST(button[0]),
-      .inc_btn(button[1]),
-      .dec_btn(button[2]),
-      .count(phi),
-      .o_seg(SEG_PHI)
-   );
+      value_control  #(
+         .INTEGER_STEP(5),
+         .INTEGER_MIN (0),
+         .INTEGER_MAX (90),
+         .N_BIT       (8) 
+      ) phi_control (
+         .i_CLK(clk_100M),
+         .i_RST(button[0]),
+         .inc_btn(button[1]),
+         .dec_btn(button[2]),
+         .count(phi),
+         .o_seg(SEG_PHI)
+      );
 
    // DELTA (ZVS)
-   value_control  #(
-      .INTEGER_STEP(1),
-      .INTEGER_MIN (0),
-      .INTEGER_MAX (40),
-      .N_BIT       (8) 
-   ) delta_control (
-      .i_CLK(clk_100M),
-      .i_RST(CPU_RESET),
-      .inc_btn(button[3]),
-      .dec_btn(1'b0),
-      .count(delta),
-      .o_seg(SEG_DELTA)
-   );
+      value_control  #(
+         .INTEGER_STEP(1),
+         .INTEGER_MIN (0),
+         .INTEGER_MAX (40),
+         .N_BIT       (8) 
+      ) delta_control (
+         .i_CLK(clk_100M),
+         .i_RST(CPU_RESET),
+         .inc_btn(button[3]),
+         .dec_btn(1'b0),
+         .count(delta),
+         .o_seg(SEG_DELTA)
+      );
 
    // THETA in z-plane
-   value_control  #(
-      .INTEGER_STEP(5),
-      .INTEGER_MIN (10),
-      .INTEGER_MAX (180),
-      .INTEGER_RST (180),
-      .N_BIT       (8),
-      .DP          (2'b10),
-      .SHIFT       (1)
-   ) theta_z_control (
-      .i_CLK(clk_100M),
-      .i_RST(button[0]),
-      .inc_btn(button[1]),
-      .dec_btn(button[2]),
-      .count(theta_z),
-      .o_seg(SEG_THETA_z)
-   );
+      value_control  #(
+         .INTEGER_STEP(5),
+         .INTEGER_MIN (10),
+         .INTEGER_MAX (180),
+         .INTEGER_RST (180),
+         .N_BIT       (8),
+         .DP          (2'b10),
+         .SHIFT       (1)
+      ) theta_z_control (
+         .i_CLK(clk_100M),
+         .i_RST(button[0]),
+         .inc_btn(button[1]),
+         .dec_btn(button[2]),
+         .count(theta_z),
+         .o_seg(SEG_THETA_z)
+      );
 
    // THETA in x-plane
-   value_control  #(
-      .INTEGER_STEP(5),
-      .INTEGER_MIN (90),
-      .INTEGER_MAX (180),
-      .INTEGER_RST (180),
-      .N_BIT       (8) 
-   ) theta_x_control (
-      .i_CLK(clk_100M),
-      .i_RST(button[0]),
-      .inc_btn(button[1]),
-      .dec_btn(button[2]),
-      .count(theta_x),
-      .o_seg(SEG_THETA_x)
-   );
+      value_control  #(
+         .INTEGER_STEP(5),
+         .INTEGER_MIN (90),
+         .INTEGER_MAX (180),
+         .INTEGER_RST (180),
+         .N_BIT       (8),
+         .DP          (2'b10),
+         .SHIFT       (1)
+      ) theta_x_control (
+         .i_CLK(clk_100M),
+         .i_RST(button[0]),
+         .inc_btn(button[1]),
+         .dec_btn(button[2]),
+         .count(theta_x),
+         .o_seg(SEG_THETA_x)
+      );
 
 // +++ DEAD-TIME +++ //
 
@@ -554,7 +556,7 @@ hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
       .SEG0(SEG0_dsw),
       .SEG1(SEG1_dsw),
       .SEL({DSW[7:4],DSW[1:0]}),
-      .SEG_A(SEG_IREF),
+      .SEG_A(SEG_DELTA),
       .SEG_B(SEG_DELTA),
       .SEG_C(SEG_Vbat_HEX),
       .SEG_D(SEG_Ibat_HEX),
@@ -564,56 +566,4 @@ hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
 
 
 endmodule
-
-
-
-
-// // choose the mode of the controller
-// always  begin
-//    case (SW[2:1])
-//       2'b00 : begin // PHI+THETA
-//          // if (~SW[3]) begin // phi
-//             // SEG0_dsw <= digit_0_phi;
-//             // SEG1_dsw <= digit_1_phi;
-//          // end else begin    // theta
-//          //    SEG0_dsw <= theta_HC[3:0];
-//          //    SEG1_dsw <= theta_HC[7:4];
-//          // end
-//          MOSFET   <= MOSFET_theta_phi;
-//       end
-//       2'b01 : begin  // THETA
-//          // SEG0_dsw <= digit_0_theta;
-//          // SEG1_dsw <= digit_1_theta;
-//          MOSFET   <= MOSFET_theta;
-//       end
-//       2'b10 : begin // PHI
-//          // SEG0_dsw <= digit_0_phi;
-//          // SEG1_dsw <= digit_1_phi;
-//          MOSFET   <= MOSFET_phi;
-//       end
-//       default: begin // shows '--'
-//          SEG0_dsw <= 8'b10111111;
-//          SEG1_dsw <= 8'b10111111;
-//          MOSFET   <= 4'b0;
-//       end
-//    endcase
-   
-// end
-
-
-// control law PHI + THETA
-// hybrid_control_theta_phi #(.mu_x1(32'd86), .mu_x2(32'd90), .mu_Vg(32'd312000)
-// ) hybrid_control_theta_phi_inst (
-//    .o_MOSFET( MOSFET_phi ),  // control signal for the four MOSFETs
-//    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
-//    .o_debug(  ),    // ---
-//    .i_clock( clk_100M ), // 
-//    .i_RESET( CPU_RESET ),    // 
-//    .i_vC( ADC_A ),       // 
-//    .i_iC( ADC_B ),       // 
-//    .i_theta( theta_HC ),    // 32'd314
-//    .i_phi( phi_HC ),        // phi // pi/4 - 32'h0000004E
-//    .i_sigma( ) //{ {31{sigma[1]}} , sigma[0] } )
-// );
-
 

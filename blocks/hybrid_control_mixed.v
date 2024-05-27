@@ -36,7 +36,7 @@ module hybrid_control_mixed #(
    input                 i_RESET,     // reset signal
    input  signed [13:0]  i_vC,        // [14bit-signed] input related to z1
    input  signed [13:0]  i_iC,        // [14bit-signed] input related to z2
-   input  signed [31:0]  i_ZVS,     // [32bit-signed] angle freq. mod.
+   input  signed [31:0]  i_delta,     // [32bit-signed] angle freq. mod.
    input  signed [31:0]  i_phi,       // [32bit-signed] angle phase mod.
    input  signed [31:0]  i_sigma
 );
@@ -44,8 +44,8 @@ module hybrid_control_mixed #(
 wire signed [31:0]  vC_32;  //
 wire signed [31:0]  iC_32;  //
 
-wire signed [31:0]  czvs;  // cos( theta+phi )
-wire signed [31:0]  szvs;  // sin( theta+phi )
+wire signed [31:0]  cdelta;  // cos( theta+phi )
+wire signed [31:0]  sdelta;  // sin( theta+phi )
 wire signed [31:0]  cphi;  // cos( theta-phi )
 wire signed [31:0]  sphi;  // sin( theta-phi )
 
@@ -120,16 +120,16 @@ wire signed [31:0]  sphi;  // sin( theta-phi )
 
 
 // function instantiation
-trigonometry_deg trigonometry_ZVS_inst (
-   .o_cos(czvs),    // cosine of the input
-   .o_sin(szvs),    // sine of the input
-   .i_theta(i_ZVS)  // input angle "theta+phi"
+trigonometry_deg trigonometry_delta_inst (
+   .o_cos(cdelta),    // cosine of the input
+   .o_sin(sdelta),    // sine of the input
+   .i_theta(i_delta)  // input angle "theta+phi"
 );
 
-trigonometry_deg trigonometry_phi_ZVS_inst (
+trigonometry_deg trigonometry_phi_delta_inst (
    .o_cos(cphi),          // cosine of the input
    .o_sin(sphi),          // sine of the input
-   .i_theta(i_ZVS+(i_phi<<1))  // input angle "ZVS+2*phi"
+   .i_theta(i_delta+(i_phi<<1))  // input angle "ZVS+2*phi"
 );
 
 // regularize the sign from the switching surface
@@ -182,7 +182,7 @@ always @(posedge i_clock) begin
 
    // compute the switching line, we are just interested in the sign afterwards
    S0 = X1*sphi + (~(X2*cphi)+1);
-   S1 = X1*szvs + (~(X2*czvs)+1);
+   S1 = X1*sdelta + (~(X2*cdelta)+1);
    
 end
 
