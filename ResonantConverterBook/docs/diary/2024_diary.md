@@ -187,14 +187,23 @@ Today I've done few changes that, I think, have a major impact:
  - In the generation of the clock signal for the state machine, look two steps back to reset the clock down to zero (¡I don't know if it might be dangerous!).
  - Introduce a saturation module that by construction has the lower limit at zero. This might be not necessary, but it is safer since the behavior is more predictable to me.
  - Add a low-pass filter on 4 sample on Ibat expressed in mA. This improved the behavior with small amplitudes by making it more robust. The oscillations in $\varphi$ were causing the converter to shut-down.
- - Try to fix the regularization block. I think that is was not working properly. It need more testing.
+ - Try to fix the regularization block. I think that it was not working properly. It needs more testing.
 The converter without the AW is working super fine, the problem is that it is going in overflow after some time. The AW is making the behavior at the limit worst, as if $\varphi$ is oscillating.
 
-For the AW I've done several test with different gains but it is not working. PSIM simulation is fine but FPGA does not agree on this.
+For the AW I've done several tests with different gains but it is not working. PSIM simulation is fine but FPGA does not agree on this.
 
 I'm trying in simulation to see how it will behave a controller just working in the frequency modulation scenario (change only $\delta$).
-The input/output characteristic is a bit strange and in a certain range it has a really big ripple.
+The input/output characteristic is a bit strange and in a certain range it has a huge ripple.
 
 
 24 May - Debugging and debugging again as style of life. The regularization seems to work.
-Then, after several trial, the PI block need to have signed number. The reason: operation `>>>` (arithmetic shift) adds trailing 1 or 0. But it adds 0 iff the MSB is 1 and the register (maybe also wire) is declared `signed`. Otherwise it is always adding 0 making the number becoming positive.
+Then, after several trials, the PI block need to have signed number. The reason: operation `>>>` (arithmetic shift) adds trailing 1 or 0. But it adds 0 iff the MSB is 1 and the register (maybe also wire) is declared `signed`. Otherwise, it is always adding 0 making the number becoming positive.
+
+I finish the day by taking measurements of the quantity in the resonant tank and in the sensing.
+
+We should try to put a big capacitor in parallel with the electronic load to see if the behavior is better.
+
+27 May - Let the last week to start. Both electronic loads are out :o, non really, one seems out, the other has problem in regulating the output voltage, probably the two controllers are clashing with each other and this results in an oscillating behavior in the electronic load.
+David might help me tomorrow in attaching a real battery and see what is the real behavior.
+
+I'm going to improve the TOP_open_loop so that I can do the tests.

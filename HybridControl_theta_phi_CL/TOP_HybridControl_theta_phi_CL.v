@@ -107,7 +107,7 @@ wire     clk_100k;
 // signal for the MOSFETs
 wire       ENABLE, ALERT;
 wire       Q1, Q2, Q3, Q4;
-wire [3:0] Q100, Q200, Q400, Q600;  // different MOSFET control with different deadtimes (in ns)
+wire [3:0] Q800, Q200, Q400, Q600;  // different MOSFET control with different deadtimes (in ns)
 reg  [3:0] Qout;
 wire [3:0] MOSFET_theta;
 wire [3:0] MOSFET_phi;
@@ -388,8 +388,8 @@ value_control  #(
 
 // PI WITH ANTIWINDUP
    PI #( 
-      .Kp  (3),   .shift_Kp (13),
-      .TsKi(1),   .shift_Ki (12),
+      .Kp  (3),   .shift_Kp (14),
+      .TsKi(1),   .shift_Ki (16),
       .Kaw (0),   .shift_Kaw(0) //512
    ) PI_inst(
       .o_PI(phi_PI_tmp),   // output value
@@ -440,7 +440,7 @@ value_control  #(
 // +++ DEAD TIME +++ 
 
    dead_time #(.DEADTIME(80), .N(4)) dead_time_inst_1(
-      .o_signal( Q100 ),          // output switching variable
+      .o_signal( Q800 ),          // output switching variable
       .i_clock(  clk_100M ),            // for sequential behavior
       .i_signal( MOSFET )
    );
@@ -552,7 +552,7 @@ value_control  #(
    always  begin
       case (DSW[3:2])
          2'b00 :  
-            Qout <= Q100;
+            Qout <= Q800;
          2'b10 : 
             Qout <= Q200;
          2'b01 :  
