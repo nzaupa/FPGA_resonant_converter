@@ -280,7 +280,8 @@ PLL_theta_phi_OL PLL_inst (
 //    3. delta+phi  --> mixte modulation ensuring ZVS
 
 // control law THETA
-hybrid_control_theta HC_theta (
+hybrid_control_theta_z #(.mu_z1(32'd154), .mu_z2(32'd90), .mu_Vg(32'd31200)
+)HC_theta (
    .o_MOSFET( MOSFET_theta_z ),   // control signal for the four MOSFETs
    .o_sigma(  ),          // output switching variable
    .o_debug(  ),          // [16bit]
@@ -296,7 +297,7 @@ hybrid_control_mixed #(.mu_z1(32'd154), .mu_z2(32'd90)
 ) HC_delta (
    .o_MOSFET( MOSFET_theta_x ),  // control signal for the four MOSFETs
    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
-   .o_debug( debug ),   
+   .o_debug(  ),   
    .i_clock( clk_100M ),
    .i_RESET( CPU_RESET  ),   
    .i_vC( ADC_A ),      
@@ -323,8 +324,8 @@ hybrid_control_phi_x HC_phi (
 hybrid_control_mixed #(.mu_z1(32'd154), .mu_z2(32'd90)
 ) HC_delta (
    .o_MOSFET( MOSFET_delta ),  // control signal for the four MOSFETs
-   .o_sigma( test ),         // 2 bit for signed sigma -> {-1,0,1}
-   .o_debug( debug ),   
+   .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
+   .o_debug(  ),   
    .i_clock( clk_100M ),
    .i_RESET( CPU_RESET  ),   
    .i_vC( ADC_A ),      
