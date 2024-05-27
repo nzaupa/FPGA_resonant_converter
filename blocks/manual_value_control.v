@@ -15,7 +15,7 @@ module value_control #(
    parameter INTEGER_RST  = 0,   // Initial count value
    parameter N_BIT        = 8,   // Number of bits of the counter
    parameter DP           = 3,
-   parameter SHIFT        = 0,
+   parameter SHIFT        = 0
 )(
    input              i_CLK,
    input              i_RST,

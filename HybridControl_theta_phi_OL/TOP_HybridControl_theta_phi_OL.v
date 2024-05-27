@@ -135,7 +135,8 @@ wire [31:0] theta_x;
 
 wire [1:0] sigma; // internal state
 
-wire  [7:0] SEG0_reg, SEG1_reg;
+wire  [7:0] SEG0_dsw, SEG1_dsw;
+reg  [15:0] SEG_ctrl;
 
 wire [7:0] SEG_DELTA, SEG_PHI, SEG_THETA_z, SEG_THETA_x, SEG_IREF;
 wire [3:0] button, sw;   // debounce buttons and switch
@@ -190,10 +191,10 @@ assign  DA = debug[20:7];
    // RECTIFIER: show the values on 7seg display and LEDs
    // assign LED = SW[3] ? ~ADC_Vbat : ~ADC_Ibat;
 
-   // assign SEG0 = SEG0_reg;
-   // assign SEG1 = SEG1_reg;
-   assign SEG0 = ~sw[3] ? digit_0_phi : SEG0_reg; //SEG0_reg;
-   assign SEG1 = ~sw[3] ? digit_1_phi : SEG1_reg; //SEG1_reg;
+   // assign SEG0 = SEG0_dsw;
+   // assign SEG1 = SEG1_dsw;
+   assign SEG0 = ~sw[3] ? SEG_ctrl[ 7:0] : SEG0_dsw; //SEG0_dsw;
+   assign SEG1 = ~sw[3] ? SEG_ctrl[15:8] : SEG1_dsw; //SEG1_dsw;
 
    // connected to GPIO1 and available on the rectifier board
    // all are available on the 2×6 connector, 6 of them are connected to LEDs
@@ -374,7 +375,9 @@ hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
       .INTEGER_MIN (10),
       .INTEGER_MAX (180),
       .INTEGER_RST (180),
-      .N_BIT       (8) 
+      .N_BIT       (8),
+      .DP          (2'b10),
+      .SHIFT       (1)
    ) theta_z_control (
       .i_CLK(clk_100M),
       .i_RST(button[0]),
@@ -503,18 +506,23 @@ hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
       case (sw[2:1])
          2'b00 : begin // PHI+THETA
             MOSFET   <= MOSFET_delta;
+            SEG_ctrl <= SEG_PHI;
          end
          2'b01 : begin  // THETA in z
             MOSFET   <= MOSFET_theta_z;
+            SEG_ctrl <= SEG_THETA_z;
          end
          2'b10 : begin // THETA in x
             MOSFET   <= MOSFET_theta_x;
+            SEG_ctrl <= SEG_THETA_x;
          end
          2'b11 : begin // PHI
             MOSFET   <= MOSFET_phi;
+            SEG_ctrl <= SEG_PHI;
          end
          default: begin // shows '--'
             MOSFET   <= 4'b0;
+            SEG_ctrl <= 16'b10111111_10111111;
          end
       endcase
    end
@@ -543,8 +551,8 @@ hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
 // +++ 7-SEGMENTS DISPLAY +++
    // choose what to show on the display
    debug_display debug_display_inst (
-      .SEG0(SEG0_reg),
-      .SEG1(SEG1_reg),
+      .SEG0(SEG0_dsw),
+      .SEG1(SEG1_dsw),
       .SEL({DSW[7:4],DSW[1:0]}),
       .SEG_A(SEG_IREF),
       .SEG_B(SEG_DELTA),
@@ -565,27 +573,27 @@ endmodule
 //    case (SW[2:1])
 //       2'b00 : begin // PHI+THETA
 //          // if (~SW[3]) begin // phi
-//             // SEG0_reg <= digit_0_phi;
-//             // SEG1_reg <= digit_1_phi;
+//             // SEG0_dsw <= digit_0_phi;
+//             // SEG1_dsw <= digit_1_phi;
 //          // end else begin    // theta
-//          //    SEG0_reg <= theta_HC[3:0];
-//          //    SEG1_reg <= theta_HC[7:4];
+//          //    SEG0_dsw <= theta_HC[3:0];
+//          //    SEG1_dsw <= theta_HC[7:4];
 //          // end
 //          MOSFET   <= MOSFET_theta_phi;
 //       end
 //       2'b01 : begin  // THETA
-//          // SEG0_reg <= digit_0_theta;
-//          // SEG1_reg <= digit_1_theta;
+//          // SEG0_dsw <= digit_0_theta;
+//          // SEG1_dsw <= digit_1_theta;
 //          MOSFET   <= MOSFET_theta;
 //       end
 //       2'b10 : begin // PHI
-//          // SEG0_reg <= digit_0_phi;
-//          // SEG1_reg <= digit_1_phi;
+//          // SEG0_dsw <= digit_0_phi;
+//          // SEG1_dsw <= digit_1_phi;
 //          MOSFET   <= MOSFET_phi;
 //       end
 //       default: begin // shows '--'
-//          SEG0_reg <= 8'b10111111;
-//          SEG1_reg <= 8'b10111111;
+//          SEG0_dsw <= 8'b10111111;
+//          SEG1_dsw <= 8'b10111111;
 //          MOSFET   <= 4'b0;
 //       end
 //    endcase
