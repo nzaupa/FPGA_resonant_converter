@@ -136,8 +136,86 @@ width: 400px
 Current (purple) and voltage (green) at the electronic load during the startup phase.
 ```
 
+17 May - Clean the chapter of the thesis on the design i he descansat. In the afternoon I've done some measurements for different value of the output voltage, so far they seem to track what expected. Anyway, the converter is working with 24V and not with the 48V for which it was designed. I need to check the proper definition for ZVS and ZCS, mostly ZCS to check if it is happening.
+Below, the curves obtained from the measurements. They match the one that Carlos has in the presentation.
+
+```{figure} ../images/diary/20240517_battery_load.png
+---
+width: 400px
+---
+Point measure with the oscilloscope.
+```
+
+18 May - Work from home and groceries. Clean up the section on the resonant tank sensing.
+
+19 May - Flea market and working from home. I've created a PSIM simulation that should work as reference for theoretical behavior of the prototype. The antiwind-up behavior has been added and there was a problem with the scaling, i.e., Kaw is much higher than Ki Kp since the error scale is higher than the phi scale.
 
 
+20 May - The converter decided that it is not the day to work. It starts with low amplitude and then we can move it to a working point with higher amplitude (lower phi); but if we start it directly with low phi it starts glitching and making noise (music).
+A reason might be that it experienced high voltage since I turn it ON with the electronic load in standby. The output was saying 100 something Volts.
+But, if I run it in open-loop it is working without problem, even reaching phi equal to 80deg.
+Ok, I'm going out crazy. Simulations in PSIM result with a higher frequency than expected, around 100kHz (the block to compute the frequency had an error, it was not necessary to divide by 2).
+While, the prototype is working at the expected frequency.
+The reasons are so far unknown.
+
+Then, why is the converter turning OFF when I use the CL but not when it is in open loop? I'm testing at 24V. For some reasons, in OL the voltage $v_C$ is within the forecast bound. In CL, it is overflowing it, causing the ADC to go in overflow. One way it to clip the value in the FPGA by managing the overflow bits, another way is to change the sensing circuit. In the end I change the resistor Rpv1, the one that steps-down the voltage on the tank side, from 4.8kOhm to 8.2kOhm. I've also added a piece of code that should manage values out of the range, I think the problem was meanly related to the fact that we are inverting the number, and the negative overflow 100000 corresponds to the same, which then was read as a number with inverse polarity.
+
+Then, the open-loop works smoothly. The closed-loop also considering a resistor as load. It seems that the antiwind-up in this case is not working since when we are near to phi=0 it stops instead of keeping phi=0.
+
+With the electronic load is more problematic. First, there is a transient behavior at the beginning that is creating high current and voltage in the resonant tank with low-frequency (around 20kHz). 
+Then, the converter may stabilize to a point but it can also turn OFF.
+
+I'm so stupid or so fucked up, right now idk, that I copied the PSIM simulation from the old folder without remembering that I was working on another version in the folder `2024_OBC`. So there was still the error on the diodes' capacitance.
+
+- Simulation in now working in `THESIS_ALL`
+- PI with AW is working in simulation
+- The range for $v_C$ could still be too small for a full rated power
 
 
+21 May - Heures au telephone avec les services françaises qui te mis en attent. In the end is herpes and I have to rest. So, I'm working from the apartment on the thesis and I've started using `circuitikz`, easier than expected once you know how to use the coordinates.
 
+
+22 May - Another day working from home
+
+Went to check if the controller it is working. Still, it has problems and I haven't solved much. I feel that the time start to be limited and this might be stressing.
+
+
+23 May - Back in the lab with the same problems.The controller in CL is not able to stay ON for small references, while for larger one it fails when phi is near zero.
+The converter is glitching and this is due to the rapid changes in phi, I try to solve this by filtering the estimated current.
+Today I've done few changes that, I think, have a major impact:
+ - Remove the inc=2 if $\varphi=0$, so that, it always goes through $\sigma=0$. This solved the problem that was arising in the case $\varphi$ was going to zero while $\sigma=0$, this implied that $\sigma$ stayed at zero for the whole time.
+ - In the generation of the clock signal for the state machine, look two steps back to reset the clock down to zero (¡I don't know if it might be dangerous!).
+ - Introduce a saturation module that by construction has the lower limit at zero. This might be not necessary, but it is safer since the behavior is more predictable to me.
+ - Add a low-pass filter on 4 sample on Ibat expressed in mA. This improved the behavior with small amplitudes by making it more robust. The oscillations in $\varphi$ were causing the converter to shut-down.
+ - Try to fix the regularization block. I think that it was not working properly. It needs more testing.
+The converter without the AW is working super fine, the problem is that it is going in overflow after some time. The AW is making the behavior at the limit worst, as if $\varphi$ is oscillating.
+
+For the AW I've done several tests with different gains but it is not working. PSIM simulation is fine but FPGA does not agree on this.
+
+I'm trying in simulation to see how it will behave a controller just working in the frequency modulation scenario (change only $\delta$).
+The input/output characteristic is a bit strange and in a certain range it has a huge ripple.
+
+
+24 May - Debugging and debugging again as style of life. The regularization seems to work.
+Then, after several trials, the PI block need to have signed number. The reason: operation `>>>` (arithmetic shift) adds trailing 1 or 0. But it adds 0 iff the MSB is 1 and the register (maybe also wire) is declared `signed`. Otherwise, it is always adding 0 making the number becoming positive.
+
+I finish the day by taking measurements of the quantity in the resonant tank and in the sensing.
+
+We should try to put a big capacitor in parallel with the electronic load to see if the behavior is better.
+
+27 May - Let the last week to start. Both electronic loads are out :o, non really, one seems out, the other has problem in regulating the output voltage, probably the two controllers are clashing with each other and this results in an oscillating behavior in the electronic load.
+David might help me tomorrow in attaching a real battery and see what is the real behavior.
+
+I'm going to improve the TOP_open_loop so that I can do the tests.
+
+After a long the day the result is: improved open-loop code with more options. I solved some compatibility problems and done some updates after new insights from the closed-loop. Now, what the OL can do is:
+ - by acting on `sw[2:1]` we can choose the controller
+   - 00 phi + delta
+   - 01 theta in z-plane (improved version with regularization)
+   - 10 theta in x-plane (run on mixed control by changing delta)
+   - 11 phi in x
+ - the angles phi and theta are changed with the buttons [1], [2] and reset with [0], delta with [3] and reset with [CPU_RESET]
+
+Anyway, the offset/distortion on the current measurements is still present. Sometimes it seems not important other yes...
+
+On the closed-loop. The original electronic load is officially dead, the older one is still interacting in a bad way. The last possibility is to use a real battery, another temporary solution might be to use a big capacitor (mF) in parallel with the EL.

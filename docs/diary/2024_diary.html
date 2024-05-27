@@ -536,6 +536,70 @@ Essentially, at the turn-ON the EL voltage goes higher than the selected 20V, sp
 <p><span class="caption-number">Fig. 20 </span><span class="caption-text">Current (purple) and voltage (green) at the electronic load during the startup phase.</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<p>17 May - Clean the chapter of the thesis on the design i he descansat. In the afternoon I’ve done some measurements for different value of the output voltage, so far they seem to track what expected. Anyway, the converter is working with 24V and not with the 48V for which it was designed. I need to check the proper definition for ZVS and ZCS, mostly ZCS to check if it is happening.
+Below, the curves obtained from the measurements. They match the one that Carlos has in the presentation.</p>
+<figure class="align-default" id="id5">
+<a class="reference internal image-reference" href="../../_images/20240517_battery_load.png"><img alt="../../_images/20240517_battery_load.png" src="../../_images/20240517_battery_load.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 21 </span><span class="caption-text">Point measure with the oscilloscope.</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>18 May - Work from home and groceries. Clean up the section on the resonant tank sensing.</p>
+<p>19 May - Flea market and working from home. I’ve created a PSIM simulation that should work as reference for theoretical behavior of the prototype. The antiwind-up behavior has been added and there was a problem with the scaling, i.e., Kaw is much higher than Ki Kp since the error scale is higher than the phi scale.</p>
+<p>20 May - The converter decided that it is not the day to work. It starts with low amplitude and then we can move it to a working point with higher amplitude (lower phi); but if we start it directly with low phi it starts glitching and making noise (music).
+A reason might be that it experienced high voltage since I turn it ON with the electronic load in standby. The output was saying 100 something Volts.
+But, if I run it in open-loop it is working without problem, even reaching phi equal to 80deg.
+Ok, I’m going out crazy. Simulations in PSIM result with a higher frequency than expected, around 100kHz (the block to compute the frequency had an error, it was not necessary to divide by 2).
+While, the prototype is working at the expected frequency.
+The reasons are so far unknown.</p>
+<p>Then, why is the converter turning OFF when I use the CL but not when it is in open loop? I’m testing at 24V. For some reasons, in OL the voltage <span class="math notranslate nohighlight">\(v_C\)</span> is within the forecast bound. In CL, it is overflowing it, causing the ADC to go in overflow. One way it to clip the value in the FPGA by managing the overflow bits, another way is to change the sensing circuit. In the end I change the resistor Rpv1, the one that steps-down the voltage on the tank side, from 4.8kOhm to 8.2kOhm. I’ve also added a piece of code that should manage values out of the range, I think the problem was meanly related to the fact that we are inverting the number, and the negative overflow 100000 corresponds to the same, which then was read as a number with inverse polarity.</p>
+<p>Then, the open-loop works smoothly. The closed-loop also considering a resistor as load. It seems that the antiwind-up in this case is not working since when we are near to phi=0 it stops instead of keeping phi=0.</p>
+<p>With the electronic load is more problematic. First, there is a transient behavior at the beginning that is creating high current and voltage in the resonant tank with low-frequency (around 20kHz).
+Then, the converter may stabilize to a point but it can also turn OFF.</p>
+<p>I’m so stupid or so fucked up, right now idk, that I copied the PSIM simulation from the old folder without remembering that I was working on another version in the folder <code class="docutils literal notranslate"><span class="pre">2024_OBC</span></code>. So there was still the error on the diodes’ capacitance.</p>
+<ul class="simple">
+<li><p>Simulation in now working in <code class="docutils literal notranslate"><span class="pre">THESIS_ALL</span></code></p></li>
+<li><p>PI with AW is working in simulation</p></li>
+<li><p>The range for <span class="math notranslate nohighlight">\(v_C\)</span> could still be too small for a full rated power</p></li>
+</ul>
+<p>21 May - Heures au telephone avec les services françaises qui te mis en attent. In the end is herpes and I have to rest. So, I’m working from the apartment on the thesis and I’ve started using <code class="docutils literal notranslate"><span class="pre">circuitikz</span></code>, easier than expected once you know how to use the coordinates.</p>
+<p>22 May - Another day working from home</p>
+<p>Went to check if the controller it is working. Still, it has problems and I haven’t solved much. I feel that the time start to be limited and this might be stressing.</p>
+<p>23 May - Back in the lab with the same problems.The controller in CL is not able to stay ON for small references, while for larger one it fails when phi is near zero.
+The converter is glitching and this is due to the rapid changes in phi, I try to solve this by filtering the estimated current.
+Today I’ve done few changes that, I think, have a major impact:</p>
+<ul class="simple">
+<li><p>Remove the inc=2 if <span class="math notranslate nohighlight">\(\varphi=0\)</span>, so that, it always goes through <span class="math notranslate nohighlight">\(\sigma=0\)</span>. This solved the problem that was arising in the case <span class="math notranslate nohighlight">\(\varphi\)</span> was going to zero while <span class="math notranslate nohighlight">\(\sigma=0\)</span>, this implied that <span class="math notranslate nohighlight">\(\sigma\)</span> stayed at zero for the whole time.</p></li>
+<li><p>In the generation of the clock signal for the state machine, look two steps back to reset the clock down to zero (¡I don’t know if it might be dangerous!).</p></li>
+<li><p>Introduce a saturation module that by construction has the lower limit at zero. This might be not necessary, but it is safer since the behavior is more predictable to me.</p></li>
+<li><p>Add a low-pass filter on 4 sample on Ibat expressed in mA. This improved the behavior with small amplitudes by making it more robust. The oscillations in <span class="math notranslate nohighlight">\(\varphi\)</span> were causing the converter to shut-down.</p></li>
+<li><p>Try to fix the regularization block. I think that it was not working properly. It needs more testing.
+The converter without the AW is working super fine, the problem is that it is going in overflow after some time. The AW is making the behavior at the limit worst, as if <span class="math notranslate nohighlight">\(\varphi\)</span> is oscillating.</p></li>
+</ul>
+<p>For the AW I’ve done several tests with different gains but it is not working. PSIM simulation is fine but FPGA does not agree on this.</p>
+<p>I’m trying in simulation to see how it will behave a controller just working in the frequency modulation scenario (change only <span class="math notranslate nohighlight">\(\delta\)</span>).
+The input/output characteristic is a bit strange and in a certain range it has a huge ripple.</p>
+<p>24 May - Debugging and debugging again as style of life. The regularization seems to work.
+Then, after several trials, the PI block need to have signed number. The reason: operation <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> (arithmetic shift) adds trailing 1 or 0. But it adds 0 iff the MSB is 1 and the register (maybe also wire) is declared <code class="docutils literal notranslate"><span class="pre">signed</span></code>. Otherwise, it is always adding 0 making the number becoming positive.</p>
+<p>I finish the day by taking measurements of the quantity in the resonant tank and in the sensing.</p>
+<p>We should try to put a big capacitor in parallel with the electronic load to see if the behavior is better.</p>
+<p>27 May - Let the last week to start. Both electronic loads are out :o, non really, one seems out, the other has problem in regulating the output voltage, probably the two controllers are clashing with each other and this results in an oscillating behavior in the electronic load.
+David might help me tomorrow in attaching a real battery and see what is the real behavior.</p>
+<p>I’m going to improve the TOP_open_loop so that I can do the tests.</p>
+<p>After a long the day the result is: improved open-loop code with more options. I solved some compatibility problems and done some updates after new insights from the closed-loop. Now, what the OL can do is:</p>
+<ul class="simple">
+<li><p>by acting on <code class="docutils literal notranslate"><span class="pre">sw[2:1]</span></code> we can choose the controller</p>
+<ul>
+<li><p>00 phi + delta</p></li>
+<li><p>01 theta in z-plane (improved version with regularization)</p></li>
+<li><p>10 theta in x-plane (run on mixed control by changing delta)</p></li>
+<li><p>11 phi in x</p></li>
+</ul>
+</li>
+<li><p>the angles phi and theta are changed with the buttons [1], [2] and reset with [0], delta with [3] and reset with [CPU_RESET]</p></li>
+</ul>
+<p>Anyway, the offset/distortion on the current measurements is still present. Sometimes it seems not important other yes…</p>
+<p>On the closed-loop. The original electronic load is officially dead, the older one is still interacting in a bad way. The last possibility is to use a real battery, another temporary solution might be to use a big capacitor (mF) in parallel with the EL.</p>
 </section>
 </section>
 
