@@ -116,7 +116,6 @@ wire [7:0]  Vbat_DEC, Ibat_DEC;
 wire [15:0] SEG_Vbat_HEX, SEG_Ibat_HEX, SEG_Vbat_DEC, SEG_Ibat_DEC;
 
 
-
 reg  [7:0] deadtime = 8'd5;
 wire [7:0] cnt_startup;
 wire [7:0] cnt_Vg;
@@ -136,7 +135,7 @@ wire [31:0] theta_x;
 
 wire [1:0] sigma; // internal state
 
-reg  [7:0] SEG0_reg, SEG1_reg;
+wire  [7:0] SEG0_reg, SEG1_reg;
 
 wire [7:0] SEG_DELTA, SEG_PHI, SEG_THETA_z, SEG_THETA_x, SEG_IREF;
 wire [3:0] button, sw;   // debounce buttons and switch

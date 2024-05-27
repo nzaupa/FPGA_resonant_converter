@@ -25,7 +25,7 @@
 
 
 // updated controller in z-plane
-module hybrid_control_theta_x #(
+module hybrid_control_theta_z #(
    parameter mu_z1 = 86,
    parameter mu_z2 = 90,
    parameter mu_Vg = 312000
