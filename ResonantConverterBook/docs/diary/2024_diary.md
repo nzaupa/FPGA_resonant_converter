@@ -207,3 +207,13 @@ We should try to put a big capacitor in parallel with the electronic load to see
 David might help me tomorrow in attaching a real battery and see what is the real behavior.
 
 I'm going to improve the TOP_open_loop so that I can do the tests.
+
+After a long the day the result is: improved open-loop code with more options. I solved some compatibility problems and done some updates after new insights from the closed-loop. Now, what the OL can do is:
+ - by acting on `sw[2:1]` we can choose the controller
+   - 00 phi + delta
+   - 01 theta in z-plane (improved version with regularization)
+   - 10 theta in x-plane (run on mixed control by changing delta)
+   - 11 phi in x
+ - the angles phi and theta are changed with the buttons [1], [2] and reset with [0], delta with [3] and reset with [CPU_RESET]
+
+On the closed-loop. The original electronic load is officially dead, the older one is still interacting in a bad way. The last possibility is to use a real battery, another temporary solution might be to use a big capacitor (mF) in parallel with the EL.

@@ -47,38 +47,29 @@ wire signed [31:0]  iC_32;   //
 wire signed [31:0]  ctheta;  //
 wire signed [31:0]  stheta;  //
 
-
-// CONSTANTS
-   // integer mu_z1 = 86;        // multiplier for z1 (voltage)
-   // integer mu_z2 = 90;        // multiplier for z2 (current), include sqrt(L/C)
-   // integer mu_Vg    = 312000;     // input voltage scaled accordingly to z1
-   reg [9:0] delay = 10'd400;        // time for which jumps are inhibits
-
 // INTERNAL VARIABLE
-   integer z1;                   // state z1
-   integer z2;                   // state z1
-   integer jump;
-   reg [9:0] counter;
+   integer z1; // state z1
+   integer z2; // state z1
+   integer S;  // switching surface
 
-   reg  sigma_prev, sigma;  // output variable sigma {0,1}
-   wire jump_enable, sigma_reset;
-
+   // reg  sigma_prev, sigma;  // output variable sigma {0,1}
+   wire SIGMA;
 
    wire signed [31:0] sigma_not;   // state ~sigma {-1,1} !! is the negate
 
 // assign output variable
-   assign o_sigma = sigma;
+   assign o_sigma = SIGMA;
    // bit conversion from 14bit to 32bit
    assign vC_32   = { {19{i_vC[13]}} , i_vC[12:0] };
    assign iC_32   = { {19{i_iC[13]}} , i_iC[12:0] };
    // sigma from {0,1} to {-1,1}
-   assign sigma_not = { {31{sigma_prev}} , 1'b1 }; // NOTE that is reverse to avoid minus sign
+   assign sigma_not = { {31{SIGMA}} , 1'b1 }; // NOTE that is reverse to avoid minus sign
 
-   assign o_MOSFET = { sigma_prev , ~sigma_prev , ~sigma_prev , sigma_prev };
+   assign o_MOSFET = { SIGMA , ~SIGMA , ~SIGMA , SIGMA };
 
 
 //   assign o_debug = { jump_enable, sigma_reset , {{ jump[31] , jump[22:10] }+14'sd8191}};
-   assign o_debug = { jump[31]};
+   assign o_debug = 0;
 
 
 // function instantiation
@@ -89,49 +80,59 @@ trigonometry_deg trigonometry_inst (
 );
 
 
-// variable initialization
-initial begin
-   sigma_prev  = 1'b1;
-   sigma       = 1'b1;
-   counter     = 10'b0;
-end
+// // variable initialization
+// initial begin
+//    sigma_prev  = 1'b1;
+//    sigma       = 1'b1;
+//    counter     = 10'b0;
+// end
 
+// // latch for the signal feedback
+// always @(posedge i_clock) begin
+//    sigma_prev <= sigma;
+// end
 
+regularization #(
+   .DEBOUNCE_TIME(5), // 20ns
+   .DELAY(200), // 2us -> fmax=250kHz
+   .N(1)
+) regularization_jump_inst (
+   .o_signal( SIGMA ),
+   .i_clk( i_clock ),
+   .i_reset( i_RESET ),
+   .i_signal( S[31] )
+);
 
-// latch for the signal feedback
 always @(posedge i_clock) begin
-   sigma_prev <= sigma;
-end
-
-
-always @(*) begin
    // compute coordinate transformation
-   z1       = mu_z1*(vC_32)+sigma_not*mu_Vg;  // note that sigma is already inverted
-   z2       = mu_z2*(iC_32);
-   jump     = z1*stheta + z2*ctheta;
+   z1 = mu_z1*(vC_32)+sigma_not*mu_Vg;  // sigma is already inverted
+   z2 = mu_z2*(iC_32);
+   S  = z1*stheta + z2*ctheta;
    // jump_1   = ( z1*stheta + z2*ctheta ) * sigma_not;
    // jump_2   = ((~z1+1)*ctheta + z2*stheta ) * sigma_not;
-   if (jump_enable) begin           // can jump
-      sigma <= jump[31];
-   end else begin
-      sigma <= sigma_prev;
-   end
+   // if (jump_enable) begin           // can jump
+   //    sigma <= jump[31];
+   // end else begin
+   //    sigma <= sigma_prev;
+   // end
 end
 
-always @(posedge i_clock ) begin
-   if(sigma_prev == sigma) begin // nothing change, continue to count
-      if( counter!=0 ) begin // count if EN=0
-         if( counter < delay )
-            counter <= counter+1'b1;
-         else
-            counter <= 10'b0; // reset the counter when it reach the limit
-      end
-   end else begin
-      counter <= 10'b1;
-   end
-end
 
-assign jump_enable = (counter == 0) ? 1'b1 : 1'b0;
+
+// always @(posedge i_clock ) begin
+//    if(sigma_prev == sigma) begin // nothing change, continue to count
+//       if( counter!=0 ) begin // count if EN=0
+//          if( counter < delay )
+//             counter <= counter+1'b1;
+//          else
+//             counter <= 10'b0; // reset the counter when it reach the limit
+//       end
+//    end else begin
+//       counter <= 10'b1;
+//    end
+// end
+
+// assign jump_enable = (counter == 0) ? 1'b1 : 1'b0;
 
 
 

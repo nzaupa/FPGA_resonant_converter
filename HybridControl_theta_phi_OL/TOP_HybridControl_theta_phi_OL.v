@@ -279,18 +279,29 @@ PLL_theta_phi_OL PLL_inst (
 //    2. only phi   --> amplitude modulation
 //    3. delta+phi  --> mixte modulation ensuring ZVS
 
-// control law THETA
-hybrid_control_theta_z #(.mu_z1(32'd154), .mu_z2(32'd90), .mu_Vg(32'd31200)
-)HC_theta_z (
+// control law THETA in z
+hybrid_control_theta_z #(.mu_z1(32'd154), .mu_z2(32'd90), .mu_Vg(32'd312000)
+) HC_theta_z (
    .o_MOSFET( MOSFET_theta_z ),   // control signal for the four MOSFETs
    .o_sigma(  ),          // output switching variable
    .o_debug(  ),          // [16bit]
    .i_clock( clk_100M ),  // for sequential behavior
-   .i_RESET( CPU_RESET ), // reset signal
+   .i_RESET( CPU_RESET & ENABLE_RST ), // reset signal
    .i_vC( ADC_A ),        // [14bit-signed] input related to z1
    .i_iC( ADC_B ),        // [14bit-signed] input related to z2
-   .i_theta( theta )     // [32bit-signed] angle of the switching surface
+   .i_theta( theta_z )     // [32bit-signed] angle of the switching surface
 );
+
+// hybrid_control_theta HC_theta_inst (
+//    .o_MOSFET( MOSFET_theta ),   // control signal for the four MOSFETs
+//    .o_sigma(  ),          // output switching variable
+//    .o_debug(  ),          // [16bit]
+//    .i_clock( clk_100M ),  // for sequential behavior
+//    .i_RESET( CPU_RESET ), // reset signal
+//    .i_vC( ADC_A ),        // [14bit-signed] input related to z1
+//    .i_iC( ADC_B ),        // [14bit-signed] input related to z2
+//    .i_theta( theta )     // [32bit-signed] angle of the switching surface
+// );
 
 // control law THETA in x
 hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
@@ -299,11 +310,12 @@ hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
    .o_debug(  ),   
    .i_clock( clk_100M ),
-   .i_RESET( CPU_RESET  ),   
+   .i_RESET( CPU_RESET & ENABLE_RST ),   
    .i_vC( ADC_A ),      
    .i_iC( ADC_B ),      
-   .i_delta( 8'd180 + (~theta_x) + 1 ),    
-   .i_phi( 0 ),      
+   .i_delta( delta),    
+   // .i_delta( 32'd180 + (~theta_x) + 1 ),    
+   .i_phi( 32'd0 ),      
    .i_sigma( ) 
 );
 
@@ -314,7 +326,7 @@ hybrid_control_phi_x #(.mu_x1(32'd154), .mu_x2(32'd90)
    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
    .o_debug( ),    // ? random currently
    .i_clock( clk_100M ), // ADA_DCO
-   .i_RESET( CPU_RESET ),    //
+   .i_RESET( CPU_RESET & ENABLE_RST ),    //
    .i_vC( ADC_A ),       //
    .i_iC( ADC_B ),       //
    .i_phi( phi )     // phi // pi/4 - 32'h0000004E
@@ -328,7 +340,7 @@ hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
    .o_debug(  ),   
    .i_clock( clk_100M ),
-   .i_RESET( CPU_RESET  ),   
+   .i_RESET( CPU_RESET & ENABLE_RST ),   
    .i_vC( ADC_A ),      
    .i_iC( ADC_B ),      
    .i_delta( delta ),    
@@ -358,7 +370,7 @@ hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
       value_control  #(
          .INTEGER_STEP(1),
          .INTEGER_MIN (0),
-         .INTEGER_MAX (40),
+         .INTEGER_MAX (180),
          .N_BIT       (8) 
       ) delta_control (
          .i_CLK(clk_100M),
@@ -404,6 +416,11 @@ hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
          .count(theta_x),
          .o_seg(SEG_THETA_x)
       );
+
+// +++ SEQUENTIAL BEHAVIOR +++
+   always @(posedge clk_100M) begin
+      VG_PREV <= VG;
+   end
 
 // +++ DEAD-TIME +++ //
 
@@ -516,7 +533,7 @@ hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
          end
          2'b10 : begin // THETA in x
             MOSFET   <= MOSFET_theta_x;
-            SEG_ctrl <= SEG_THETA_x;
+            SEG_ctrl <= SEG_DELTA;
          end
          2'b11 : begin // PHI
             MOSFET   <= MOSFET_phi;

@@ -57,5 +57,12 @@ This folder contains the `*.sof` files that can be directly uploaded to the FPGA
      - regularization is improved;
      - there is a 4 sample filter on Ibat, sampled at 100kHz;
      - state machine is always passing through 0 even with phi=0;
-     - saturation at 0 is hardcoded;
+     - saturation at 0 is hard-coded;
      - change in CLK for state-machine, now it is looking two time step back for the reset.
+ - `TOP_HybridControl_theta_phi_OL-20240527-working.sof`: improved version of the open-loop with some additional functionalities. The dip-switch possibilities remain the same as before. The different control that can be used are:
+   - by acting on `sw[2:1]` we can choose the controller
+       - 00 phi + delta
+       - 01 theta in z-plane (improved version with regularization)
+       - 10 theta in x-plane (run on mixed control by changing delta)
+       - 11 phi in x
+   - the angles phi and theta are changed with the buttons [1], [2] and reset with [0], delta with [3] and reset with [CPU_RESET]
