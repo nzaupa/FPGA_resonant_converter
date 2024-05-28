@@ -252,12 +252,6 @@ assign VG = cnt_startup > 8'd16; //10us to charge bootstrap capacitor
 // and the initialization sequence is terminated
 assign ENABLE_RST = ~( VG^VG_PREV );
 
-// --- assign for the control of the Resonant Tank ---      
-
-// assign   phi_HC   = phi;
-// // assign   theta_HC = sw[3] ? (32'd170+(~phi+1)) : theta;
-// // assign   theta_HC = 32'd160 + (~phi+1);
-// assign   theta_HC = 32'd160;
 
 
 // -------------------------------------
@@ -280,7 +274,7 @@ PLL_theta_phi_OL PLL_inst (
 //    3. delta+phi  --> mixte modulation ensuring ZVS
 
 // control law THETA in z
-hybrid_control_theta_z #(.mu_z1(32'd154), .mu_z2(32'd90), .mu_Vg(32'd312000)
+hybrid_control_theta_z #(.mu_z1(32'd160), .mu_z2(32'd90), .mu_Vg(32'd312000)
 ) HC_theta_z (
    .o_MOSFET( MOSFET_theta_z ),   // control signal for the four MOSFETs
    .o_sigma(  ),          // output switching variable
@@ -304,7 +298,7 @@ hybrid_control_theta_z #(.mu_z1(32'd154), .mu_z2(32'd90), .mu_Vg(32'd312000)
 // );
 
 // control law THETA in x
-hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
+hybrid_control_mixed #(.mu_x1(32'd160), .mu_x2(32'd90)
 ) HC_theta_x (
    .o_MOSFET( MOSFET_theta_x ),  // control signal for the four MOSFETs
    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
@@ -320,7 +314,7 @@ hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
 );
 
 // control law PHI
-hybrid_control_phi_x #(.mu_x1(32'd154), .mu_x2(32'd90)
+hybrid_control_phi_x #(.mu_x1(32'd160), .mu_x2(32'd90)
 ) HC_phi (
    .o_MOSFET( MOSFET_phi ),  // control signal for the four MOSFETs
    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}
@@ -334,7 +328,7 @@ hybrid_control_phi_x #(.mu_x1(32'd154), .mu_x2(32'd90)
 
 
 // control law PHI + DELTA
-hybrid_control_mixed #(.mu_x1(32'd154), .mu_x2(32'd90)
+hybrid_control_mixed #(.mu_x1(32'd160), .mu_x2(32'd90)
 ) HC_delta (
    .o_MOSFET( MOSFET_delta ),  // control signal for the four MOSFETs
    .o_sigma(  ),         // 2 bit for signed sigma -> {-1,0,1}

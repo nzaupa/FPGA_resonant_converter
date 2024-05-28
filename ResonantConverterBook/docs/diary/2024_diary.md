@@ -216,4 +216,10 @@ After a long the day the result is: improved open-loop code with more options. I
    - 11 phi in x
  - the angles phi and theta are changed with the buttons [1], [2] and reset with [0], delta with [3] and reset with [CPU_RESET]
 
+Anyway, the offset/distortion on the current measurements is still present. Sometimes it seems not important other yes...
+
 On the closed-loop. The original electronic load is officially dead, the older one is still interacting in a bad way. The last possibility is to use a real battery, another temporary solution might be to use a big capacitor (mF) in parallel with the EL.
+
+In the night I have clean the file that calculates the gain for the measurements and measure the gains from the capture. Now there are `csv` files with the measurements and MATLAB script for the interpolation. I aim to draw the plot with Tikz.
+
+28 May - Update the gain for the controller by characterizing the sensing: mu_vC=160, mu_iC=90, mu_Vg=312000[24V] or 624000[48V].
