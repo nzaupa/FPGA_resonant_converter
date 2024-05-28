@@ -505,6 +505,19 @@ hybrid_control_mixed #(.mu_x1(32'd160), .mu_x2(32'd90)
       DAB_copy = ~ADB_DATA+14'b1 + 14'd8191;
    end
 
+   LPF LPF_vC(
+      .o_mean(vC_filt),
+      .i_clock(clk_100k),
+      .i_RESET(CPU_RESET),
+      .i_data(ADC_A)
+   );
+   LPF LPF_iC(
+      .o_mean(iC_filt),
+      .i_clock(clk_100k),
+      .i_RESET(CPU_RESET),
+      .i_data(ADC_B)
+   );
+
    always @(negedge ADC_BAT_V_EOC) begin
       ADC_Vbat    = ADC_BAT_V;
    end

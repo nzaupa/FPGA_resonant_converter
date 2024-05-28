@@ -13,16 +13,16 @@
 
 `timescale 1 ns / 1 ps
 
-module LPF (
-   output [31:0]  o_mean,      // [32bit-signed] mean on 4 samples
+module LPF #(parameter NBIT=32)(
+   output [NBIT-1:0]  o_mean,      // [32bit-signed] mean on 4 samples
    input          i_clock,     // for sequential behavior
    input          i_RESET,     // reset signal
-   input  [31:0]  i_data      // [32bit-signed] input data to be filtered
+   input  [NBIT-1:0]  i_data      // [32bit-signed] input data to be filtered
 );
 
 
 // INTERNAL VARIABLE
-   reg [31:0] z1, z2, z3, z4;   // memory for the data
+   reg [NBIT-1:0] z1, z2, z3, z4;   // memory for the data
 
 
 // assign output variable
@@ -31,20 +31,20 @@ module LPF (
 
 // variable initialization
 initial begin
-   z1  = 32'b0;
-   z2  = 32'b0;
-   z3  = 32'b0;
-   z4  = 32'b0;
+   z1  = 0;
+   z2  = 0;
+   z3  = 0;
+   z4  = 0;
 end
 // occhio, potrebbe esserci errore di segno usando solo <<
 // ? cosa mette all'inizio, zero o uno?
 
 always @(posedge i_clock or negedge i_RESET) begin
     if (~i_RESET) begin
-      z1 <= 32'b0;
-      z2 <= 32'b0;
-      z3 <= 32'b0;
-      z4 <= 32'b0;
+      z1 <= 0;
+      z2 <= 0;
+      z3 <= 0;
+      z4 <= 0;
    end else begin
       z4 <= z3;
       z3 <= z2;
