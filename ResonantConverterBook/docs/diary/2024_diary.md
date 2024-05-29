@@ -223,3 +223,6 @@ On the closed-loop. The original electronic load is officially dead, the older o
 In the night I have clean the file that calculates the gain for the measurements and measure the gains from the capture. Now there are `csv` files with the measurements and MATLAB script for the interpolation. I aim to draw the plot with Tikz.
 
 28 May - Update the gain for the controller by characterizing the sensing: mu_vC=160, mu_iC=90, mu_Vg=312000[24V] or 624000[48V].
+Today is measure day. I've taken several measurements to have points for the open-loop control laws. There is the distortion/offset in the current sensing that is moving the system from the predicted behavior when amplitudes are small.
+
+Then, thanks to David, we attached the converter to a 48V battery cluster, and it is working! We can control down to 200/500mA, up to 6.5A (limited by the resonant tank sensing circuit)

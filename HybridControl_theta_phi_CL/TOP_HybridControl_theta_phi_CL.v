@@ -357,7 +357,7 @@ value_control  #(
 // Iref 
 value_control  #(
    .INTEGER_STEP(1),
-   .INTEGER_MIN (5),
+   .INTEGER_MIN (1),
    .INTEGER_MAX (100),
    .INTEGER_RST (5),
    .N_BIT       (8),
@@ -402,7 +402,7 @@ value_control  #(
 
 
    saturation_zero #(
-      .UPPER_LIMIT(32'd70), 
+      .UPPER_LIMIT(32'd80), 
       .N_BIT(32)
    ) sat_PHI_zero(
       .u(phi_PI),
@@ -530,7 +530,18 @@ value_control  #(
    end
 
    always @(posedge ADB_DCO) begin
-      ADC_B    = ~ADB_DATA+14'b1;
+      if (ADB_OR) begin
+         // we are in over-range
+         if (ADB_DATA==14'h2000) begin
+            ADC_B <= 14'h1FFF;
+         end else begin
+            ADC_B <= 14'h2000;
+         end
+      end else begin
+         // inverse the polarity since it is inverted in the {CB}
+         ADC_B <= ~ADB_DATA+14'b1;
+      end
+      // ADC_B    = ~ADB_DATA+14'b1;
       DAB_copy = ~ADB_DATA+14'b1 + 14'd8191;
    end
 

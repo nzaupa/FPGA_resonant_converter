@@ -107,8 +107,9 @@ reg  [3:0] MOSFET;
 wire [3:0] MOSFET_theta_z, MOSFET_theta_x, MOSFET_phi, MOSFET_delta;
 
 // ADCs and DACs
-reg signed [13:0] ADC_A, ADC_B;
-reg        [13:0] DAA_copy, DAB_copy;
+reg signed  [13:0] ADC_A, ADC_B;
+reg         [13:0] DAA_copy, DAB_copy;
+wire signed [13:0] vC_filt, iC_filt;
 
 // rectifier
 reg  [7:0]  ADC_Vbat, ADC_Ibat;
@@ -281,8 +282,8 @@ hybrid_control_theta_z #(.mu_z1(32'd160), .mu_z2(32'd90), .mu_Vg(32'd312000)
    .o_debug(  ),          // [16bit]
    .i_clock( clk_100M ),  // for sequential behavior
    .i_RESET( CPU_RESET & ENABLE_RST ), // reset signal
-   .i_vC( ADC_A ),        // [14bit-signed] input related to z1
-   .i_iC( ADC_B ),        // [14bit-signed] input related to z2
+   .i_vC( vC_filt ),        // [14bit-signed] input related to z1
+   .i_iC( iC_filt ),        // [14bit-signed] input related to z2
    .i_theta( theta_z )     // [32bit-signed] angle of the switching surface
 );
 
@@ -305,8 +306,8 @@ hybrid_control_mixed #(.mu_x1(32'd160), .mu_x2(32'd90)
    .o_debug(  ),   
    .i_clock( clk_100M ),
    .i_RESET( CPU_RESET & ENABLE_RST ),   
-   .i_vC( ADC_A ),      
-   .i_iC( ADC_B ),      
+   .i_vC( vC_filt ),      
+   .i_iC( iC_filt ),      
    .i_delta( delta),    
    // .i_delta( 32'd180 + (~theta_x) + 1 ),    
    .i_phi( 32'd0 ),      
@@ -321,8 +322,8 @@ hybrid_control_phi_x #(.mu_x1(32'd160), .mu_x2(32'd90)
    .o_debug( ),    // ? random currently
    .i_clock( clk_100M ), // ADA_DCO
    .i_RESET( CPU_RESET & ENABLE_RST ),    //
-   .i_vC( ADC_A ),       //
-   .i_iC( ADC_B ),       //
+   .i_vC( vC_filt ),       //
+   .i_iC( iC_filt ),       //
    .i_phi( phi )     // phi // pi/4 - 32'h0000004E
 );
 
@@ -335,8 +336,8 @@ hybrid_control_mixed #(.mu_x1(32'd160), .mu_x2(32'd90)
    .o_debug(  ),   
    .i_clock( clk_100M ),
    .i_RESET( CPU_RESET & ENABLE_RST ),   
-   .i_vC( ADC_A ),      
-   .i_iC( ADC_B ),      
+   .i_vC( vC_filt ),      
+   .i_iC( iC_filt ),      
    .i_delta( delta ),    
    .i_phi( phi ),      
    .i_sigma( ) 
@@ -505,18 +506,21 @@ hybrid_control_mixed #(.mu_x1(32'd160), .mu_x2(32'd90)
       DAB_copy = ~ADB_DATA+14'b1 + 14'd8191;
    end
 
-   LPF LPF_vC(
-      .o_mean(vC_filt),
-      .i_clock(clk_100k),
-      .i_RESET(CPU_RESET),
-      .i_data(ADC_A)
-   );
-   LPF LPF_iC(
-      .o_mean(iC_filt),
-      .i_clock(clk_100k),
-      .i_RESET(CPU_RESET),
-      .i_data(ADC_B)
-   );
+   // LPF #(.NBIT(14)) LPF_vC(
+   //    .o_mean(vC_filt),
+   //    .i_clock(clk_100k),
+   //    .i_RESET(CPU_RESET),
+   //    .i_data(ADC_A)
+   // );
+   // LPF #(.NBIT(14)) LPF_iC(
+   //    .o_mean(iC_filt),
+   //    .i_clock(clk_100k),
+   //    .i_RESET(CPU_RESET),
+   //    .i_data(ADC_B)
+   // );
+
+   assign vC_filt = ADC_A;
+   assign iC_filt = ADC_B;
 
    always @(negedge ADC_BAT_V_EOC) begin
       ADC_Vbat    = ADC_BAT_V;

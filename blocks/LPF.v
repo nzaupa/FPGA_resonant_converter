@@ -14,10 +14,10 @@
 `timescale 1 ns / 1 ps
 
 module LPF #(parameter NBIT=32)(
-   output [NBIT-1:0]  o_mean,      // [32bit-signed] mean on 4 samples
+   output [31:0]  o_mean,      // [32bit-signed] mean on 4 samples
    input          i_clock,     // for sequential behavior
    input          i_RESET,     // reset signal
-   input  [NBIT-1:0]  i_data      // [32bit-signed] input data to be filtered
+   input  [31:0]  i_data      // [32bit-signed] input data to be filtered
 );
 
 

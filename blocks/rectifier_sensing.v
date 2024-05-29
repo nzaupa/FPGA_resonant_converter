@@ -37,7 +37,7 @@ module sensing_Ibat(
 // compute current value in dA (10^-1)
 assign Ibat_DEC = (Ibat_ADC*32'd10) >>4;
 
-assign Ibat_mA = (Ibat_ADC*32'd131) >>1;
+// assign Ibat_mA = (Ibat_ADC*32'd131) >>1;
 assign Ibat_mA = Ibat_ADC <<6; // ×64 update from estimation
 
 
