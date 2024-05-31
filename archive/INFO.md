@@ -87,3 +87,28 @@ This folder contains the `*.sof` files that can be directly uploaded to the FPGA
        - [5] $I_{bat}$ in HEX
        - [6] $V_{bat}$ in DEC
        - [7] $I_{bat}$ in DEC
+ - `TOP_HybridControl_theta_phi_CL-20240531_final.sof`: final version in May 2024 for the closed loop controller.
+   - SWITCHES
+     - sw[0] ENABLE
+     - sw[1] debug: sat(phi) or dz(phi)
+     - sw[2] closed-loop or open-loop
+     - sw[3] PHI or dip-switch
+   - In closed-loop the gain are: Kp=3, shift_Kp=14, TsKi=1, shift_Ki=16, Kaw=0, shift_Kaw=0.
+   - BUTTONS
+     - button[0] reset Iref (0.5) / phi (0)
+     - button[1] increase Iref (+0.5) / phi (+5)
+     - button[2] decrease Iref (-0.5) / phi (-5)
+     - button[3] increase delta +1
+     - `CPU_RESET` reset delta
+   - dip-switch
+     - [0] $I_{ref}$
+     - [1] $\delta$
+     - [2-3] dead time selection 
+       - `00` 800ns
+       - `01` 200ns
+       - `10` 400ns
+       - `11` 600ns
+     - [4] $V_{bat}$ in HEX
+     - [5] $I_{bat}$ in HEX
+     - [6] $V_{bat}$ in DEC
+     - [7] $I_{bat}$ in DEC
