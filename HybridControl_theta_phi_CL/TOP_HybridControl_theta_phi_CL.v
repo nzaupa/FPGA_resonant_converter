@@ -1,42 +1,36 @@
 //------------------------------------------------------------
-// Project: HYBRID_CONTROL_THETA_PHI_OL
+// Project: HYBRID_CONTROL
 // Author: Nicola Zaupa
-// Date: (2023/07/26) (00:27:25)
-// File: TOP_HybridControl_theta_phi_OL.v
+// Date: (2024/05/31) (18:08:25)
+// File: TOP_HybridControl_theta_phi_CL.v
 //------------------------------------------------------------
 // Description:
-// some testing: ...
-// hybrid block enhanced
-// signed version of ADC
+//    here the CL is working, anti-windup has problems (probably numeric one)
+//    ...
 //------------------------------------------------------------
 
 //   user interface define
 //     LED :
-//        LED[0]    --> CONVERTER_ON
+//        LED[0]    --> ENABLE
 //        LED[1]    --> ...
 //        LED[2]    --> ...
-//        LED[3]    --> ADC_A Out-of-Range indicator.
-//        LED[4]    --> ADC_A Out-of-Range indicator.
+//        LED[3]    --> ...
+//        LED[4]    --> ...
 //        LED[5]    --> ...
 //        LED[6]    --> ...
 //        LED[7]    --> ...
 //      SWITCH :
 //        SW[0] --> ENABLE CONVERTER
-//        SW[1] --> ...
-//        SW[2] --> THETA dependend on PHI (can use a variable offset)
-//        SW[3] --> ...
+//        SW[1] --> control the debug signal sat(phi) or dz(phi)
+//        SW[2] --> open-loop or closed-loop
+//        SW[3] --> selection for 7-seg: PHI or DIPSWITCH
 //    BUTTON:
 //        BUTTON[0] --> reset angles
-//        BUTTON[1] --> increase phi      1deg
-//        BUTTON[2] --> decrease theta    5deg
-//        BUTTON[3] --> increase deadtime 50ms
+//        BUTTON[1] --> increase phi    5deg
+//        BUTTON[2] --> decrease phi    5deg
+//        BUTTON[3] --> increase delta  1deg
+//        CPU_RESET --> reset delta
 
-// GIVE AN EXPLANATION HERE
-// 
-// 
-// 
-// 
-// 
 
 
 `timescale 1 ns / 1 ps
@@ -109,8 +103,6 @@ wire       ENABLE, ALERT;
 wire       Q1, Q2, Q3, Q4;
 wire [3:0] Q800, Q200, Q400, Q600;  // different MOSFET control with different deadtimes (in ns)
 reg  [3:0] Qout;
-wire [3:0] MOSFET_theta;
-wire [3:0] MOSFET_phi;
 wire [3:0] MOSFET_theta_phi;
 reg  [3:0] MOSFET;
 
@@ -126,25 +118,21 @@ wire [31:0] Ibat_mA, Ibat_mA_filt;
 
 // PI controller
 wire [31:0] error, Iref_dA;
-// wire [31:0] error_dA;
 wire [31:0] phi;
 wire [31:0] delta;
 wire [31:0] phi_HC;
-wire [31:0] phi_PI_tmp, phi_PI_test;
-wire [31:0] phi_PI, phi_PI_sat, phi_PI_dz; 
+wire [31:0] phi_PI, phi_PI_tmp, phi_PI_sat, phi_PI_dz; 
 
 
 // H-bridge control and startup
 reg  [7:0] deadtime = 8'd5;
 wire [7:0] cnt_startup;
 wire [7:0] cnt_Vg;
-// reg  [7:0] cnt_startup_reg;
-
 
 
 wire [1:0] sigma; // internal state
 
-wire [ 1:0]  test;
+wire [ 1:0] test;
 wire [31:0] debug;
 wire [ 7:0] SEG0_reg, SEG1_reg;
 wire [15:0] SEG_DELTA, SEG_PHI, SEG_IREF;
@@ -190,7 +178,7 @@ assign  DA = debug[20:7];
 // ############################
 
    // LED for DEBUG on the FPGA card [0==ON]
-   assign   LED[0]   = ~1'b0;
+   assign   LED[0]   = ~ENABLE;
    assign   LED[1]   = ~1'b0;
    assign   LED[2]   = ~1'b0;
    assign   LED[3]   = ~1'b0;
@@ -207,34 +195,18 @@ assign  DA = debug[20:7];
    // connected to GPIO1 and available on the rectifier board
    // all are available on the 2×6 connector, 6 of them are connected to LEDs
    //CO: 22/12/23 update ex bits
-   assign EX[0]  = phi_PI_sat[31];      // over voltage
-   assign EX[1]  = phi_PI[31];          // over current
-   assign EX[2]  = phi_PI_test[31];     // H-bridge ENABLE
-   assign EX[3]  = debug[2];    // Pin 4 D0
-   assign EX[4]  = debug[3];    // Pin 5 D1
-   assign EX[5]  = debug[8];//ADC_A[13];    // Pin 6 D2  M1_delayed
-   assign EX[6]  = debug[9];//ADC_B[13];    // Pin 7 D3  M1
-   // assign EX[7]  = test[0];     // Pin 8 D4  b0
-   // assign EX[6:0]= sw[1] ? phi_PI[6:0] : error_dA[6:0];
-   assign EX[7]  = debug[3]; //sw[1] ? phi_PI[31]  : error_dA[31];     
-   assign EX[8]  = ADC_A[13];     // Pin 9 D5  b1
-   assign EX[9]  = debug[14];   // Pin 10 ?
-   assign EX[10] = debug[2];   // Pin 11 D6
-   assign EX[11] = ENABLE;      // Pin 12 D7  (and LED 1)
-
-   // assign GPIO0[18] = Q[0]; //Q1;   // D12
-   // assign GPIO0[20] = Q[1]; //Q2;   // D13
-   // assign GPIO0[22] = Q[2]; //Q3;   // D14
-   // assign GPIO0[24] = Q[3]; //Q4;   // D15
-
-   // // connected to GPIO0
-   // // debug for Ci signals
-   // assign GPIO0[10] = ADC_B[13]; // D8   iC sign
-   // assign GPIO0[12] = ENABLE_RST; // D9    S0
-   // assign GPIO0[14] = ENABLE; // D10   S1
-   // assign GPIO0[16] = VG; // D11   b0
-
-
+   assign EX[0]  = phi_PI_sat[31]; // debug on rectifier board
+   assign EX[1]  = phi_PI[31];     // debug on rectifier board
+   assign EX[2]  = ENABLE;         // debug on rectifier board
+   assign EX[3]  = debug[2];       // debug on rectifier board
+   assign EX[4]  = debug[3];       // debug on rectifier board
+   assign EX[5]  = debug[8];       // debug on rectifier board
+   assign EX[6]  = debug[9];       // debug on rectifier board
+   assign EX[7]  = debug[3];       // debug on rectifier board
+   assign EX[8]  = ADC_A[13];      // debug on rectifier board
+   assign EX[9]  = debug[14];      // debug on rectifier board
+   assign EX[10] = debug[2];       // debug on rectifier board
+   assign EX[11] = ENABLE;         // debug on rectifier board
 
    // connected to GPIO0
    // debug for Ci signals
@@ -261,7 +233,6 @@ assign Q[1] = ( (Q2 & ON & VG) | (1'b0 & ~ON) | (1'b0 & ON & (~VG)) ) & ENABLE &
 assign Q[2] = ( (Q3 & ON & VG) | (1'b1 & ~ON) | (1'b0 & ON & (~VG)) ) & ENABLE & ALERT; // & (OV | (~VG));
 assign Q[3] = ( (Q4 & ON & VG) | (1'b1 & ~ON) | (1'b1 & ON & (~VG)) ) & ENABLE & ALERT; // & (OV | (~VG));
 
-// assign MOSFET = MOSFET_theta_phi;
 
 // Over-voltage protection: 
 //  shut-down the H-bridge if the measured voltage is higher than 50V
@@ -387,6 +358,7 @@ value_control  #(
    // assign error_dA = {24'b0,Ibat_DEC} + (~(Iref_dA)+1);
 
 // PI WITH ANTIWINDUP
+//    AW is given problems, that why it is at zero
    PI #( 
       .Kp  (3),   .shift_Kp (14),
       .TsKi(1),   .shift_Ki (16),
@@ -395,9 +367,8 @@ value_control  #(
       .o_PI(phi_PI_tmp),   // output value
       .i_CLK(clk_100k),    // for sequential behavior
       .i_RST(CPU_RESET & ENABLE_RST & sw[0]),  // reset signal
-      .err(error),  // input error
-      .aw(phi_PI_dz)      // antiwindup
-      // .aw(phi_PI_sat + (~phi_PI+1))      // antiwindup
+      .err(error),      // input error
+      .aw(phi_PI_dz)    // antiwindup
    );
 
 
@@ -411,31 +382,12 @@ value_control  #(
       .u_dz(phi_PI_dz)
    );
 
-
-   saturation #(
-      .LOWER_LIMIT(32'd0), 
-      .UPPER_LIMIT(32'd70), 
-      .N_BIT(32)
-   ) sat_PHI(
-      .u(phi_PI),
-      .u_sat(phi_PI_test),
-      .u_dz()
-   );
-
-   // WITH THE NEXT LINE IT IS WORKING
-   //    hard limit to 63 max for PHI
-   // assign phi_PI_sat = phi_PI[5:0];
-
 // +++ SEQUENTIAL BEHAVIOR +++
    always @(posedge clk_100M) begin
       VG_PREV <= VG;
       OV_PREV <= OV || (~ENABLE);
       OFF_PREV <= OFF;
    end
-
-   // always @(posedge clk_100k) begin
-   //    OFF <= VG & (Vbat_DEC>=8'd5);
-   // end
 
 // +++ DEAD TIME +++ 
 
@@ -488,8 +440,8 @@ value_control  #(
 // +++ RECTIFIER READING +++
    sensing_Ibat sensing_Ibat_inst(
       .Ibat_ADC(ADC_Ibat),    // ADC measure
-      .Ibat_DEC(Ibat_DEC),    // converted measure
-      .Ibat_mA(Ibat_mA),      // converted measure
+      .Ibat_DEC(Ibat_DEC),    // converted measure in dA
+      .Ibat_mA(Ibat_mA),      // converted measure in mA
       .SEG_HEX(SEG_Ibat_HEX), // show the acquire HEX number
       .SEG_DEC(SEG_Ibat_DEC)  // show the converted DEC number
    );
@@ -501,8 +453,6 @@ value_control  #(
       .i_RESET(CPU_RESET),
       .i_data(Ibat_mA)
    );
-
-
 
    sensing_Vbat sensing_Vbat_inst(
       .Vbat_ADC(ADC_Vbat),    // ADC measure
@@ -541,7 +491,6 @@ value_control  #(
          // inverse the polarity since it is inverted in the {CB}
          ADC_B <= ~ADB_DATA+14'b1;
       end
-      // ADC_B    = ~ADB_DATA+14'b1;
       DAB_copy = ~ADB_DATA+14'b1 + 14'd8191;
    end
 
@@ -556,7 +505,7 @@ value_control  #(
 // +++ CONTROLLER MODE +++
    // choose the type of controller
    always  begin
-      MOSFET   <= MOSFET_theta_phi;
+      MOSFET <= MOSFET_theta_phi;
    end
 
    // choose the deadtime

@@ -491,7 +491,6 @@ hybrid_control_mixed #(.mu_x1(32'd160), .mu_x2(32'd90)
          // inverse the polarity since it is inverted in the {CB}
          ADC_B <= ~ADB_DATA+14'b1;
       end
-      // ADC_B    = ~ADB_DATA+14'b1;
       DAB_copy = ~ADB_DATA+14'b1 + 14'd8191;
    end
 
