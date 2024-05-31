@@ -29,34 +29,36 @@
 # ignore Quartus II generated files
 # *_generation_script*
 # *_inst.vhd
-# *.bak
-# *.cmp
-# *.cdf
-# *.qsf
-# *.qpf
-# *.done
-# *.eqn
-# *.hex
-# *.html
-# *.jdi
-# *.jpg
-# # *.mif
-# *.pin
-# *.pof
-# *.ptf.*
-# *.qar
-# *.qarlog
-# *.qws
-# *.rpt
-# *.smsg
-# *.sld
-# *.sopc_builder
-# *.summary
-# *.tcl
-# *~
-# *example*
-# *sopc_*
-# *.sdc # I want those timing files
+*.bak
+*.cmp
+*.cdf
+*.qsf
+# *.qpf I want the project file
+*.done
+*.eqn
+*.hex
+*.html
+*.jdi
+*.jpg
+*.mif
+*.pin
+*.pof
+*.ptf.*
+*.qar
+*.qarlog
+*.qws
+*.rpt
+*.smsg
+*.sld
+*.sopc_builder
+*.summary
+*.tcl
+*~
+*example*
+*sopc_*
+*.sdc 
+# I want those timing files
+*.flock
 
 # LaTex files
 
@@ -78,12 +80,12 @@
 ~$*
 
 # ignore Quartus II generated folders
-# */db/
+*/db/
 work/
-# */incremental_db/
-# */simulation/
-# */timing/
-# */testbench/
+*/incremental_db/
+*/simulation/
+*/timing/
+*/testbench/
 # */*_sim/
 # incremental_db/
 # db/
@@ -91,6 +93,9 @@ work/
 __bin/
 
 _note/
+_old/
+
+HybridControl_theta_phi_OL_previous_version/
 
 ResonantConverterBook/_build
 

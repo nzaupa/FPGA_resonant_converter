@@ -1,0 +1,114 @@
+This folder contains the `*.sof` files that can be directly uploaded to the FPGA
+
+ - `TOP_HybridControl_theta_phi_OL-20240510-working.sof`: this files contains all the things to test the control laws in open-loop.
+   - $\theta$-control is implemented as the day 0
+   - $\varphi$-control is implemented in the $z$-plane
+   - $(\varphi,\delta)$-control is implemented in the $x$-plane
+   - There is the possibility to change with external buttons
+     - $\varphi$ button
+     - $\delta$ button
+     - dead-time with dip-switch
+     - show ADC values on 7-segment display
+
+ - `TOP_HybridControl_theta_phi_OL-20240510-working_x.sof`: this files contains an updated version of the one before. The control law with PHI has been implemented in the $x$-plane. This improved the range in which the control law is able to work. Essentially, now it can go full range with the angle.
+   - $\theta$-control is implemented as the day 0
+   - $\varphi$-control is implemented in the $x$-plane
+   - $(\varphi,\delta)$-control is implemented in the $x$-plane
+   - There is the possibility to change with external buttons
+     - $\varphi$ button
+     - $\delta$ button
+     - dead-time with dip-switch
+     - show ADC values on 7-segment display
+ - `TOP_HybridControl_theta_phi_CL-20240514-working.sof`: this has a version of the closed loop working. The gains haven't been tuned and it is without anti-windup.
+   - $\varphi$ is modified by the PI module. It is limited by the saturation but the 32bit value had to been reduced before.
+   - sw[0] is the ENABLE
+   - sw[1] is used to choose the debug digital signal
+   - sw[2] there is the possibility to pass to open-loop with $\varphi$ on button[1]
+   - sw[3] show either PHI or what is on the dip-switch in the 7-seg display.
+   - In closed loop there is the possibility to change:
+     - $I_{ref}$ at step of 0.5A with button[1] to increase and button[3] to decrease; reset with CPU_RESET (button[4]).
+     - $\delta$ with button[3] and reset with button[0].
+   - dip-switch
+     - [0] $I_{ref}$
+     - [1] $\delta$
+     - [2-3] dead time selection 
+     - [4] $V_{bat}$ in HEX
+     - [5] $I_{bat}$ in HEX
+     - [6] $V_{bat}$ in DEC
+     - [7] $I_{bat}$ in DEC
+ - `TOP_HybridControl_theta_phi_CL-20240524-working.sof`: this has the closed-loop working with some features improved. Namely, it can work down to small amplitudes (phi up to 70/75)
+   - there is still the possibility to go in open-loop mode with sw[2] and change phi with: button[1] (++), button[2] (--), and button[0] (reset).
+   - sw[0] is the ENABLE
+   - sw[1] is used to choose the debug digital signal: 0 is PHI, 1 is the 1st 8bit of dead-zone.
+   - sw[2] there is the possibility to pass to open-loop with $\varphi$ on button[1]
+   - sw[3] show either PHI or what is on the dip-switch in the 7-seg display.
+   - In closed-loop the gain are: Kp=3, shift_Kp=13, TsKi=1, shift_Ki=12, Kaw=0, shift_Kaw=0.
+     - $I_{ref}$ at step of 0.5A with button[1] to increase and button[3] to decrease; reset with button[0].
+     - $\delta$ with button[3] and reset with `CPU_RESET` (button[4]).
+   - dip-switch
+     - [0] $I_{ref}$
+     - [1] $\delta$
+     - [2-3] dead time selection 
+     - [4] $V_{bat}$ in HEX
+     - [5] $I_{bat}$ in HEX
+     - [6] $V_{bat}$ in DEC
+     - [7] $I_{bat}$ in DEC
+   - Improvements:
+     - regularization is improved;
+     - there is a 4 sample filter on Ibat, sampled at 100kHz;
+     - state machine is always passing through 0 even with phi=0;
+     - saturation at 0 is hard-coded;
+     - change in CLK for state-machine, now it is looking two time step back for the reset.
+ - `TOP_HybridControl_theta_phi_OL-20240527-working.sof`: improved version of the open-loop with some additional functionalities. The dip-switch possibilities remain the same as before. The different controls that can be used are:
+   - by acting on `sw[2:1]` we can choose the controller
+       - 00 phi + delta
+       - 01 theta in z-plane (improved version with regularization)
+       - 10 theta in x-plane (run on mixed control by changing delta)
+       - 11 phi in x
+   - the angles phi and theta are changed with the buttons [1], [2] and reset with [0], delta with [3] and reset with [CPU_RESET]
+ - `TOP_HybridControl_theta_phi_OL-20240531_final.sof`: final version during the stay in May 2024. It has 4 different control laws working. 
+   - By acting on `sw[2:1]` we can choose the controller
+     - 00 phi + delta
+     - 01 theta in z-plane (improved version with regularization)
+     - 10 theta in x-plane (run on mixed control by changing delta)
+     - 11 phi in x
+     - the angles phi and theta are changed with the buttons [1] (increase +5), [2] (decrease -5) and reset with [0], delta with [3] (increase only +1) and reset with [CPU_RESET]
+   - `sw[3]` allows what to show on the 7-segment display
+     - `0` - show the main angle used in the controller 
+     - `1` - show what selected from the dip-switch (if unavailable show `--`)
+       - [0] delta
+       - [1] delta
+       - [2-3] dead time selection
+         - `00` 100ns
+         - `01` 200ns
+         - `10` 400ns
+         - `11` 600ns
+       - [4] $V_{bat}$ in HEX
+       - [5] $I_{bat}$ in HEX
+       - [6] $V_{bat}$ in DEC
+       - [7] $I_{bat}$ in DEC
+ - `TOP_HybridControl_theta_phi_CL-20240531_final.sof`: final version in May 2024 for the closed loop controller.
+   - SWITCHES
+     - sw[0] ENABLE
+     - sw[1] debug: sat(phi) or dz(phi)
+     - sw[2] closed-loop or open-loop
+     - sw[3] PHI or dip-switch
+   - In closed-loop the gain are: Kp=3, shift_Kp=14, TsKi=1, shift_Ki=16, Kaw=0, shift_Kaw=0.
+   - BUTTONS
+     - button[0] reset Iref (0.5) / phi (0)
+     - button[1] increase Iref (+0.5) / phi (+5)
+     - button[2] decrease Iref (-0.5) / phi (-5)
+     - button[3] increase delta +1
+     - `CPU_RESET` reset delta
+   - dip-switch
+     - [0] $I_{ref}$
+     - [1] $\delta$
+     - [2-3] dead time selection 
+       - `00` 800ns
+       - `01` 200ns
+       - `10` 400ns
+       - `11` 600ns
+     - [4] $V_{bat}$ in HEX
+     - [5] $I_{bat}$ in HEX
+     - [6] $V_{bat}$ in DEC
+     - [7] $I_{bat}$ in DEC

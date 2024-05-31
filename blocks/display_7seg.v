@@ -48,25 +48,29 @@ module hex2seg (
    input  [3:0] i_num
 );
 
+reg [6:0] seg;
+
+assign o_seg = seg;
+
 always @(i_num) begin
 case(i_num)
-      4'h0: o_seg <= 7'b1000000;
-      4'h1: o_seg <= 7'b1111001;
-      4'h2: o_seg <= 7'b0100100;
-      4'h3: o_seg <= 7'b0110000;
-      4'h4: o_seg <= 7'b0011001;
-      4'h5: o_seg <= 7'b0010010;
-      4'h6: o_seg <= 7'b0000010;
-      4'h7: o_seg <= 7'b1111000;
-      4'h8: o_seg <= 7'b0000000;
-      4'h9: o_seg <= 7'b0010000;
-      4'hA: o_seg <= 7'b0001000;
-      4'hB: o_seg <= 7'b0000011;
-      4'hC: o_seg <= 7'b1000110;
-      4'hD: o_seg <= 7'b0100001;
-      4'hE: o_seg <= 7'b0000110;
-      4'hF: o_seg <= 7'b0001110;
-      default: o_seg <= 7'b0111111; // '-'
+      4'h0: seg <= 7'b1000000;
+      4'h1: seg <= 7'b1111001;
+      4'h2: seg <= 7'b0100100;
+      4'h3: seg <= 7'b0110000;
+      4'h4: seg <= 7'b0011001;
+      4'h5: seg <= 7'b0010010;
+      4'h6: seg <= 7'b0000010;
+      4'h7: seg <= 7'b1111000;
+      4'h8: seg <= 7'b0000000;
+      4'h9: seg <= 7'b0010000;
+      4'hA: seg <= 7'b0001000;
+      4'hB: seg <= 7'b0000011;
+      4'hC: seg <= 7'b1000110;
+      4'hD: seg <= 7'b0100001;
+      4'hE: seg <= 7'b0000110;
+      4'hF: seg <= 7'b0001110;
+      default: seg <= 7'b0111111; // '-'
 endcase
 end
 
@@ -317,7 +321,7 @@ module num2seg (
    input   [1:0] i_DP
 );
 
-reg [7:0] num_hex;
+wire [7:0] num_hex;
 assign o_SEG[7] = i_DP[0];
 assign o_SEG[15] = i_DP[1];
 
@@ -339,4 +343,28 @@ hex2seg hex2seg_1 (
 
 endmodule
 
+
+// take a 2 digit number encoded in hexadecimal and the decimal position
+// directly output a string with the two segments
+module hex2seg_couple (
+   output [15:0] o_SEG,
+   input   [7:0] i_hex,
+   input   [1:0] i_DP
+);
+
+assign o_SEG[7] = i_DP[0];
+assign o_SEG[15] = i_DP[1];
+
+hex2seg hex2seg_0 (
+   .o_seg(o_SEG[6:0]),
+   .i_num(i_hex[3:0])
+);
+
+hex2seg hex2seg_1 (
+   .o_seg(o_SEG[14:8]),
+   .i_num(i_hex[7:4])
+);
+
+
+endmodule
 

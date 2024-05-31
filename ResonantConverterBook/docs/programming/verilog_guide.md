@@ -1,9 +1,74 @@
 # Verilog coding
 
-## Coding
-Type of signal:
-- `wire` can used with assign: `assign a = b & c`
-- `reg`: values can be assigned with procedural blocks (`always`, `initial` : `<=`) but not with continuous (`assign`). Because `reg` is capable of storing and does not require to be driven continuously.
+Some useful page
+
+[Verilog in a nutshell](https://www.chipverify.com/verilog/verilog-in-a-nutshell)
+
+
+<https://www.chipverify.com/>
+
+<https://nandland.com/learn-verilog/>
+
+
+We can write functions: <https://nandland.com/function-2/>
+
+```verilog
+module function_example ();
+ 
+  reg r_Bit1=1'b1, r_Bit2=1'b0, r_Bit3=1'b1;
+  wire w_Result;
+  reg  r_Global;
+ 
+  function do_math;
+    input i_bit1, i_bit2, i_bit3; 
+    reg   v_Temp; // Local Variable
+    begin
+      // Demonstrates driving external Global Reg
+      r_Global = 1'b1; 
+       
+      v_Temp  = (i_bit1 & i_bit2);
+      do_math = (v_Temp | i_bit3);
+    end
+  endfunction
+ 
+  assign w_Result = do_math(r_Bit1, r_Bit2, r_Bit3);
+ 
+endmodule
+```
+
+
+## Data types
+
+<https://www.chipverify.com/verilog/verilog-syntax>
+
+NB: Verilog prefers unsigned arithmetic and will jump at the chance to do it. All operands have to be signed for signed arithmetic.
+
+Detecting overflow and underflow in an elegant way: <https://stackoverflow.com/questions/24586842/signed-multiplication-overflow-detection-in-verilog/24587824#24587824>
+
+### Variable values
+
+|  |                    |
+|--|--------------------|
+|0 |logic zero / false  |
+|1 |logic one / true    |
+|x |unknown (0 or 1)    |
+|z |high-impedance state |
+
+
+### Nets and Variables
+
+**Nets**: 
+
+a net is created with the command `wire` (there should be other type...). It is use to connect *hardware* entities, therefore, it does not store any value. i.e. like a copper wire.
+
+> `wire` can used with assign: `assign a = b & c`
+
+**Variables**:
+
+a variable is an abstraction of a data storage. It is declared using `reg`. It stores values and che hold them. A physical example is a flip-flop.
+
+> - `reg`: values can be assigned with procedural blocks (`always`, `initial` : `<=`) but not with continuous (`assign`). Because `reg` is capable of storing and does not require to be driven continuously.
+
 
 Initialize a variable
 - at declaration: `reg [31:0] data = 32’hdead_cafe;`
@@ -13,14 +78,56 @@ Initialize a variable
 Avoid to do it both, since is not sure which is executed first. Underscores '`_`' are not counted as bytes, their are
 useful to separate long numbers.
 
+Can cast values ` $signed(r_Shift1) >>> 2`
+
+
+**Others**:
+
+- `integer` general purpose variable of 32-bit. Limit to positive value (?)
+- `time` (? never used)
+- `real` (not always supported, depends on the FPGA architecture)
+
+
+### Access
+
+A net or variable can have a different range. Default is one `wire a`, if a 4-bit is need `wire [3:0] a`
+
+```verilog
+wire a         // 1-bit
+wire [3:0] a   // 4-bit
+```
+
+more advanced selection (never tested - not totally sure) `[<data_start> +: <width>]`
+```verilog
+data[8 +: 4]  <==>  data[11:4]
+data[8 -: 4]  <==>  data[8:5]
+```
+
+the `width` need to be constant while the `data_start` could be a variable.
+
+### Array
+
+Can define array of variable
+> `wire [3:0] y [0:1]` it's an array with 2 locations and 4-bit elements
+
+```{warning}
+take care of the order of the number in selection and definitions!
+```
+
+Can construct memory with 1-D array
+
+---
+## sth
+
 > Could be interesting `assign-deassign` and `force-release`.
 
 
 Structure for the loop `always`
 
 
+---
 
-### Operators
+## Operators
 
 |       |      |     | | | |      |     | | | |       |                           |
 |-------|------|-----|-|-|-|------|-----|-|-|-|-------|-------------------------- |
@@ -40,8 +147,12 @@ Structure for the loop `always`
 |                |               | `data << 2 = 10100`  |
 |                |               | `data <<< 1 = 01011` |
 
+```{important}
+Algebraic operation have priority over logic operations. Therefore $A+(B+C)>>>3$ is equivalent to $(A+(B+C))>>>3$, which is different from $A+((B+C)>>>3)$.
+```
 
-**Conditional operator**: `assign out = condition ? true : false`
+
+**Conditional operator**: `assign out = <condition> ? <if_true> : <if_false>`
 
 **Concatenation**: use the curly brackets `{ }` $\rightarrow$ `{a, b, c [1 : 0] , 2′b00, {2{a}}}`
 

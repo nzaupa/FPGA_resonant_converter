@@ -5,15 +5,25 @@ format: jb-book
 root: intro
 
 parts: 
-  - caption: Resonant Converters
+  - caption: Introduction
     chapters:
     - file: docs/intro/state_of_the_art
-    - file: docs/intro/developments
-    - file: docs/intro/useful_material
       sections:
-      - file: docs/intro/altium_help
-      - file: docs/intro/FPGA_board
+      - file: docs/intro/SOTA_resonant_converter
+      - file: docs/intro/SOTA_obc
+      - file: docs/intro/SOTA_biblio
+    - file: docs/intro/developments
     - file: docs/intro/publications
+
+  - caption: Control
+    chapters:
+    - file: docs/control/RT_control
+      sections:
+      - file: docs/control/RT_model
+      - file: docs/control/RT_theta
+      - file: docs/control/RT_phi
+      - file: docs/control/RT_theta_phi
+    - file: docs/control/RC_control
 
   - caption: Electronic design
     chapters: 
@@ -49,6 +59,8 @@ parts:
     - file: docs/programming/verilog_guide
       sections:
       - file: docs/programming/modules
+      - file: docs/programming/statements
+      - file: docs/programming/modelsim
     - file: docs/programming/project_code
       sections:
       - file: docs/programming/blocks
@@ -56,8 +68,9 @@ parts:
 
   - caption: Diary
     chapters:
-    - file: docs/diary/2020_diary   
-    - file: docs/diary/2023_diary   
+    - file: docs/diary/2020_diary
+    - file: docs/diary/2023_diary
+    - file: docs/diary/2024_diary
 
   - caption: Template
     chapters:
@@ -65,3 +78,9 @@ parts:
     - file: markdown
     - file: notebooks
       title: Alt tit toc
+
+  - caption: Useful Material
+    chapters:
+    - file: docs/handbook/useful_material
+    - file: docs/handbook/altium_help
+    - file: docs/handbook/FPGA_board

@@ -1,0 +1,77 @@
+C:/FPGA/Projects/simulation/HC_theta_phi_test/tb_hybrid_control_theta_phi.v {1 {vlog -work work -stats=none C:/FPGA/Projects/simulation/HC_theta_phi_test/tb_hybrid_control_theta_phi.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module tb_hybrid_control_theta_phi
+
+Top level modules:
+	tb_hybrid_control_theta_phi
+
+} {} {}} C:/FPGA/Projects/blocks/debounce.v {1 {vlog -work work -stats=none C:/FPGA/Projects/blocks/debounce.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module debounce_core
+-- Compiling module debounce
+
+Top level modules:
+	debounce
+
+} {} {}} C:/FPGA/Projects/blocks/hybrid_control_theta_phi_old.v {1 {vlog -work work -stats=none C:/FPGA/Projects/blocks/hybrid_control_theta_phi_old.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module hybrid_control_theta_phi_old
+
+Top level modules:
+	hybrid_control_theta_phi_old
+
+} {} {}} C:/FPGA/Projects/blocks/hybrid_control_phi.v {1 {vlog -work work -stats=none C:/FPGA/Projects/blocks/hybrid_control_phi.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module hybrid_control_phi
+
+Top level modules:
+	hybrid_control_phi
+
+} {} {}} C:/FPGA/Projects/blocks/simulator_converter.v {1 {vlog -work work -stats=none C:/FPGA/Projects/blocks/simulator_converter.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module simulator_LLC
+-- Compiling module simulator_ADC_14bit
+
+Top level modules:
+	simulator_LLC
+	simulator_ADC_14bit
+
+} {} {}} C:/FPGA/Projects/blocks/hybrid_control_theta_phi.v {1 {vlog -work work -stats=none C:/FPGA/Projects/blocks/hybrid_control_theta_phi.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module hybrid_control_theta_phi
+
+Top level modules:
+	hybrid_control_theta_phi
+
+} {} {}} C:/FPGA/Projects/blocks/hybrid_control_theta.v {1 {vlog -work work -stats=none C:/FPGA/Projects/blocks/hybrid_control_theta.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module hybrid_control_theta
+
+Top level modules:
+	hybrid_control_theta
+
+} {} {}} C:/FPGA/Projects/blocks/trigonometry.v {1 {vlog -work work -stats=none C:/FPGA/Projects/blocks/trigonometry.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module trigonometry_deg
+-- Compiling module trigonometry_rad
+
+Top level modules:
+	trigonometry_deg
+	trigonometry_rad
+
+} {} {}} C:/FPGA/Projects/blocks/regularization.v {1 {vlog -work work -stats=none C:/FPGA/Projects/blocks/regularization.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module regularization_core
+-- Compiling module regularization
+
+Top level modules:
+	regularization
+
+} {} {}} C:/FPGA/Projects/blocks/counter.v {1 {vlog -work work -stats=none C:/FPGA/Projects/blocks/counter.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module counter_up
+
+Top level modules:
+	counter_up
+
+} {} {}}

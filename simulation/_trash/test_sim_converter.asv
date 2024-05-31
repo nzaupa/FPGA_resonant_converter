@@ -1,0 +1,105 @@
+
+% program that test the simulation for the converter
+% there is the need to check for integer compatibility
+
+
+
+L   = 10   ;% uH
+C   = 850   ;% nF
+Lm  = 36    ;% uH
+Req = 10 ;% mOhm
+Vg  = 48    ;% V
+dt=10;
+
+mu_1 =  (dt*2^10)/(C*1000);
+mu_2 =  (dt*Vg*1000)/L;
+mu_3 = -dt/L;
+mu_4 = -dt/L;
+mu_5 = -(dt*Req*2^17)*(1+L/Lm)/(L*1e6);
+mu_6 = -(dt*Req*2^10)/(L*1e6);
+mu_7 =  (dt*Req*Vg*2^6)/(L*1e3);
+
+% mu_1 =  12047;
+% mu_2 =  48000;
+% mu_3 = -1;
+% mu_4 = -1;
+% mu_5 =  -1675;
+% mu_6 = -10;
+% mu_7 =  480;
+
+L   = 10e-6    ;% uH
+C   = 850e-9   ;% nF
+Lm  = 36e-6    ;% uH
+Req = 10 ;% mOhm
+Vg  = 48    ;% V
+dt=10e-9;
+
+vC=0;
+iS=0;
+Vo=0;
+sigma=1;
+
+
+
+for k=1:100000
+    vC(k+1) = vC(k) + mu_1/2^10*iS(k);
+    iS(k+1) = iS(k) + mu_2*sigma(k) + mu_3*vC(k) + mu_4*Vo(k);
+    Vo(k+1) = Vo(k) + mu_5/2^17*Vo(k) + mu_6/2^10*vC(k) + mu_7*sigma(k);
+
+%     vC(k+1) = vC(k) + dt/C*iS(k);
+%     iS(k+1) = iS(k) + dt/L*( Vg*sigma(k) - vC(k) - Vo(k) );
+%     Vo(k+1) = Vo(k) + dt*Req/L*( -(1+L/Lm)*Vo(k) - vC(k) + Vg*sigma(k) );
+
+    % square wave generator
+    if(mod(k,1000)==0)
+        sigma(k+1)=-sigma(k);
+    else
+        sigma(k+1)= sigma(k);
+    end
+end
+
+figure(1), clf, hold on
+    stairs(vC)
+    stairs(sigma)
+    stairs(iS)
+    stairs(Vo)
+    legend('$v_C$','$\sigma$','$i_S$','$V_o$')
+    plot_layout(gca)
+
+return
+%% WORKING SIMULATION with uA and mV
+L   = 10e-6    ;% uH
+C   = 850e-9   ;% nF
+Lm  = 36e-6    ;% uH
+Req = 10 ;% mOhm
+Vg  = 48    ;% V
+dt=10e-9;
+
+vC=0;
+iS=0;
+Vo=0;
+sigma=1;
+
+for k=1:10000
+    vC(k+1) = vC(k) + dt/C/1000*iS(k);
+    iS(k+1) = iS(k) + dt/L*1000*(-vC(k)-Vo(k)) + dt/L*Vg*1e6*sigma(k);
+    Vo(k+1) = Vo(k) - dt*Req/L*(1+L/Lm)*Vo(k) - dt*Req/L*vC(k) + dt*Req/L*Vg*1000*sigma(k) ;
+
+    % square wave generator
+    if(mod(k,1000)==0)
+        sigma(k+1)=-sigma(k);
+    else
+        sigma(k+1)= sigma(k);
+    end
+end
+
+
+figure(2), clf, hold on
+    stairs(vC)
+    stairs(sigma)
+    stairs(iS/1000)
+    stairs(Vo)
+    legend('$v_C$','$\sigma$','$i_S$','$V_o$')
+    plot_layout(gca)
+
+

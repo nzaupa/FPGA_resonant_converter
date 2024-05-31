@@ -33,7 +33,7 @@ module debounce_core #(
 
    initial begin
       counter = 0;
-      r_switch_state = 1;
+      r_switch_state = 0;
    end
 
    always @(posedge i_clk or negedge i_reset) begin

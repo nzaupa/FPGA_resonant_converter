@@ -18,14 +18,15 @@
 //  + sigma is an internal state variable
 //  + input vC and iC are signed 14bit except the
 //    angle which is 32bit signed
-//------------------------------------------------------------
+//
+// it is implemented in the z-plane ------------------------------------------------------------
 
 `timescale 1 ns / 1 ps
 
 module hybrid_control_theta_phi #(
-   parameter mu_z1 = 32'd86,
-   parameter mu_z2 = 32'd90,
-   parameter mu_Vg = 312000
+   parameter mu_x1 = 32'd86,
+   parameter mu_x2 = 32'd90,
+   parameter mu_Vg = 32'd312000
 )(
    output         [3:0]  o_MOSFET,    // command signal for the MOSFETs
    output         [1:0]  o_sigma,     // output switching variable
@@ -78,6 +79,11 @@ wire signed [31:0]  stmf;  // sin( theta-phi )
    assign C2_db = ~S2[31];
    assign C3_db =  S3[31];
    assign C4_db =  S2[31];
+   assign C1 = C1_db;
+   assign C2 = C2_db;
+   assign C3 = C3_db;
+   assign C4 = C4_db;
+
 
    assign CLK_jump_OR = ( C1 & (~b1) & (~b0) ) | 
                         ( C2 & (~b1) &   b0  ) | 
@@ -90,17 +96,20 @@ wire signed [31:0]  stmf;  // sin( theta-phi )
    assign o_MOSFET[2] =   b1  & (~b0);
    assign o_MOSFET[3] = ~(b1  | b0);
 
+   // b1 b0 sigma
+   // 0  0   +1
+   // 0  1    0
+   // 1  0   -1
+   // 1  1    0  
    assign sigma   = { {31{b1&(~b0)}} , ~b0 };
 
+   // assign o_debug = { C3_db, S3[30:17],
+   //                    C4,C3,C2,C1, 
+   //                    CLK_jump , b0 , b1};
    assign o_debug = { C3_db, S3[30:17],
-                      C4,C3,C2,C1, 
-                      CLK_jump , b0 , b1};
-
-   // assign o_debug = {   {S2[31], S2[26:14]},
-   //                      C1_db , C2_db , C3_db, C4_db,
-   //                      C1 , C2 , C3, C4, 
-   //                      CLK_jump , CLK_jump_OR, 
-   //                      1'b0 , ~vC_32[31] , ~iC_32[31] , CLK_jump_prev, counter[1:0] };
+                     o_sigma[1:0], 6'b0,
+                     C4, C3, C2, C1,
+                     CLK_jump, CLK_jump , b0 , b1};
 
    assign o_sigma = sigma[1:0];
 
@@ -114,26 +123,15 @@ wire signed [31:0]  stmf;  // sin( theta-phi )
 trigonometry_deg trigonometry_plus_inst (
    .o_cos(ctpf),    // cosine of the input
    .o_sin(stpf),    // sine of the input
-   .i_theta(i_theta+i_phi)  // input angle
+   .i_theta(i_theta)  // input angle "theta+phi"
+   // .i_theta(i_theta+i_phi)  // input angle "theta+phi"
 );
 
 trigonometry_deg trigonometry_minus_inst (
    .o_cos(ctmf),    // cosine of the input
    .o_sin(stmf),    // sine of the input
-   .i_theta(i_theta+(~i_phi+1))  // input angle
-);
-
-// debunce jump set condition
-
-regularization #(
-   .DEBOUNCE_TIME(2), 
-   .DELAY(20),
-   .N(4)
-) regularization_4bit_inst (
-   .o_signal( {C4,C3,C2,C1} ),
-   .i_clk(i_clock),
-   .i_reset(i_RESET),
-   .i_signal({C4_db,C3_db,C2_db,C1_db})
+   .i_theta(i_theta+(~i_phi+1))  // input angle "theta-phi"
+   // .i_theta(i_theta+(~(i_phi<<1)+1))  // input angle "theta-phi"
 );
 
 // variable initialization
@@ -158,9 +156,12 @@ end
 
 always @(posedge i_clock) begin
    // compute coordinate transformation
-   Z1  = ( mu_z1 * (vC_32) + (~sigma+1)*mu_Vg ); // z1
-   Z2  = ( mu_z2 * (iC_32) ) ;                   // z2
-   C   =   mu_Vg *  stmf;                        // Vg*sin(theta-phi)
+   // Z1  = ( mu_x1 * (vC_32) + (~sigma+1)*mu_Vg ); // z1
+   Z1  = $signed(mu_x1) * vC_32 + (~($signed(sigma)*$signed(mu_Vg))+1); // z1
+   Z2  = $signed(mu_x2) * iC_32;                   // z2
+   C   = $signed(mu_Vg) *  stmf;                       // Vg*sin(theta-phi)
+
+   // !!!!! stmf ... and so might be signed
 
    S1 = Z1*stmf + Z2*ctmf + C;          // change z1*sin(theta-phi)-z2*cos(theta-phi)+Vg*sin(theta-phi)
    S2 = Z1*stpf + Z2*ctpf;              // change z1*sin(theta+phi)+z2*cos(theta+phi)
