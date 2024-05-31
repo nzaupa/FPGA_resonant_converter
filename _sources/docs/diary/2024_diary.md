@@ -219,3 +219,49 @@ After a long the day the result is: improved open-loop code with more options. I
 Anyway, the offset/distortion on the current measurements is still present. Sometimes it seems not important other yes...
 
 On the closed-loop. The original electronic load is officially dead, the older one is still interacting in a bad way. The last possibility is to use a real battery, another temporary solution might be to use a big capacitor (mF) in parallel with the EL.
+
+In the night I have clean the file that calculates the gain for the measurements and measure the gains from the capture. Now there are `csv` files with the measurements and MATLAB script for the interpolation. I aim to draw the plot with Tikz.
+
+28 May - Update the gain for the controller by characterizing the sensing: mu_vC=160, mu_iC=90, mu_Vg=312000[24V] or 624000[48V].
+Today is measure day. I've taken several measurements to have points for the open-loop control laws. There is the distortion/offset in the current sensing that is moving the system from the predicted behavior when amplitudes are small.
+
+Then, thanks to David, we attached the converter to a 48V battery cluster, and it is working! We can control down to 200/500mA, up to 6.5A (limited by the resonant tank sensing circuit).
+
+I create the MATLAB code to analyze the data from the oscilloscope in open-loop.
+
+29 May - I'm particularly tired today, idkw (fatigué, cansado, cansat, stanco). The efficiency is low today, I'm probably getting sick again.
+Anyway, I took several operating points by measuring directly on the oscilloscope and note the values on a `*.csv` file.
+The workflow is: measure with 48V; increase to 52V; and then go down to 38/10V. Otherwise, it will take a lot of time to charge back the batteries.
+What has been measure is: 1st harmonic value of vS and vT, input rms current, frequency, and output current.
+
+Definitely I was not feeling good that day.
+
+```{figure} ../images/diary/CL_operating_points.png
+---
+width: 400px
+---
+Operating point of the converter with a battery attached to it
+```
+
+30 May - Go back to the lab to fix some last measurements. Mainly OL measurements to complete the one I took before.
+Dead-time used for the measure is 600ns.
+**NOTE**: measurements with 4R3, delta=10 and variable might have the wrong measure of vS.
+I've taken capture for the *ZVS*. Some for the *ZCS* are missing.
+
+
+31 May - last day in the lab, crowded by measurements' duty ;). I tried to take capture of several things that I might need: ZCS with the battery as a load, limit cycles with battery and with resistors, and closed-loop response. I have also taken photos of the prototype.
+
+
+```{figure} ../images/diary/20240531-PI_battery.png
+---
+width: 400px
+---
+Closed-loop response
+```
+
+```{figure} ../images/diary/20240531-prototype.jpg
+---
+width: 400px
+---
+Prototype on 31st May 2024
+```
