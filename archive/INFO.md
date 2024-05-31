@@ -59,10 +59,31 @@ This folder contains the `*.sof` files that can be directly uploaded to the FPGA
      - state machine is always passing through 0 even with phi=0;
      - saturation at 0 is hard-coded;
      - change in CLK for state-machine, now it is looking two time step back for the reset.
- - `TOP_HybridControl_theta_phi_OL-20240527-working.sof`: improved version of the open-loop with some additional functionalities. The dip-switch possibilities remain the same as before. The different control that can be used are:
+ - `TOP_HybridControl_theta_phi_OL-20240527-working.sof`: improved version of the open-loop with some additional functionalities. The dip-switch possibilities remain the same as before. The different controls that can be used are:
    - by acting on `sw[2:1]` we can choose the controller
        - 00 phi + delta
        - 01 theta in z-plane (improved version with regularization)
        - 10 theta in x-plane (run on mixed control by changing delta)
        - 11 phi in x
    - the angles phi and theta are changed with the buttons [1], [2] and reset with [0], delta with [3] and reset with [CPU_RESET]
+ - `TOP_HybridControl_theta_phi_OL-20240531_final.sof`: final version during the stay in May 2024. It has 4 different control laws working. 
+   - By acting on `sw[2:1]` we can choose the controller
+     - 00 phi + delta
+     - 01 theta in z-plane (improved version with regularization)
+     - 10 theta in x-plane (run on mixed control by changing delta)
+     - 11 phi in x
+     - the angles phi and theta are changed with the buttons [1] (increase +5), [2] (decrease -5) and reset with [0], delta with [3] (increase only +1) and reset with [CPU_RESET]
+   - `sw[3]` allows what to show on the 7-segment display
+     - `0` - show the main angle used in the controller 
+     - `1` - show what selected from the dip-switch (if unavailable show `--`)
+       - [0] delta
+       - [1] delta
+       - [2-3] dead time selection
+         - `00` 100ns
+         - `01` 200ns
+         - `10` 400ns
+         - `11` 600ns
+       - [4] $V_{bat}$ in HEX
+       - [5] $I_{bat}$ in HEX
+       - [6] $V_{bat}$ in DEC
+       - [7] $I_{bat}$ in DEC
