@@ -1,7 +1,7 @@
 //------------------------------------------------------------
-// Project: HYBRID_CONTROL_THETA_PHI_OL
+// Project: HYBRID_CONTROL
 // Author: Nicola Zaupa
-// Date: (2023/07/26) (00:27:25)
+// Date: (2024/05/31) (17:12:21)
 // File: TOP_HybridControl_theta_phi_OL.v
 //------------------------------------------------------------
 // Description:
