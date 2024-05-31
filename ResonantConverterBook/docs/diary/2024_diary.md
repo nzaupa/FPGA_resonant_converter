@@ -244,11 +244,24 @@ Operating point of the converter with a battery attached to it
 ```
 
 30 May - Go back to the lab to fix some last measurements. Mainly OL measurements to complete the one I took before.
-
-Dead-time used for the measure is 400ns.
-
-NOTE: measurements with 4R3, delta=10 and variable might have the wrong measure of vS.
-
-I've taken capture for the ZVS. Some for the ZCS are missing
+Dead-time used for the measure is 600ns.
+**NOTE**: measurements with 4R3, delta=10 and variable might have the wrong measure of vS.
+I've taken capture for the *ZVS*. Some for the *ZCS* are missing.
 
 
+31 May - last day in the lab, crowded by measurements' duty ;). I tried to take capture of several things that I might need: ZCS with the battery as a load, limit cycles with battery and with resistors, and closed-loop response. I have also taken photos of the prototype.
+
+
+```{figure} ../images/diary/20240531-PI_battery.png
+---
+width: 400px
+---
+Closed-loop response
+```
+
+```{figure} ../images/diary/20240531-prototype.jpg
+---
+width: 400px
+---
+Prototype on 31st May 2024
+```
