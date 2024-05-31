@@ -288,7 +288,7 @@ hybrid_control_mixed #(.mu_x1(32'd160), .mu_x2(32'd90)
    .i_RESET( CPU_RESET & ENABLE_RST ),   
    .i_vC( vC ),      
    .i_iC( iC ),      
-   .i_delta( delta),    
+   .i_delta(delta),    
    // .i_delta( 32'd180 + (~theta_x) + 1 ),    
    .i_phi( 32'd0 ),      
    .i_sigma( ) 
@@ -480,7 +480,18 @@ hybrid_control_mixed #(.mu_x1(32'd160), .mu_x2(32'd90)
    end
 
    always @(posedge ADB_DCO) begin
-      ADC_B    = ~ADB_DATA+14'b1;
+      if (ADB_OR) begin
+         // we are in over-range
+         if (ADB_DATA==14'h2000) begin
+            ADC_B <= 14'h1FFF;
+         end else begin
+            ADC_B <= 14'h2000;
+         end
+      end else begin
+         // inverse the polarity since it is inverted in the {CB}
+         ADC_B <= ~ADB_DATA+14'b1;
+      end
+      // ADC_B    = ~ADB_DATA+14'b1;
       DAB_copy = ~ADB_DATA+14'b1 + 14'd8191;
    end
 
