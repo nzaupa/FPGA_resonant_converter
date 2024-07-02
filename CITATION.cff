@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Zaupa"
+  given-names: "Nicola"
+  orcid: "https://orcid.org/0000-0002-5644-6699"
+title: "Verilog code for Hybrid Control of Resonant Converters"
+version: 2.0.4
+# doi: 10.5281/zenodo.1234
+date-released: 2024-06-03
+url: "https://github.com/nzaupa/FPGA_resonant_converter"
