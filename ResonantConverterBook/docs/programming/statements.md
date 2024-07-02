@@ -31,7 +31,7 @@ can write `{count,sum} = a + b + cin`
 
 combinatorial with `always` is the same as assign.
 
-A `always` block is executed avery time a variable/net in the sensitivity list changes value. The general structure is
+A `always` block is executed every time a variable/net in the sensitivity list changes value. The general structure is
 
 >`always @(<sensitivity list>)`
 
